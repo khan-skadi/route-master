@@ -1,0 +1,168 @@
+{
+  "logs": [
+    {
+      "message": "Ship electornics to New York",
+      "attention": true,
+      "progress": false,
+      "tech": "John Doe",
+      "date": "2020-01-10T19:00:39.020Z",
+      "id": 1
+    },
+    {
+      "id": 3,
+      "message": "Route 3 is waiting to be picked up by John",
+      "attention": false,
+      "progress": false,
+      "tech": "John Doe",
+      "date": "2020-01-21T00:29:01.211Z"
+    },
+    {
+      "id": 4,
+      "message": "123444",
+      "attention": false,
+      "progress": false,
+      "tech": "Khan Skadi",
+      "date": "2020-01-22T00:42:55.330Z"
+    },
+    {
+      "message": "34523452345",
+      "attention": false,
+      "progress": true,
+      "tech": "Sam Smith",
+      "date": "2020-01-20T23:55:00.791Z",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "message": "3462345f43",
+      "attention": false,
+      "progress": false,
+      "tech": "Caz Delvez",
+      "date": "2020-01-22T00:42:48.080Z"
+    },
+    {
+      "message": "Route to boston",
+      "attention": false,
+      "progress": false,
+      "tech": "John Doe",
+      "date": "2020-01-23T00:55:02.683Z",
+      "id": 7
+    }
+  ],
+  "techs": [
+    {
+      "id": 3,
+      "firstName": "Sara",
+      "lastName": "Wilson"
+    },
+    {
+      "firstName": "Caz",
+      "lastName": "Delvez",
+      "id": 5
+    },
+    {
+      "firstName": "Sam",
+      "lastName": "Smith",
+      "id": 6
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "id": 7
+    },
+    {
+      "firstName": "Khan",
+      "lastName": "Skadi",
+      "id": 8
+    },
+    {
+      "firstName": "Hans",
+      "lastName": "Landa",
+      "id": 10
+    }
+  ],
+  "archs": [
+    {
+      "message": "123444",
+      "attention": true,
+      "progress": false,
+      "tech": "Khan Skadi",
+      "date": "2020-01-21T02:19:35.218Z",
+      "id": 10
+    },
+    {
+      "message": "Ship electornics to New York",
+      "attention": true,
+      "progress": false,
+      "tech": "John Doe",
+      "date": "2020-01-21T02:20:09.654Z",
+      "id": 11
+    },
+    {
+      "message": "Route 2 is going to Istanbul",
+      "attention": false,
+      "progress": true,
+      "tech": "Sara Wilson",
+      "date": "2020-01-21T02:20:23.850Z",
+      "id": 12
+    },
+    {
+      "message": "Ship electornics to New York",
+      "attention": true,
+      "progress": false,
+      "tech": "John Doe",
+      "date": "2020-01-21T02:20:56.072Z",
+      "id": 13
+    },
+    {
+      "message": "123444",
+      "attention": true,
+      "progress": false,
+      "tech": "Khan Skadi",
+      "date": "2020-01-21T02:23:42.764Z",
+      "id": 14
+    }
+  ],
+  "drivers": [
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "address": "testaddress",
+      "email": "test@test.com",
+      "phoneNumber": "025645464",
+      "birthYear": "1995",
+      "hourlyRate": "35",
+      "license": "as2620ag",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 1
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "address": "testaddress",
+      "email": "test@test.co.uk",
+      "id": 2
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "address": "asdasda",
+      "email": "test@test.us",
+      "id": 3
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "id": 4
+    },
+    {
+      "firstName": "Gurgica",
+      "lastName": "Kartalova",
+      "address": "8mi Septemvri",
+      "email": "gurgica@kartalova.com",
+      "id": 6
+    }
+  ]
+}
