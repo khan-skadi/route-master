@@ -9,13 +9,13 @@ const AddDriverModal = ({ addDriver }) => {
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [birthYear, setBirthYear] = useState("");
-  // const [hourlyRate, setHourlyRate] = useState("");
-  // const [license, setLicense] = useState("");
-  // const [available, setAvailable] = useState(true);
-  // const [completedRoutes, setCompletedRoutes] = useState(null);
-  // const [incompleteRoutes, setIncompleteRoutes] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [birthYear, setBirthYear] = useState("");
+  const [hourlyRate, setHourlyRate] = useState("");
+  const [license, setLicense] = useState("");
+  const [available, setAvailable] = useState(true);
+  const [completedRoutes, setCompletedRoutes] = useState(null);
+  const [incompleteRoutes, setIncompleteRoutes] = useState(null);
 
   const onSubmit = () => {
     if (firstName === "" || lastName === "") {
@@ -25,29 +25,29 @@ const AddDriverModal = ({ addDriver }) => {
         firstName,
         lastName,
         address,
-        email
+        email,
+        phoneNumber,
+        birthYear,
+        hourlyRate,
+        license,
+        available,
+        completedRoutes,
+        incompleteRoutes
       });
 
-      // phoneNumber,
-      // birthYear,
-      // hourlyRate,
-      // license,
-      // available,
-      // completedRoutes,
-      // incompleteRoutes
       M.toast({ html: `${firstName} ${lastName} was added as a driver` });
       // Clear Fields
       setFirstName("");
       setLastName("");
       setAddress("");
       setEmail("");
-      // setPhoneNumber("");
-      // setBirthYear("");
-      // setHourlyRate("");
-      // setLicense("");
-      // setAvailable(true);
-      // setCompletedRoutes(null);
-      // setIncompleteRoutes(null);
+      setPhoneNumber("");
+      setBirthYear("");
+      setHourlyRate("");
+      setLicense("");
+      setAvailable(true);
+      setCompletedRoutes(null);
+      setIncompleteRoutes(null);
     }
   };
 
@@ -115,7 +115,7 @@ const AddDriverModal = ({ addDriver }) => {
               </div>
             </div>
 
-            {/* <div className="col s6">
+            <div className="col s6">
               <div className="input-field">
                 <input
                   type="text"
@@ -169,7 +169,7 @@ const AddDriverModal = ({ addDriver }) => {
                   License
                 </label>
               </div>
-            </div> */}
+            </div>
 
             <div className="col s12">
               <div className="modal-footer">

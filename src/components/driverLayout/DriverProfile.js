@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import Preloader from "../layout/Preloader";
 import ButtonDriverProfile from "./ButtonDriverProfile";
 
-const Drivers = ({ getDrivers, driver: { drivers, loading } }) => {
+const DriverProfile = ({ getDrivers, driver: { drivers, loading } }) => {
   useEffect(() => {
     getDrivers();
 
@@ -97,7 +97,7 @@ const Drivers = ({ getDrivers, driver: { drivers, loading } }) => {
   );
 };
 
-Drivers.propTypes = {
+DriverProfile.propTypes = {
   driver: PropTypes.object.isRequired,
   getDrivers: PropTypes.func.isRequired
 };
@@ -106,4 +106,4 @@ const mapStateToProps = state => ({
   driver: state.driver
 });
 
-export default connect(mapStateToProps, { getDrivers })(Drivers);
+export default connect(mapStateToProps, { getDrivers })(DriverProfile);

@@ -4,13 +4,14 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import SearchBar from "./components/layout/SearchBar";
 import Logs from "./components/logs/Logs.js";
-import Drivers from "./components/driverLayout/Drivers";
+import DriverProfile from "./components/driverLayout/DriverProfile";
 import AddBtn from "./components/layout/AddBtn";
 import AddLogModal from "./components/logs/AddLogModal";
 import EditLogModal from "./components/logs/EditLogModal";
 import AddTechModal from "./components/techs/AddTechModal";
 import AddDriverModal from "./components/driverLayout/AddDriverModal";
 import TechListModal from "./components/techs/TechListModal";
+import DriverListModal from "./components/driverLayout/DriverListModal";
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
 import Footer from "./components/layout/Footer.js";
 import FindRoutes from "./components/layout/FindRoutes";
@@ -35,13 +36,14 @@ const App = () => {
         <EditLogModal />
         <AddTechModal />
         <TechListModal />
+        <DriverListModal />
         <Switch>
           <Route exact path="/" component={Logs} />
+          <Route path="/driver/:id" component={DriverProfile} />
           <Route path="/archived-routes" component={ArchivedRoutes} />
           <Route path="/find-routes" component={FindRoutes} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
-          <Route path="/driver" component={Drivers} />
         </Switch>
       </div>
       <Footer />

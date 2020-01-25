@@ -125,44 +125,53 @@
   ],
   "drivers": [
     {
-      "firstName": "test",
-      "lastName": "test",
-      "address": "testaddress",
-      "email": "test@test.com",
-      "phoneNumber": "025645464",
-      "birthYear": "1995",
-      "hourlyRate": "35",
-      "license": "as2620ag",
-      "available": true,
-      "completedRoutes": null,
-      "incompleteRoutes": null,
-      "id": 1
-    },
-    {
-      "firstName": "test",
-      "lastName": "test",
-      "address": "testaddress",
-      "email": "test@test.co.uk",
-      "id": 2
-    },
-    {
-      "firstName": "test",
-      "lastName": "test",
-      "address": "asdasda",
-      "email": "test@test.us",
-      "id": 3
-    },
-    {
-      "firstName": "test",
-      "lastName": "test",
-      "id": 4
-    },
-    {
       "firstName": "Gurgica",
       "lastName": "Kartalova",
       "address": "8mi Septemvri",
       "email": "gurgica@kartalova.com",
       "id": 6
+    },
+    {
+      "firstName": "Petar",
+      "lastName": "Kartalov",
+      "address": "8mi Septemvri br.26",
+      "email": "bvs.skadi@gmail.com",
+      "phoneNumber": "+389 072 544 622",
+      "birthYear": "1993",
+      "hourlyRate": "120",
+      "license": "RA0264AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 7
+    },
+    {
+      "firstName": "Aneta",
+      "lastName": "Ilkaceva",
+      "address": "8 Septemvri 26",
+      "email": "ailkaceva@gmail.com",
+      "phoneNumber": "+389 079 330 118",
+      "birthYear": "1999",
+      "hourlyRate": "40",
+      "license": "RA0264AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 9
+    },
+    {
+      "firstName": "Igor",
+      "lastName": "Litajkovski",
+      "address": "4th st. Vienna",
+      "email": "igorlmax@ymail.com",
+      "phoneNumber": "+389 072 444 222",
+      "birthYear": "1990",
+      "hourlyRate": "130",
+      "license": "BG2601AG",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 10
     }
   ]
 }

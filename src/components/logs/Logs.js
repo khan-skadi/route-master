@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 const Logs = ({ log: { logs, loading }, getLogs }) => {
   useEffect(() => {
     getLogs();
-
     // eslint-disable-next-line
   }, []);
 

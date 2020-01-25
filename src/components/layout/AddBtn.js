@@ -34,6 +34,14 @@ const AddBtn = () => {
             <i className="material-icons">add_circle</i>
           </a>
         </li>
+        <li>
+          <a
+            href="#driver-list-modal"
+            className="btn-floating  indigo lighten-1 modal-trigger"
+          >
+            <i className="material-icons">check</i>
+          </a>
+        </li>
       </ul>
     </div>
   );
