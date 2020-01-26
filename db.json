@@ -140,6 +140,57 @@
       "completedRoutes": null,
       "incompleteRoutes": null,
       "id": 15
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2Fstalion.jpg?alt=media&token=d4bca0f2-e5bb-46ba-9c1a-9e28728fd4b6",
+      "progress": 100,
+      "firstName": "Igor",
+      "lastName": "Litajkovski",
+      "address": "Vienna st.15",
+      "email": "igorlmax@ymail.com",
+      "phoneNumber": "5555 444 777",
+      "birthYear": "1990",
+      "hourlyRate": "120",
+      "license": "BG3960AG",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 16
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2Fgurgicawqwqw.jpg?alt=media&token=2ce1c3f2-9176-4754-a448-9e236d5bbebc",
+      "progress": 100,
+      "firstName": "Gurgica",
+      "lastName": "Kartalova",
+      "address": "8mi Septemvri br.26",
+      "email": "gurgica.k@hotmail.com",
+      "phoneNumber": "071 505 404",
+      "birthYear": "1995",
+      "hourlyRate": "110",
+      "license": "GK1111AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 17
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FIMG_0039.JPG?alt=media&token=11294d72-3752-4655-8572-47ae7b57f6b4",
+      "progress": 100,
+      "firstName": "Petar",
+      "lastName": "Kartalov",
+      "address": "8mi Septemvri 26",
+      "email": "kartalov.pt@gmail.com",
+      "phoneNumber": "072 544 622",
+      "birthYear": "1993",
+      "hourlyRate": "140",
+      "license": "RA0264AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 18
     }
   ]
 }

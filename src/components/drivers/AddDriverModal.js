@@ -76,7 +76,6 @@ export class AddDriverModal extends Component {
     }
   };
   handleUpload = () => {
-    // const { image } = this.state;
     const image = this.state.image;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
@@ -98,7 +97,6 @@ export class AddDriverModal extends Component {
           .child(image.name)
           .getDownloadURL()
           .then(url => {
-            console.log(url);
             this.setState({ url });
           });
       }
@@ -109,7 +107,6 @@ export class AddDriverModal extends Component {
       M.toast({ html: "Please enter the first and last name" });
     } else {
       this.props.addDriver(this.state);
-
       M.toast({
         html: `${this.firstName} ${this.lastName} was added as a driver`
       });

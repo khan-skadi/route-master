@@ -3,26 +3,26 @@ import { connect } from "react-redux";
 
 const AdminPanelList = ({ driver }) => {
   return (
-    <div>
+    <ul>
       <li>
-        <div className="col s12">
-          <div className="card-panel grey lighten-5 z-depth-1">
-            <div className="row valign-wrapper">
+        <div className="card-panel grey lighten-5 z-depth-1">
+          <div className="row valign-wrapper">
+            <div className="col s4">
               <img
                 src={driver.url}
                 alt=""
                 className="circle responsive-img"
-                width="60px"
+                width="100px"
               />
-              <div className="col s10">
-                <span className="black-text">{driver.name}</span>
-                <span className="black-text">{driver.license}</span>
-              </div>
+            </div>
+            <div className="col s8">
+              <p className="flow-text black-text">{driver.firstName}</p>
+              <p className="flow-text black-text">{driver.lastName}</p>
             </div>
           </div>
         </div>
       </li>
-    </div>
+    </ul>
   );
 };
 
