@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import TechSelectOptions from "../techs/TechSelectOptions";
+import DriverSelectOptions from "../drivers/DriverSelectOptions";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { updateLog } from "../../store/actions/logActions";
 
@@ -70,7 +70,7 @@ const EditLogModal = ({ current, updateLog }) => {
               <option value="" disabled>
                 Select Driver
               </option>
-              <TechSelectOptions />
+              <DriverSelectOptions />
             </select>
           </div>
         </div>

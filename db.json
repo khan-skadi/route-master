@@ -125,53 +125,21 @@
   ],
   "drivers": [
     {
-      "firstName": "Gurgica",
-      "lastName": "Kartalova",
-      "address": "8mi Septemvri",
-      "email": "gurgica@kartalova.com",
-      "id": 6
-    },
-    {
-      "firstName": "Petar",
-      "lastName": "Kartalov",
-      "address": "8mi Septemvri br.26",
-      "email": "bvs.skadi@gmail.com",
-      "phoneNumber": "+389 072 544 622",
-      "birthYear": "1993",
-      "hourlyRate": "120",
-      "license": "RA0264AC",
-      "available": true,
-      "completedRoutes": null,
-      "incompleteRoutes": null,
-      "id": 7
-    },
-    {
-      "firstName": "Aneta",
-      "lastName": "Ilkaceva",
-      "address": "8 Septemvri 26",
-      "email": "ailkaceva@gmail.com",
-      "phoneNumber": "+389 079 330 118",
-      "birthYear": "1999",
-      "hourlyRate": "40",
-      "license": "RA0264AC",
-      "available": true,
-      "completedRoutes": null,
-      "incompleteRoutes": null,
-      "id": 9
-    },
-    {
-      "firstName": "Igor",
-      "lastName": "Litajkovski",
-      "address": "4th st. Vienna",
-      "email": "igorlmax@ymail.com",
-      "phoneNumber": "+389 072 444 222",
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2F74.jpg?alt=media&token=f2d3b9ac-9414-49af-a5ae-9f8ecf69be0b",
+      "progress": 100,
+      "firstName": "Ramirez",
+      "lastName": "Ramiroffski",
+      "address": "Ramo street",
+      "email": "ramo@rammstein.com",
+      "phoneNumber": "555 - RAMO - 444",
       "birthYear": "1990",
-      "hourlyRate": "130",
-      "license": "BG2601AG",
+      "hourlyRate": "50",
+      "license": "00RAM00",
       "available": true,
       "completedRoutes": null,
       "incompleteRoutes": null,
-      "id": 10
+      "id": 15
     }
   ]
 }

@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/materialize-css": "^1.0.7",
+    "axios": "^0.19.2",
     "firebase": "^7.7.0",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",

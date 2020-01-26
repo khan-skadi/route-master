@@ -3,12 +3,12 @@ import { getLogs } from "../../store/actions/logActions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogItem from "./LogItem";
-import InfoPanel from "../layout/InfoPanel";
-import ProfileModal from "./ProfileModal";
+import AdminPanel from "../layout/AdminPanel";
+import OurStaff from "./OurStaff";
 import Preloader from "../layout/Preloader";
 import PropTypes from "prop-types";
 
-const Logs = ({ log: { logs, loading }, getLogs }) => {
+const Logs = ({ log: { logs, loading }, driver, getLogs }) => {
   useEffect(() => {
     getLogs();
     // eslint-disable-next-line
@@ -38,12 +38,12 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
             </NavLink>
           </ul>
           <div>
-            <ProfileModal />
+            <OurStaff />
           </div>
         </div>
 
         <div className="col s4">
-          <InfoPanel />
+          <AdminPanel driver={driver} />
         </div>
       </div>
     </div>
@@ -52,11 +52,13 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
 
 Logs.propTypes = {
   log: PropTypes.object.isRequired,
+  driver: PropTypes.object.isRequired,
   getLogs: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  log: state.log
+  log: state.log,
+  driver: state.driver
 });
 
 export default connect(mapStateToProps, { getLogs })(Logs);

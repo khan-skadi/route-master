@@ -7,12 +7,13 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
-import "firebase/firestore";
-import "firebase/firestore";
-import "firebase/auth";
 import createReduxStore from "./createReduxStore";
 import Preloader from "./components/layout/Preloader";
 import App from "./App";
+import "firebase/firestore";
+import "firebase/firestore";
+import "firebase/auth";
+import "firebase/storage";
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
@@ -39,6 +40,9 @@ const rrfConfig = {
 // Initialize firebase instance
 firebase.initializeApp(fbConfig);
 // firebase.firestore();
+const storage = firebase.storage();
+
+export { storage, firebase as default };
 
 const store = createReduxStore();
 

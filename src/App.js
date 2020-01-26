@@ -3,18 +3,17 @@ import { Switch, Route } from "react-router-dom";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import SearchBar from "./components/layout/SearchBar";
-import Logs from "./components/logs/Logs.js";
-import DriverProfile from "./components/driverLayout/DriverProfile";
+import DriverProfile from "./components/driverProfileLayout/DriverProfile";
 import AddBtn from "./components/layout/AddBtn";
+import Logs from "./components/logs/Logs.js";
 import AddLogModal from "./components/logs/AddLogModal";
 import EditLogModal from "./components/logs/EditLogModal";
-import AddTechModal from "./components/techs/AddTechModal";
-import AddDriverModal from "./components/driverLayout/AddDriverModal";
-import TechListModal from "./components/techs/TechListModal";
-import DriverListModal from "./components/driverLayout/DriverListModal";
+import AddDriverModal from "./components/drivers/AddDriverModal";
+import DriverListModal from "./components/drivers/DriverListModal";
+import DriverSelectOptions from "./components/drivers/DriverSelectOptions";
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
-import Footer from "./components/layout/Footer.js";
 import FindRoutes from "./components/layout/FindRoutes";
+import Footer from "./components/layout/Footer.js";
 
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -31,12 +30,11 @@ const App = () => {
       <SearchBar />
       <div className="content" style={{ width: "80%", margin: "0 auto" }}>
         <AddBtn />
-        <AddDriverModal />
         <AddLogModal />
         <EditLogModal />
-        <AddTechModal />
-        <TechListModal />
+        <AddDriverModal />
         <DriverListModal />
+        <DriverSelectOptions />
         <Switch>
           <Route exact path="/" component={Logs} />
           <Route path="/driver/:id" component={DriverProfile} />

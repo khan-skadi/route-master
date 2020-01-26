@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonDriverProfile = () => {
+const DriverProfileButton = () => {
   return (
     <div className="fixed-action-btn">
       <a href="#!" className="btn-floating btn-large red">
@@ -32,4 +32,4 @@ const ButtonDriverProfile = () => {
   );
 };
 
-export default ButtonDriverProfile;
+export default DriverProfileButton;

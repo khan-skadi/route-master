@@ -1,10 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import profile1Photo from "../../img/profile5.jpg";
 import profile2Photo from "../../img/profile2.jpg";
 import profile3Photo from "../../img/profile3.jpg";
 import profile4Photo from "../../img/profile4.JPG";
 
-const InfoPanel = () => {
+const AdminPanel = () => {
   return (
     <div style={{ backgroundColor: "#e0e0e0" }}>
       <div className="row">
@@ -125,4 +126,4 @@ const InfoPanel = () => {
   );
 };
 
-export default InfoPanel;
+export default connect()(AdminPanel);

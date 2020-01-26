@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getDrivers } from "../../store/actions/driverActions";
-import DriverItem from "./DriverItem";
+import DriverItem from "../drivers/DriverItem";
+import DriverProfileButton from "./DriverProfileButton";
 import PropTypes from "prop-types";
 import Preloader from "../layout/Preloader";
-import ButtonDriverProfile from "./ButtonDriverProfile";
 
 const DriverProfile = ({ getDrivers, driver: { drivers, loading } }) => {
   useEffect(() => {
@@ -80,7 +80,7 @@ const DriverProfile = ({ getDrivers, driver: { drivers, loading } }) => {
           <li>
             <img src="#!" alt="" />
           </li>
-          <ButtonDriverProfile />
+          <DriverProfileButton />
         </ul>
         <div className="col s12">
           <ul className="with-header">

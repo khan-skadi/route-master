@@ -1,13 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteDriver } from "../../store/actions/driverActions";
 import PropTypes from "prop-types";
+import { deleteDriver } from "../../store/actions/driverActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-const DriverListItem = ({
-  driver: { id, firstName, lastName },
-  deleteDriver
-}) => {
+const DriverItem = ({ driver: { id, firstName, lastName }, deleteDriver }) => {
   const onDelete = () => {
     deleteDriver(id);
     M.toast({ html: "Driver removed" });
@@ -25,9 +22,10 @@ const DriverListItem = ({
   );
 };
 
-DriverListItem.propTypes = {
+DriverItem.propTypes = {
   driver: PropTypes.object.isRequired,
   deleteDriver: PropTypes.func.isRequired
 };
 
-export default connect(null, { deleteDriver })(DriverListItem);
+// We are not getting/pulling anything from state so null
+export default connect(null, { deleteDriver })(DriverItem);
