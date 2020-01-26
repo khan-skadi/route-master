@@ -7,7 +7,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 const DriverItem = ({ driver: { id, firstName, lastName }, deleteDriver }) => {
   const onDelete = () => {
     deleteDriver(id);
-    M.toast({ html: "Driver removed" });
+    M.toast({ html: `${firstName} ${lastName} removed from drivers` });
   };
 
   return (

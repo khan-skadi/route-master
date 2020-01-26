@@ -25,16 +25,16 @@ export class AddDriverModal extends Component {
       incompleteRoutes: null
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
-    this.handleLicense = this.handleLicense.bind(this);
-    this.handleHourlyRate = this.handleHourlyRate.bind(this);
-    this.handleBirthYear = this.handleBirthYear.bind(this);
-    this.handlePhoneNumber = this.handlePhoneNumber.bind(this);
+    this.handleFirstName = this.handleFirstName.bind(this);
+    this.handleLastName = this.handleLastName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
-    this.handleLastName = this.handleLastName.bind(this);
-    this.handleFirstName = this.handleFirstName.bind(this);
+    this.handlePhoneNumber = this.handlePhoneNumber.bind(this);
+    this.handleBirthYear = this.handleBirthYear.bind(this);
+    this.handleHourlyRate = this.handleHourlyRate.bind(this);
+    this.handleLicense = this.handleLicense.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
   handleLicense = e => {
@@ -255,7 +255,7 @@ export class AddDriverModal extends Component {
                 <input type="file" onChange={this.handleChange} />
                 <button onClick={this.handleUpload}>Upload</button>
                 <br />
-                <img src={this.state.url} alt="" height="300" width="400" />
+                <img src={this.state.url} alt="" height="300" width="300" />
               </div>
             </div>
           </div>

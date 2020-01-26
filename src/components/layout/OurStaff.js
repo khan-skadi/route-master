@@ -1,6 +1,7 @@
 // Renders "Our Staff" section.
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import OurStaffList from "./OurStaffList";
 import Preloader from "./Preloader";
 import "../../styles/ProfileModal.css";
@@ -22,7 +23,11 @@ const OurStaff = ({ driver }) => {
           <div>
             {driver.drivers &&
               driver.drivers.map(driver => {
-                return <OurStaffList driver={driver} key={driver.id} />;
+                return (
+                  <Link to={"/driver/" + driver.id} key={driver.id}>
+                    <OurStaffList driver={driver} />;
+                  </Link>
+                );
               })}
           </div>
         </div>

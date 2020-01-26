@@ -1,7 +1,6 @@
 // List logic for "Our Staff" section.
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const OurStaffList = ({ driver }) => {
@@ -21,9 +20,7 @@ const OurStaffList = ({ driver }) => {
               <p className="flow-text">{driver.license}</p>
             </div>
             <div className="card-action">
-              <Link to={"/driver/" + driver.id}>
-                <button className="btn btn-primary">Profile</button>
-              </Link>
+              <button className="btn btn-primary">Profile</button>
             </div>
           </div>
         </div>
