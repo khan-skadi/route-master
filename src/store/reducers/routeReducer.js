@@ -3,11 +3,14 @@ import {
   ADD_ROUTE,
   DELETE_ROUTE,
   UPDATE_ROUTE,
-  ROUTES_ERROR
+  ROUTES_ERROR,
+  SET_CURRENT_ROUTE,
+  CLEAR_CURRENT_ROUTE
 } from "../actions/types";
 
 const initialState = {
-  routes: null
+  routes: null,
+  currentRoute: null
 };
 
 export default (state = initialState, action) => {
@@ -36,6 +39,16 @@ export default (state = initialState, action) => {
         routes: state.routes.map(route =>
           route.id === action.payload.id ? action.payload : route
         )
+      };
+    case SET_CURRENT_ROUTE:
+      return {
+        ...state,
+        currentRoute: action.payload
+      };
+    case CLEAR_CURRENT_ROUTE:
+      return {
+        ...state,
+        currentRoute: null
       };
     case ROUTES_ERROR:
       console.error(action.payload);

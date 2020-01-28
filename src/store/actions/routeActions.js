@@ -3,7 +3,9 @@ import {
   ADD_ROUTE,
   DELETE_ROUTE,
   UPDATE_ROUTE,
-  ROUTES_ERROR
+  ROUTES_ERROR,
+  SET_CURRENT_ROUTE,
+  CLEAR_CURRENT_ROUTE
 } from "./types";
 
 export const getRoutes = () => async dispatch => {
@@ -86,4 +88,17 @@ export const updateRoute = route => async dispatch => {
       payload: err.response.statusText
     });
   }
+};
+
+export const setCurrentRoute = route => {
+  return {
+    type: SET_CURRENT_ROUTE,
+    payload: route
+  };
+};
+
+export const clearCurrent = () => {
+  return {
+    type: CLEAR_CURRENT_ROUTE
+  };
 };

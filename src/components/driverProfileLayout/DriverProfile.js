@@ -44,18 +44,7 @@ const mapStateToProps = (state, ownProps) => {
     driver: state.driver
   };
 };
-// const mapStateToProps = state => {
-//   return {
-//     driver: state.driver
-//   };
-// };
 //.find(driver => driver.id === id)
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getDrivers: driver => dispatch(getDrivers(driver))
-//   };
-// };
 
 export default withRouter(
   connect(mapStateToProps, { getDrivers })(DriverProfile)

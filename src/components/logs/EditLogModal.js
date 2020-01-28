@@ -53,7 +53,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="text"
               name="message"
-              value={message}
+              value={message || ""}
               onChange={e => setMessage(e.target.value)}
             />
           </div>
@@ -63,7 +63,7 @@ const EditLogModal = ({ current, updateLog }) => {
           <div className="input-field">
             <select
               name="tech"
-              value={tech}
+              value={tech || ""}
               className="browser-default"
               onChange={e => setTech(e.target.value)}
             >

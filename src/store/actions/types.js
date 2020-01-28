@@ -25,3 +25,5 @@ export const ADD_ROUTE = "ADD_ROUTE";
 export const DELETE_ROUTE = "DELETE_ROUTE";
 export const UPDATE_ROUTE = "UPDATE_ROUTE";
 export const ROUTES_ERROR = "ROUTES_ERROR";
+export const SET_CURRENT_ROUTE = "CURRENT_ROUTE";
+export const CLEAR_CURRENT_ROUTE = "CLEAR_CURRENT_ROUTE";

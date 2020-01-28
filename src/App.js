@@ -13,6 +13,7 @@ import DriverListModal from "./components/drivers/DriverListModal";
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
 import ArchivedItemModal from "./components/layout/ArchivedItemModal";
 import FindRoutes from "./components/layout/FindRoutes";
+import FindRoutesModal from "./components/layout/FindRoutesModal";
 
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -34,6 +35,7 @@ const App = () => {
         <ArchivedItemModal />
         <AddDriverModal />
         <DriverListModal />
+        <FindRoutesModal />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/archived-routes" component={ArchivedRoutes} />

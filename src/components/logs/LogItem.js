@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Moment from "react-moment";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteLog, setCurrent } from "../../store/actions/logActions";
 import { addArch } from "../../store/actions/archActions";
+import PropTypes from "prop-types";
+import Moment from "react-moment";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-const LogItem = ({ arch, log, deleteLog, setCurrent, addArch }) => {
+const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
   const [archive, setArchive] = useState(null);
 
   const onDelete = () => {
@@ -34,7 +34,6 @@ const LogItem = ({ arch, log, deleteLog, setCurrent, addArch }) => {
       <li className="collection-item">
         <div>
           <a
-            href="#edit-log-modal"
             className={`modal-trigger ${
               log.attention
                 ? "red-text"
@@ -42,6 +41,7 @@ const LogItem = ({ arch, log, deleteLog, setCurrent, addArch }) => {
                 ? "green-text"
                 : "blue-text"
             }`}
+            href="#edit-log-modal"
             onClick={() => setCurrent(log)}
           >
             {log.message}
