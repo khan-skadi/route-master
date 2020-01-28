@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// import { Redirect } from "react-router-dom";
 import { storage } from "../../index";
 import { addDriver } from "../../store/actions/driverActions";
 import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-export class AddDriverModal extends Component {
+class AddDriverModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -102,20 +103,20 @@ export class AddDriverModal extends Component {
       }
     );
   };
-  handleSubmit = e => {
-    if (this.firstName === "" || this.lastName === "") {
+  handleSubmit = () => {
+    if (this.state.firstName === "" || this.state.lastName === "") {
       M.toast({ html: "Please enter the first and last name" });
     } else {
       this.props.addDriver(this.state);
       M.toast({
-        html: `${this.firstName} ${this.lastName} was added as a driver`
+        html: `${this.state.firstName} ${this.state.lastName} was added as a driver`
       });
     }
   };
 
   render() {
     return (
-      <div id="add-driver-modal" className="modal">
+      <div id="add-drivers-modal" className="modal">
         <div className="modal-content">
           <div className="row">
             <div className="col s12">
@@ -234,9 +235,18 @@ export class AddDriverModal extends Component {
                 </div>
               </div>
 
+              <div>
+                <progress value={this.state.progress} max="100" />
+                <br />
+                <input type="file" onChange={this.handleChange} />
+                <button onClick={this.handleUpload}>Upload</button>
+                <br />
+                <img src={this.state.url} alt="" height="300" width="300" />
+              </div>
+
               <div className="col s12">
                 <div className="modal-footer">
-                  <a href="/">
+                  <a href="#!">
                     <button
                       className="btn waves-effect blue waves-light"
                       type="submit"
@@ -248,14 +258,6 @@ export class AddDriverModal extends Component {
                     </button>
                   </a>
                 </div>
-              </div>
-              <div>
-                <progress value={this.state.progress} max="100" />
-                <br />
-                <input type="file" onChange={this.handleChange} />
-                <button onClick={this.handleUpload}>Upload</button>
-                <br />
-                <img src={this.state.url} alt="" height="300" width="300" />
               </div>
             </div>
           </div>
@@ -269,10 +271,16 @@ AddDriverModal.propTypes = {
   addDriver: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => {
+  return {
+    driver: state.driver
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     addDriver: driver => dispatch(addDriver(driver))
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddDriverModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AddDriverModal);

@@ -21,8 +21,7 @@ const DriverSelectOptions = ({ getDrivers, driver: { drivers, loading } }) => {
 };
 
 DriverSelectOptions.propTypes = {
-  driver: PropTypes.object.isRequired,
-  getDrivers: PropTypes.func.isRequired
+  driver: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

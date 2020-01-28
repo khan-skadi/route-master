@@ -34,6 +34,7 @@ export const addDriver = driver => async dispatch => {
       type: "ADD_DRIVER",
       payload: data
     });
+    console.log(driver);
   } catch (err) {
     console.log("err response", err);
     dispatch({
@@ -42,6 +43,27 @@ export const addDriver = driver => async dispatch => {
     });
   }
 };
+
+// export const createDriver = driver => {
+//   return (dispatch, getState, { getFirebase, getFirestore }) => {
+//     const firestore = getFirestore();
+//     firestore
+//       .collection("drivers")
+//       .add({
+//         ...driver,
+//         authorFirstName: "Net",
+//         authorLastName: "Ninja",
+//         authorId: 12345,
+//         createdAt: new Date()
+//       })
+//       .then(() => {
+//         dispatch({ type: "CREATE_DRIVER", driver });
+//       })
+//       .catch(err => {
+//         dispatch({ type: "CREATE_DRIVER_ERROR", err });
+//       });
+//   };
+// };
 
 export const deleteDriver = id => async dispatch => {
   try {

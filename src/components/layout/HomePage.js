@@ -28,7 +28,6 @@ const HomePage = ({ log, driver, getLogs, getDrivers }) => {
             <OurStaff driver={driver} />
           </div>
         </div>
-
         <div className="col s4">
           <AdminPanel driver={driver} />
         </div>

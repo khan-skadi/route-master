@@ -38,9 +38,11 @@ const AdminPanel = ({ driver }) => {
             {driver.drivers &&
               driver.drivers.map(driver => {
                 return (
-                  <Link to={"/driver/" + driver.id} key={driver.id}>
-                    <AdminPanelList driver={driver} />
-                  </Link>
+                  <div key={driver.id}>
+                    <Link to={"/drivers/" + driver.id} key={driver.id}>
+                      <AdminPanelList driver={driver} />
+                    </Link>
+                  </div>
                 );
               })}
           </div>

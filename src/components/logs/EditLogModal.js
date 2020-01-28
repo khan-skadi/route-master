@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import DriverSelectOptions from "../drivers/DriverSelectOptions";
-import M from "materialize-css/dist/js/materialize.min.js";
 import { updateLog } from "../../store/actions/logActions";
+import DriverSelectOptions from "../drivers/DriverSelectOptions";
+import PropTypes from "prop-types";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState("");

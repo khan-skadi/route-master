@@ -9,7 +9,6 @@ import logo from "../../img/Logo.png";
 
 export const SearchBar = (props, { searchLogs }) => {
   const { auth, profile } = props;
-  // console.log(auth);
   // This is the logic for rendering the right side of the Navbar based on whether a user is logged in or not.
   const links = auth.uid ? (
     <SignedInLinks profile={profile} />
@@ -55,67 +54,6 @@ export const SearchBar = (props, { searchLogs }) => {
           // Right section - Social (follow) links
         }
         {links}
-        {/* <ul className="right">
-          <li>
-            <span>
-              <NavLink to="/find-routes" className="flow-text">
-                Find Routes
-              </NavLink>
-            </span>
-          </li>
-          <li>
-            <span>
-              <NavLink to="/signup" className="flow-text">
-                Sign Up
-              </NavLink>
-            </span>
-          </li>
-          <li>
-            <span>
-              <NavLink to="/signin" className="flow-text">
-                Sign In
-              </NavLink>
-            </span>
-          </li>
-        </ul> */}
-        {/* -------------------- FAIL SAFE------------------------ */}
-        {/* <ul className="right hide-on-med-and-down">
-          <span className="left">
-            <NavLink to="/archived-routes" className="flow-text">
-              Archived Routes&nbsp;&nbsp;&nbsp;
-            </NavLink>
-          </span>
-          <span className="left">
-            <NavLink to="find-routes" className="flow-text">
-              Find Routes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </NavLink>
-          </span> */}
-        {/* -------------------- FAIL SAFE------------------------ */}
-
-        {/* <span className="left">
-            <a href="#!">follow us</a>
-          </span>
-          <li>
-            <a href="#!">
-              <i className="fab fa-facebook"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <i className="fab fa-instagram"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <i className="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <i className="fab fa-youtube"></i>
-            </a>
-          </li> */}
-        {/* </ul> */}
       </div>
     </nav>
   );
