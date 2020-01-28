@@ -12,3 +12,4 @@ Current problems:
 
 - Not getting the route props in DriverProfile.js. I can't define the id of the route to be equal to the id of the driver.
 - Not getting the driver props from the redux store even though its connected to the store.
+  P.S. Im building my own API that is just gonna contain routes that i can pick up in Find Routes section. Can't find an API with only routes from google
