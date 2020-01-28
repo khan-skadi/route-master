@@ -1,16 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setCurrent } from "../../store/actions/archActions";
+import { deleteArch } from "../../store/actions/archActions";
 import Moment from "react-moment";
 import PropTypes from "prop-types";
+import M from "materialize-css/dist/js/materialize.min.js";
 
-const ArchivedItem = ({ arch, setCurrent }) => {
+const ArchivedItem = ({ arch, setCurrent, deleteArch }) => {
+  const onDelete = () => {
+    deleteArch(arch.id);
+    M.toast({ html: "Archived Route Deleted" });
+  };
+
   return (
     <div>
       <li className="collection-item">
         <div>
           <a
-            href="#edit-log-modal"
+            href="#archived-log-modal"
             className={`modal-trigger grey-text`}
             onClick={() => setCurrent(arch)}
           >
@@ -22,6 +29,9 @@ const ArchivedItem = ({ arch, setCurrent }) => {
             <span className="black-text">{arch.tech}</span> on{" "}
             <Moment format="MMMM Do YYYY, h:mm:ss a">{arch.date}</Moment>
           </span>
+          <a href="#!" onClick={onDelete} className="secondary-content">
+            <i className="material-icons grey-text">delete</i>
+          </a>
         </div>
       </li>
     </div>
@@ -30,7 +40,8 @@ const ArchivedItem = ({ arch, setCurrent }) => {
 
 ArchivedItem.propTypes = {
   arch: PropTypes.object.isRequired,
-  setCurrent: PropTypes.func.isRequired
+  setCurrent: PropTypes.func.isRequired,
+  deleteArch: PropTypes.func.isRequired
 };
 
-export default connect(null, { setCurrent })(ArchivedItem);
+export default connect(null, { setCurrent, deleteArch })(ArchivedItem);

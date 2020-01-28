@@ -3,7 +3,8 @@ import {
   GET_ARCHS,
   ADD_ARCH,
   ARCHS_ERROR,
-  SET_CURRENT
+  SET_CURRENT,
+  DELETE_ARCH
 } from "../actions/types";
 
 const initialState = {
@@ -30,6 +31,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         archs: [...state.archs, action.payload],
+        loading: false
+      };
+    case DELETE_ARCH:
+      return {
+        ...state,
+        archs: state.archs.filter(arch => arch.id !== action.payload),
         loading: false
       };
     case SET_CURRENT:

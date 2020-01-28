@@ -3,7 +3,8 @@ import {
   GET_ARCHS,
   ADD_ARCH,
   ARCHS_ERROR,
-  SET_CURRENT
+  SET_CURRENT,
+  DELETE_ARCH
 } from "./types";
 
 // Get archived logs from server
@@ -48,6 +49,26 @@ export const addArch = arch => async dispatch => {
     dispatch({
       type: ARCHS_ERROR,
       payload: err.response.statusText
+    });
+  }
+};
+
+export const deleteArch = id => async dispatch => {
+  try {
+    setLoading();
+
+    await fetch(`/archs/${id}`, {
+      method: "DELETE"
+    });
+
+    dispatch({
+      type: DELETE_ARCH,
+      payload: id
+    });
+  } catch (err) {
+    dispatch({
+      type: ARCHS_ERROR,
+      payload: err.response.data
     });
   }
 };

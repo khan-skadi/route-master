@@ -11,6 +11,7 @@ import EditLogModal from "./components/logs/EditLogModal";
 import AddDriverModal from "./components/drivers/AddDriverModal";
 import DriverListModal from "./components/drivers/DriverListModal";
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
+import ArchivedItemModal from "./components/layout/ArchivedItemModal";
 import FindRoutes from "./components/layout/FindRoutes";
 import Footer from "./components/layout/Footer";
 
@@ -31,6 +32,7 @@ const App = () => {
         <AddBtn />
         <AddLogModal />
         <EditLogModal />
+        <ArchivedItemModal />
         <AddDriverModal />
         <DriverListModal />
         <Switch>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Moment from "react-moment";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,14 +7,26 @@ import { addArch } from "../../store/actions/archActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const LogItem = ({ arch, log, deleteLog, setCurrent, addArch }) => {
+  const [archive, setArchive] = useState(null);
+
   const onDelete = () => {
     deleteLog(log.id);
     M.toast({ html: "Route Deleted" });
   };
 
+  // Add the same log in archive and remove from main page
   const onArchive = () => {
-    addArch(arch.id);
-    // deleteLog(log.id);
+    const newArchive = {
+      ...log
+    };
+    addArch(newArchive);
+    deleteLog(log.id);
+  };
+  const addArchive = () => setArchive(log);
+
+  const ArchiveOnClick = () => {
+    onArchive();
+    addArchive();
   };
 
   return (
@@ -43,7 +55,7 @@ const LogItem = ({ arch, log, deleteLog, setCurrent, addArch }) => {
           <a href="#!" onClick={onDelete} className="secondary-content">
             <i className="material-icons grey-text">delete</i>
           </a>
-          <a href="#!" onClick={onArchive} className="secondary-content">
+          <a href="#!" onClick={ArchiveOnClick} className="secondary-content">
             <i className="material-icons grey-text">archive</i>
           </a>
         </div>
