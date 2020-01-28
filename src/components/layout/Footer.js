@@ -1,9 +1,10 @@
 import React from "react";
 import logo from "../../img/Logo.png";
+import "../../App.css";
 
 const Footer = () => {
   return (
-    <footer className="page-footer green accent-4">
+    <footer className="page-footer footer green accent-4">
       <div className="container">
         <div className="row">
           <div className="col s12 l4">

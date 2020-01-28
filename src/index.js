@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
+import Footer from "./components/layout/Footer";
 import createReduxStore from "./createReduxStore";
 import Preloader from "./components/layout/Preloader";
 import App from "./App";
@@ -59,7 +60,7 @@ ReactDOM.render(
     <ReactReduxFirebaseProvider {...rrfProps}>
       <BrowserRouter>
         <AuthIsLoaded>
-          <App />
+          <App key="1" />, <Footer key="2" />
         </AuthIsLoaded>
       </BrowserRouter>
     </ReactReduxFirebaseProvider>

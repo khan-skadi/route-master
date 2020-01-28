@@ -8,7 +8,16 @@ const SignedInLinks = props => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/find-routes">Find Routes</NavLink>
+        <NavLink
+          to="/find-routes"
+          activeStyle={{
+            clear: "both",
+            position: "relative",
+            marginTop: "600px"
+          }}
+        >
+          Find Routes
+        </NavLink>
       </li>
       <li>
         <a href="/" onClick={props.signOut}>

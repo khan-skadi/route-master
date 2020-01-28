@@ -13,7 +13,6 @@ import DriverListModal from "./components/drivers/DriverListModal";
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
 import ArchivedItemModal from "./components/layout/ArchivedItemModal";
 import FindRoutes from "./components/layout/FindRoutes";
-import Footer from "./components/layout/Footer";
 
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -47,10 +46,8 @@ const App = () => {
           />
         </Switch>
       </div>
-      <Footer />
     </Fragment>
   );
 };
 
 export default App;
-// component={DriverProfile}

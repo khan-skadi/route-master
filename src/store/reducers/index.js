@@ -6,6 +6,7 @@ import techReducer from "./techReducer";
 import archReducer from "./archReducer";
 import authReducer from "./authReducer";
 import driverReducer from "./driverReducer";
+import routeReducer from "./routeReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ export default combineReducers({
   tech: techReducer,
   arch: archReducer,
   driver: driverReducer,
+  route: routeReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer
 });

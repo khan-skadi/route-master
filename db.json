@@ -166,5 +166,55 @@
       "incompleteRoutes": null,
       "id": 3
     }
+  ],
+  "routes": [
+    {
+      "locationFrom": "New York",
+      "locationTo": "Los Angeles",
+      "distance": "540km",
+      "postedOn": "2020-01-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "id": 1
+    },
+    {
+      "locationFrom": "Boston",
+      "locationTo": "Chicago",
+      "distance": "180km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "id": 2
+    },
+    {
+      "locationFrom": "Radovis",
+      "locationTo": "Skopje",
+      "distance": "110km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "id": 3
+    },
+    {
+      "locationFrom": "New Delhi",
+      "locationTo": "Paris",
+      "distance": "1150km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "id": 4
+    },
+    {
+      "locationFrom": "Moscow",
+      "locationTo": "St Petersburgh",
+      "distance": "228km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "id": 5
+    },
+    {
+      "locationFrom": "Athens",
+      "locationTo": "Skopje",
+      "distance": "490km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "id": 6
+    }
   ]
 }
