@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getDrivers } from "../../store/actions/driverActions";
 // import DriverProfileButton from "./DriverProfileButton";
@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 
 // const DriverProfile = ({ driver: { drivers }, getDrivers }) => {
 const DriverProfile = ({ driver, getDrivers }, props) => {
-  const [id, setId] = useState(null);
+  // const [id, setId] = useState(null);
 
   useEffect(() => {
     getDrivers();
@@ -16,7 +16,7 @@ const DriverProfile = ({ driver, getDrivers }, props) => {
     // eslint-disable-next-line
   }, []);
 
-  const { match, location, history } = props;
+  // const { match, location, history } = props;
   // console.log(props);
   // let routeId = props.match.params.driver_id;
   // console.log(routeId);
@@ -38,8 +38,8 @@ DriverProfile.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  let id = ownProps.match.params.driver_id;
-  console.log(ownProps);
+  // let id = ownProps.match.params.driver_id;
+  // console.log(ownProps);
   return {
     driver: state.driver
   };

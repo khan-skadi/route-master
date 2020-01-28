@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import OurStaffList from "./OurStaffList";
 import Preloader from "./Preloader";
 import "../../styles/ProfileModal.css";

@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 
 const DriverProfileList = props => {
   const { driver } = props;
-  const { match, location, history } = props;
+  // const { match, location, history } = props;
   return (
     <div>
       <div className="row" style={{ backgroundColor: "light-blue accent-1" }}>

@@ -1,17 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrent } from "../../store/actions/logActions";
+import { setCurrentRoute } from "../../store/actions/routeActions";
 import PropTypes from "prop-types";
-import M from "materialize-css/dist/js/materialize.min.js";
 
-const FindRoutesItem = ({ route, setCurrent }) => {
+const FindRoutesItem = ({ route, setCurrentRoute }) => {
   return (
     <li className="collection-item">
       <div>
         <a
           href="#find-routes-modal"
           className={`modal-trigger text-accent-4 blue-text`}
-          onClick={() => setCurrent(route)}
+          onClick={() => setCurrentRoute(route)}
         >
           Route: {route.locationFrom} - {route.locationTo}{" "}
         </a>
@@ -29,8 +28,9 @@ const FindRoutesItem = ({ route, setCurrent }) => {
 };
 
 FindRoutesItem.propTypes = {
-  route: PropTypes.object.isRequired
+  route: PropTypes.object.isRequired,
+  setCurrentRoute: PropTypes.func.isRequired
 };
 
-export default connect(null, { setCurrent })(FindRoutesItem);
+export default connect(null, { setCurrentRoute })(FindRoutesItem);
 // Add button to add the route to the logs.

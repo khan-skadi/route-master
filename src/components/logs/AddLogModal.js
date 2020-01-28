@@ -7,29 +7,29 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 const AddLogModal = ({ addLog }) => {
   const [message, setMessage] = useState("");
-  const [tech, setTech] = useState("");
+  const [driver, setDriver] = useState("");
   const [attention, setAttention] = useState(false);
   const [progress, setProgress] = useState(false);
 
   const onSubmit = () => {
-    if (message === "" || tech === "") {
+    if (message === "" || driver === "") {
       M.toast({ html: "Please describe route and enter driver" });
     } else {
       const newRoute = {
         message,
         attention,
         progress,
-        tech,
+        driver,
         date: new Date()
       };
 
       addLog(newRoute);
 
-      M.toast({ html: `Route added by ${tech}` });
+      M.toast({ html: `Route added by ${driver}` });
 
       // Clear Fields
       setMessage("");
-      setTech("");
+      setDriver("");
       setAttention(false);
       setProgress(false);
     }
@@ -56,10 +56,10 @@ const AddLogModal = ({ addLog }) => {
         <div className="row">
           <div className="input-field">
             <select
-              name="tech"
-              value={tech}
+              name="driver"
+              value={driver}
               className="browser-default"
-              onChange={e => setTech(e.target.value)}
+              onChange={e => setDriver(e.target.value)}
             >
               <option value="" disabled>
                 Driver
@@ -103,9 +103,10 @@ const AddLogModal = ({ addLog }) => {
         <a
           href="#!"
           onClick={onSubmit}
-          className="modal-close waves-effect blue btn"
+          className="modal-close waves-effect blue darken-3 btn"
         >
           Submit
+          <i className="material-icons right">send</i>
         </a>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
 import { storage } from "../../index";
 import { addDriver } from "../../store/actions/driverActions";
 import PropTypes from "prop-types";
@@ -103,7 +102,8 @@ class AddDriverModal extends Component {
       }
     );
   };
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     if (this.state.firstName === "" || this.state.lastName === "") {
       M.toast({ html: "Please enter the first and last name" });
     } else {
@@ -246,17 +246,16 @@ class AddDriverModal extends Component {
 
               <div className="col s12">
                 <div className="modal-footer">
-                  <a href="#!">
-                    <button
-                      className="btn waves-effect blue waves-light"
-                      type="submit"
-                      name="action"
+                  <div className="modal-footer">
+                    <a
+                      href="#!"
                       onClick={this.handleSubmit}
+                      className="modal-close waves-effect blue darken-3 btn"
                     >
                       Submit
                       <i className="material-icons right">send</i>
-                    </button>
-                  </a>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

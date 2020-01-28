@@ -1,134 +1,62 @@
 {
   "logs": [
     {
-      "message": "Archive test1",
+      "message": "Log 1",
+      "attention": true,
+      "progress": false,
+      "driver": "Igor Litajkovski",
+      "date": "2020-01-28T22:55:18.793Z",
+      "id": 1
+    },
+    {
+      "message": "Log 2",
       "attention": false,
       "progress": false,
-      "tech": "Aneta Ilkaceva",
-      "date": "2020-01-28T15:05:09.336Z",
+      "driver": "Igor Litajkovski",
+      "date": "2020-01-28T22:55:24.517Z",
       "id": 2
     },
     {
-      "message": "Test 11111111111111111111111111111111111",
-      "attention": false,
-      "progress": false,
-      "tech": "Khan Skadi",
-      "date": "2020-01-28T15:13:42.243Z",
-      "id": 3
-    },
-    {
-      "message": "22222222222222222222222222222222222222222222222222222",
-      "attention": true,
-      "progress": false,
-      "tech": "Aneta Ilkaceva",
-      "date": "2020-01-28T15:13:49.483Z",
-      "id": 4
-    },
-    {
-      "message": "3333333333333333333333333333333333333333333333333333",
-      "attention": false,
-      "progress": false,
-      "tech": "Khan Skadi",
-      "date": "2020-01-28T15:13:55.165Z",
-      "id": 5
-    },
-    {
-      "message": "44444",
+      "message": "Log 3",
       "attention": false,
       "progress": true,
-      "tech": "Aneta Ilkaceva",
-      "date": "2020-01-28T15:13:59.520Z",
-      "id": 6
-    }
-  ],
-  "techs": [
-    {
-      "id": 3,
-      "firstName": "Sara",
-      "lastName": "Wilson"
-    },
-    {
-      "firstName": "Caz",
-      "lastName": "Delvez",
-      "id": 5
-    },
-    {
-      "firstName": "Sam",
-      "lastName": "Smith",
-      "id": 6
-    },
-    {
-      "firstName": "John",
-      "lastName": "Doe",
-      "id": 7
-    },
-    {
-      "firstName": "Khan",
-      "lastName": "Skadi",
-      "id": 8
-    },
-    {
-      "firstName": "Hans",
-      "lastName": "Landa",
-      "id": 10
+      "driver": "Igor Litajkovski",
+      "date": "2020-01-28T22:55:34.797Z",
+      "id": 3
     }
   ],
   "archs": [
     {
-      "message": "123444",
-      "attention": true,
-      "progress": false,
-      "tech": "Khan Skadi",
-      "date": "2020-01-21T02:19:35.218Z",
-      "id": 10
-    },
-    {
-      "message": "Ship electornics to New York",
-      "attention": true,
-      "progress": false,
-      "tech": "John Doe",
-      "date": "2020-01-21T02:20:09.654Z",
-      "id": 11
-    },
-    {
-      "message": "Route 2 is going to Istanbul",
+      "id": 4,
+      "message": "Belgium to Denmark",
       "attention": false,
       "progress": true,
-      "tech": "Sara Wilson",
-      "date": "2020-01-21T02:20:23.850Z",
-      "id": 12
+      "driver": "Igor Litajkovski",
+      "date": "2020-01-28T22:54:32.833Z"
     },
     {
-      "message": "Ship electornics to New York",
+      "message": "Istanbul to Australia",
       "attention": true,
       "progress": false,
-      "tech": "John Doe",
-      "date": "2020-01-21T02:20:56.072Z",
-      "id": 13
+      "driver": "Igor Litajkovski",
+      "date": "2020-01-28T22:53:16.052Z",
+      "id": 3
     },
     {
-      "message": "123444",
-      "attention": true,
-      "progress": false,
-      "tech": "Khan Skadi",
-      "date": "2020-01-21T02:23:42.764Z",
-      "id": 14
-    },
-    {
-      "id": 3,
-      "message": "Route 3 is waiting to be picked up by John",
+      "message": "Skopje to Istanbul",
       "attention": false,
       "progress": false,
-      "tech": "John Doe",
-      "date": "2020-01-21T00:29:01.211Z"
+      "driver": "Aneta Ilkaceva",
+      "date": "2020-01-28T22:53:05.805Z",
+      "id": 2
     },
     {
-      "message": "55555555555555555555555555555555",
-      "attention": true,
+      "message": "New York to Skopje",
+      "attention": false,
       "progress": false,
-      "tech": "Khan Skadi",
-      "date": "2020-01-28T15:05:39.004Z",
-      "id": 6
+      "driver": "Igor Litajkovski",
+      "date": "2020-01-28T22:52:58.110Z",
+      "id": 1
     }
   ],
   "drivers": [
@@ -144,7 +72,7 @@
       "birthYear": "1993",
       "hourlyRate": "160",
       "license": "RA0264AC",
-      "available": true,
+      "available": false,
       "completedRoutes": null,
       "incompleteRoutes": null,
       "id": 1
@@ -161,10 +89,44 @@
       "birthYear": "1999",
       "hourlyRate": "100",
       "license": "RA2620AG",
-      "available": true,
+      "available": false,
       "completedRoutes": null,
       "incompleteRoutes": null,
       "id": 3
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2Fstalion.jpg?alt=media&token=9c614656-2469-49be-adbd-f62ce7177fbb",
+      "progress": 100,
+      "firstName": "Igor",
+      "lastName": "Litajkovski",
+      "address": "Vienna st",
+      "email": "igorlmax@yahoo.com",
+      "phoneNumber": "33337777",
+      "birthYear": "1990",
+      "hourlyRate": "140",
+      "license": "BG4060AG",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 4
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FTesla%20Circa%201890.jpeg?alt=media&token=a5a44c57-eb9e-47b4-9a1e-0522cf1831c4",
+      "progress": 100,
+      "firstName": "Gurgica",
+      "lastName": "Kartalova",
+      "address": "8mi Septemvri br.26",
+      "email": "gurgica.k@hotmail.com",
+      "phoneNumber": "15153535",
+      "birthYear": "1995",
+      "hourlyRate": "120",
+      "license": "RA9290AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 5
     }
   ],
   "routes": [

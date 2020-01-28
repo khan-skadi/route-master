@@ -7,7 +7,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState("");
-  const [tech, setTech] = useState("");
+  const [driver, setDriver] = useState("");
   const [attention, setAttention] = useState(false);
   const [progress, setProgress] = useState(false);
 
@@ -15,13 +15,13 @@ const EditLogModal = ({ current, updateLog }) => {
     if (current) {
       setMessage(current.message);
       setAttention(current.attention);
-      setTech(current.tech);
+      setDriver(current.driver);
       setProgress(current.progress);
     }
   }, [current]);
 
   const onSubmit = () => {
-    if (message === "" || tech === "") {
+    if (message === "" || driver === "") {
       M.toast({ html: "Please submit a message and a driver" });
     } else {
       const updLog = {
@@ -29,16 +29,16 @@ const EditLogModal = ({ current, updateLog }) => {
         message,
         attention,
         progress,
-        tech,
+        driver,
         date: new Date()
       };
 
       updateLog(updLog);
-      M.toast({ html: `Route updated by ${tech}` });
+      M.toast({ html: `Route updated by ${driver}` });
 
       // Clear Fields
       setMessage("");
-      setTech("");
+      setDriver("");
       setAttention(false);
       setProgress(false);
     }
@@ -62,10 +62,10 @@ const EditLogModal = ({ current, updateLog }) => {
         <div className="row">
           <div className="input-field">
             <select
-              name="tech"
-              value={tech || ""}
+              name="driver"
+              value={driver || ""}
               className="browser-default"
-              onChange={e => setTech(e.target.value)}
+              onChange={e => setDriver(e.target.value)}
             >
               <option value="" disabled>
                 Select Driver
@@ -109,9 +109,10 @@ const EditLogModal = ({ current, updateLog }) => {
         <a
           href="#!"
           onClick={onSubmit}
-          className="modal-close waves-effect blue btn"
+          className="modal-close waves-effect blue darken-3 btn"
         >
           Submit
+          <i className="material-icons right">send</i>
         </a>
       </div>
     </div>

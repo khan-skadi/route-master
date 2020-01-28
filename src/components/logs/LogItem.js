@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { deleteLog, setCurrent } from "../../store/actions/logActions";
 import { addArch } from "../../store/actions/archActions";
@@ -7,7 +7,8 @@ import Moment from "react-moment";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
-  const [archive, setArchive] = useState(null);
+  // const [archive, setArchive] = useState(null);
+  // console.log(archive);
 
   const onDelete = () => {
     deleteLog(log.id);
@@ -22,11 +23,11 @@ const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
     addArch(newArchive);
     deleteLog(log.id);
   };
-  const addArchive = () => setArchive(log);
+  // const addArchive = () => setArchive(log);
 
   const ArchiveOnClick = () => {
     onArchive();
-    addArchive();
+    // addArchive();
   };
 
   return (
@@ -49,7 +50,7 @@ const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
           <br />
           <span className="grey-text">
             <span className="black-text">ID #{log.id}</span> last updated by{" "}
-            <span className="black-text">{log.tech}</span> on{" "}
+            <span className="black-text">{log.driver}</span> on{" "}
             <Moment format="MMMM Do YYYY, h:mm:ss a">{log.date}</Moment>
           </span>
           <a href="#!" onClick={onDelete} className="secondary-content">

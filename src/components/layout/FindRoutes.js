@@ -9,7 +9,7 @@ const FindRoutes = ({ getRoutes, route }) => {
     getRoutes();
     //eslint-disable-next-line
   }, []);
-  console.log(route.routes);
+
   return (
     <div>
       <div className="container">

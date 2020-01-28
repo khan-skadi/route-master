@@ -26,7 +26,7 @@ const ArchivedItem = ({ arch, setCurrent, deleteArch }) => {
           <br />
           <span className="grey-text">
             <span className="black-text">ID #{arch.id}</span> last updated by{" "}
-            <span className="black-text">{arch.tech}</span> on{" "}
+            <span className="black-text">{arch.driver}</span> on{" "}
             <Moment format="MMMM Do YYYY, h:mm:ss a">{arch.date}</Moment>
           </span>
           <a href="#!" onClick={onDelete} className="secondary-content">

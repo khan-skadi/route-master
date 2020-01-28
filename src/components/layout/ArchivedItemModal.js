@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const ArchivedLogModal = ({ current }) => {
   const [message, setMessage] = useState("");
-  const [tech, setTech] = useState("");
+  const [driver, setDriver] = useState("");
   const [attention, setAttention] = useState(false);
   const [progress, setProgress] = useState(false);
 
@@ -14,7 +14,7 @@ const ArchivedLogModal = ({ current }) => {
     if (current) {
       setMessage(current.message);
       setAttention(current.attention);
-      setTech(current.tech);
+      setDriver(current.driver);
       setProgress(current.progress);
     }
   }, [current]);
@@ -32,8 +32,8 @@ const ArchivedLogModal = ({ current }) => {
         <div className="row">
           <div className="input-field">
             <select
-              name="tech"
-              value={tech}
+              name="driver"
+              value={driver}
               className="browser-default"
               readOnly
             >

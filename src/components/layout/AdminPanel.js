@@ -15,7 +15,6 @@ const AdminPanel = ({ driver }) => {
           </ul>
         </div>
 
-        {/* <div className="row"> */}
         <div className="col s12">
           <h5 className="center">Total Bruto Income:</h5>
           <h5 className="center">$20.000</h5>
@@ -31,7 +30,6 @@ const AdminPanel = ({ driver }) => {
             Available drivers:
           </h6>
         </div>
-        {/* </div> */}
 
         <div className="row" style={{ width: "80%", margin: "0 auto" }}>
           <div className="col s12">
