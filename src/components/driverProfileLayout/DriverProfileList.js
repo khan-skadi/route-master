@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 
-const DriverProfileList = props => {
-  const { driver } = props;
-  // const { match, location, history } = props;
+const DriverProfileList = ({ driver }) => {
   return (
     <div>
       <div className="row" style={{ backgroundColor: "light-blue accent-1" }}>
@@ -89,12 +86,4 @@ const DriverProfileList = props => {
   );
 };
 
-// const mapStateToProps = (state, ownProps) => {
-//   let id = ownProps.match.params.driver_id;
-//   console.log(id);
-//   return {
-//     driver: state.driver.find(driver => driver.id === id)
-//   };
-// };
-
-export default withRouter(connect()(DriverProfileList));
+export default connect()(DriverProfileList);

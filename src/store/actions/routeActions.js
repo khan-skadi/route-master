@@ -5,11 +5,14 @@ import {
   UPDATE_ROUTE,
   ROUTES_ERROR,
   SET_CURRENT_ROUTE,
-  CLEAR_CURRENT_ROUTE
+  CLEAR_CURRENT_ROUTE,
+  SET_LOADING
 } from "./types";
 
 export const getRoutes = () => async dispatch => {
   try {
+    setLoading();
+
     const res = await fetch("/routes");
     const data = await res.json();
 
@@ -27,6 +30,8 @@ export const getRoutes = () => async dispatch => {
 
 export const addRoute = route => async dispatch => {
   try {
+    setLoading();
+
     const res = await fetch("/routes", {
       method: "POST",
       body: JSON.stringify(route),
@@ -50,6 +55,8 @@ export const addRoute = route => async dispatch => {
 
 export const deleteRoute = id => async dispatch => {
   try {
+    setLoading();
+
     await fetch(`/routes/${id}`, {
       method: "DELETE"
     });
@@ -68,6 +75,8 @@ export const deleteRoute = id => async dispatch => {
 
 export const updateRoute = route => async dispatch => {
   try {
+    setLoading();
+
     const res = await fetch(`/routes/${route.id}`, {
       method: "PUT",
       body: JSON.stringify(route),
@@ -88,6 +97,12 @@ export const updateRoute = route => async dispatch => {
       payload: err.response.statusText
     });
   }
+};
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING
+  };
 };
 
 export const setCurrentRoute = route => {

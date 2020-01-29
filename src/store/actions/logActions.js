@@ -10,6 +10,21 @@ import {
   CLEAR_CURRENT
 } from "./types";
 
+// Get logs - long version
+// export const getLogs = () => {
+//   return async (dispatch) => {
+//     setLoading();
+
+//     const res = await fetch('/logs');
+//     const data = await res.json();
+
+//     dispatch({
+//       type: GET_LOGS,
+//       payload: data
+//     })
+//   }
+// }
+
 // Get logs from server
 export const getLogs = () => async dispatch => {
   try {

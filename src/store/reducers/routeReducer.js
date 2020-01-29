@@ -5,12 +5,15 @@ import {
   UPDATE_ROUTE,
   ROUTES_ERROR,
   SET_CURRENT_ROUTE,
-  CLEAR_CURRENT_ROUTE
+  CLEAR_CURRENT_ROUTE,
+  SET_LOADING
 } from "../actions/types";
 
 const initialState = {
   routes: null,
-  currentRoute: null
+  currentRoute: null,
+  loading: false,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -50,12 +53,18 @@ export default (state = initialState, action) => {
         ...state,
         currentRoute: null
       };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
     case ROUTES_ERROR:
       console.error(action.payload);
       return {
         ...state,
         error: action.payload
       };
+
     default:
       return state;
   }

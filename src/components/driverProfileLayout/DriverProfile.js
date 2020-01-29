@@ -1,35 +1,37 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getDrivers } from "../../store/actions/driverActions";
-// import DriverProfileButton from "./DriverProfileButton";
-import DriverProfileList from "./DriverProfileList";
-import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import DriverProfileList from "./DriverProfileList";
+import Preloader from "../layout/Preloader";
+import PropTypes from "prop-types";
 
-// const DriverProfile = ({ driver: { drivers }, getDrivers }) => {
-const DriverProfile = props => {
-  console.log(props);
+// const DriverProfile = props => {
+const DriverProfile = ({ driver: { drivers, loading }, getDrivers }) => {
   useEffect(() => {
     getDrivers();
 
     // eslint-disable-next-line
   }, []);
 
-  // const { match, location, history } = props;
-  // console.log(props);
-  // let routeId = props.match.params.driver_id;
-  // console.log(routeId);
+  if (loading || drivers === null) {
+    return <Preloader />;
+  }
+
   return (
     <div className="col s12">
       <ul className="with-header">
-        {props.driver.drivers &&
-          props.driver.drivers.map(driver => {
-            return <DriverProfileList driver={driver} key={driver.id} />;
-          })}
         {/* {props.driver.drivers &&
           props.driver.drivers.map(driver => {
             return <DriverProfileList driver={driver} key={driver.id} />;
           })} */}
+        {!loading && drivers.length === 0 ? (
+          <p className="center">Loading...</p>
+        ) : (
+          drivers.map(driver => (
+            <DriverProfileList driver={driver} key={driver.id} />
+          ))
+        )}
       </ul>
     </div>
   );
@@ -40,11 +42,13 @@ DriverProfile.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  let id = ownProps.match.params.driver_id;
-  console.log(id);
+  // let id = ownProps.match.params.driver_id;
+  // const drivers = state.driver.drivers;
+  // const driver = drivers ? drivers[id] : null;
+  // console.log(id);
+  // console.log(driver);
   return {
-    driver: state.driver,
-    id: id
+    driver: state.driver
   };
 };
 //.find(driver => driver.id === id)
