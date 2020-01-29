@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminPanelList from "./AdminPanelList";
 
-const AdminPanel = ({ driver }) => {
+// const AdminPanel = ({ driver }) => {
+const AdminPanel = props => {
+  const { driver } = props;
   return (
     <div style={{ backgroundColor: "#e0e0e0" }}>
       <div className="row">
@@ -50,4 +52,10 @@ const AdminPanel = ({ driver }) => {
   );
 };
 
-export default connect()(AdminPanel);
+const mapStateToProps = state => {
+  return {
+    driver: state.driver
+  };
+};
+
+export default connect(mapStateToProps)(AdminPanel);

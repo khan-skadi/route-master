@@ -9,7 +9,6 @@ const DriverListModal = ({ getDrivers, driver: { drivers, loading } }) => {
     getDrivers();
     // eslint-disable-next-line
   }, []);
-
   return (
     <div id="driver-list-modal" className="modal">
       <div className="modal-content">
