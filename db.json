@@ -1,28 +1,49 @@
 {
   "logs": [
     {
-      "message": "Log 1",
+      "id": 4,
+      "locationFrom": "New Delhi",
+      "locationTo": "Paris",
+      "distance": "1150km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
       "attention": true,
       "progress": false,
-      "driver": "Igor Litajkovski",
-      "date": "2020-01-28T22:55:18.793Z",
-      "id": 1
+      "driver": "",
+      "date": "2020-01-29T23:41:32.169Z"
     },
     {
-      "message": "Log 2",
+      "id": 5,
+      "locationFrom": "Skopje",
+      "locationTo": "Vienna",
+      "distance": "600",
+      "postedOn": "29.01.2020",
+      "postedBy": "Admin",
       "attention": false,
       "progress": false,
-      "driver": "Igor Litajkovski",
-      "date": "2020-01-28T22:55:24.517Z",
-      "id": 2
+      "driver": "Khan Skadi",
+      "date": "2020-01-29T23:29:57.396Z"
     },
     {
-      "message": "Log 3",
+      "locationFrom": "Athens",
+      "locationTo": "Skopje",
+      "distance": "490km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
+      "date": "2020-01-29T23:37:16.074Z",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "locationFrom": "Moscow",
+      "locationTo": "St Petersburgh",
+      "distance": "228km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "DriveAG corp",
       "attention": false,
       "progress": true,
-      "driver": "Igor Litajkovski",
-      "date": "2020-01-28T22:55:34.797Z",
-      "id": 3
+      "driver": "",
+      "date": "2020-01-29T23:41:23.543Z"
     }
   ],
   "archs": [

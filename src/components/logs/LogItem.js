@@ -45,7 +45,7 @@ const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
             href="#edit-log-modal"
             onClick={() => setCurrent(log)}
           >
-            {log.message}
+            {log.locationFrom} - {log.locationTo}
           </a>
           <br />
           <span className="grey-text">

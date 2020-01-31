@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addRoute } from "../../store/actions/routeActions";
+import { deleteRoute } from "../../store/actions/routeActions";
+import { addLog } from "../../store/actions/logActions";
 import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-const FindRoutesModal = ({ currentRoute }) => {
+const FindRoutesModal = ({ currentRoute, addLog, deleteRoute }) => {
   const [locationFrom, setLocationFrom] = useState("");
   const [locationTo, setLocationTo] = useState("");
-  const [distance, setDistance] = useState(false);
-  const [postedOn, setPostedOn] = useState(false);
-  const [postedBy, setPostedBy] = useState(false);
-  const [id, setId] = useState(false);
+  const [distance, setDistance] = useState("");
+  const [postedOn, setPostedOn] = useState("");
+  const [postedBy, setPostedBy] = useState("");
+  const [attention, setAttention] = useState(false);
+  const [progress, setProgress] = useState(false);
+  const [driver, setDriver] = useState("");
 
   useEffect(() => {
     if (currentRoute) {
@@ -19,24 +22,29 @@ const FindRoutesModal = ({ currentRoute }) => {
       setDistance(currentRoute.distance);
       setPostedOn(currentRoute.postedOn);
       setPostedBy(currentRoute.postedBy);
-      setId(currentRoute.id);
+      setAttention(currentRoute.attention);
+      setProgress(currentRoute.progress);
+      setDriver(currentRoute.driver);
     }
   }, [currentRoute]);
 
   const onSubmit = () => {
     const newRoute = {
-      id: currentRoute.id,
       locationFrom,
       locationTo,
       distance,
       postedOn,
       postedBy,
+      attention,
+      progress,
+      driver,
       date: new Date()
     };
 
-    addRoute(newRoute);
+    addLog(newRoute);
+    // deleteRoute(route.id) - delete the route after accepting
 
-    M.toast({ html: "Route confirmed" });
+    M.toast({ html: "Route added" });
   };
 
   return (
@@ -51,6 +59,7 @@ const FindRoutesModal = ({ currentRoute }) => {
               name="locationFrom"
               value={locationFrom || ""}
               onChange={e => setLocationFrom(e.target.value)}
+              disabled
             />
           </div>
         </div>
@@ -62,6 +71,7 @@ const FindRoutesModal = ({ currentRoute }) => {
               name="locationTo"
               value={locationTo || ""}
               onChange={e => setLocationTo(e.target.value)}
+              disabled
             />
           </div>
         </div>
@@ -73,6 +83,7 @@ const FindRoutesModal = ({ currentRoute }) => {
               name="distance"
               value={distance || ""}
               onChange={e => setDistance(e.target.value)}
+              disabled
             />
           </div>
         </div>
@@ -84,6 +95,7 @@ const FindRoutesModal = ({ currentRoute }) => {
               name="postedOn"
               value={postedOn || ""}
               onChange={e => setPostedOn(e.target.value)}
+              disabled
             />
           </div>
         </div>
@@ -95,6 +107,7 @@ const FindRoutesModal = ({ currentRoute }) => {
               name="postedBy"
               value={postedBy || ""}
               onChange={e => setPostedBy(e.target.value)}
+              disabled
             />
           </div>
         </div>
@@ -120,11 +133,14 @@ const modalStyle = {
 };
 
 FindRoutesModal.propTypes = {
-  currentRoute: PropTypes.object
+  currentRoute: PropTypes.object,
+  addLog: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   currentRoute: state.route.currentRoute
 });
 
-export default connect(mapStateToProps)(FindRoutesModal);
+export default connect(mapStateToProps, { addLog, deleteRoute })(
+  FindRoutesModal
+);

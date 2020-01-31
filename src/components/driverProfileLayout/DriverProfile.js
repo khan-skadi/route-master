@@ -6,8 +6,11 @@ import DriverProfileList from "./DriverProfileList";
 import Preloader from "../layout/Preloader";
 import PropTypes from "prop-types";
 
-// const DriverProfile = props => {
-const DriverProfile = ({ driver: { drivers, loading }, getDrivers }) => {
+const DriverProfile = ({
+  driver: { drivers, loading },
+  currentId,
+  getDrivers
+}) => {
   useEffect(() => {
     getDrivers();
 
@@ -18,19 +21,15 @@ const DriverProfile = ({ driver: { drivers, loading }, getDrivers }) => {
     return <Preloader />;
   }
 
+  const driverInfo = drivers.find(item => item.id === parseInt(currentId));
+
   return (
     <div className="col s12">
       <ul className="with-header">
-        {/* {props.driver.drivers &&
-          props.driver.drivers.map(driver => {
-            return <DriverProfileList driver={driver} key={driver.id} />;
-          })} */}
         {!loading && drivers.length === 0 ? (
           <p className="center">Loading...</p>
         ) : (
-          drivers.map(driver => (
-            <DriverProfileList driver={driver} key={driver.id} />
-          ))
+          <DriverProfileList driver={driverInfo} />
         )}
       </ul>
     </div>
@@ -42,17 +41,13 @@ DriverProfile.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  // let id = ownProps.match.params.driver_id;
-  // const drivers = state.driver.drivers;
-  // const driver = drivers ? drivers[id] : null;
-  // console.log(id);
-  // console.log(driver);
+  let id = ownProps.match.params.driver_id;
   return {
-    driver: state.driver
+    driver: state.driver,
+    currentId: id
   };
 };
-//.find(driver => driver.id === id)
-// .filter(driver => driver.id === id)
+
 export default withRouter(
   connect(mapStateToProps, { getDrivers })(DriverProfile)
 );

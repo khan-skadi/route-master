@@ -8,10 +8,23 @@ const OurStaffList = ({ driver }) => {
     <ul className="list-inline">
       <li>
         <div className="col s12 m3">
-          <div className="card">
+          <div className="card center">
             <div className="card-image">
-              <img src={driver.url} height="180px" width="200px" alt="" />
-              <span className="card-title">{driver.firstName}</span>
+              <img
+                src={driver.url}
+                height="180px"
+                width="200px"
+                style={{ marginLeft: "30px" }}
+                alt=""
+              />
+              <span
+                className="card-title"
+                style={{
+                  marginLeft: "30px"
+                }}
+              >
+                {driver.firstName}
+              </span>
             </div>
             <div className="card-content">
               <span>HourlyRate:</span>
