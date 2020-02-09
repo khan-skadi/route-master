@@ -1,0 +1,237 @@
+{
+  "logs": [
+    {
+      "locationFrom": "7777",
+      "locationTo": "7777",
+      "distance": "7777",
+      "postedOn": "77777",
+      "postedBy": "7777",
+      "attention": false,
+      "progress": false,
+      "driver": "Aneta Ilkaceva",
+      "price": "540",
+      "date": "2020-02-03T23:27:29.060Z",
+      "id": 11
+    },
+    {
+      "locationFrom": "11111",
+      "locationTo": "11111",
+      "distance": "1111",
+      "postedOn": "1111",
+      "postedBy": "1111",
+      "attention": false,
+      "progress": false,
+      "driver": "Igor Litajkovski",
+      "price": "100",
+      "date": "2020-02-03T23:47:41.245Z",
+      "id": 12
+    },
+    {
+      "locationFrom": "2222",
+      "locationTo": "2222",
+      "distance": "2222",
+      "postedOn": "2222",
+      "postedBy": "2222",
+      "attention": false,
+      "progress": false,
+      "driver": "Gurgica Kartalova",
+      "price": "200",
+      "date": "2020-02-03T23:47:52.271Z",
+      "id": 13
+    },
+    {
+      "locationFrom": "9999",
+      "locationTo": "9999",
+      "distance": "99999",
+      "postedOn": "99",
+      "postedBy": "9999",
+      "attention": true,
+      "progress": false,
+      "driver": "Aneta Ilkaceva",
+      "price": "150",
+      "date": "2020-02-05T15:41:58.718Z",
+      "id": 14
+    }
+  ],
+  "archs": [
+    {
+      "locationFrom": "New Delhi",
+      "locationTo": "Paris",
+      "distance": "1150km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "Skadi",
+      "attention": false,
+      "progress": false,
+      "driver": "Khan Skadi",
+      "date": "2020-02-03T16:27:39.104Z",
+      "id": 4
+    },
+    {
+      "locationFrom": "Moscow",
+      "locationTo": "St Petersburgh",
+      "distance": "228km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "Aneta",
+      "progress": false,
+      "driver": "Aneta Ilkaceva",
+      "id": 122
+    },
+    {
+      "locationFrom": "River",
+      "locationTo": "Ocean",
+      "distance": "1102",
+      "postedOn": "02.01",
+      "postedBy": "Admin AC Corp",
+      "progress": false,
+      "driver": "Igor Litajkovski",
+      "id": 123
+    },
+    {
+      "locationFrom": "Boston",
+      "locationTo": "Massachussets",
+      "distance": "600",
+      "postedOn": "12/02",
+      "postedBy": "Admin",
+      "progress": false,
+      "driver": "Aneta Ilkaceva",
+      "id": 124
+    },
+    {
+      "locationFrom": "Skopje",
+      "locationTo": "Vienna",
+      "distance": "600",
+      "postedOn": "29.01.2020",
+      "postedBy": "Igor",
+      "progress": true,
+      "driver": "Igor Litajkovski",
+      "id": 125
+    },
+    {
+      "locationFrom": "Berlin",
+      "locationTo": "Massachussets",
+      "distance": "678",
+      "postedOn": "12.45",
+      "postedBy": "Admin",
+      "progress": false,
+      "driver": "Gurgica Kartalova",
+      "date": "2020-02-03T23:06:06.275Z",
+      "id": 126
+    },
+    {
+      "locationFrom": "Vienna",
+      "locationTo": "Berlin",
+      "distance": "1246",
+      "postedOn": "12.041",
+      "postedBy": "Admin",
+      "progress": false,
+      "driver": "Khan Skadi",
+      "date": "2020-02-03T23:06:06.990Z",
+      "id": 127
+    },
+    {
+      "locationFrom": "1313",
+      "locationTo": "1313",
+      "distance": "1313",
+      "postedOn": "1313",
+      "postedBy": "1313",
+      "progress": true,
+      "driver": "Igor Litajkovski",
+      "date": "2020-02-05T15:42:36.389Z",
+      "id": 128
+    },
+    {
+      "locationFrom": "1010",
+      "locationTo": "1010",
+      "distance": "1010",
+      "postedOn": "1010",
+      "postedBy": "1010",
+      "progress": true,
+      "driver": "Khan Skadi",
+      "date": "2020-02-05T15:42:40.798Z",
+      "id": 129
+    }
+  ],
+  "drivers": [
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FIMG_0039.JPG?alt=media&token=11294d72-3752-4655-8572-47ae7b57f6b4",
+      "progress": 100,
+      "firstName": "Khan",
+      "lastName": "Skadi",
+      "address": "8mi Septemvri br.26",
+      "email": "kartalov.pt@gmail.com",
+      "phoneNumber": "072544622",
+      "birthYear": "1993",
+      "hourlyRate": "160",
+      "license": "RA0264AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 1
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FAnaleigh%20Tipton.jpg?alt=media&token=d808113f-e415-401e-ace3-dec47e932b81",
+      "progress": 100,
+      "firstName": "Aneta",
+      "lastName": "Ilkaceva",
+      "address": "8 Septemvri 26",
+      "email": "ailkaceva@gmail.com",
+      "phoneNumber": "072 544 622",
+      "birthYear": "1999",
+      "hourlyRate": "100",
+      "license": "RA2620AG",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 3
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2Fstalion.jpg?alt=media&token=9c614656-2469-49be-adbd-f62ce7177fbb",
+      "progress": 100,
+      "firstName": "Igor",
+      "lastName": "Litajkovski",
+      "address": "Vienna st",
+      "email": "igorlmax@yahoo.com",
+      "phoneNumber": "33337777",
+      "birthYear": "1990",
+      "hourlyRate": "140",
+      "license": "BG4060AG",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 4
+    },
+    {
+      "image": {},
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FTesla%20Circa%201890.jpeg?alt=media&token=a5a44c57-eb9e-47b4-9a1e-0522cf1831c4",
+      "progress": 100,
+      "firstName": "Gurgica",
+      "lastName": "Kartalova",
+      "address": "8mi Septemvri br.26",
+      "email": "gurgica.k@hotmail.com",
+      "phoneNumber": "15153535",
+      "birthYear": "1995",
+      "hourlyRate": "120",
+      "license": "RA9290AC",
+      "available": true,
+      "completedRoutes": null,
+      "incompleteRoutes": null,
+      "id": 5
+    }
+  ],
+  "routes": [
+    {
+      "id": 25,
+      "locationFrom": "Vienna",
+      "locationTo": "Paris",
+      "distance": "820km",
+      "postedOn": "2020-02-28T15:05:09.336Z",
+      "postedBy": "Drive AG Corp",
+      "attention": false,
+      "progress": false,
+      "date": "2020-02-02T23:12:19.942Z"
+    }
+  ]
+}
