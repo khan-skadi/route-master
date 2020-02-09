@@ -9,7 +9,11 @@ const AdminPanel = props => {
   const logsPrice = log.logs && log.logs.map(log => parseInt(log.price));
   const totalBrutoIncome =
     logsPrice &&
-    logsPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
+    Math.round(
+      logsPrice.reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      )
+    );
 
   return (
     <div
@@ -30,7 +34,7 @@ const AdminPanel = props => {
           <h5 className="center">${totalBrutoIncome}</h5>
           <hr style={{ width: "60%" }}></hr>
           <h5 className="center">Total Neto Income:</h5>
-          <h5 className="center">${totalBrutoIncome * 0.82}</h5>
+          <h5 className="center">${Math.round(totalBrutoIncome * 0.82)}</h5>
           <hr style={{ width: "60%" }}></hr>
           <br />
           <h6

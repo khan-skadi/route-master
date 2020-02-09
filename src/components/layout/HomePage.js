@@ -27,7 +27,7 @@ const HomePage = props => {
             href="#add-log-modal"
             className="waves-effect waves-light btn modal-trigger blue darken-2"
           >
-            <i className="material-icons left">drive_eta</i>Create Route
+            <i className="material-icons left">drive_eta</i>Add Route
           </a>{" "}
           <a
             href="#add-drivers-modal"

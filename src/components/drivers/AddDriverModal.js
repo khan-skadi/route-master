@@ -120,7 +120,7 @@ class AddDriverModal extends Component {
         <div className="modal-content">
           <div className="row">
             <div className="col s12">
-              <h4>Add driver</h4>
+              <h4>Add Driver</h4>
               <br />
 
               <div className="input-field col s6">
@@ -235,7 +235,7 @@ class AddDriverModal extends Component {
                   {/* <div className="btn green accent-4"> */}
                   <a
                     href="#!"
-                    className="waves-effect waves-light btn green accent-4"
+                    className="waves-effect waves-light btn-small green accent-4"
                   >
                     <span>Pick Image</span>
                     <input type="file" onChange={this.handleChange} />
@@ -248,7 +248,7 @@ class AddDriverModal extends Component {
                   </div>
                   <a
                     href="#!"
-                    className="waves-effect waves-light btn green accent-4"
+                    className="waves-effect waves-light btn-small green accent-4"
                     onClick={this.handleUpload}
                   >
                     Upload

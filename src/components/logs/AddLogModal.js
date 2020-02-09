@@ -115,7 +115,7 @@ const AddLogModal = props => {
       <div className="modal-content">
         <div className="row">
           <div className="col s12">
-            <h4>Create Route</h4>
+            <h4>Add Route</h4>
             <br />
           </div>
         </div>
