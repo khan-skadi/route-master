@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import SearchBar from "./components/layout/SearchBar";
@@ -19,12 +20,20 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 
-const App = () => {
+const App = props => {
+  const { auth, profile } = props;
   useEffect(() => {
     // Init Materialize JS
     M.AutoInit();
   });
-
+  const PrivateRoute = ({ component: { Component, ...rest } }) => (
+    <Route
+      {...rest}
+      render={props =>
+        auth.uid ? <HomePage {...props} /> : <Redirect to="/signin" />
+      }
+    />
+  );
   return (
     <Fragment>
       <SearchBar />
@@ -38,7 +47,8 @@ const App = () => {
         <DriverListModal />
         <FindRoutesModal />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          {/* <Route exact path="/" component={HomePage} /> */}
+          <PrivateRoute exact path="/" component={HomePage} />
           <Route path="/archived-routes" component={ArchivedRoutes} />
           <Route path="/find-routes" component={FindRoutes} />
           <Route path="/signup" component={SignUp} />
@@ -53,4 +63,11 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
+  };
+};
+
+export default connect(mapStateToProps)(App);
