@@ -29,10 +29,10 @@ const DriverProfile = props => {
   const driverInfo = driver.drivers.find(
     item => item.id === parseInt(currentId)
   );
-  console.log(driverInfo && driverInfo.driver);
-  // const archProps = arch.archs.filter(item => item.driver === "Khan Skadi");
+
   const archProps = arch.archs.filter(
-    item => item.driver === driverInfo.driver
+    arch =>
+      arch.driver === driverInfo.firstName.concat(` ${driverInfo.lastName}`)
   );
 
   return (

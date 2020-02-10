@@ -16,13 +16,13 @@ const DriverProfileList = ({ driver, arch: { archs, loading }, archItems }) => {
   return (
     <div>
       <div className="row" style={{ backgroundColor: "light-blue accent-1" }}>
-        <div className="col s9">
+        <div className="col s8">
           <span className="flow-text" style={{ fontWeight: "bold" }}>
             {" "}
             Driver > {driver.firstName} {driver.lastName}
           </span>
         </div>
-        <div className="col s3">
+        <div className="col s4 push-s1">
           <span className="flow-text" style={{ fontWeight: "bold" }}>
             Status >{" "}
             <a
@@ -177,7 +177,18 @@ const DriverProfileList = ({ driver, arch: { archs, loading }, archItems }) => {
                       Date
                     </span>
                   </div>
-                  <div className="col s4 push-s2">
+                  <div className="col s2">
+                    <span
+                      className="grey-text"
+                      style={{
+                        fontSize: "1.2em",
+                        fontFamily: "League Spartan"
+                      }}
+                    >
+                      Price
+                    </span>
+                  </div>
+                  <div className="col s2">
                     <span
                       className="grey-text"
                       style={{

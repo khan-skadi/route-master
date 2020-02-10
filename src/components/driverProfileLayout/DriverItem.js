@@ -9,9 +9,10 @@ const DriverItem = ({ arch }) => {
 
   return (
     <div
-      className="z-depth-2"
+      className="z-depth-2 col s12"
       style={{ marginBottom: "10px", padding: "20px" }}
     >
+      {/* <a href="#archived-log-modal" className="modal-trigger"> */}
       <li className="collection-item">
         <div className="valign-wrapper">
           <div className="col s2">
@@ -24,7 +25,7 @@ const DriverItem = ({ arch }) => {
                   ? "green-text"
                   : "blue-text"
               }`}
-              href="#archived-log-modal"
+              href="#!"
             >
               {arch.locationFrom}
             </a>
@@ -39,7 +40,7 @@ const DriverItem = ({ arch }) => {
                   ? "green-text"
                   : "blue-text"
               }`}
-              href="#archived-log-modal"
+              href="#!"
             >
               {arch.locationTo}
             </a>
@@ -52,7 +53,10 @@ const DriverItem = ({ arch }) => {
               <Moment format="DD-MM-YYYY">{arch.date}</Moment>
             </span>
           </div>
-          <div className="col s4 push-s2">
+          <div className="col s2">
+            <span style={style}>{arch.price + "$"}</span>
+          </div>
+          <div className="col s2">
             <button
               className="btn waves-effect waves-light green accent-4"
               name="action"
@@ -63,6 +67,7 @@ const DriverItem = ({ arch }) => {
           </div>
         </div>
       </li>
+      {/* </a> */}
     </div>
   );
 };
