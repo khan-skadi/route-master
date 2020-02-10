@@ -73,7 +73,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {  
   return {
     getLogs: () => dispatch(getLogs(dispatch)),
     getDrivers: () => dispatch(getDrivers(dispatch)),

@@ -8,17 +8,12 @@ const AdminPanel = props => {
 
   const archsPrice = arch.archs && arch.archs.map(arch => parseInt(arch.price));
   const logsPrice = log.logs && log.logs.map(log => parseInt(log.price));
-  const currentActiveRoutes =
-    logsPrice &&
-    Math.round(
-      logsPrice.reduce(
-        (accumulator, currentValue) => accumulator + currentValue
-      )
-    );
-    const finishedRoutesTotal = archsPrice && Math.round(archsPrice.reduce(
-      (accumulator, currentValue) => accumulator + currentValue
-      )
-    );
+
+  const adminReducer = (accumulator, currentValue) =>
+    Math.round(accumulator + currentValue);
+
+  const currentActiveRoutes = logsPrice && logsPrice.reduce(adminReducer, 0);
+  const finishedRoutesTotal = archsPrice && archsPrice.reduce(adminReducer, 0);
 
   return (
     <div
