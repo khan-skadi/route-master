@@ -248,7 +248,7 @@ const AddLogModal = props => {
                 onClick={onSubmit}
                 className="modal-close waves-effect blue darken-2 btn"
               >
-                Add Route
+                Submit
                 <i className="material-icons right">send</i>
               </a>
             </div>

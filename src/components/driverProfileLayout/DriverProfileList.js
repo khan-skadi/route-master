@@ -118,12 +118,11 @@ const DriverProfileList = ({ driver, arch: { archs, loading }, archItems }) => {
 
         {/* Main right side */}
         <div className="col s8">
-          <ul className="right">
+          {/* <ul className="right">
             <li>
               <img src="#!" alt="" />
             </li>
-            {/* <DriverProfileButton /> */}
-          </ul>
+          </ul> */}
           <div className="col s12">
             <ul className="with-header">
               <li

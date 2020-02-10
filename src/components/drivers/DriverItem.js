@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { deleteDriver } from "../../store/actions/driverActions";
+import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const DriverItem = ({ driver: { id, firstName, lastName }, deleteDriver }) => {

@@ -7,12 +7,6 @@ import DriverProfileList from "./DriverProfileList";
 import Preloader from "../layout/Preloader";
 import PropTypes from "prop-types";
 
-// const DriverProfile = ({
-//   driver: { drivers, loading },
-//   arch: { archs },
-//   currentId,
-//   getDrivers,
-//   getArchs})
 const DriverProfile = props => {
   const { driver, arch, currentId } = props;
 
@@ -35,7 +29,11 @@ const DriverProfile = props => {
   const driverInfo = driver.drivers.find(
     item => item.id === parseInt(currentId)
   );
-  const archProps = arch.archs.filter(item => item.driver === "Khan Skadi");
+  console.log(driverInfo && driverInfo.driver);
+  // const archProps = arch.archs.filter(item => item.driver === "Khan Skadi");
+  const archProps = arch.archs.filter(
+    item => item.driver === driverInfo.driver
+  );
 
   return (
     <div className="col s12">
