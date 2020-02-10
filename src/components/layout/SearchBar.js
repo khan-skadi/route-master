@@ -55,7 +55,6 @@ SearchBar.propTypes = {
 };
 
 const mapStateToProps = state => {
-  console.log(state.auth);
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile,

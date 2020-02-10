@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import AdminPanelList from "./AdminPanelList";
 
 const AdminPanel = props => {
-  const { driver, log } = props;
+  const { driver, log, arch } = props;
 
+  const archsPrice = arch.archs && arch.archs.map(arch => parseInt(arch.price));
   const logsPrice = log.logs && log.logs.map(log => parseInt(log.price));
-  const totalBrutoIncome =
+  const currentActiveRoutes =
     logsPrice &&
     Math.round(
       logsPrice.reduce(
         (accumulator, currentValue) => accumulator + currentValue
+      )
+    );
+    const finishedRoutesTotal = archsPrice && Math.round(archsPrice.reduce(
+      (accumulator, currentValue) => accumulator + currentValue
       )
     );
 
@@ -30,11 +35,11 @@ const AdminPanel = props => {
         </div>
 
         <div className="col s12">
-          <h5 className="center">Total Bruto Income:</h5>
-          <h5 className="center">${totalBrutoIncome}</h5>
+          <h5 className="center">Current Active Routes:</h5>
+          <h5 className="center">${currentActiveRoutes}</h5>
           <hr style={{ width: "60%" }}></hr>
-          <h5 className="center">Total Neto Income:</h5>
-          <h5 className="center">${Math.round(totalBrutoIncome * 0.82)}</h5>
+          <h5 className="center">Finished Routes Total:</h5>
+          <h5 className="center">${finishedRoutesTotal}</h5>
           <hr style={{ width: "60%" }}></hr>
           <br />
           <h6
@@ -69,7 +74,8 @@ const AdminPanel = props => {
 const mapStateToProps = state => {
   return {
     driver: state.driver,
-    log: state.log
+    log: state.log,
+    arch: state.arch
   };
 };
 

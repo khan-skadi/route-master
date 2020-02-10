@@ -10,6 +10,7 @@ const ArchivedRoutes = props => {
   const {
     arch: { archs, loading }
   } = props;
+  
   useEffect(() => {
     props.getArchs();
     // eslint-disable-next-line

@@ -19,9 +19,10 @@ const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
       distance: log.distance,
       postedOn: log.postedOn,
       postedBy: log.postedBy,
-      attention: log.Attention,
+      attention: log.attention,
       progress: log.progress,
       driver: log.driver,
+      price: log.price,
       date: new Date()
     };
     addArch(newArchive);
@@ -48,7 +49,7 @@ const LogItem = ({ log, deleteLog, setCurrent, addArch }) => {
             href="#edit-log-modal"
             onClick={() => setCurrent(log)}
           >
-            {log.locationFrom} - {log.locationTo}
+            {log.locationFrom} - {log.locationTo} {" "} : {" "} {log.price + "$"}
           </a>
           <br />
           <span className="grey-text">

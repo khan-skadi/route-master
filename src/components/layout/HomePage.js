@@ -47,7 +47,7 @@ const HomePage = props => {
             <OurStaff driver={driver} />
           </div>
         </div>
-        <div className="col s4">
+        <div className="col s4 hide-on-med-and-down">
           <AdminPanel driver={driver} />
         </div>
       </div>

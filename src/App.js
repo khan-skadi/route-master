@@ -21,7 +21,8 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 
 const App = props => {
-  const { auth, profile } = props;
+  const { auth } = props;
+  
   useEffect(() => {
     // Init Materialize JS
     M.AutoInit();

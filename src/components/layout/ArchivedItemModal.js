@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import DriverSelectOptions from "../drivers/DriverSelectOptions";
 import PropTypes from "prop-types";
 
-const ArchivedLogModal = ({ current }) => {
+const ArchivedItemModal = ({ current }) => {
   const [locationFrom, setLocationFrom] = useState("");
   const [locationTo, setLocationTo] = useState("");
   const [distance, setDistance] = useState("");
@@ -13,11 +13,8 @@ const ArchivedLogModal = ({ current }) => {
   const [attention, setAttention] = useState(false);
   const [progress, setProgress] = useState(false);
   const [driver, setDriver] = useState("");
-  // const [message, setMessage] = useState("");
-  // const [driver, setDriver] = useState("");
-  // const [attention, setAttention] = useState(false);
-  // const [progress, setProgress] = useState(false);
-  // setMessage(current.message);
+  const [price, setPrice] = useState(0);
+
   useEffect(() => {
     if (current) {
       setAttention(current.attention);
@@ -28,6 +25,7 @@ const ArchivedLogModal = ({ current }) => {
       setDistance(current.distance);
       setPostedOn(current.postedOn);
       setPostedBy(current.postedBy);
+      setPrice(current.price);
     }
   }, [current]);
 
@@ -134,6 +132,15 @@ const ArchivedLogModal = ({ current }) => {
 
         <div className="row">
           <div className="input-field">
+            <input type="number" name="price" value={price || 0} readOnly />
+              <label htmlFor="price" className="active">
+                Price
+              </label>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="input-field">
             <p>
               <label>
                 <input
@@ -176,7 +183,7 @@ const modalStyle = {
   height: "75%"
 };
 
-ArchivedLogModal.propTypes = {
+ArchivedItemModal.propTypes = {
   current: PropTypes.object
 };
 
@@ -186,4 +193,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ArchivedLogModal);
+export default connect(mapStateToProps)(ArchivedItemModal);
