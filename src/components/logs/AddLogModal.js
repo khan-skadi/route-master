@@ -30,7 +30,7 @@ const AddLogModal = props => {
   // const [license, setLicense] = useState("");
   // const [completedRoutes, setCompletedRoutes] = useState(null);
   // const [incompleteRoutes, setIncompleteRoutes] = useState(null);
-  const [available, setAvailable] = useState(true);
+  // const [available, setAvailable] = useState(true);
 
   useEffect(() => {
     props.getDrivers();
@@ -56,15 +56,15 @@ const AddLogModal = props => {
       date: new Date()
     };
 
-    const realDriver =
-      props.driver.drivers &&
-      props.driver.drivers.map(driver =>
-        newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
-          ? driver
-          : false
-      );
+    // const realDriver =
+    //   props.driver.drivers &&
+    //   props.driver.drivers.map(driver =>
+    //     newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
+    //       ? driver
+    //       : false
+    //   );
 
-    console.log(realDriver);
+    // console.log(realDriver);
     //     .filter(item => typeof item === "number");
     // return parseInt(id);
     // const driverUpdate = {
@@ -85,16 +85,16 @@ const AddLogModal = props => {
     //   incompleteRoutes
     // };
 
-    const driverUpdate = {
-      id: realDriver.id,
-      available
-    };
-    props.updateDriver(driverUpdate);
+    // const driverUpdate = {
+    //   id: realDriver.id,
+    //   available
+    // };
+    // props.updateDriver(driverUpdate);
 
     props.addLog(newRoute);
 
-    console.log(newRoute.driver);
-    console.log(props);
+    // console.log(newRoute.driver);
+    // console.log(props);
 
     M.toast({ html: "Route added" });
 
@@ -152,10 +152,7 @@ const AddLogModal = props => {
               name="driver"
               value={driver || ""}
               className="browser-default"
-              onChange={e => {
-                setDriver(e.target.value);
-                setAvailable(false);
-              }}
+              onChange={e => setDriver(e.target.value)}
             >
               <option value="" disabled>
                 Select Driver

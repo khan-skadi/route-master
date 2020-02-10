@@ -32,7 +32,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
   const onSubmit = () => {
     const updRoute = {
-      // id: current.id,
+      id: current.id,
       locationFrom,
       locationTo,
       distance,
@@ -64,9 +64,10 @@ const EditLogModal = ({ current, updateLog }) => {
     <div id="edit-log-modal" className="modal" style={modalStyle}>
       <div className="modal-content">
         <h4>Edit Route</h4>
-
+        <br />
         <div className="row">
           <div className="input-field">
+            <i className="material-icons prefix">keyboard_arrow_left</i>
             <input
               type="text"
               name="locationFrom"
@@ -81,6 +82,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
         <div className="row">
           <div className="input-field">
+            <i className="material-icons prefix">keyboard_arrow_right</i>
             <input
               type="text"
               name="locationTo"
@@ -97,7 +99,7 @@ const EditLogModal = ({ current, updateLog }) => {
           <div className="input-field">
             <select
               name="driver"
-              value={driver || ""}
+              value={driver}
               className="browser-default"
               onChange={e => setDriver(e.target.value)}
             >
@@ -111,6 +113,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
         <div className="row">
           <div className="input-field">
+            <i className="material-icons prefix">swap_horiz</i>
             <input
               type="text"
               name="distance"
@@ -125,6 +128,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
         <div className="row">
           <div className="input-field">
+            <i className="material-icons prefix">date_range</i>
             <input
               type="text"
               name="postedOn"
@@ -139,6 +143,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
         <div className="row">
           <div className="input-field">
+            <i className="material-icons prefix">account_box</i>
             <input
               type="text"
               name="postedBy"
@@ -153,6 +158,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
         <div className="row">
           <div className="input-field">
+            <i className="material-icons prefix">attach_money</i>
             <input
               type="number"
               name="price"
