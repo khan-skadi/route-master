@@ -17,20 +17,8 @@ const AddLogModal = props => {
   const [progress, setProgress] = useState(false);
   const [driver, setDriver] = useState("");
   const [price, setPrice] = useState(0);
-
-  // const [image, setImage] = useState(null);
-  // const [url, setUrl] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [birthYear, setBirthYear] = useState("");
-  // const [hourlyRate, setHourlyRate] = useState("");
-  // const [license, setLicense] = useState("");
-  // const [completedRoutes, setCompletedRoutes] = useState(null);
-  // const [incompleteRoutes, setIncompleteRoutes] = useState(null);
-  // const [available, setAvailable] = useState(true);
+  const [completedRoutes, setCompletedRoutes] = useState([]);
+  const [available, setAvailable] = useState(true);
 
   useEffect(() => {
     props.getDrivers();
@@ -56,49 +44,50 @@ const AddLogModal = props => {
       date: new Date()
     };
 
-    // const realDriver =
-    //   props.driver.drivers &&
-    //   props.driver.drivers.map(driver =>
-    //     newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
-    //       ? driver
-    //       : false
-    //   );
-
-    // console.log(realDriver);
-    //     .filter(item => typeof item === "number");
-    // return parseInt(id);
-    // const driverUpdate = {
-    //   id: getId(),
-    //   image,
-    //   url,
-    //   progress,
-    //   firstName,
-    //   lastName,
-    //   address,
-    //   email,
-    //   phoneNumber,
-    //   birthYear,
-    //   hourlyRate,
-    //   license,
-    //   available,
-    //   completedRoutes,
-    //   incompleteRoutes
-    // };
-
-    // const driverUpdate = {
-    //   id: realDriver.id,
-    //   available
-    // };
-    // props.updateDriver(driverUpdate);
-
     props.addLog(newRoute);
-
-    // console.log(newRoute.driver);
-    // console.log(props);
 
     M.toast({ html: "Route added" });
 
-    //  Clear Fields
+    const realDriver =
+      props.driver.drivers &&
+      props.driver.drivers.find(driver =>
+        newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
+          ? driver
+          : false
+      );
+
+    setAvailable({
+      available: false
+    });
+
+    // setCompletedRoutes(prevState => {
+    //   return {
+    //     ...prevState,
+    //     completedRoutes: completedRoutes.push(newRoute[0])
+    //   };
+    // });
+
+    setCompletedRoutes({
+      completedRoutes: completedRoutes.push(newRoute)
+    });
+
+    console.log(completedRoutes);
+
+    // const updatedDriver = {
+    //   ...realDriver,
+    //   completedRoutes,
+    //   available
+    // };
+
+    // kinda works
+    const updatedDriver = {
+      ...realDriver,
+      completedRoutes,
+      available
+    };
+
+    props.updateDriver(updatedDriver);
+
     setLocationFrom("");
     setLocationTo("");
     setDistance("");
@@ -262,7 +251,10 @@ const modalStyle = {
 };
 
 AddLogModal.propTypes = {
-  addLog: PropTypes.func.isRequired
+  driver: PropTypes.object,
+  addLog: PropTypes.func.isRequired,
+  updateDriver: PropTypes.func.isRequired,
+  getDrivers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {

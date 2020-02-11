@@ -31,7 +31,7 @@ const EditLogModal = ({ current, updateLog }) => {
   }, [current]);
 
   const onSubmit = () => {
-    const updRoute = {
+    const updatedLog = {
       id: current.id,
       locationFrom,
       locationTo,
@@ -45,7 +45,7 @@ const EditLogModal = ({ current, updateLog }) => {
       date: new Date()
     };
 
-    updateLog(updRoute);
+    updateLog(updatedLog);
 
     M.toast({ html: "Route edited" });
 

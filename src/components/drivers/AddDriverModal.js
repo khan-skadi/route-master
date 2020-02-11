@@ -21,8 +21,8 @@ class AddDriverModal extends Component {
       hourlyRate: "",
       license: "",
       available: true,
-      completedRoutes: null,
-      incompleteRoutes: null
+      completedRoutes: [],
+      incompleteRoutes: []
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
