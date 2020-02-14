@@ -26,6 +26,7 @@ const App = props => {
   useEffect(() => {
     M.AutoInit();
   });
+
   const PrivateRoute = ({ component: { Component, ...rest } }) => (
     <Route
       {...rest}
@@ -34,6 +35,7 @@ const App = props => {
       }
     />
   );
+
   return (
     <Fragment>
       <SearchBar />

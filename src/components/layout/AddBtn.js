@@ -1,6 +1,12 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-const AddBtn = () => {
+const AddBtn = props => {
+  const { location } = props;
+  if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
+    return null;
+  }
+
   return (
     <div className="fixed-action-btn">
       <a href="#!" className="btn-floating btn-large blue darken-2">
@@ -36,4 +42,4 @@ const AddBtn = () => {
   );
 };
 
-export default AddBtn;
+export default withRouter(AddBtn);
