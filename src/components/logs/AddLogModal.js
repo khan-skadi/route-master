@@ -19,7 +19,6 @@ const AddLogModal = props => {
   const [price, setPrice] = useState(0);
   // const [completedRoutes, setCompletedRoutes] = useState([]);
   // const [available, setAvailable] = useState(true);
-
   useEffect(() => {
     props.getDrivers();
 

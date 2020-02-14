@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getDrivers } from "../../store/actions/driverActions";
 import PropTypes from "prop-types";
-import DriverItem from "./DriverItem";
+import DriverListItem from "./DriverListItem";
 
 const DriverListModal = ({ getDrivers, driver: { drivers, loading } }) => {
   useEffect(() => {
@@ -18,7 +18,7 @@ const DriverListModal = ({ getDrivers, driver: { drivers, loading } }) => {
           {!loading &&
             drivers !== null &&
             drivers.map(driver => (
-              <DriverItem driver={driver} key={driver.id} />
+              <DriverListItem driver={driver} key={driver.id} />
             ))}
         </ul>
       </div>
@@ -41,5 +41,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// export default connect(mapStateToProps, { getDrivers })(DriverListModal);
 export default connect(mapStateToProps, mapDispatchToProps)(DriverListModal);

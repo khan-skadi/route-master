@@ -28,7 +28,7 @@ const AdminPanel = props => {
           </ul>
         </div>
 
-        <div className="col s12">
+        {/* <div className="col s12">
           <h5 className="center">Current Active Routes:</h5>
           <h5 className="center">${currentActiveRoutes}</h5>
           <hr style={{ width: "60%" }}></hr>
@@ -42,23 +42,57 @@ const AdminPanel = props => {
           >
             Available drivers:
           </h6>
+        </div> */}
+
+        <div className="col s12">
+          <div
+            className="card horizontal z-depth-0"
+            style={{
+              width: "100%",
+              margin: "0 auto"
+            }}
+          >
+            <div className="card-stacked">
+              <div className="card-content center">
+                <span className="flow-text">
+                  Active Routes: {"  "}
+                  <span className="green-text text-accent-4">
+                    {currentActiveRoutes} $
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="row" style={{ width: "80%", margin: "0 auto" }}>
-          <div className="col s12">
-            {driver.drivers &&
-              driver.drivers
-                .filter(driver => driver.available === true)
-                .map(driver => {
-                  return (
-                    <div key={driver.id}>
-                      <Link to={"/drivers/" + driver.id} key={driver.id}>
-                        <AdminPanelList driver={driver} />
-                      </Link>
-                    </div>
-                  );
-                })}
+        <div className="col s12">
+          <div className="card horizontal z-depth-0">
+            <div className="card-stacked">
+              <div className="card-content center">
+                <span className="flow-text">
+                  Total Finished: {"  "}
+                  <span className="green-text text-accent-4">
+                    {finishedRoutesTotal} $
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div className="col s12">
+          {driver.drivers &&
+            driver.drivers
+              .filter(driver => driver.available === true)
+              .map(driver => {
+                return (
+                  <div key={driver.id}>
+                    <Link to={"/drivers/" + driver.id} key={driver.id}>
+                      <AdminPanelList driver={driver} />
+                    </Link>
+                  </div>
+                );
+              })}
         </div>
       </div>
     </div>

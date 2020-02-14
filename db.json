@@ -68,19 +68,6 @@
   ],
   "archs": [
     {
-      "locationFrom": "London",
-      "locationTo": "Paris",
-      "distance": "1548km",
-      "postedOn": "09.02.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": true,
-      "driver": "Gurgica Kartalova",
-      "price": "640",
-      "date": "2020-02-10T12:17:36.136Z",
-      "id": 130
-    },
-    {
       "locationFrom": "9999",
       "locationTo": "9999",
       "distance": "99999",

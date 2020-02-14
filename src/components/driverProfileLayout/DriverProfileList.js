@@ -1,5 +1,5 @@
 import React from "react";
-import DriverItem from "./DriverItem";
+import DriverLogItem from "./DriverLogItem";
 
 const DriverProfileList = ({ driver, archItems }) => {
   return (
@@ -191,7 +191,7 @@ const DriverProfileList = ({ driver, archItems }) => {
                     <p className="center">No logs to show...</p>
                   ) : (
                     archItems.map(arch => (
-                      <DriverItem arch={arch} key={arch.id} />
+                      <DriverLogItem arch={arch} key={arch.id} />
                     ))
                   )}
                 </ul>

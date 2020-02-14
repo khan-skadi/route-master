@@ -54,7 +54,6 @@ const SignedInLinks = props => {
   );
 };
 
-// mapDispatchToProps returns the action creator you want to use, defined in an object as a property (function).
 const mapDispatchToProps = dispatch => {
   return {
     signOut: () => dispatch(signOut(dispatch))

@@ -35,7 +35,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// export default connect(mapStateToProps, { getDrivers })(DriverSelectOptions);
 export default connect(
   mapStateToProps,
   mapDispatchToProps

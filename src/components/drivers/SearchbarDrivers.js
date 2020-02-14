@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 const SearchbarDrivers = ({ driver }) => {
   return (
@@ -14,4 +13,4 @@ const SearchbarDrivers = ({ driver }) => {
   );
 };
 
-export default connect()(SearchbarDrivers);
+export default SearchbarDrivers;

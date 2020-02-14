@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 
-const DriverItem = ({ arch }) => {
+const DriverLogItem = ({ arch }) => {
   const style = {
     fontWeight: "bold"
   };
@@ -69,4 +69,4 @@ const DriverItem = ({ arch }) => {
   );
 };
 
-export default DriverItem;
+export default DriverLogItem;
