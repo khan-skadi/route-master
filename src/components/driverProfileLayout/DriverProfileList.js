@@ -1,18 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import DriverItem from "./DriverItem";
-import Preloader from "../layout/Preloader";
 
-const DriverProfileList = ({ driver, arch: { archs, loading }, archItems }) => {
-  if (
-    loading ||
-    archs === null ||
-    driver.drivers === null ||
-    archItems === null
-  ) {
-    return <Preloader />;
-  }
-
+const DriverProfileList = ({ driver, archItems }) => {
   return (
     <div>
       <div className="row" style={{ backgroundColor: "light-blue accent-1" }}>
@@ -118,11 +107,6 @@ const DriverProfileList = ({ driver, arch: { archs, loading }, archItems }) => {
 
         {/* Main right side */}
         <div className="col s8">
-          {/* <ul className="right">
-            <li>
-              <img src="#!" alt="" />
-            </li>
-          </ul> */}
           <div className="col s12">
             <ul className="with-header">
               <li
@@ -220,4 +204,4 @@ const DriverProfileList = ({ driver, arch: { archs, loading }, archItems }) => {
   );
 };
 
-export default connect()(DriverProfileList);
+export default DriverProfileList;

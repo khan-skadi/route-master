@@ -6,11 +6,10 @@ import Preloader from "../layout/Preloader";
 import ArchivedItem from "./ArchivedItem";
 
 const ArchivedRoutes = props => {
-  // const ArchivedRoutes = ({ arch: { archs, loading }, getArchs }) => {
   const {
     arch: { archs, loading }
   } = props;
-  
+
   useEffect(() => {
     props.getArchs();
     // eslint-disable-next-line

@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminPanelList from "./AdminPanelList";
 
@@ -66,12 +65,4 @@ const AdminPanel = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    driver: state.driver,
-    log: state.log,
-    arch: state.arch
-  };
-};
-
-export default connect(mapStateToProps)(AdminPanel);
+export default AdminPanel;

@@ -48,7 +48,7 @@ const HomePage = props => {
           </div>
         </div>
         <div className="col s4 hide-on-med-and-down">
-          <AdminPanel driver={driver} />
+          <AdminPanel driver={driver} arch={arch} log={log} />
         </div>
       </div>
     </div>

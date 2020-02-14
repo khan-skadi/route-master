@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import Moment from "react-moment";
 
 const DriverItem = ({ arch }) => {
@@ -12,7 +11,6 @@ const DriverItem = ({ arch }) => {
       className="z-depth-2 col s12"
       style={{ marginBottom: "10px", padding: "20px" }}
     >
-      {/* <a href="#archived-log-modal" className="modal-trigger"> */}
       <li className="collection-item">
         <div className="valign-wrapper">
           <div className="col s2">
@@ -67,9 +65,8 @@ const DriverItem = ({ arch }) => {
           </div>
         </div>
       </li>
-      {/* </a> */}
     </div>
   );
 };
 
-export default connect()(DriverItem);
+export default DriverItem;

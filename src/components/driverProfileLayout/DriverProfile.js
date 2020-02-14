@@ -13,7 +13,7 @@ const DriverProfile = props => {
   useEffect(() => {
     props.getDrivers();
     props.getArchs();
-
+    window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);
 

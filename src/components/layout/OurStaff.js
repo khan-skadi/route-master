@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import OurStaffList from "./OurStaffList";
 import Preloader from "./Preloader";
 
@@ -31,4 +30,4 @@ const OurStaff = ({ driver }) => {
   );
 };
 
-export default connect()(OurStaff);
+export default OurStaff;
