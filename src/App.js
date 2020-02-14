@@ -22,9 +22,8 @@ import "./App.css";
 
 const App = props => {
   const { auth } = props;
-  
+
   useEffect(() => {
-    // Init Materialize JS
     M.AutoInit();
   });
   const PrivateRoute = ({ component: { Component, ...rest } }) => (
@@ -38,7 +37,6 @@ const App = props => {
   return (
     <Fragment>
       <SearchBar />
-      {/* <div className="content" style={{ width: "70%", margin: "0 auto" }}> */}
       <div className="container">
         <AddBtn />
         <AddLogModal />
@@ -48,7 +46,6 @@ const App = props => {
         <DriverListModal />
         <FindRoutesModal />
         <Switch>
-          {/* <Route exact path="/" component={HomePage} /> */}
           <PrivateRoute exact path="/" component={HomePage} />
           <Route path="/archived-routes" component={ArchivedRoutes} />
           <Route path="/find-routes" component={FindRoutes} />

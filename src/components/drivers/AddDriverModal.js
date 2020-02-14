@@ -9,9 +9,7 @@ class AddDriverModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
       url: "",
-      progress: 0,
       firstName: "",
       lastName: "",
       address: "",
@@ -81,7 +79,6 @@ class AddDriverModal extends Component {
     uploadTask.on(
       "state_changed",
       snapshot => {
-        // progress function
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
@@ -91,7 +88,6 @@ class AddDriverModal extends Component {
         console.log(error);
       },
       () => {
-        // complete function
         storage
           .ref("images")
           .child(image.name)
@@ -112,6 +108,21 @@ class AddDriverModal extends Component {
         html: `${this.state.firstName} ${this.state.lastName} was added as a driver`
       });
     }
+
+    this.setState({
+      url: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      email: "",
+      phoneNumber: "",
+      birthYear: "",
+      hourlyRate: "",
+      license: "",
+      available: true,
+      completedRoutes: [],
+      incompleteRoutes: []
+    });
   };
 
   render() {
@@ -226,35 +237,34 @@ class AddDriverModal extends Component {
                   License
                 </label>
               </div>
+
               <div className="row">
                 <br />
               </div>
 
-              <div className="left col s9">
-                <div className="file-field input-field">
-                  {/* <div className="btn green accent-4"> */}
-                  <a
-                    href="#!"
-                    className="waves-effect waves-light btn-small green accent-4"
-                  >
-                    <span>Pick Image</span>
-                    <input type="file" onChange={this.handleChange} />
-                  </a>
-                  {/* <span>Pick Image</span> */}
-                  {/* <input type="file" onChange={this.handleChange} /> */}
-                  {/* </div> */}
-                  <div className="file-path-wrapper col s6">
-                    <input className="file-path validate" type="text" />
+              <div className="row">
+                <div className="col s12">
+                  <div className="file-field input-field">
+                    <a
+                      href="#!"
+                      className="waves-effect waves-light btn-small green accent-4"
+                    >
+                      <span>Pick Image</span>
+                      <input type="file" onChange={this.handleChange} />
+                    </a>
+                    <div className="file-path-wrapper col s8">
+                      <input className="file-path validate" type="text" />
+                    </div>
+                    <a
+                      href="#!"
+                      className="waves-effect waves-light btn-small green accent-4"
+                      onClick={this.handleUpload}
+                    >
+                      Upload
+                    </a>
                   </div>
-                  <a
-                    href="#!"
-                    className="waves-effect waves-light btn-small green accent-4"
-                    onClick={this.handleUpload}
-                  >
-                    Upload
-                  </a>
+                  <img src={this.state.url} alt="" height="300" width="300" />
                 </div>
-                <img src={this.state.url} alt="" height="300" width="300" />
               </div>
               <div className="col s12 modal-footer">
                 <div className="col s3 right modal-footer">
@@ -293,12 +303,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDriverModal);
-
-/* <div>
-  <progress value={this.state.progress} max="100" />
-  <br />
-  <input type="file" onChange={this.handleChange} />
-  <button onClick={this.handleUpload}>Upload</button>
-  <br />
-  <img src={this.state.url} alt="" height="300" width="300" />
-</div> */

@@ -6,7 +6,7 @@ import SearchbarDrivers from "../drivers/SearchbarDrivers";
 
 const SignedInLinks = props => {
   const { driver } = props;
-  // this.props.signOut() - I cant say this.props because this is a functional component. I need to pass in props as parameter in the function and then use it.
+
   return (
     <ul className="right hide-on-med-and-down">
       <li>

@@ -1,25 +1,45 @@
 import React from "react";
-import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const OurStaffList = ({ driver }) => {
   return (
     <ul className="list-inline">
       <li>
-        <div className="col l3 s12 m6">
-          <div className="card">
-            <div className="card-image">
-              <img src={driver.url} height="180px" alt="" />
-              <span className="card-title">{driver.firstName}</span>
+        <div className="col l4 s12 m6">
+          <div className="card medium">
+            <div className="card-image waves-effect waves-block waves-light">
+              <img src={driver.url} className="activator" alt="" />
             </div>
             <div className="card-content">
-              <span>HourlyRate:</span>
-              <p style={{ fontSize: "1.2em" }}>{driver.hourlyRate + "$"}</p>
-              <span>License:</span>
-              <p style={{ fontSize: "1.2em" }}>{driver.license}</p>
+              <span className="card-title activator grey-text text-darken-4">
+                {driver.firstName}
+                <i className="material-icons right">more_vert</i>
+              </span>
+              <span className="blue-text text-darken-2">HourlyRate:</span>
+              <p>{driver.hourlyRate + "$"}</p>
+              <span className="blue-text text-darken-2">License:</span>
+              <p>{driver.license}</p>
+            </div>
+            <div className="card-reveal">
+              <span className="card-title grey-text text-darken-4">
+                {driver.firstName} {driver.lastName}
+                <i className="material-icons right">close</i>
+              </span>
+              <br />
+              <span className="card-title blue-text text-darken-2">
+                Availability:
+              </span>
+              <p>{driver.available}</p>
+              <span className="card-title blue-text text-darken-2">Email:</span>
+              <p>{driver.email}</p>
+              <span className="card-title blue-text text-darken-2">Phone:</span>
+              <p>{driver.phoneNumber}</p>
             </div>
             <div className="card-action">
-              <button className="btn btn-primary">Profile</button>
+              <Link to={"/drivers/" + driver.id}>
+                <button className="btn btn-primary">Profile</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -32,4 +52,4 @@ OurStaffList.propTypes = {
   driver: PropTypes.object.isRequired
 };
 
-export default connect()(OurStaffList);
+export default OurStaffList;

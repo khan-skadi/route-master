@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 const AdminPanelList = ({ driver }) => {
   return (
@@ -26,4 +25,4 @@ const AdminPanelList = ({ driver }) => {
   );
 };
 
-export default connect()(AdminPanelList);
+export default AdminPanelList;

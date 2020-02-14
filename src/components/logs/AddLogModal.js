@@ -17,8 +17,8 @@ const AddLogModal = props => {
   const [progress, setProgress] = useState(false);
   const [driver, setDriver] = useState("");
   const [price, setPrice] = useState(0);
-  const [completedRoutes, setCompletedRoutes] = useState([]);
-  const [available, setAvailable] = useState(true);
+  // const [completedRoutes, setCompletedRoutes] = useState([]);
+  // const [available, setAvailable] = useState(true);
 
   useEffect(() => {
     props.getDrivers();
@@ -48,17 +48,17 @@ const AddLogModal = props => {
 
     M.toast({ html: "Route added" });
 
-    const realDriver =
-      props.driver.drivers &&
-      props.driver.drivers.find(driver =>
-        newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
-          ? driver
-          : false
-      );
+    // const realDriver =
+    //   props.driver.drivers &&
+    //   props.driver.drivers.find(driver =>
+    //     newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
+    //       ? driver
+    //       : false
+    //   );
 
-    setAvailable({
-      available: false
-    });
+    // setAvailable({
+    //   available: false
+    // });
 
     // setCompletedRoutes(prevState => {
     //   return {
@@ -67,11 +67,11 @@ const AddLogModal = props => {
     //   };
     // });
 
-    setCompletedRoutes({
-      completedRoutes: completedRoutes.push(newRoute)
-    });
+    // setCompletedRoutes({
+    //   completedRoutes: completedRoutes.push(newRoute)
+    // });
 
-    console.log(completedRoutes);
+    // console.log(completedRoutes);
 
     // const updatedDriver = {
     //   ...realDriver,
@@ -80,13 +80,13 @@ const AddLogModal = props => {
     // };
 
     // kinda works
-    const updatedDriver = {
-      ...realDriver,
-      completedRoutes,
-      available
-    };
+    // const updatedDriver = {
+    //   ...realDriver,
+    //   completedRoutes,
+    //   available
+    // };
 
-    props.updateDriver(updatedDriver);
+    // props.updateDriver(updatedDriver);
 
     setLocationFrom("");
     setLocationTo("");

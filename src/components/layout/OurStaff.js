@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import OurStaffList from "./OurStaffList";
 import Preloader from "./Preloader";
 
@@ -21,9 +20,7 @@ const OurStaff = ({ driver }) => {
               driver.drivers.map(driver => {
                 return (
                   <div key={driver.id}>
-                    <Link to={"/drivers/" + driver.id}>
-                      <OurStaffList driver={driver} />
-                    </Link>
+                    <OurStaffList driver={driver} />
                   </div>
                 );
               })}
