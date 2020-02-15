@@ -7,11 +7,15 @@ const OurStaffList = ({ driver }) => {
     return string.length > 8 ? string.substring(0, 7) + "..." : string;
   };
 
+  const pStyle = {
+    fontSize: "1.4em"
+  };
+
   return (
     <ul className="list-inline">
       <li>
         <div className="col l4 s12 m6">
-          <div className="card">
+          <div className="card large">
             <div className="card-image waves-effect waves-block waves-light">
               <img src={driver.url} className="activator" alt="" />
             </div>
@@ -25,7 +29,6 @@ const OurStaffList = ({ driver }) => {
               <span className="blue-text text-darken-2">License:</span>
               <p>{driver.license}</p>
             </div>
-            {/* Open Card */}
             <div className="card-reveal">
               <span className="card-title grey-text text-darken-4">
                 {driver.firstName} {driver.lastName}
@@ -35,11 +38,11 @@ const OurStaffList = ({ driver }) => {
               <span className="card-title blue-text text-darken-2">
                 Availability:
               </span>
-              <p>{driver.available}</p>
+              <p style={pStyle}>{driver.available}</p>
               <span className="card-title blue-text text-darken-2">Email:</span>
-              <p>{driver.email}</p>
+              <p style={pStyle}>{driver.email}</p>
               <span className="card-title blue-text text-darken-2">Phone:</span>
-              <p>{driver.phoneNumber}</p>
+              <p style={pStyle}>{driver.phoneNumber}</p>
             </div>
             <div className="card-action">
               <Link to={"/drivers/" + driver.id}>
