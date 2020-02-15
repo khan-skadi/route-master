@@ -164,8 +164,6 @@
       "available": true,
       "completedRoutes": [],
       "incompleteRoutes": [],
-      "image": {},
-      "progress": 100,
       "id": 3
     },
     {
@@ -181,8 +179,6 @@
       "available": true,
       "completedRoutes": [],
       "incompleteRoutes": [],
-      "image": {},
-      "progress": 100,
       "id": 4
     },
     {
@@ -198,8 +194,6 @@
       "available": true,
       "completedRoutes": [],
       "incompleteRoutes": [],
-      "image": {},
-      "progress": 100,
       "id": 5
     }
   ],
