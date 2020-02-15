@@ -10,8 +10,8 @@ import Logs from "../logs/Logs";
 import PropTypes from "prop-types";
 
 const HomePage = props => {
-  // const HomePage = ({ arch, log, driver, getLogs, getDrivers, getArchs }) => {
   const { driver, arch, log } = props;
+
   useEffect(() => {
     props.getLogs();
     props.getDrivers();

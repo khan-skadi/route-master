@@ -2,12 +2,14 @@ import React from "react";
 
 const AdminPanelList = ({ driver }) => {
   return (
-    <ul className="hide-on-med-and-down">
+    <ul>
       <li>
-        <div className="card-panel grey lighten-5 z-depth-0.2">
+        <div className="card grey lighten-5 z-depth-0.2">
           <div className="row valign-wrapper">
-            <div className="col s4">
-              <img src={driver.url} alt="" className="circle responsive-img" />
+            <div className="col s5">
+              <div className="card-image waves-effect waves-block waves-light">
+                <img src={driver.url} alt="" className="responsive-img" />
+              </div>
             </div>
             <div className="col s8">
               <span className="flow-text black-text">{driver.firstName}</span>{" "}

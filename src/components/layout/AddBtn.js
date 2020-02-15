@@ -29,14 +29,6 @@ const AddBtn = props => {
             <i className="material-icons">drive_eta</i>
           </a>
         </li>
-        <li>
-          <a
-            href="#driver-list-modal"
-            className="btn-floating teal darken-2 modal-trigger"
-          >
-            <i className="material-icons">drive_eta</i>
-          </a>
-        </li>
       </ul>
     </div>
   );
