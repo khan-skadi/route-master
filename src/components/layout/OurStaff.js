@@ -15,15 +15,15 @@ const OurStaff = ({ driver }) => {
             <li className="collection-header">
               <h4 className="center">Our Staff</h4>
             </li>
-            {driver.drivers &&
-              driver.drivers.map(driver => {
-                return (
-                  <div key={driver.id}>
-                    <OurStaffList driver={driver} />
-                  </div>
-                );
-              })}
           </ul>
+          {driver.drivers &&
+            driver.drivers.map(driver => {
+              return (
+                <div key={driver.id}>
+                  <OurStaffList driver={driver} />
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
