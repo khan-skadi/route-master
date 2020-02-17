@@ -38,7 +38,9 @@ const OurStaffList = ({ driver }) => {
             </div>
             <div className="card-action">
               <Link to={"/drivers/" + driver.id}>
-                <button className="btn btn-primary">Profile</button>
+                <button className="btn btn-primary blue darken-2">
+                  Profile
+                </button>
               </Link>
             </div>
           </div>
