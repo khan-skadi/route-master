@@ -14,12 +14,8 @@ const OurStaffList = ({ driver }) => {
   return (
     <ul className="list-inline">
       <li>
-        <div className="col l4 s12 m6">
-<<<<<<< HEAD
+        <div className="col l3 s12 m6">
           <div className="card large">
-=======
-          <div className="card medium">
->>>>>>> 49f42770df5f74b5d7b629b777cdb503b6326ded
             <div className="card-image waves-effect waves-block waves-light">
               <img src={driver.url} className="activator" alt="" />
             </div>
