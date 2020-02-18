@@ -37,17 +37,15 @@ const DriverProfile = props => {
 
   return (
     <div className="col s12">
-      <ul className="with-header">
-        {!arch.loading && arch.length === 0 ? (
-          <p className="center">Loading...</p>
-        ) : (
-          <DriverProfileList
-            driver={driverInfo}
-            arch={arch}
-            archItems={archProps}
-          />
-        )}
-      </ul>
+      {!arch.loading && arch.length === 0 ? (
+        <p className="center">Loading...</p>
+      ) : (
+        <DriverProfileList
+          driver={driverInfo}
+          arch={arch}
+          archItems={archProps}
+        />
+      )}
     </div>
   );
 };

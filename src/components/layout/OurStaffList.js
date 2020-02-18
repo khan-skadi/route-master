@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const OurStaffList = ({ driver }) => {
   const truncate = string => {
-    return string.length > 8 ? string.substring(0, 7) + "..." : string;
+    return string.length > 7 ? string.substring(0, 6) + ".." : string;
   };
 
   const pStyle = {
@@ -15,7 +15,11 @@ const OurStaffList = ({ driver }) => {
     <ul className="list-inline">
       <li>
         <div className="col l4 s12 m6">
+<<<<<<< HEAD
           <div className="card large">
+=======
+          <div className="card medium">
+>>>>>>> 49f42770df5f74b5d7b629b777cdb503b6326ded
             <div className="card-image waves-effect waves-block waves-light">
               <img src={driver.url} className="activator" alt="" />
             </div>

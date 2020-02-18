@@ -1,7 +1,10 @@
 import React from "react";
 import DriverLogItem from "./DriverLogItem";
+import DriverProfileLogList from "./DriverProfileLogList";
 
 const DriverProfileList = ({ driver, archItems }) => {
+  console.log(driver.completedRoutes);
+
   return (
     <div>
       <div className="row" style={{ backgroundColor: "light-blue accent-1" }}>
@@ -39,7 +42,7 @@ const DriverProfileList = ({ driver, archItems }) => {
             <div className="col s12 center">
               <div className="col s12">
                 <img
-                  style={{ borderRadius: "5px" }}
+                  style={{ borderRadius: "4px" }}
                   width="180em"
                   src={driver.url}
                   alt="profile_picture"
@@ -98,7 +101,9 @@ const DriverProfileList = ({ driver, archItems }) => {
               <br />
               <span className="flow-text">
                 <span className="flow-text">
-                  {driver.completedRoutes || "-/-"}
+                  {driver.completedRoutes !== null
+                    ? "-/-"
+                    : driver.completedRoutes}
                 </span>
               </span>
             </span>
@@ -108,94 +113,26 @@ const DriverProfileList = ({ driver, archItems }) => {
         {/* Main right side */}
         <div className="col s8">
           <div className="col s12">
-            <ul className="with-header">
-              <li
-                className="collection-header"
-                style={{ paddingBottom: "50px" }}
-              >
+            <ul>
+              <li>
                 <h4 className="center" style={{ fontWeight: "bold" }}>
                   {driver.firstName}'s Logs
                 </h4>
-                <div className="col s12" style={{ marginTop: "20px" }}>
-                  <div className="col s2">
-                    <span
-                      className="grey-text"
-                      style={{
-                        fontSize: "1.2em",
-                        fontFamily: "League Spartan"
-                      }}
-                    >
-                      From
-                    </span>
-                  </div>
-                  <div className="col s2">
-                    <span
-                      className="grey-text"
-                      style={{
-                        fontSize: "1.2em",
-                        fontFamily: "League Spartan"
-                      }}
-                    >
-                      To
-                    </span>
-                  </div>
-                  <div className="col s2">
-                    <span
-                      className="grey-text"
-                      style={{
-                        fontSize: "1.2em",
-                        fontFamily: "League Spartan"
-                      }}
-                    >
-                      Distance
-                    </span>
-                  </div>
-                  <div className="col s2">
-                    <span
-                      className="grey-text"
-                      style={{
-                        fontSize: "1.2em",
-                        fontFamily: "League Spartan"
-                      }}
-                    >
-                      Date
-                    </span>
-                  </div>
-                  <div className="col s2">
-                    <span
-                      className="grey-text"
-                      style={{
-                        fontSize: "1.2em",
-                        fontFamily: "League Spartan"
-                      }}
-                    >
-                      Price
-                    </span>
-                  </div>
-                  <div className="col s2">
-                    <span
-                      className="grey-text"
-                      style={{
-                        fontSize: "1.2em",
-                        fontFamily: "League Spartan"
-                      }}
-                    >
-                      Form Issues
-                    </span>
-                  </div>
-                </div>
               </li>
-              <div>
-                <ul>
-                  {!archItems.length === 0 ? (
-                    <p className="center">No logs to show...</p>
-                  ) : (
-                    archItems.map(arch => (
-                      <DriverLogItem arch={arch} key={arch.id} />
-                    ))
-                  )}
-                </ul>
-              </div>
+            </ul>
+          </div>
+          <div className="col s8">
+            <DriverProfileLogList driver={driver} />
+          </div>
+          <div>
+            <ul>
+              {!archItems.length === 0 ? (
+                <p className="center">No logs to show...</p>
+              ) : (
+                archItems.map(arch => (
+                  <DriverLogItem arch={arch} key={arch.id} />
+                ))
+              )}
             </ul>
           </div>
         </div>
