@@ -41,7 +41,7 @@ const HomePage = props => {
             <li className="collection-header">
               <h4 className="center">Active Routes</h4>
             </li>
-            <Logs log={log} arch={arch} />
+            <Logs log={log} arch={arch} driver={driver} />
           </ul>
           <div>
             <OurStaff driver={driver} />

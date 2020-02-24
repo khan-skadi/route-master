@@ -17,7 +17,7 @@ const AddLogModal = props => {
   const [progress, setProgress] = useState(false);
   const [driver, setDriver] = useState("");
   const [price, setPrice] = useState(0);
-  // const [completedRoutes, setCompletedRoutes] = useState([]);
+
   useEffect(() => {
     props.getDrivers();
 
@@ -29,7 +29,7 @@ const AddLogModal = props => {
   }
 
   const onSubmit = () => {
-    debugger;
+    // Add Route
     const newRoute = {
       locationFrom,
       locationTo,
@@ -42,11 +42,10 @@ const AddLogModal = props => {
       price,
       date: new Date()
     };
-
     props.addLog(newRoute);
-
     M.toast({ html: "Route added" });
 
+    // Update driver available status
     const realDriver =
       props.driver.drivers &&
       props.driver.drivers.find(driver =>
@@ -54,27 +53,10 @@ const AddLogModal = props => {
           ? driver
           : false
       );
-
-    console.log(realDriver);
-
-    // setCompletedRoutes(prevState => {
-    //   return {
-    //     ...prevState,
-    //     completedRoutes: completedRoutes.push(newRoute[0])
-    //   };
-    // });
-
-    // setCompletedRoutes({
-    //   completedRoutes: completedRoutes.push(newRoute)
-    // });
-
-    // console.log(completedRoutes);
-
     const updatedDriver = {
       ...realDriver,
       available: false
     };
-
     props.updateDriver(updatedDriver);
 
     setLocationFrom("");

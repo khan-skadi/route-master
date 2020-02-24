@@ -7,7 +7,14 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-const LogItem = ({ log, deleteLog, updateDriver, setCurrent, addArch }) => {
+const LogItem = ({
+  driver,
+  log,
+  deleteLog,
+  updateDriver,
+  setCurrent,
+  addArch
+}) => {
   const onDelete = () => {
     deleteLog(log.id);
     M.toast({ html: "Route Deleted" });
@@ -26,12 +33,32 @@ const LogItem = ({ log, deleteLog, updateDriver, setCurrent, addArch }) => {
       price: log.price,
       date: new Date()
     };
+
+    // Update driver completedRoutes
+    const currentDriver = driver.drivers.find(driver =>
+      newArchive.driver === driver.firstName.concat(` ${driver.lastName}`)
+        ? driver
+        : false
+    );
+    console.log(currentDriver);
+
+    const updatedDriver = {
+      ...currentDriver,
+      completedRoutes: [...currentDriver.completedRoutes, newArchive]
+    };
+
+    updateDriver(updatedDriver);
+
+    // Add Route to archives
+    console.log(newArchive);
     addArch(newArchive);
     deleteLog(log.id);
   };
 
-  const ArchiveOnClick = () => {
+  const ArchiveOnClick = e => {
+    e.preventDefault();
     onArchive();
+
     M.toast({ html: "Route Archived" });
   };
 

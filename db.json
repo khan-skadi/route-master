@@ -64,19 +64,6 @@
       "price": "450",
       "date": "2020-02-14T07:36:02.026Z",
       "id": 22
-    },
-    {
-      "locationFrom": "1",
-      "locationTo": "1",
-      "distance": "1",
-      "postedOn": "11",
-      "postedBy": "11",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "1",
-      "date": "2020-02-24T18:15:08.523Z",
-      "id": 23
     }
   ],
   "archs": [
@@ -131,6 +118,123 @@
       "price": "6400",
       "date": "2020-02-10T14:06:02.562Z",
       "id": 134
+    },
+    {
+      "locationFrom": "4",
+      "locationTo": "4",
+      "distance": "4",
+      "postedOn": "4",
+      "postedBy": "4",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "44",
+      "date": "2020-02-24T19:30:29.831Z",
+      "id": 135
+    },
+    {
+      "locationFrom": "3",
+      "locationTo": "3",
+      "distance": "3",
+      "postedOn": "3",
+      "postedBy": "3",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "3",
+      "date": "2020-02-24T19:30:37.186Z",
+      "id": 136
+    },
+    {
+      "locationFrom": "2",
+      "locationTo": "2",
+      "distance": "2",
+      "postedOn": "2",
+      "postedBy": "2",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "2",
+      "date": "2020-02-24T19:30:44.494Z",
+      "id": 137
+    },
+    {
+      "locationFrom": "4",
+      "locationTo": "4",
+      "distance": "4",
+      "postedOn": "4",
+      "postedBy": "4",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "4",
+      "date": "2020-02-24T19:32:15.994Z",
+      "id": 138
+    },
+    {
+      "locationFrom": "3",
+      "locationTo": "3",
+      "distance": "3",
+      "postedOn": "3",
+      "postedBy": "3",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "3",
+      "date": "2020-02-24T19:32:21.404Z",
+      "id": 139
+    },
+    {
+      "locationFrom": "2",
+      "locationTo": "2",
+      "distance": "2",
+      "postedOn": "2",
+      "postedBy": "2",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "2",
+      "date": "2020-02-24T19:33:14.530Z",
+      "id": 140
+    },
+    {
+      "locationFrom": "1",
+      "locationTo": "1",
+      "distance": "1",
+      "postedOn": "1",
+      "postedBy": "1",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "1",
+      "date": "2020-02-24T19:33:18.094Z",
+      "id": 141
+    },
+    {
+      "locationFrom": "3",
+      "locationTo": "3",
+      "distance": "3",
+      "postedOn": "3",
+      "postedBy": "3",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "3",
+      "date": "2020-02-24T19:33:42.673Z",
+      "id": 142
+    },
+    {
+      "locationFrom": "4",
+      "locationTo": "4",
+      "distance": "4",
+      "postedOn": "4",
+      "postedBy": "4",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "4",
+      "date": "2020-02-24T19:33:45.052Z",
+      "id": 143
     }
   ],
   "drivers": [
@@ -145,7 +249,56 @@
       "hourlyRate": "20",
       "license": "RA0264AC",
       "available": false,
-      "completedRoutes": [],
+      "completedRoutes": [
+        {
+          "locationFrom": "2",
+          "locationTo": "2",
+          "distance": "2",
+          "postedOn": "2",
+          "postedBy": "2",
+          "attention": false,
+          "progress": false,
+          "driver": "Peter Kartalov",
+          "price": "2",
+          "date": "2020-02-24T19:33:14.530Z"
+        },
+        {
+          "locationFrom": "1",
+          "locationTo": "1",
+          "distance": "1",
+          "postedOn": "1",
+          "postedBy": "1",
+          "attention": false,
+          "progress": false,
+          "driver": "Peter Kartalov",
+          "price": "1",
+          "date": "2020-02-24T19:33:18.094Z"
+        },
+        {
+          "locationFrom": "3",
+          "locationTo": "3",
+          "distance": "3",
+          "postedOn": "3",
+          "postedBy": "3",
+          "attention": false,
+          "progress": false,
+          "driver": "Peter Kartalov",
+          "price": "3",
+          "date": "2020-02-24T19:33:42.673Z"
+        },
+        {
+          "locationFrom": "4",
+          "locationTo": "4",
+          "distance": "4",
+          "postedOn": "4",
+          "postedBy": "4",
+          "attention": false,
+          "progress": false,
+          "driver": "Peter Kartalov",
+          "price": "4",
+          "date": "2020-02-24T19:33:45.052Z"
+        }
+      ],
       "incompleteRoutes": [],
       "id": 1
     },
