@@ -18,7 +18,6 @@ const AddLogModal = props => {
   const [driver, setDriver] = useState("");
   const [price, setPrice] = useState(0);
   // const [completedRoutes, setCompletedRoutes] = useState([]);
-  // const [available, setAvailable] = useState(true);
   useEffect(() => {
     props.getDrivers();
 
@@ -30,6 +29,7 @@ const AddLogModal = props => {
   }
 
   const onSubmit = () => {
+    debugger;
     const newRoute = {
       locationFrom,
       locationTo,
@@ -47,17 +47,15 @@ const AddLogModal = props => {
 
     M.toast({ html: "Route added" });
 
-    // const realDriver =
-    //   props.driver.drivers &&
-    //   props.driver.drivers.find(driver =>
-    //     newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
-    //       ? driver
-    //       : false
-    //   );
+    const realDriver =
+      props.driver.drivers &&
+      props.driver.drivers.find(driver =>
+        newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
+          ? driver
+          : false
+      );
 
-    // setAvailable({
-    //   available: false
-    // });
+    console.log(realDriver);
 
     // setCompletedRoutes(prevState => {
     //   return {
@@ -72,20 +70,12 @@ const AddLogModal = props => {
 
     // console.log(completedRoutes);
 
-    // const updatedDriver = {
-    //   ...realDriver,
-    //   completedRoutes,
-    //   available
-    // };
+    const updatedDriver = {
+      ...realDriver,
+      available: false
+    };
 
-    // kinda works
-    // const updatedDriver = {
-    //   ...realDriver,
-    //   completedRoutes,
-    //   available
-    // };
-
-    // props.updateDriver(updatedDriver);
+    props.updateDriver(updatedDriver);
 
     setLocationFrom("");
     setLocationTo("");

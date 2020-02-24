@@ -61,6 +61,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
           <div className="col s12 l2">
             <h5 className="white-text">Useful Links</h5>
             <ul>
@@ -91,7 +92,8 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col s12 l2">
+
+          {/* <div className="col s12 l2">
             <h5 className="white-text">Footer Menu</h5>
             <ul>
               <li>
@@ -120,40 +122,41 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
-          <div className="col s12 l2">
-            <nav className="green accent-4">
-              <div className="nav-wrapper">
-                <ul>
-                  <span>
-                    <a href="#!">follow us</a>
-                  </span>
-                  <li>
-                    <a href="#!">
-                      <i className="fab fa-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i className="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i className="fab fa-youtube"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+          </div> */}
+
+          <div className="col s12 l4">
+            <ul>
+              <li>
+                <a className="grey-text text-lighten-3" href="#!">
+                  {" "}
+                  <h5>Follow us </h5>
+                </a>
+              </li>
+              <li>
+                <a href="#!">
+                  <i className="fab small fa-facebook-square"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#!">
+                  <i className="fab small fa-instagram-square"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#!">
+                  <i className="fab small fa-twitter-square"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#!">
+                  <i className="fab small fa-youtube-square"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
+
       <div className="footer-copyright">
         <div className="container">
           Khan Skadi © 2019 CREATED BY PETAR KARTALOV

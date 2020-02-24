@@ -64,6 +64,19 @@
       "price": "450",
       "date": "2020-02-14T07:36:02.026Z",
       "id": 22
+    },
+    {
+      "locationFrom": "1",
+      "locationTo": "1",
+      "distance": "1",
+      "postedOn": "11",
+      "postedBy": "11",
+      "attention": false,
+      "progress": false,
+      "driver": "Peter Kartalov",
+      "price": "1",
+      "date": "2020-02-24T18:15:08.523Z",
+      "id": 23
     }
   ],
   "archs": [
@@ -131,7 +144,7 @@
       "birthYear": "1993",
       "hourlyRate": "20",
       "license": "RA0264AC",
-      "available": true,
+      "available": false,
       "completedRoutes": [],
       "incompleteRoutes": [],
       "id": 1
