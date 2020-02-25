@@ -33,17 +33,6 @@ export default (state = initialState, action) => {
         drivers: state.drivers.filter(driver => driver.id !== action.payload),
         loading: false
       };
-    // case UPDATE_DRIVER:
-    //   return {
-    //     ...state,
-    //     drivers: state.drivers.map(driver => {
-    //       if (driver.id === action.payload.id) {
-    //         return [...driver, action.payload];
-    //       } else {
-    //         return driver;
-    //       }
-    //     })
-    //   };
     case UPDATE_DRIVER:
       return {
         ...state,

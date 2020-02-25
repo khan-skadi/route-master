@@ -40,7 +40,6 @@ const LogItem = ({
         ? driver
         : false
     );
-    console.log(currentDriver);
 
     const updatedDriver = {
       ...currentDriver,
@@ -50,7 +49,6 @@ const LogItem = ({
     updateDriver(updatedDriver);
 
     // Add Route to archives
-    console.log(newArchive);
     addArch(newArchive);
     deleteLog(log.id);
   };

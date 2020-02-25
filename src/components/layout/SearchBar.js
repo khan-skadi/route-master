@@ -23,7 +23,7 @@ export const SearchBar = props => {
   };
 
   return (
-    <nav style={{ marginBottom: "30px" }} className="green accent-4">
+    <nav className="green accent-4">
       <div className="nav-wrapper">
         <form className="left hide-on-med-and-down">
           <div className="input-field">

@@ -39,26 +39,24 @@ const App = props => {
   return (
     <Fragment>
       <SearchBar />
-      <div className="container">
-        <AddBtn />
-        <AddLogModal />
-        <EditLogModal />
-        <ArchivedItemModal />
-        <AddDriverModal />
-        <DriverListModal />
-        <FindRoutesModal />
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          <Route path="/archived-routes" component={ArchivedRoutes} />
-          <Route path="/find-routes" component={FindRoutes} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/signin" component={SignIn} />
-          <Route
-            path="/drivers/:driver_id"
-            render={routeProps => <DriverProfile {...routeProps} />}
-          />
-        </Switch>
-      </div>
+      <AddBtn />
+      <AddLogModal />
+      <EditLogModal />
+      <ArchivedItemModal />
+      <AddDriverModal />
+      <DriverListModal />
+      <FindRoutesModal />
+      <Switch>
+        <PrivateRoute exact path="/" component={HomePage} />
+        <Route path="/archived-routes" component={ArchivedRoutes} />
+        <Route path="/find-routes" component={FindRoutes} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/signin" component={SignIn} />
+        <Route
+          path="/drivers/:driver_id"
+          render={routeProps => <DriverProfile {...routeProps} />}
+        />
+      </Switch>
     </Fragment>
   );
 };

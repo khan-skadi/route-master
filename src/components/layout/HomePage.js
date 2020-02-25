@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { getLogs } from "../../store/actions/logActions";
 import { getDrivers } from "../../store/actions/driverActions";
 import { getArchs } from "../../store/actions/archActions";
+import Preloader from "./Preloader";
 
+import DriverSelectOptions from "../drivers/DriverSelectOptions";
 import AdminPanel from "./AdminPanel";
 import OurStaff from "./OurStaff";
 import Logs from "../logs/Logs";
@@ -19,8 +21,12 @@ const HomePage = props => {
     // eslint-disable-next-line
   }, []);
 
+  if (driver.loading || driver.drivers === null) {
+    return <Preloader />;
+  }
+
   return (
-    <div>
+    <div className="container" style={{ marginTop: "30px" }}>
       <div className="row">
         <div className="col s12">
           <a
@@ -49,6 +55,9 @@ const HomePage = props => {
         </div>
         <div className="col s4 hide-on-med-and-down">
           <AdminPanel driver={driver} arch={arch} log={log} />
+        </div>
+        <div style={{ visibility: "hidden" }}>
+          <DriverSelectOptions driver={driver} />
         </div>
       </div>
     </div>

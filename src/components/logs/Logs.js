@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogItem from "./LogItem";
 import Preloader from "../layout/Preloader";
@@ -25,4 +24,4 @@ const Logs = ({ driver, arch, log: { logs, loading } }) => {
   );
 };
 
-export default connect()(Logs);
+export default Logs;

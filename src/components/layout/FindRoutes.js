@@ -11,15 +11,13 @@ const FindRoutes = ({ getRoutes, route }) => {
   }, []);
 
   return (
-    <div>
-      <div className="container">
-        <ul className="collection">
-          {route.routes !== null &&
-            route.routes.map(route => {
-              return <FindRoutesItem route={route} key={route.id} />;
-            })}
-        </ul>
-      </div>
+    <div className="container">
+      <ul className="collection">
+        {route.routes !== null &&
+          route.routes.map(route => {
+            return <FindRoutesItem route={route} key={route.id} />;
+          })}
+      </ul>
     </div>
   );
 };

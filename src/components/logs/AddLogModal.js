@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { addLog } from "../../store/actions/logActions";
 import { getDrivers, updateDriver } from "../../store/actions/driverActions";
 import DriverSelectOptions from "../drivers/DriverSelectOptions";
-import Preloader from "../layout/Preloader";
 import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 
@@ -23,10 +22,6 @@ const AddLogModal = props => {
 
     // eslint-disable-next-line
   }, []);
-
-  if (props.loading || props.drivers === null) {
-    return <Preloader />;
-  }
 
   const onSubmit = () => {
     // Add Route
