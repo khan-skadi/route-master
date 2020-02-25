@@ -11,6 +11,12 @@ import Footer from "./components/layout/Footer";
 import createReduxStore from "./createReduxStore";
 import Preloader from "./components/layout/Preloader";
 import App from "./App";
+
+import "./App.css";
+import "./fonts/LeelawUI.ttf";
+import "./fonts/malgun.ttf";
+import "./fonts/LittlePat.ttf";
+
 import "firebase/firestore";
 import "firebase/firestore";
 import "firebase/auth";

@@ -93,38 +93,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* <div className="col s12 l2">
-            <h5 className="white-text">Footer Menu</h5>
-            <ul>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Instagram Profile
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  New Collection
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Contact Us
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Latest News
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Purchase Theme
-                </a>
-              </li>
-            </ul>
-          </div> */}
-
-          <div className="col s12 l4">
+          <div className="col s12 l4 center">
             <ul>
               <li>
                 <a className="grey-text text-lighten-3" href="#!">
@@ -132,24 +101,39 @@ const Footer = () => {
                   <h5>Follow us </h5>
                 </a>
               </li>
-              <li>
-                <a href="#!">
-                  <i className="fab small fa-facebook-square"></i>
+              <li style={{ marginBottom: "4px" }}>
+                <a
+                  className="waves-effect waves-light btn blue darken-2"
+                  href="#!"
+                  style={{
+                    width: "50px",
+                    marginRight: "4px"
+                  }}
+                >
+                  <i className="fab fa-facebook left"></i>
+                </a>
+                <a
+                  className="waves-effect waves-light btn blue darken-2"
+                  href="#!"
+                  style={{ width: "50px" }}
+                >
+                  <i className="fab fa-instagram left"></i>follow
                 </a>
               </li>
-              <li>
-                <a href="#!">
-                  <i className="fab small fa-instagram-square"></i>
+              <li style={{ marginBottom: "4px" }}>
+                <a
+                  className="waves-effect waves-light btn blue darken-2"
+                  href="#!"
+                  style={{ width: "50px", marginRight: "4px" }}
+                >
+                  <i className="fab fa-twitter left"></i>tweet
                 </a>
-              </li>
-              <li>
-                <a href="#!">
-                  <i className="fab small fa-twitter-square"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#!">
-                  <i className="fab small fa-youtube-square"></i>
+                <a
+                  className="waves-effect waves-light btn blue darken-2"
+                  href="#!"
+                  style={{ width: "50px" }}
+                >
+                  <i className="fab fa-youtube left"></i>subscribe
                 </a>
               </li>
             </ul>
@@ -159,10 +143,9 @@ const Footer = () => {
 
       <div className="footer-copyright">
         <div className="container">
-          Khan Skadi © 2019 CREATED BY PETAR KARTALOV
-          <a className="grey-text text-lighten-4 right" href="#!">
-            More Links
-          </a>
+          <span style={{ fontSize: "0.9em" }}>
+            Khan Skadi © 2019 created by Petar Kartalov
+          </span>
         </div>
       </div>
     </footer>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Moment from "react-moment";
 import "./table.css";
 
 class DriverProfileLogList extends Component {
@@ -39,6 +38,7 @@ class DriverProfileLogList extends Component {
       );
     });
   }
+
   renderTableHeader() {
     let header = [
       "Location From",

@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "LeelawUI";
+  src: local("LeelawUI"), url(./fonts/LeelawUI.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Malgun Gothic";
+  src: local("malgun"), url(./fonts/malgun.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Little Pat";
+  src: local("LittlePat"), url(./fonts/LittlePat.ttf) format("truetype");
+}
