@@ -10,6 +10,7 @@ import HomePage from "./components/layout/HomePage";
 import AddLogModal from "./components/logs/AddLogModal";
 import EditLogModal from "./components/logs/EditLogModal";
 import AddDriverModal from "./components/drivers/AddDriverModal";
+import DriverEmailModal from "./components/modals/DriverEmailModal";
 import DriverListModal from "./components/drivers/DriverListModal";
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
 import ArchivedItemModal from "./components/layout/ArchivedItemModal";
@@ -42,6 +43,7 @@ const App = props => {
       <AddBtn />
       <AddLogModal />
       <EditLogModal />
+      <DriverEmailModal />
       <ArchivedItemModal />
       <AddDriverModal />
       <DriverListModal />
