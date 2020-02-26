@@ -7,11 +7,16 @@ import SearchBar from "./components/layout/SearchBar";
 import DriverProfile from "./components/driverProfileLayout/DriverProfile";
 import AddBtn from "./components/layout/AddBtn";
 import HomePage from "./components/layout/HomePage";
+
 import AddLogModal from "./components/logs/AddLogModal";
 import EditLogModal from "./components/logs/EditLogModal";
 import AddDriverModal from "./components/drivers/AddDriverModal";
 import DriverEmailModal from "./components/modals/DriverEmailModal";
+import AddProfileImage from "./components/modals/AddProfileImage";
+import EditProfileDetails from "./components/modals/EditProfileDetails";
 import DriverListModal from "./components/drivers/DriverListModal";
+import EditDriverProfile from "./components/modals/EditDriverProfile";
+
 import ArchivedRoutes from "./components/layout/ArchivedRoutes";
 import ArchivedItemModal from "./components/layout/ArchivedItemModal";
 import FindRoutes from "./components/layout/FindRoutes";
@@ -23,7 +28,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 
 const App = props => {
-  const { auth } = props;
+  const { auth, profile } = props;
 
   useEffect(() => {
     M.AutoInit();
@@ -41,11 +46,14 @@ const App = props => {
   return (
     <Fragment>
       <SearchBar />
-      <Sidenav />
+      <Sidenav auth={auth} profile={profile} />
       <AddBtn />
       <AddLogModal />
       <EditLogModal />
+      <AddProfileImage auth={auth} />
+      <EditProfileDetails />
       <DriverEmailModal />
+      <EditDriverProfile />
       <ArchivedItemModal />
       <AddDriverModal />
       <DriverListModal />

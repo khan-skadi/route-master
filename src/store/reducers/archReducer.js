@@ -17,11 +17,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true
-      };
     case GET_ARCHS:
       return {
         ...state,
@@ -55,6 +50,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.payload
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;

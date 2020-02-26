@@ -21,6 +21,8 @@ export const ADD_DRIVER = "ADD_DRIVER";
 export const DELETE_DRIVER = "DELETE_DRIVER";
 export const UPDATE_DRIVER = "UPDATE_DRIVER";
 export const DRIVERS_ERROR = "DRIVERS_ERROR";
+export const SET_CURRENT_DRIVER = "SET_CURRENT_DRIVER";
+export const CLEAR_CURRENT_DRIVER = "CLEAR_CURRENT_DRIVER";
 
 export const GET_ROUTES = "GET_ROUTES";
 export const ADD_ROUTE = "ADD_ROUTE";

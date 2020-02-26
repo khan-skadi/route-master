@@ -3,6 +3,8 @@ import {
   ADD_DRIVER,
   DELETE_DRIVER,
   UPDATE_DRIVER,
+  SET_CURRENT_DRIVER,
+  CLEAR_CURRENT_DRIVER,
   SET_LOADING,
   DRIVERS_ERROR
 } from "./types";
@@ -98,6 +100,19 @@ export const updateDriver = driver => async dispatch => {
       payload: err.response.statusText
     });
   }
+};
+
+export const setCurrentDriver = driver => {
+  return {
+    type: SET_CURRENT_DRIVER,
+    payload: driver
+  };
+};
+
+export const clearCurrentDriver = () => {
+  return {
+    type: CLEAR_CURRENT_DRIVER
+  };
 };
 
 export const setLoading = () => {

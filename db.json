@@ -187,16 +187,14 @@
   ],
   "drivers": [
     {
-      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FPetarKartalov.jpg?alt=media&token=f33e5681-74c3-44e9-8336-68d35d290b80",
-      "firstName": "Peter",
-      "lastName": "Kartalov",
+      "firstName": "Khan",
+      "lastName": "Skadi",
       "address": "8mi Septemvri br.26",
       "email": "kartalov.pt@gmail.com",
       "phoneNumber": "072544622",
       "birthYear": "1993",
       "hourlyRate": "20",
       "license": "RA0264AC",
-      "available": false,
       "completedRoutes": [
         {
           "locationFrom": "1",
@@ -264,7 +262,9 @@
         }
       ],
       "incompleteRoutes": [],
-      "id": 1
+      "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2Fskadi-profile.jpg?alt=media&token=fb589ae8-15a8-4cea-b322-9059e45bd7fe",
+      "id": 1,
+      "date": "2020-02-26T23:13:32.030Z"
     },
     {
       "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FAnetaIlkaceva.jpg?alt=media&token=021cfeb2-493b-4172-acf4-60b47b346f26",

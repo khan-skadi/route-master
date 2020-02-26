@@ -44,7 +44,6 @@ const rrfConfig = {
   useFirestoreForProfile: true
 }; // react-redux-firebase config
 
-// Initialize firebase instance
 firebase.initializeApp(fbConfig);
 // firebase.firestore();
 const storage = firebase.storage();
@@ -60,7 +59,6 @@ const rrfProps = {
   createFirestoreInstance
 };
 
-// Setup react-redux so that connect HOC can be used
 ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>

@@ -10,14 +10,14 @@ const OurStaffList = ({ driver }) => {
     return string.length > 15 ? string.substring(0, 16) + ".." : string;
   };
 
-  const pStyle = {
-    overflow: "hidden"
-  };
+  // const pStyle = {
+  //   overflow: "hidden"
+  // };
 
   return (
     <ul className="list-inline">
       <li>
-        <div className="col l4 s12 m6">
+        <div className="col l3 s12 m6">
           <div className="card hoverable large">
             <div className="card-image waves-effect waves-block waves-light">
               <img src={driver.url} className="activator" alt="" />
@@ -36,13 +36,13 @@ const OurStaffList = ({ driver }) => {
                 className="center center-align"
                 style={{ marginTop: "15px" }}
               >
-                <span className="grey-text text-lighten-1">Hourly Rate:</span>
+                <span className="grey-text text-darken-1">Hourly Rate:</span>
                 <br></br>
                 <p>{driver.hourlyRate + "$"}</p>
                 <br></br>
                 <div className="divider"></div>
                 <br></br>
-                <span className="grey-text text-lighten-1">License:</span>
+                <span className="grey-text text-darken-1">License:</span>
                 <br></br>
                 <p>{driver.license}</p>
               </div>
@@ -66,7 +66,7 @@ const OurStaffList = ({ driver }) => {
               </span>
 
               <p
-                className="grey-text text-lighten-1"
+                className="grey-text text-darken-1"
                 style={{ fontSize: "1.2em" }}
               >
                 Availability:
@@ -77,7 +77,7 @@ const OurStaffList = ({ driver }) => {
               <br></br>
 
               <p
-                className="grey-text text-lighten-1"
+                className="grey-text text-darken-1"
                 style={{ fontSize: "1.2em" }}
               >
                 Email:
@@ -99,7 +99,7 @@ const OurStaffList = ({ driver }) => {
               <br></br>
 
               <p
-                className="grey-text text-lighten-1"
+                className="grey-text text-darken-1"
                 style={{ fontSize: "1.2em" }}
               >
                 Phone:

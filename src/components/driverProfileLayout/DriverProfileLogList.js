@@ -10,7 +10,6 @@ class DriverProfileLogList extends Component {
   }
 
   renderTableData() {
-    console.log(this.state.routes);
     return this.state.routes[0].map((route, index) => {
       const { locationFrom, locationTo, distance, price, postedOn } = route;
       return (

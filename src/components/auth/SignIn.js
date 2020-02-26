@@ -28,12 +28,6 @@ class SignIn extends Component {
     return (
       <main>
         <center>
-          {/* <img
-            className="responsive-img"
-            style={{ width: "300px" }}
-            src="https://i.pinimg.com/originals/c4/9a/20/c49a207e0f89c9290d98fd43a87a8cb0.gif"
-            alt=""
-          /> */}
           <div className="section"></div>
 
           <h5 className="yellow-text text-darken-3">
@@ -110,26 +104,6 @@ class SignIn extends Component {
         <div className="section"></div>
         <div className="section"></div>
       </main>
-
-      // <div className="container">
-      //   <form onSubmit={this.handleSubmit} className="white">
-      //     <h5 className="grey-text text-darken-3">Sign In</h5>
-      //     <div className="input-field">
-      //       <label htmlFor="email">Email</label>
-      //       <input type="email" id="email" onChange={this.handleChange} />
-      //     </div>
-      //     <div className="input-field">
-      //       <label htmlFor="password">Password</label>
-      //       <input type="password" id="password" onChange={this.handleChange} />
-      //     </div>
-      //     <div className="input-field">
-      //       <button className="btn pink lighten-1 z-depth-0">Login</button>
-      //       <div className="red-text center">
-      //         {authError ? <p>{authError}</p> : null}
-      //       </div>
-      //     </div>
-      //   </form>
-      // </div>
     );
   }
 }

@@ -1,13 +1,14 @@
 import React from "react";
-import DriverLogItem from "./DriverLogItem";
+import { connect } from "react-redux";
+// import DriverLogItem from "./DriverLogItem";
 import DriverProfileLogList from "./DriverProfileLogList";
 import DriverNavbar from "./DriverNavbar";
+import { setCurrentDriver } from "../../store/actions/driverActions";
+import PropTypes from "prop-types";
 
-const DriverProfileList = ({ driver, archItems }) => {
+const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
+  // number of Completed Routes
   let completedCount = driver.completedRoutes.length;
-  console.log(driver);
-  console.log(completedCount);
-  console.log(typeof completedCount);
 
   return (
     <div>
@@ -19,20 +20,35 @@ const DriverProfileList = ({ driver, archItems }) => {
             className="col s4 card-panel grey lighten-3 center"
             style={{ padding: "0.7em 1em 1em 1em" }}
           >
-            <div className="row">
-              <img
-                className="material-boxed circle"
-                width="160em"
-                src={driver.url}
-                alt="profile_picture"
-              />
-            </div>
-            <div className="row">
-              <h5 style={{ fontWeight: "bold" }}>
-                {driver.firstName} {driver.lastName}
-              </h5>
+            <div className="col s12">
+              <div className="col s2 push-s10">
+                <a
+                  href="#edit-driver-profile"
+                  className="waves-effect waves-light btn-floating tooltipped grey lighten-1 modal-trigger"
+                  data-position="bottom"
+                  data-tooltip="Edit Driver"
+                  onClick={() => setCurrentDriver(driver)}
+                >
+                  <i className="material-icons">edit</i>
+                </a>
+              </div>
+              <div className="col s10 push-s1">
+                <img
+                  className="materialboxed responsive-img circle"
+                  width="160em"
+                  src={driver.url}
+                  alt="profile_picture"
+                />
+              </div>
             </div>
 
+            <div className="row">
+              <div className="col s12">
+                <h5 style={{ fontWeight: "bold" }}>
+                  {driver.firstName} {driver.lastName}
+                </h5>
+              </div>
+            </div>
             <div className="row">
               <span>
                 <span className="grey-text">LICENSE NUMBER</span>
@@ -117,4 +133,14 @@ const DriverProfileList = ({ driver, archItems }) => {
   );
 };
 
-export default DriverProfileList;
+DriverProfileList.propTypes = {
+  setCurrentDriver: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentDriver: driver => dispatch(setCurrentDriver(driver))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(DriverProfileList);

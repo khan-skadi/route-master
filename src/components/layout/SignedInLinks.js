@@ -46,18 +46,11 @@ const SignedInLinks = props => {
         </a>
       </li>
       <li>
-        {/* <NavLink
-          to="/"
-          className="btn btn-floating blue darken-2"
-          data-target="slide-out"
-        >
-          {props.profile.initials}
-        </NavLink> */}
         <div>
           <a
             href="/"
             data-target="slide-out"
-            className="sidenav-trigger"
+            className="sidenav-trigger show-on-large"
             style={{
               position: "relative",
               cursor: "pointer",
@@ -90,7 +83,6 @@ const SignedInLinks = props => {
             }}
           >
             {props.profile.initials}
-            {/* <i className="material-icons">{props.profile.initials}</i> */}
           </a>
         </div>
       </li>

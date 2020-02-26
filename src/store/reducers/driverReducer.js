@@ -1,9 +1,11 @@
 import {
-  SET_LOADING,
   GET_DRIVERS,
   ADD_DRIVER,
   UPDATE_DRIVER,
   DELETE_DRIVER,
+  SET_CURRENT_DRIVER,
+  CLEAR_CURRENT_DRIVER,
+  SET_LOADING,
   DRIVERS_ERROR
 } from "../actions/types";
 
@@ -40,16 +42,15 @@ export default (state = initialState, action) => {
           driver.id === action.payload.id ? action.payload : driver
         )
       };
-    case "CREATE_DRIVER":
-      console.log("created driver", action.driver);
-      return state;
-    case "CREATE_DRIVER_ERROR":
-      console.log("create driver error", action.err);
-      return state;
-    case SET_LOADING:
+    case SET_CURRENT_DRIVER:
       return {
         ...state,
-        loading: true
+        current: action.payload
+      };
+    case CLEAR_CURRENT_DRIVER:
+      return {
+        ...state,
+        current: null
       };
     case DRIVERS_ERROR:
       console.log(action.payload);
@@ -57,6 +58,11 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
         loading: false
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;
