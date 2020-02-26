@@ -16,6 +16,7 @@ import ArchivedRoutes from "./components/layout/ArchivedRoutes";
 import ArchivedItemModal from "./components/layout/ArchivedItemModal";
 import FindRoutes from "./components/layout/FindRoutes";
 import FindRoutesModal from "./components/layout/FindRoutesModal";
+import Sidenav from "./components/layout/Sidenav";
 
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -40,6 +41,7 @@ const App = props => {
   return (
     <Fragment>
       <SearchBar />
+      <Sidenav />
       <AddBtn />
       <AddLogModal />
       <EditLogModal />

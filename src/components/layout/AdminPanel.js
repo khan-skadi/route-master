@@ -28,7 +28,10 @@ const AdminPanel = props => {
           </ul>
           <div className="card blue-grey lighten-3">
             <div className="card-content white-text">
-              <span className="card-title blue-text text-darken-2">
+              <span
+                className="card-title blue-text text-darken-2"
+                style={{ fontWeight: "410" }}
+              >
                 Active Routes{" "}
                 <i className="material-icons right">assignment_turned_in</i>
               </span>
@@ -38,7 +41,10 @@ const AdminPanel = props => {
               </p>
             </div>
             <div className="card-content white-text">
-              <span className="card-title blue-text text-darken-2">
+              <span
+                className="card-title blue-text text-darken-2"
+                style={{ fontWeight: "410" }}
+              >
                 Finished Routes{" "}
                 <i className="material-icons right">assistant</i>
               </span>
@@ -54,13 +60,16 @@ const AdminPanel = props => {
           <div className="card blue-grey lighten-3">
             <div className="card-content">
               <span>
-                <p className="flow-text blue-text text-darken-2">
+                <h5
+                  className="blue-text text-darken-2"
+                  style={{ fontWeight: "410" }}
+                >
                   Available drivers{" "}
                   <span className="right">
                     {" "}
                     <i className="material-icons center">assignment_ind</i>
                   </span>
-                </p>
+                </h5>
               </span>
 
               {driver.drivers &&
