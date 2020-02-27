@@ -27,12 +27,18 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 
+// import firebase from "./index";
+
 const App = props => {
   const { auth, profile } = props;
 
   useEffect(() => {
     M.AutoInit();
   });
+
+  // firebase.auth().currentUser.updateProfile({
+  //   photoURL: "https://time2hack.com/favicon.png"
+  // });
 
   const PrivateRoute = ({ component: { Component, ...rest } }) => (
     <Route

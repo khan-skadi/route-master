@@ -4,6 +4,7 @@ import background from "../../img/truck7.png";
 
 const Sidenav = props => {
   const { auth, profile } = props;
+  console.log(auth.photoURL);
 
   const firstName =
     profile.firstName &&
@@ -22,7 +23,7 @@ const Sidenav = props => {
               <img src={background} alt="" />
             </div>
             <a href="#user">
-              <img className="circle" src={profilePic} alt="" />
+              <img className="circle" src={auth.photoURL} alt="" />
             </a>
             <a href="#!">
               <span className="white-text name">

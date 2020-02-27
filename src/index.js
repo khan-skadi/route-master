@@ -18,7 +18,6 @@ import "./fonts/malgun.ttf";
 import "./fonts/LittlePat.ttf";
 
 import "firebase/firestore";
-import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage";
 
