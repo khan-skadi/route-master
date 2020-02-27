@@ -14,6 +14,8 @@ const Sidenav = props => {
     profile.lastName &&
     profile.lastName.charAt(0).toUpperCase() + profile.lastName.substring(1);
 
+  const photo = auth.photoURL || profilePic;
+
   return (
     <div>
       <ul id="slide-out" className="sidenav">
@@ -22,8 +24,8 @@ const Sidenav = props => {
             <div className="background">
               <img src={background} alt="" />
             </div>
-            <a href="#user">
-              <img className="circle" src={auth.photoURL} alt="" />
+            <a href="#!">
+              <img className="circle" src={photo} alt="" />
             </a>
             <a href="#!">
               <span className="white-text name">

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { storage } from "../../index";
+import firebase, { storage } from "../../index";
+import background from "../../img/truck6.2.png";
 
 class AddProfileImage extends Component {
   constructor(props) {
@@ -44,14 +45,56 @@ class AddProfileImage extends Component {
     );
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = () => {
+    const user = firebase.auth().currentUser;
+    user.updateProfile({
+      photoURL: this.state.url
+    });
   };
 
   render() {
     return (
-      <div id="add-profile-image" className="modal" style={modalStyle}>
+      <div id="add-profile-image" className="modal">
+        <div
+          style={{
+            overflow: "hidden",
+            position: "absolute",
+            top: "0",
+            bottom: "0",
+            left: "0",
+            right: "0",
+            zIndex: "-1"
+          }}
+        >
+          <img src={background} alt="" />
+        </div>
         <div className="modal-content">
+          <div className="row" style={modalStyle}>
+            <div className="col s6">
+              <img
+                src={this.state.url}
+                className="circle responsive-img"
+                height="160"
+                width="160"
+                alt=""
+                style={{
+                  border: "1px solid white"
+                }}
+              />
+            </div>
+            <div className="col s6">
+              <img
+                src={firebase.auth().currentUser.photoURL}
+                className="right circle responsive-img"
+                height="160"
+                width="160"
+                alt=""
+                style={{
+                  border: "1px solid white"
+                }}
+              />
+            </div>
+          </div>
           <div className="row">
             <div className="col s12">
               <div className="file-field input-field">
@@ -62,30 +105,35 @@ class AddProfileImage extends Component {
                   <span>Pick Image</span>
                   <input type="file" onChange={this.handleChange} />
                 </a>
-                <div className="file-path-wrapper col s8">
-                  <input className="file-path validate" type="text" />
+                <div className="file-path-wrapper col s8 center">
+                  <input
+                    className="file-path validate white-text"
+                    type="text"
+                  />
                 </div>
                 <a
                   href="#!"
-                  className="waves-effect waves-light btn-small green accent-4"
+                  className="waves-effect waves-light btn-small green accent-4 right"
                   onClick={this.handleUpload}
                 >
                   Upload
                 </a>
               </div>
-              <img src={this.state.url} alt="" height="300" width="300" />
             </div>
           </div>
         </div>
-        <div className="col s12 modal-footer">
-          <a
-            href="#!"
-            onClick={this.handleSubmit}
-            className="modal-close waves-effect blue darken-2 btn"
-          >
-            Submit
-            <i className="material-icons right">send</i>
-          </a>
+
+        <div className="row">
+          <div className="col s12">
+            <a
+              href="#!"
+              onClick={this.handleSubmit}
+              className="right modal-close waves-effect blue darken-2 btn"
+            >
+              Submit
+              <i className="material-icons right">send</i>
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -93,8 +141,8 @@ class AddProfileImage extends Component {
 }
 
 const modalStyle = {
-  width: "50%",
-  height: "50%"
+  width: "100%",
+  height: "100%"
 };
 
 export default AddProfileImage;
