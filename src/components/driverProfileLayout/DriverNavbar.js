@@ -2,7 +2,7 @@ import React from "react";
 
 const DriverNavbar = ({ driver }) => {
   return (
-    <nav className="light-blue accent-3" style={{ marginBottom: "30px" }}>
+    <nav className="green accent-4" style={{ marginBottom: "30px" }}>
       <div className="nav-wrapper">
         <div className="col s12">
           <div className="col s6 left" style={{ marginLeft: "10px" }}>
