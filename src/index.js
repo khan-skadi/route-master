@@ -44,10 +44,10 @@ const rrfConfig = {
 }; // react-redux-firebase config
 
 firebase.initializeApp(fbConfig);
-// firebase.firestore();
+const db = firebase.firestore();
 const storage = firebase.storage();
 
-export { storage, firebase as default };
+export { db, storage, firebase as default };
 
 const store = createReduxStore();
 

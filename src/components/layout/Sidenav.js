@@ -4,7 +4,6 @@ import background from "../../img/truck7.png";
 
 const Sidenav = props => {
   const { auth, profile } = props;
-  console.log(auth.photoURL);
 
   const firstName =
     profile.firstName &&

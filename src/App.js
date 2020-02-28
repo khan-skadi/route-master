@@ -11,7 +11,6 @@ import HomePage from "./components/layout/HomePage";
 import AddLogModal from "./components/logs/AddLogModal";
 import EditLogModal from "./components/logs/EditLogModal";
 import AddDriverModal from "./components/drivers/AddDriverModal";
-import DriverEmailModal from "./components/modals/DriverEmailModal";
 import AddProfileImage from "./components/modals/AddProfileImage";
 import EditProfileDetails from "./components/modals/EditProfileDetails";
 import DriverListModal from "./components/drivers/DriverListModal";
@@ -27,18 +26,12 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 
-// import firebase from "./index";
-
 const App = props => {
   const { auth, profile } = props;
 
   useEffect(() => {
     M.AutoInit();
   });
-
-  // firebase.auth().currentUser.updateProfile({
-  //   photoURL: "https://time2hack.com/favicon.png"
-  // });
 
   const PrivateRoute = ({ component: { Component, ...rest } }) => (
     <Route
@@ -57,8 +50,7 @@ const App = props => {
       <AddLogModal />
       <EditLogModal />
       <AddProfileImage auth={auth} profile={profile} />
-      <EditProfileDetails />
-      <DriverEmailModal />
+      <EditProfileDetails auth={auth} profile={profile} />
       <EditDriverProfile />
       <ArchivedItemModal />
       <AddDriverModal />

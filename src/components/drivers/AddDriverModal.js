@@ -135,7 +135,7 @@ class AddDriverModal extends Component {
               <br />
 
               <div className="input-field col s6">
-                <i className="material-icons prefix">account_circle</i>
+                <i className="material-icons prefix">account_box</i>
                 <input
                   type="text"
                   name="firstName"

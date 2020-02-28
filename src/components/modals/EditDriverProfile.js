@@ -194,7 +194,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
             <div className="input-field">
               <i className="material-icons prefix">date_range</i>
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={email || ""}
                 onChange={e => setEmail(e.target.value)}
