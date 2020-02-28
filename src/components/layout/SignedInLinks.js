@@ -25,18 +25,12 @@ const SignedInLinks = props => {
         </ul>
       </li>
       <li>
-        <NavLink
-          to="/archived-routes"
-          activeStyle={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
-        >
+        <NavLink to="/archived-routes" activeStyle={backgroundStyle}>
           Archived Routes
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/find-routes"
-          activeStyle={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
-        >
+        <NavLink to="/find-routes" activeStyle={backgroundStyle}>
           Find Routes
         </NavLink>
       </li>
@@ -51,36 +45,7 @@ const SignedInLinks = props => {
             href="/"
             data-target="slide-out"
             className="sidenav-trigger show-on-large"
-            style={{
-              position: "relative",
-              cursor: "pointer",
-              display: "inline-block",
-              overflow: "hidden",
-              verticalAlign: "middle",
-              height: "48px",
-              width: "48px",
-              borderRadius: "50%",
-              backgroundColor: "#1976d2",
-              letterSpacing: "0.5px",
-              textAlign: "center",
-              lineHeight: "48px",
-              fontSize: "14px",
-              padding: "0",
-              zIndex: "1",
-              color: "#fff",
-              textDecoration: "none",
-              outline: "0",
-              border: "none",
-              textTransform: "uppercase",
-              boxShadow:
-                "0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)",
-              transition: ".3s ease-out",
-              WebkitTapHighlightColor: "transparent",
-              fontFamily:
-                '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-              fontWeight: "normal",
-              marginTop: "8px"
-            }}
+            style={iconStyle}
           >
             {props.profile.initials}
           </a>
@@ -88,6 +53,39 @@ const SignedInLinks = props => {
       </li>
     </ul>
   );
+};
+
+const backgroundStyle = { backgroundColor: "rgba(0, 0, 0, 0.1)" };
+
+const iconStyle = {
+  position: "relative",
+  cursor: "pointer",
+  display: "inline-block",
+  overflow: "hidden",
+  verticalAlign: "middle",
+  height: "48px",
+  width: "48px",
+  borderRadius: "50%",
+  backgroundColor: "#1976d2",
+  letterSpacing: "0.5px",
+  textAlign: "center",
+  lineHeight: "48px",
+  fontSize: "14px",
+  padding: "0",
+  zIndex: "1",
+  color: "#fff",
+  textDecoration: "none",
+  outline: "0",
+  border: "none",
+  textTransform: "uppercase",
+  boxShadow:
+    "0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)",
+  transition: ".3s ease-out",
+  WebkitTapHighlightColor: "transparent",
+  fontFamily:
+    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+  fontWeight: "normal",
+  marginTop: "8px"
 };
 
 const mapDispatchToProps = dispatch => {

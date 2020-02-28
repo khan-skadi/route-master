@@ -7,12 +7,16 @@ import { db } from "../../index";
 const EditProfileDetails = ({ firestore, auth, profile, users }) => {
   const [adminFirstName, setAdminFirstName] = useState("");
   const [adminLastName, setAdminLastName] = useState("");
+  const [adminInitials, setAdminInitials] = useState("");
 
   useEffect(() => {
     firestore.get("users");
     if (profile) {
       setAdminFirstName(profile.firstName);
       setAdminLastName(profile.lastName);
+      setAdminInitials(
+        profile.firstName && profile.firstName[0] + profile.lastName[0]
+      );
     }
 
     //eslint-disable-next-line
@@ -36,7 +40,8 @@ const EditProfileDetails = ({ firestore, auth, profile, users }) => {
     return userRef
       .update({
         firstName: adminFirstName,
-        lastName: adminLastName
+        lastName: adminLastName,
+        initials: adminInitials
       })
       .then(() => {
         console.log("Document successfully updated !");
