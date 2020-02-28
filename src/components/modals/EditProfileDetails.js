@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { compose } from "redux";
-import { connect, useSelector } from "react-redux";
-import {
-  firestoreConnect,
-  useFirestoreConnect,
-  withFirestore,
-  isLoaded,
-  isEmpty
-} from "react-redux-firebase";
+import { connect } from "react-redux";
+import { withFirestore, isLoaded, isEmpty } from "react-redux-firebase";
 import { db } from "../../index";
 
 const EditProfileDetails = ({ firestore, auth, profile, users }) => {
   const [adminFirstName, setAdminFirstName] = useState("");
-  console.log(profile);
+  const [adminLastName, setAdminLastName] = useState("");
 
   useEffect(() => {
     firestore.get("users");
     if (profile) {
       setAdminFirstName(profile.firstName);
+      setAdminLastName(profile.lastName);
     }
 
     //eslint-disable-next-line
@@ -40,7 +35,8 @@ const EditProfileDetails = ({ firestore, auth, profile, users }) => {
     console.log(user[0]);
     return userRef
       .update({
-        firstName: adminFirstName
+        firstName: adminFirstName,
+        lastName: adminLastName
       })
       .then(() => {
         console.log("Document successfully updated !");
@@ -60,8 +56,17 @@ const EditProfileDetails = ({ firestore, auth, profile, users }) => {
           <input
             type="text"
             name="adminFirstName"
-            value={adminFirstName}
+            value={adminFirstName || ""}
             onChange={e => setAdminFirstName(e.target.value)}
+          />
+        </div>
+
+        <div className="input-field">
+          <input
+            type="text"
+            name="adminLastName"
+            value={adminLastName || ""}
+            onChange={e => setAdminLastName(e.target.value)}
           />
         </div>
       </div>

@@ -18,7 +18,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
   const [incompleteRoutes, setIncompleteRoutes] = useState(0);
   const [url, setUrl] = useState("");
   const [image, setImage] = useState(null);
-  const [progress, setProgress] = useState(null);
+  let [progress, setProgress] = useState(null);
 
   useEffect(() => {
     if (current) {
@@ -48,7 +48,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
     uploadTask.on(
       "state_changed",
       snapshot => {
-        const progress = Math.round(
+        progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         setProgress(progress);
