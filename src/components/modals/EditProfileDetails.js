@@ -4,19 +4,15 @@ import { connect } from "react-redux";
 import { withFirestore, isLoaded, isEmpty } from "react-redux-firebase";
 import { db } from "../../index";
 
-const EditProfileDetails = ({ firestore, auth, profile, users }) => {
+const EditProfileDetails = ({ firestore, profile, users }) => {
   const [adminFirstName, setAdminFirstName] = useState("");
   const [adminLastName, setAdminLastName] = useState("");
-  const [adminInitials, setAdminInitials] = useState("");
 
   useEffect(() => {
     firestore.get("users");
     if (profile) {
       setAdminFirstName(profile.firstName);
       setAdminLastName(profile.lastName);
-      setAdminInitials(
-        profile.firstName && profile.firstName[0] + profile.lastName[0]
-      );
     }
 
     //eslint-disable-next-line
@@ -35,13 +31,12 @@ const EditProfileDetails = ({ firestore, auth, profile, users }) => {
 
   const onSubmit = () => {
     const userRef = db.collection("users").doc(user[0]);
-    console.log(userRef);
-    console.log(user[0]);
+
     return userRef
       .update({
         firstName: adminFirstName,
         lastName: adminLastName,
-        initials: adminInitials
+        initials: adminFirstName[0] + adminLastName[0]
       })
       .then(() => {
         console.log("Document successfully updated !");

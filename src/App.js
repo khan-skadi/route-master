@@ -50,7 +50,7 @@ const App = props => {
       <AddLogModal />
       <EditLogModal />
       <AddProfileImage auth={auth} profile={profile} />
-      <EditProfileDetails auth={auth} profile={profile} />
+      <EditProfileDetails profile={profile} />
       <EditDriverProfile />
       <ArchivedItemModal />
       <AddDriverModal />
