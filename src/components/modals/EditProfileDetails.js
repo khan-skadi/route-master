@@ -27,7 +27,7 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
         .map(e => e.id)
         .map(user => user);
 
-  console.log(user);
+  console.log(adminLastName);
 
   const onSubmit = () => {
     const userRef = db.collection("users").doc(user[0]);

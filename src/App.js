@@ -3,10 +3,11 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
-import SearchBar from "./components/layout/SearchBar";
+import Navbar from "./components/layout/Navbar";
 import DriverProfile from "./components/driverProfileLayout/DriverProfile";
 import AddBtn from "./components/layout/AddBtn";
 import HomePage from "./components/layout/HomePage";
+import Footer from "./components/layout/Footer";
 
 import AddLogModal from "./components/logs/AddLogModal";
 import EditLogModal from "./components/logs/EditLogModal";
@@ -44,7 +45,7 @@ const App = props => {
 
   return (
     <Fragment>
-      <SearchBar />
+      <Navbar />
       <Sidenav auth={auth} profile={profile} />
       <AddBtn />
       <AddLogModal />
@@ -67,6 +68,7 @@ const App = props => {
           render={routeProps => <DriverProfile {...routeProps} />}
         />
       </Switch>
+      <Footer />
     </Fragment>
   );
 };

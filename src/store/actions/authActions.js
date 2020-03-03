@@ -53,3 +53,27 @@ export const signUp = newUser => {
       });
   };
 };
+
+export const changeImage = currentUser => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+
+    firebase
+      .auth()
+      .currentUser.then(res => {
+        return firestore
+          .collection("users")
+          .doc(res.user.id)
+          .update({
+            photoURL: currentUser
+          });
+      })
+      .then(() => {
+        dispatch({ type: "IMAGE_CHANGE_SUCCESS" });
+      })
+      .catch(err => {
+        dispatch({ type: "IMAGE_CHANGE_ERROR" });
+      });
+  };
+};

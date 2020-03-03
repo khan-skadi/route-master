@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signIn } from "../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
+import { signIn } from "../../store/actions/authActions";
+import "../../App.css";
 
 class SignIn extends Component {
   state = {
@@ -26,7 +27,7 @@ class SignIn extends Component {
     if (auth.uid) return <Redirect to="/" />;
 
     return (
-      <main>
+      <main className="signIn">
         <center>
           <div className="section"></div>
 
@@ -101,6 +102,18 @@ class SignIn extends Component {
           <a href="/signup">Create an account</a>
         </center>
 
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
+        <div className="section"></div>
         <div className="section"></div>
         <div className="section"></div>
       </main>

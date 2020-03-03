@@ -1,14 +1,15 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 import { searchLogs } from "../../store/actions/logActions";
-import { Link } from "react-router-dom";
+import NavbarSearch from "./NavbarSearch";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import PropTypes from "prop-types";
 import logo from "../../img/Logo.png";
 
 export const SearchBar = props => {
-  const { auth, profile, driver } = props;
+  const { auth, profile, driver, location } = props;
 
   const links = auth.uid ? (
     <SignedInLinks profile={profile} driver={driver} />
@@ -22,18 +23,16 @@ export const SearchBar = props => {
     props.searchLogs(text.current.value);
   };
 
+  if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
+    return null;
+  }
+
   return (
     <nav className="green accent-4">
       <div className="nav-wrapper">
         <form className="left hide-on-med-and-down">
           <div className="input-field">
-            <input
-              id="search"
-              type="search"
-              placeholder="Search.."
-              ref={text}
-              onChange={onChange}
-            />
+            <NavbarSearch onChange={onChange} text={text} />
             <label className="label-icon" htmlFor="search">
               <i className="material-icons">search</i>
             </label>
@@ -62,4 +61,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { searchLogs })(SearchBar);
+export default withRouter(connect(mapStateToProps, { searchLogs })(SearchBar));

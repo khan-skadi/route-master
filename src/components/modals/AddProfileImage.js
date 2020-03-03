@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import firebase, { storage } from "../../index";
 import background from "../../img/truck6.2.png";
+import { db } from "../../index";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { withFirestore, isLoaded, isEmpty } from "react-redux-firebase";
 
 class AddProfileImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: ""
+      url: "",
+      adminPhotoURL: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,19 +45,59 @@ class AddProfileImage extends Component {
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
+            this.setState({
+              adminPhotoURL: url
+            });
           });
       }
     );
   };
 
   handleSubmit = () => {
-    const user = firebase.auth().currentUser;
-    user.updateProfile({
-      photoURL: this.state.url
-    });
+    // const user = firebase.auth().currentUser;
+    // user.updateProfile({
+    //   photoURL: this.state.url
+    // });
+    const user = !isLoaded(this.props.users)
+      ? "Loading"
+      : isEmpty(this.props.users)
+      ? "Todo list is empty"
+      : this.props.users
+          .filter(g => g.firstName === this.props.profile.firstName)
+          .map(e => e.id)
+          .map(user => user);
+    console.log(this.state.users);
+    console.log(this.props.profile.firstName);
+
+    const userRef = db.collection("users").doc(user[0]);
+
+    userRef
+      .update({
+        photoURL: this.state.adminPhotoURL
+      })
+      .then(() => {
+        console.log("Document successfully updated !");
+      })
+      .catch(error => {
+        console.error("Error updating document ", error);
+      });
   };
 
   render() {
+    const user = !isLoaded(this.props.users)
+      ? "Loading"
+      : isEmpty(this.props.users)
+      ? "Todo list is empty"
+      : this.props.users
+          .filter(g => g.firstName === this.props.profile.firstName)
+          .map(e => e.id)
+          .map(user => user);
+
+    console.log(user);
+    console.log(this.props.profile);
+    console.log(this.state.adminPhotoURL);
+    console.log(this.props.profile.firstName);
+    console.log(this.props.users);
     return (
       <div id="add-profile-image" className="modal">
         <div
@@ -72,7 +117,7 @@ class AddProfileImage extends Component {
           <div className="row" style={modalStyle}>
             <div className="col s6">
               <img
-                src={this.state.url}
+                src={this.state.adminPhotoURL}
                 className="circle responsive-img"
                 height="160"
                 width="160"
@@ -84,7 +129,7 @@ class AddProfileImage extends Component {
             </div>
             <div className="col s6">
               <img
-                src={firebase.auth().currentUser.photoURL}
+                src={this.state.adminPhotoURL}
                 className="right circle responsive-img"
                 height="160"
                 width="160"
@@ -145,4 +190,9 @@ const modalStyle = {
   height: "100%"
 };
 
-export default AddProfileImage;
+export default compose(
+  withFirestore,
+  connect(state => ({
+    users: state.firestore.ordered.users
+  }))
+)(AddProfileImage);

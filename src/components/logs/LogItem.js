@@ -85,10 +85,22 @@ const LogItem = ({
             </span>{" "}
             on <Moment format="MMMM Do YYYY, h:mm:ss a">{log.date}</Moment>
           </span>
-          <a href="#!" onClick={onDelete} className="secondary-content">
+          <a
+            className="tooltipped secondary-content"
+            data-position="top"
+            data-tooltip="Delete"
+            href="#!"
+            onClick={onDelete}
+          >
             <i className="material-icons grey-text">delete</i>
           </a>
-          <a href="#!" onClick={ArchiveOnClick} className="secondary-content">
+          <a
+            className="tooltipped secondary-content"
+            data-position="bottom"
+            data-tooltip="Archive"
+            href="#!"
+            onClick={ArchiveOnClick}
+          >
             <i className="material-icons grey-text">archive</i>
           </a>
         </div>

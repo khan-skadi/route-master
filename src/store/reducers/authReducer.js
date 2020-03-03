@@ -31,6 +31,18 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message
       };
+    case "CHANGE_IMAGE_SUCCESS":
+      console.log("change image success");
+      return {
+        ...state,
+        authError: null
+      };
+    case "CHANGE_IMAGE_ERROR":
+      console.log("change image error");
+      return {
+        ...state,
+        authError: "change image failed"
+      };
     default:
       return state;
   }

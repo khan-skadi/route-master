@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/actions/authActions";
+import "../../App.css";
 
 class SignUp extends Component {
   state = {
@@ -28,7 +29,7 @@ class SignUp extends Component {
     if (auth.uid) return <Redirect to="/" />;
 
     return (
-      <main>
+      <main className="signIn">
         <center>
           <div className="section"></div>
 

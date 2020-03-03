@@ -1,8 +1,14 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import logo from "../../img/Logo.png";
 import "../../App.css";
 
-const Footer = () => {
+const Footer = props => {
+  const { location } = props;
+
+  if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
+    return null;
+  }
   return (
     <footer className="page-footer footer green accent-4">
       <div className="container">
@@ -152,4 +158,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default withRouter(Footer);

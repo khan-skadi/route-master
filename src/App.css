@@ -12,3 +12,14 @@
   font-family: "Little Pat";
   src: local("LittlePat"), url(./fonts/LittlePat.ttf) format("truetype");
 }
+.signIn {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(3, 241, 122, 0.5),
+      rgba(22, 37, 255, 0.76)
+    ),
+    url("./img/truck6.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
