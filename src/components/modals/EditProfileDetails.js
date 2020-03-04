@@ -7,14 +7,12 @@ import { db } from "../../index";
 const EditProfileDetails = ({ firestore, profile, users }) => {
   const [adminFirstName, setAdminFirstName] = useState("");
   const [adminLastName, setAdminLastName] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     firestore.get("users");
-    if (profile) {
-      setAdminFirstName(profile.firstName);
-      setAdminLastName(profile.lastName);
-    }
-
+    setAdminFirstName(profile.firstName);
+    setAdminLastName(profile.lastName);
     //eslint-disable-next-line
   }, [profile]);
 
@@ -22,12 +20,10 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
     ? "Loading"
     : isEmpty(users)
     ? "Todo list is empty"
-    : users
-        .filter(g => g.firstName === profile.firstName)
-        .map(e => e.id)
-        .map(user => user);
-
-  console.log(adminLastName);
+    : users.filter(g => g.firstName === firestore.ordered.users.);
+  console.log(user);
+  console.log(currentUser);
+  console.log(profile);
 
   const onSubmit = () => {
     const userRef = db.collection("users").doc(user[0]);

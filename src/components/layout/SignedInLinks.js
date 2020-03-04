@@ -8,10 +8,10 @@ const SignedInLinks = props => {
   const { driver } = props;
 
   return (
-    <ul className="right hide-on-med-and-down">
+    <ul className="right">
       <li>
         <a
-          className="btn blue darken-2 dropdown-trigger"
+          className="btn blue darken-2 dropdown-trigger  hide-on-med-and-down"
           href="#!"
           data-target="dropdown2"
         >
@@ -27,11 +27,6 @@ const SignedInLinks = props => {
       <li>
         <NavLink to="/archived-routes" activeStyle={backgroundStyle}>
           Archived Routes
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/find-routes" activeStyle={backgroundStyle}>
-          Find Routes
         </NavLink>
       </li>
       <li>

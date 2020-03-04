@@ -11,12 +11,27 @@ class AddProfileImage extends Component {
     super(props);
     this.state = {
       url: "",
-      adminPhotoURL: ""
+      adminPhotoURL: "",
+      myUser: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
   }
+
+  componentDidMount = () => {
+    const user2 = !isLoaded(this.props.users)
+      ? "Loading"
+      : isEmpty(this.props.users)
+      ? "User collection is empty"
+      : this.props.users.filter(
+          u => u.firstName === this.props.profile.firstName
+        );
+    this.setState({
+      myUser: user2
+    });
+    console.log(this.state.myUser);
+  };
 
   handleChange = e => {
     if (e.target.files[0]) {
@@ -61,7 +76,7 @@ class AddProfileImage extends Component {
     const user = !isLoaded(this.props.users)
       ? "Loading"
       : isEmpty(this.props.users)
-      ? "Todo list is empty"
+      ? "User collection is empty"
       : this.props.users
           .filter(g => g.firstName === this.props.profile.firstName)
           .map(e => e.id)
@@ -84,20 +99,16 @@ class AddProfileImage extends Component {
   };
 
   render() {
-    const user = !isLoaded(this.props.users)
-      ? "Loading"
-      : isEmpty(this.props.users)
-      ? "Todo list is empty"
-      : this.props.users
-          .filter(g => g.firstName === this.props.profile.firstName)
-          .map(e => e.id)
-          .map(user => user);
-
-    console.log(user);
-    console.log(this.props.profile);
-    console.log(this.state.adminPhotoURL);
-    console.log(this.props.profile.firstName);
-    console.log(this.props.users);
+    console.log(this.state.myUser);
+    // const user2 = !isLoaded(this.props.users)
+    //   ? "Loading"
+    //   : isEmpty(this.props.users)
+    //   ? "User collection is empty"
+    //   : this.props.users.filter(
+    //       u => u.firstName === this.props.profile.firstName
+    //     );
+    // console.log(this.props.users);
+    // console.log(user2);
     return (
       <div id="add-profile-image" className="modal">
         <div

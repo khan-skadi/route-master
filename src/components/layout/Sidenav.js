@@ -13,7 +13,7 @@ const Sidenav = props => {
     profile.lastName &&
     profile.lastName.charAt(0).toUpperCase() + profile.lastName.substring(1);
 
-  const photo = auth.photoURL || profilePic;
+  const photo = profile.photoURL || profilePic;
 
   return (
     <div>

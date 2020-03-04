@@ -5,7 +5,6 @@ import { getDrivers } from "../../store/actions/driverActions";
 import { getArchs } from "../../store/actions/archActions";
 import Preloader from "./Preloader";
 
-import DriverSelectOptions from "../drivers/DriverSelectOptions";
 import AdminPanel from "./AdminPanel";
 import OurStaff from "./OurStaff";
 import Logs from "../logs/Logs";
@@ -42,7 +41,7 @@ const HomePage = props => {
             <i className="material-icons left">group_add</i>Add Driver
           </a>
         </div>
-        <div className="col s8">
+        <div className="col l8 m12 s12">
           <ul className="collection with-header">
             <li className="collection-header">
               <h4 className="center">Active Routes</h4>
@@ -55,9 +54,6 @@ const HomePage = props => {
         </div>
         <div className="col s4 hide-on-med-and-down">
           <AdminPanel driver={driver} arch={arch} log={log} />
-        </div>
-        <div style={{ visibility: "hidden" }}>
-          <DriverSelectOptions driver={driver} />
         </div>
       </div>
     </div>
