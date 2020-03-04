@@ -16,7 +16,7 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
     }
 
     //eslint-disable-next-line
-  }, [profile]);
+  }, []);
 
   const user = !isLoaded(users)
     ? "Loading"
