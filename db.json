@@ -66,19 +66,6 @@
       "id": 22
     },
     {
-      "id": 23,
-      "locationFrom": "7",
-      "locationTo": "7",
-      "distance": "7",
-      "postedOn": "7",
-      "postedBy": "7",
-      "attention": false,
-      "progress": false,
-      "driver": "Khan Skadi",
-      "price": "7",
-      "date": "2020-03-04T08:25:54.287Z"
-    },
-    {
       "locationFrom": "8",
       "locationTo": "8",
       "distance": "8",

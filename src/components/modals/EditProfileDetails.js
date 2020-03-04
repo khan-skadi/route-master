@@ -19,14 +19,14 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
   const user = !isLoaded(users)
     ? "Loading"
     : isEmpty(users)
-    ? "Todo list is empty"
-    : users.filter(g => g.firstName === firestore.ordered.users.);
+    ? "User collection is empty"
+    : users.filter(g => g.firstName === profile.firstName);
   console.log(user);
   console.log(currentUser);
   console.log(profile);
 
   const onSubmit = () => {
-    const userRef = db.collection("users").doc(user[0]);
+    const userRef = db.collection("users").doc(user[0].id);
 
     return userRef
       .update({

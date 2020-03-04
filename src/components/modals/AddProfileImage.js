@@ -19,20 +19,6 @@ class AddProfileImage extends Component {
     this.handleUpload = this.handleUpload.bind(this);
   }
 
-  componentDidMount = () => {
-    const user2 = !isLoaded(this.props.users)
-      ? "Loading"
-      : isEmpty(this.props.users)
-      ? "User collection is empty"
-      : this.props.users.filter(
-          u => u.firstName === this.props.profile.firstName
-        );
-    this.setState({
-      myUser: user2
-    });
-    console.log(this.state.myUser);
-  };
-
   handleChange = e => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
