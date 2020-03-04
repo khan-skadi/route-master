@@ -31,13 +31,7 @@ export const SearchBar = props => {
     <nav className="green accent-4">
       <div className="nav-wrapper">
         <form className="left hide-on-med-and-down">
-          <div className="input-field">
-            <NavbarSearch onChange={onChange} text={text} />
-            <label className="label-icon" htmlFor="search">
-              <i className="material-icons">search</i>
-            </label>
-            <i className="material-icons">close</i>
-          </div>
+          <NavbarSearch onChange={onChange} text={text} />
         </form>
 
         <Link to="/" className="brand-logo center">

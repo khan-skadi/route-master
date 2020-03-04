@@ -7,12 +7,12 @@ import { db } from "../../index";
 const EditProfileDetails = ({ firestore, profile, users }) => {
   const [adminFirstName, setAdminFirstName] = useState("");
   const [adminLastName, setAdminLastName] = useState("");
-  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     firestore.get("users");
     setAdminFirstName(profile.firstName);
     setAdminLastName(profile.lastName);
+
     //eslint-disable-next-line
   }, [profile]);
 
@@ -21,8 +21,8 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
     : isEmpty(users)
     ? "User collection is empty"
     : users.filter(g => g.firstName === profile.firstName);
+
   console.log(user);
-  console.log(currentUser);
   console.log(profile);
 
   const onSubmit = () => {

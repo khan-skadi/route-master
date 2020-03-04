@@ -2,7 +2,7 @@ import React from "react";
 
 const NavbarSearch = props => {
   return (
-    <div>
+    <div className="input-field">
       <input
         id="search"
         type="search"
@@ -11,6 +11,10 @@ const NavbarSearch = props => {
         onChange={props.onChange}
         style={{ width: "20em" }}
       />
+      <label className="label-icon" htmlFor="search">
+        <i className="material-icons">search</i>
+      </label>
+      <i className="material-icons">close</i>
     </div>
   );
 };
