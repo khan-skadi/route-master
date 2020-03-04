@@ -22,9 +22,6 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
     ? "User collection is empty"
     : users.filter(g => g.firstName === profile.firstName);
 
-  console.log(user);
-  console.log(profile);
-
   const onSubmit = () => {
     const userRef = db.collection("users").doc(user[0].id);
 

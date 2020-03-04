@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebase, { storage } from "../../index";
+import { storage } from "../../index";
 import background from "../../img/truck6.2.png";
 import { db } from "../../index";
 import { compose } from "redux";
@@ -12,12 +12,21 @@ class AddProfileImage extends Component {
     this.state = {
       url: "",
       adminPhotoURL: "",
-      myUser: null
+      currentUser: null,
+      currentImage: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
   }
+
+  componentDidMount = () => {
+    this.props.firestore.get("users");
+  };
+
+  componentWillReceiveProps = () => {
+    this.setState({ currentImage: this.props.profile.photoURL });
+  };
 
   handleChange = e => {
     if (e.target.files[0]) {
@@ -25,6 +34,7 @@ class AddProfileImage extends Component {
       this.setState(() => ({ image }));
     }
   };
+
   handleUpload = () => {
     const image = this.state.image;
     const uploadTask = storage.ref(`profile-images/${image.name}`).put(image);
@@ -55,22 +65,15 @@ class AddProfileImage extends Component {
   };
 
   handleSubmit = () => {
-    // const user = firebase.auth().currentUser;
-    // user.updateProfile({
-    //   photoURL: this.state.url
-    // });
     const user = !isLoaded(this.props.users)
       ? "Loading"
       : isEmpty(this.props.users)
       ? "User collection is empty"
-      : this.props.users
-          .filter(g => g.firstName === this.props.profile.firstName)
-          .map(e => e.id)
-          .map(user => user);
-    console.log(this.state.users);
-    console.log(this.props.profile.firstName);
+      : this.props.users.filter(
+          g => g.firstName === this.props.profile.firstName
+        );
 
-    const userRef = db.collection("users").doc(user[0]);
+    const userRef = db.collection("users").doc(user[0].id);
 
     userRef
       .update({
@@ -85,29 +88,9 @@ class AddProfileImage extends Component {
   };
 
   render() {
-    console.log(this.state.myUser);
-    // const user2 = !isLoaded(this.props.users)
-    //   ? "Loading"
-    //   : isEmpty(this.props.users)
-    //   ? "User collection is empty"
-    //   : this.props.users.filter(
-    //       u => u.firstName === this.props.profile.firstName
-    //     );
-    // console.log(this.props.users);
-    // console.log(user2);
     return (
       <div id="add-profile-image" className="modal">
-        <div
-          style={{
-            overflow: "hidden",
-            position: "absolute",
-            top: "0",
-            bottom: "0",
-            left: "0",
-            right: "0",
-            zIndex: "-1"
-          }}
-        >
+        <div style={backgroundStyle}>
           <img src={background} alt="" />
         </div>
         <div className="modal-content">
@@ -119,21 +102,17 @@ class AddProfileImage extends Component {
                 height="160"
                 width="160"
                 alt=""
-                style={{
-                  border: "1px solid white"
-                }}
+                style={borderStyle}
               />
             </div>
             <div className="col s6">
               <img
-                src={this.state.adminPhotoURL}
+                src={this.state.currentImage}
                 className="right circle responsive-img"
                 height="160"
                 width="160"
                 alt=""
-                style={{
-                  border: "1px solid white"
-                }}
+                style={borderStyle}
               />
             </div>
           </div>
@@ -185,6 +164,20 @@ class AddProfileImage extends Component {
 const modalStyle = {
   width: "100%",
   height: "100%"
+};
+
+const backgroundStyle = {
+  overflow: "hidden",
+  position: "absolute",
+  top: "0",
+  bottom: "0",
+  left: "0",
+  right: "0",
+  zIndex: "-1"
+};
+
+const borderStyle = {
+  border: "1px solid white"
 };
 
 export default compose(

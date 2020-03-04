@@ -99,7 +99,9 @@ class SignIn extends Component {
               </form>
             </div>
           </div>
-          <a href="/signup">Create an account</a>
+          <a href="/signup" className="yellow-text text-darken-3">
+            Create an account
+          </a>
         </center>
 
         <div className="section"></div>
