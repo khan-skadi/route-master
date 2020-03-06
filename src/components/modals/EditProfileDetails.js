@@ -14,7 +14,7 @@ const EditProfileDetails = ({ firestore, profile, users }) => {
     setAdminLastName(profile.lastName);
 
     //eslint-disable-next-line
-  }, [profile]);
+  }, []);
 
   const user = !isLoaded(users)
     ? "Loading"
