@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { deleteLog, setCurrent } from "../../store/actions/logActions";
 import { updateDriver } from "../../store/actions/driverActions";
@@ -15,10 +15,26 @@ const LogItem = ({
   setCurrent,
   addArch
 }) => {
+  const [currentDriver, setCurrentDriver] = useState(null);
+
+  useEffect(() => {
+    setCurrentDriver(
+      driver.drivers.find(driver =>
+        log.driver === driver.firstName.concat(` ${driver.lastName}`)
+          ? driver
+          : false
+      )
+    );
+
+    //eslint-disable-next-line
+  }, [currentDriver]);
+
   const onDelete = () => {
     deleteLog(log.id);
     M.toast({ html: "Route Deleted" });
   };
+
+  console.log(currentDriver);
 
   const onArchive = () => {
     const newArchive = {
@@ -34,29 +50,17 @@ const LogItem = ({
       date: new Date()
     };
 
-    // Update driver completedRoutes
-    const currentDriver = driver.drivers.find(driver =>
-      newArchive.driver === driver.firstName.concat(` ${driver.lastName}`)
-        ? driver
-        : false
-    );
-
     const updatedDriver = {
       ...currentDriver,
+      available: true,
       completedRoutes: [...currentDriver.completedRoutes, newArchive]
     };
 
+    addArch(newArchive);
+
     updateDriver(updatedDriver);
 
-    // Add Route to archives
-    addArch(newArchive);
     deleteLog(log.id);
-  };
-
-  const ArchiveOnClick = e => {
-    e.preventDefault();
-    onArchive();
-
     M.toast({ html: "Route Archived" });
   };
 
@@ -99,7 +103,7 @@ const LogItem = ({
             data-position="bottom"
             data-tooltip="Archive"
             href="#!"
-            onClick={ArchiveOnClick}
+            onClick={onArchive}
           >
             <i className="material-icons grey-text">archive</i>
           </a>
@@ -125,5 +129,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// export default connect(null, { deleteLog, setCurrent, addArch })(LogItem);
 export default connect(null, mapDispatchToProps)(LogItem);

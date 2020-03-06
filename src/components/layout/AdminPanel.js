@@ -15,10 +15,7 @@ const AdminPanel = props => {
   const finishedRoutesTotal = archsPrice && archsPrice.reduce(adminReducer, 0);
 
   return (
-    <div
-      // style={{ backgroundColor: "#e0e0e0" }}
-      className="hide-on-med-and-down"
-    >
+    <div className="hide-on-med-and-down">
       <div className="row">
         <div className="col s12">
           <ul className="collection with-header">
@@ -87,36 +84,6 @@ const AdminPanel = props => {
             </div>
           </div>
         </div>
-
-        {/* <div className="col s12 center">
-          <div className="card blue-grey lighten-3">
-            <div className="card-content white-text">
-              <span className="card-title">Active Routes:</span>
-              <p className="flow-text">{currentActiveRoutes} $</p>
-              <p>Last route ends 05.24.2019</p>
-            </div>
-            <div className="card-content white-text">
-              <span className="card-title">Finished Routes:</span>
-              <p className="flow-text">{finishedRoutesTotal} $</p>
-              <p>Last route ends 05.24.2019</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col s12">
-          {driver.drivers &&
-            driver.drivers
-              .filter(driver => driver.available === true)
-              .map(driver => {
-                return (
-                  <div key={driver.id}>
-                    <Link to={"/drivers/" + driver.id} key={driver.id}>
-                      <AdminPanelList driver={driver} />
-                    </Link>
-                  </div>
-                );
-              })}
-        </div> */}
       </div>
     </div>
   );

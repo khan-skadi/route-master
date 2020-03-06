@@ -23,6 +23,11 @@ import FindRoutes from "./components/layout/FindRoutes";
 import FindRoutesModal from "./components/layout/FindRoutesModal";
 import Sidenav from "./components/layout/Sidenav";
 
+import TermsAndConditions from "./components/footerLinks/TermsAndConditions";
+import PrivacyPolicy from "./components/footerLinks/PrivacyPolicy";
+import AboutUs from "./components/footerLinks/AboutUs";
+import Contact from "./components/footerLinks/Contact";
+
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
@@ -67,6 +72,10 @@ const App = props => {
           path="/drivers/:driver_id"
           render={routeProps => <DriverProfile {...routeProps} />}
         />
+        <Route path="/terms-and-conditions" component={TermsAndConditions} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/about-us" component={AboutUs} />
+        <Route path="/contact" component={Contact} />
       </Switch>
       <Footer />
     </Fragment>

@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import logo from "../../img/Logo.png";
 import "../../App.css";
 
@@ -41,27 +41,52 @@ const Footer = props => {
             <h5 className="white-text">Our Stores</h5>
             <ul>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a
+                  className="white-text"
+                  href="https://www.google.com/maps/place/Truck+Dispatcher+Trainings+NYC/@40.7511631,-73.9996641,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25997b30bb821:0x768ddfc40dfd39ee!8m2!3d40.7511591!4d-73.9974754"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   New York
                 </a>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a
+                  className="white-text"
+                  href="https://www.google.com/maps/place/Dispatch+Training/@51.523418,-0.1048795,17z/data=!3m1!4b1!4m5!3m4!1s0x48761b50f86a8e63:0x2e0906ae04a0135a!8m2!3d51.5234147!4d-0.1026908"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   London
                 </a>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a
+                  className="white-text"
+                  href="https://www.google.com/maps/place/Dispatch+Transportation+Inc/@34.0021349,-118.1699653,17z/data=!3m1!4b1!4m5!3m4!1s0x80c2cefcff900871:0x59d7b6aa8366dfce!8m2!3d34.0021305!4d-118.1677766"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Los Angeles
                 </a>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a
+                  className="white-text"
+                  href="https://www.google.com/maps/place/M+%26+P+Montscher+u+Partner+Internationale+SpeditionsgesmbH/@48.1816174,16.4573891,17z/data=!3m1!4b1!4m5!3m4!1s0x476d0099c68a46d9:0xae40293653441e24!8m2!3d48.1816138!4d16.4595778"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Vienna
                 </a>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a
+                  className="white-text"
+                  href="https://www.google.com/maps/place/GPS-Spedition+%26+Logistik+Berlin/@52.4126733,13.3855913,17z/data=!3m1!4b1!4m5!3m4!1s0x47a844de183d0c2b:0xfda03bfd34033578!8m2!3d52.41267!4d13.38778"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Berlin
                 </a>
               </li>
@@ -72,72 +97,73 @@ const Footer = props => {
             <h5 className="white-text">Useful Links</h5>
             <ul>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <Link to="/about-us" className="white-text">
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="white-text">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="white-text">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <Link to="/terms-and-conditions" className="white-text">
                   Terms & Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Contact Us
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Latest News
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a className="white-text" href="#!">
                   Our Sitemap
                 </a>
               </li>
             </ul>
           </div>
-
-          <div className="col s12 l4 center">
+          <div className="col s12 l4">
             <ul>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <a className="white-text" href="#!">
                   {" "}
                   <h5>Follow us </h5>
                 </a>
               </li>
-              <li style={{ marginBottom: "4px" }}>
+              <li>
                 <a
                   className="waves-effect waves-light btn blue darken-2"
                   href="#!"
-                  style={{
-                    width: "50px",
-                    marginRight: "4px"
-                  }}
+                  style={socialStyle}
                 >
-                  <i className="fab fa-facebook left"></i>
+                  <i className="fab fa-facebook left"></i>like
                 </a>
+              </li>
+              <li>
                 <a
                   className="waves-effect waves-light btn blue darken-2"
                   href="#!"
-                  style={{ width: "50px" }}
+                  style={socialStyle}
                 >
                   <i className="fab fa-instagram left"></i>follow
                 </a>
               </li>
-              <li style={{ marginBottom: "4px" }}>
+              <li>
                 <a
                   className="waves-effect waves-light btn blue darken-2"
                   href="#!"
-                  style={{ width: "50px", marginRight: "4px" }}
+                  style={socialStyle}
                 >
                   <i className="fab fa-twitter left"></i>tweet
                 </a>
+              </li>
+              <li>
+                {" "}
                 <a
                   className="waves-effect waves-light btn blue darken-2"
                   href="#!"
-                  style={{ width: "50px" }}
+                  style={socialStyle}
                 >
                   <i className="fab fa-youtube left"></i>subscribe
                 </a>
@@ -156,6 +182,11 @@ const Footer = props => {
       </div>
     </footer>
   );
+};
+
+const socialStyle = {
+  width: "150px",
+  marginBottom: "4px"
 };
 
 export default withRouter(Footer);
