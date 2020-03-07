@@ -10,10 +10,6 @@ const OurStaffList = ({ driver }) => {
     return string.length > 15 ? string.substring(0, 16) + ".." : string;
   };
 
-  // const pStyle = {
-  //   overflow: "hidden"
-  // };
-
   return (
     <ul className="list-inline">
       <li>
@@ -42,9 +38,9 @@ const OurStaffList = ({ driver }) => {
                 <br></br>
                 <div className="divider"></div>
                 <br></br>
-                <span className="grey-text text-darken-1">License:</span>
+                <span className="grey-text text-darken-1">Availability:</span>
                 <br></br>
-                <p>{driver.license}</p>
+                <p>{driver.available ? "Available" : "En Route"}</p>
               </div>
             </div>
 
@@ -71,7 +67,9 @@ const OurStaffList = ({ driver }) => {
               >
                 Availability:
               </p>
-              <p>{driver.available ? "Available" : "En Route"}</p>
+              <p className={driver.available ? "green-text" : "red-text"}>
+                {driver.available ? "Available" : "En Route"}
+              </p>
 
               <div className="divider"></div>
               <br></br>
@@ -91,9 +89,6 @@ const OurStaffList = ({ driver }) => {
                 {" "}
                 {truncateSecond(driver.email)}
               </a>
-              {/* <a className="modal-trigger" href="#driver-email-modal">
-                {truncateSecond(driver.email)}
-              </a> */}
 
               <div className="divider" style={{ marginTop: "15px" }}></div>
               <br></br>
