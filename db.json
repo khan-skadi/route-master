@@ -64,113 +64,9 @@
       "price": "6800",
       "date": "2020-03-07T19:54:42.802Z",
       "id": 22
-    },
-    {
-      "locationFrom": "Armagh",
-      "locationTo": "Antanananirvo",
-      "distance": "7000",
-      "postedOn": "02.03.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": true,
-      "driver": "Peter Kartalov",
-      "price": "9000",
-      "date": "2020-03-07T19:55:09.961Z",
-      "id": 23
-    },
-    {
-      "locationFrom": "Antanananirvo",
-      "locationTo": "Hattusa",
-      "distance": "1400",
-      "postedOn": "03.05.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": false,
-      "driver": "Aneta Ilkaceva",
-      "price": "1600",
-      "date": "2020-03-07T19:55:51.505Z",
-      "id": 24
-    },
-    {
-      "locationFrom": "Hattusa",
-      "locationTo": "Mohenjo-Daro",
-      "distance": "7000",
-      "postedOn": "05.02.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "5000",
-      "date": "2020-03-07T19:56:43.617Z",
-      "id": 25
-    },
-    {
-      "locationFrom": "Armagh",
-      "locationTo": "Jakarta",
-      "distance": "1000",
-      "postedOn": "02.16.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "6480",
-      "date": "2020-03-07T19:57:37.569Z",
-      "id": 26
-    },
-    {
-      "locationFrom": "Lisbon",
-      "locationTo": "Seoul",
-      "distance": "4300",
-      "postedOn": "28.02.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "7600",
-      "date": "2020-03-07T19:58:08.155Z",
-      "id": 27
-    },
-    {
-      "locationFrom": "Jakarta",
-      "locationTo": "Seoul",
-      "distance": "2125",
-      "postedOn": "25.02.2020",
-      "postedBy": "Admin",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "1640",
-      "date": "2020-03-07T19:59:04.683Z",
-      "id": 28
     }
   ],
   "archs": [
-    {
-      "locationFrom": "1",
-      "locationTo": "1",
-      "distance": "1",
-      "postedOn": "1",
-      "postedBy": "1",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "1",
-      "id": 23,
-      "date": "2020-02-24T19:42:14.245Z"
-    },
-    {
-      "locationFrom": "2",
-      "locationTo": "2",
-      "distance": "2",
-      "postedOn": "2",
-      "postedBy": "2",
-      "attention": false,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "2",
-      "id": 24,
-      "date": "2020-02-24T19:42:55.111Z"
-    },
     {
       "locationFrom": "3",
       "locationTo": "3",
@@ -315,19 +211,6 @@
       "id": 35
     },
     {
-      "locationFrom": "Mohenjo-Daro",
-      "locationTo": "Vilnius",
-      "distance": "400",
-      "postedOn": "02.14.2020",
-      "postedBy": "Admin",
-      "attention": true,
-      "progress": false,
-      "driver": "Peter Kartalov",
-      "price": "1200",
-      "date": "2020-03-06T16:23:46.695Z",
-      "id": 36
-    },
-    {
       "locationFrom": "Palenque",
       "locationTo": "Mohenjo-Daro",
       "distance": "400",
@@ -419,30 +302,30 @@
       "id": 43
     },
     {
-      "locationFrom": "1",
-      "locationTo": "1",
-      "distance": "1",
-      "postedOn": "1",
-      "postedBy": "1",
+      "locationFrom": "Jakarta",
+      "locationTo": "Seoul",
+      "distance": "2125",
+      "postedOn": "25.02.2020",
+      "postedBy": "Admin",
       "attention": false,
       "progress": false,
       "driver": "Peter Kartalov",
-      "price": "1",
-      "date": "2020-03-06T16:40:30.108Z",
-      "id": 44
+      "price": "1640",
+      "date": "2020-03-08T15:37:55.448Z",
+      "id": 46
     },
     {
-      "locationFrom": "Antanananirvo",
-      "locationTo": "Armagh",
-      "distance": "600km",
-      "postedOn": "14.02.2020",
+      "locationFrom": "Armagh",
+      "locationTo": "Antanananirvo",
+      "distance": "7000",
+      "postedOn": "02.03.2020",
       "postedBy": "Admin",
       "attention": false,
       "progress": true,
-      "driver": "Aneta Ilkaceva",
-      "price": "600",
-      "date": "2020-03-06T16:40:32.072Z",
-      "id": 45
+      "driver": "Peter Kartalov",
+      "price": "9000",
+      "date": "2020-04-05T16:41:57.154Z",
+      "id": 47
     }
   ],
   "drivers": [
@@ -455,7 +338,7 @@
       "birthYear": "1993",
       "hourlyRate": "20",
       "license": "RA0264AC",
-      "available": false,
+      "available": true,
       "completedRoutes": [
         {
           "locationFrom": "Jerusalem",
@@ -516,6 +399,30 @@
           "driver": "Peter Kartalov",
           "price": "1",
           "date": "2020-03-06T16:40:30.108Z"
+        },
+        {
+          "locationFrom": "Hattusa",
+          "locationTo": "Mohenjo-Daro",
+          "distance": "7000",
+          "postedOn": "05.02.2020",
+          "postedBy": "Admin",
+          "attention": false,
+          "progress": false,
+          "driver": "Peter Kartalov",
+          "price": "5000",
+          "date": "2020-03-08T15:37:57.768Z"
+        },
+        {
+          "locationFrom": "Armagh",
+          "locationTo": "Antanananirvo",
+          "distance": "7000",
+          "postedOn": "02.03.2020",
+          "postedBy": "Admin",
+          "attention": false,
+          "progress": true,
+          "driver": "Peter Kartalov",
+          "price": "9000",
+          "date": "2020-04-05T16:41:57.154Z"
         }
       ],
       "incompleteRoutes": [],
@@ -533,7 +440,7 @@
       "birthYear": "1999",
       "hourlyRate": "26",
       "license": "RA0264AC",
-      "available": false,
+      "available": true,
       "completedRoutes": [
         {
           "locationFrom": "Jakarta",
@@ -558,6 +465,18 @@
           "driver": "Aneta Ilkaceva",
           "price": "600",
           "date": "2020-03-06T16:40:32.072Z"
+        },
+        {
+          "locationFrom": "Antanananirvo",
+          "locationTo": "Hattusa",
+          "distance": "1400",
+          "postedOn": "03.05.2020",
+          "postedBy": "Admin",
+          "attention": false,
+          "progress": false,
+          "driver": "Aneta Ilkaceva",
+          "price": "1600",
+          "date": "2020-03-08T15:37:58.477Z"
         }
       ],
       "incompleteRoutes": [],
