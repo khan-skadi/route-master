@@ -1,3 +1,5 @@
+import db from "../../index.js";
+import firebase from "../../index.js";
 import {
   SET_LOADING,
   GET_ARCHS,
@@ -5,11 +7,14 @@ import {
   ARCHS_ERROR,
   SET_CURRENT,
   CLEAR_CURRENT,
-  DELETE_ARCH
+  DELETE_ARCH,
+  ADD_ARCH_START,
+  ADD_ARCH_SUCCESS,
+  ADD_ARCH_FAIL,
 } from "./types";
 
 // Get archived logs from server
-export const getArchs = () => async dispatch => {
+export const getArchs = () => async (dispatch) => {
   try {
     setLoading();
 
@@ -18,18 +23,63 @@ export const getArchs = () => async dispatch => {
 
     dispatch({
       type: GET_ARCHS,
-      payload: data
+      payload: data,
     });
   } catch (err) {
     dispatch({
       type: ARCHS_ERROR,
-      payload: err.response.statusText
+      payload: err.response.statusText,
     });
   }
 };
 
+// Add archs updated
+export const addArchNew = (arch) => ({
+  type: "ADD_ARCH",
+  arch,
+});
+
+export const startAddArch = (archData = {}) => {
+  return (dispatch) => {
+    // const { title = "", body = "" } = archData;
+    // const arch = { title, body };
+    const {
+      locationFrom = "",
+      locationTo = "",
+      distance = 0,
+      postedOn = "",
+      postedBy = "",
+      attention = false,
+      progress = false,
+      driver = "",
+      price = 0,
+      date = "",
+    } = archData;
+    const arch = {
+      locationFrom,
+      locationTo,
+      distance,
+      postedOn,
+      postedBy,
+      attention,
+      progress,
+      driver,
+      price,
+      date,
+    };
+    firebase.push(arch).then((ref) => {
+      dispatch(
+        addArchNew({
+          id: ref.key,
+          ...arch,
+        })
+      );
+    });
+  };
+};
+
 // Add new archive log to server
-export const addArch = arch => async dispatch => {
+export const addArch = (arch) => async (dispatch) => {
   try {
     setLoading();
 
@@ -37,59 +87,59 @@ export const addArch = arch => async dispatch => {
       method: "POST",
       body: JSON.stringify(arch),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     });
     const data = await res.json();
 
     dispatch({
       type: ADD_ARCH,
-      payload: data
+      payload: data,
     });
   } catch (err) {
     dispatch({
       type: ARCHS_ERROR,
-      payload: err.response.statusText
+      payload: err.response.statusText,
     });
   }
 };
 
-export const deleteArch = id => async dispatch => {
+export const deleteArch = (id) => async (dispatch) => {
   try {
     setLoading();
 
     await fetch(`/archs/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     });
 
     dispatch({
       type: DELETE_ARCH,
-      payload: id
+      payload: id,
     });
   } catch (err) {
     dispatch({
       type: ARCHS_ERROR,
-      payload: err.response.data
+      payload: err.response.data,
     });
   }
 };
 
 // Set current archive
-export const setCurrent = arch => {
+export const setCurrent = (arch) => {
   return {
     type: SET_CURRENT,
-    payload: arch
+    payload: arch,
   };
 };
 
 export const clearCurrent = () => {
   return {
-    type: CLEAR_CURRENT
+    type: CLEAR_CURRENT,
   };
 };
 
 export const setLoading = () => {
   return {
-    type: SET_LOADING
+    type: SET_LOADING,
   };
 };

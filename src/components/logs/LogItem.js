@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { deleteLog, setCurrent } from "../../store/actions/logActions";
 import { updateDriver } from "../../store/actions/driverActions";
-import { addArch } from "../../store/actions/archActions";
+import { addArch, startAddArch } from "../../store/actions/archActions";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -13,13 +13,14 @@ const LogItem = ({
   deleteLog,
   updateDriver,
   setCurrent,
-  addArch
+  addArch,
+  startAddArch,
 }) => {
   const [currentDriver, setCurrentDriver] = useState(null);
 
   useEffect(() => {
     setCurrentDriver(
-      driver.drivers.find(driver =>
+      driver.drivers.find((driver) =>
         log.driver === driver.firstName.concat(` ${driver.lastName}`)
           ? driver
           : false
@@ -47,14 +48,16 @@ const LogItem = ({
       progress: log.progress,
       driver: log.driver,
       price: log.price,
-      date: new Date()
+      date: new Date(),
     };
 
     const updatedDriver = {
       ...currentDriver,
       available: true,
-      completedRoutes: [...currentDriver.completedRoutes, newArchive]
+      completedRoutes: [...currentDriver.completedRoutes, newArchive],
     };
+
+    // startAddArch(newArchive);
 
     addArch(newArchive);
 
@@ -117,15 +120,15 @@ LogItem.propTypes = {
   log: PropTypes.object.isRequired,
   deleteLog: PropTypes.func.isRequired,
   setCurrent: PropTypes.func.isRequired,
-  updateDriver: PropTypes.func.isRequired
+  updateDriver: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    deleteLog: id => dispatch(deleteLog(id)),
-    setCurrent: log => dispatch(setCurrent(log)),
-    addArch: arch => dispatch(addArch(arch)),
-    updateDriver: driver => dispatch(updateDriver(driver))
+    deleteLog: (id) => dispatch(deleteLog(id)),
+    setCurrent: (log) => dispatch(setCurrent(log)),
+    addArch: (arch) => dispatch(addArch(arch)),
+    updateDriver: (driver) => dispatch(updateDriver(driver)),
   };
 };
 
