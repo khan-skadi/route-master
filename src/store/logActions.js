@@ -36,18 +36,13 @@ export const getLogs = () => (
     .collection('logs')
     .get()
     .then(function (querySnapshot) {
-      querySnapshot
-        .forEach(function (doc) {
-          console.log(doc.id, ' => ', doc.data());
-          console.log(doc);
-        })
-        .then((log) => {
-          dispatch({ type: 'GET_LOG_SUCCESS', payload: log });
-        });
+      let logs = [];
+      querySnapshot.forEach(function (doc) {
+        console.log(doc.id, ' => ', doc.data());
+        logs.push(doc.data());
+        dispatch({ type: 'GET_LOG_SUCCESS', payload: logs });
+      });
     })
-    // .then(() => {
-    //   dispatch({ type: 'GET_LOG_SUCCESS' });
-    // })
     .catch((err) => {
       console.err('Error getting document: ', err);
     });
