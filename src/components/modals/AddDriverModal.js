@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addDriver } from '../../store/driverActions.js';
 import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -8,14 +9,14 @@ class AddDriverModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: '',
+      imageUrl: '',
       firstName: '',
       lastName: '',
       address: '',
       email: '',
       phoneNumber: '',
-      birthYear: '',
-      hourlyRate: '',
+      birthYear: 0,
+      hourlyRate: 0,
       license: '',
       available: true,
       completedRoutes: [],
@@ -96,7 +97,7 @@ class AddDriverModal extends Component {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            this.setState({ url });
+            this.setState({ imageUrl: url });
           });
       }
     );
@@ -106,7 +107,7 @@ class AddDriverModal extends Component {
     if (this.state.firstName === '' || this.state.lastName === '') {
       M.toast({ html: 'Please enter the first and last name' });
     } else {
-      // this.props.addDriver(this.state);
+      this.props.addDriver(this.state);
       console.log('Driver added');
       M.toast({
         html: `${this.state.firstName} ${this.state.lastName} was added as a driver`
@@ -114,7 +115,7 @@ class AddDriverModal extends Component {
     }
 
     this.setState({
-      url: '',
+      imageUrl: '',
       firstName: '',
       lastName: '',
       address: '',
@@ -131,154 +132,159 @@ class AddDriverModal extends Component {
 
   render() {
     return (
-      <div id='add-drivers-modal' className='modal'>
-        <div className='modal-content'>
-          <div className='row'>
-            <div className='col s12'>
+      <div id="add-drivers-modal" className="modal">
+        <div className="modal-content">
+          <div className="row">
+            <div className="col s12">
               <h4>Add Driver</h4>
               <br />
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>account_box</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">account_box</i>
                 <input
-                  type='text'
-                  name='firstName'
+                  type="text"
+                  name="firstName"
                   value={this.state.firstName}
                   onChange={this.handleFirstName}
                 />
-                <label htmlFor='firstName' className='active'>
+                <label htmlFor="firstName" className="active">
                   First Name
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>account_circle</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">account_circle</i>
                 <input
-                  type='text'
-                  name='lastName'
+                  type="text"
+                  name="lastName"
                   value={this.state.lastName}
                   onChange={this.handleLastName}
                 />
-                <label htmlFor='lastName' className='active'>
+                <label htmlFor="lastName" className="active">
                   Last Name
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>email</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">email</i>
                 <input
-                  type='email'
-                  name='email'
+                  type="email"
+                  name="email"
                   value={this.state.email}
                   onChange={this.handleEmail}
                 />
-                <label htmlFor='email' className='active'>
+                <label htmlFor="email" className="active">
                   Email
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>home</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">home</i>
                 <input
-                  type='text'
-                  name='address'
+                  type="text"
+                  name="address"
                   value={this.state.address}
                   onChange={this.handleAddress}
                 />
-                <label htmlFor='address' className='active'>
+                <label htmlFor="address" className="active">
                   Address
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>phone_iphone</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">phone_iphone</i>
                 <input
-                  type='text'
-                  name='phoneNumber'
+                  type="text"
+                  name="phoneNumber"
                   value={this.state.phoneNumber}
                   onChange={this.handlePhoneNumber}
                 />
-                <label htmlFor='phoneNumber' className='active'>
+                <label htmlFor="phoneNumber" className="active">
                   Phone Number
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>cake</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">cake</i>
                 <input
-                  type='text'
-                  name='birthYear'
+                  type="number"
+                  name="birthYear"
                   value={this.state.birthYear}
                   onChange={this.handleBirthYear}
                 />
-                <label htmlFor='birthYear' className='active'>
+                <label htmlFor="birthYear" className="active">
                   Birth Year
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>attach_money</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">attach_money</i>
                 <input
-                  type='number'
-                  name='hourlyRate'
+                  type="number"
+                  name="hourlyRate"
                   value={this.state.hourlyRate}
                   onChange={this.handleHourlyRate}
                 />
-                <label htmlFor='hourlyRate' className='active'>
+                <label htmlFor="hourlyRate" className="active">
                   Hourly Rate
                 </label>
               </div>
 
-              <div className='input-field col s6'>
-                <i className='material-icons prefix'>short_text</i>
+              <div className="input-field col s6">
+                <i className="material-icons prefix">short_text</i>
                 <input
-                  type='text'
-                  name='license'
+                  type="text"
+                  name="license"
                   value={this.state.license}
                   onChange={this.handleLicense}
                 />
-                <label htmlFor='license' className='active'>
+                <label htmlFor="license" className="active">
                   License
                 </label>
               </div>
 
-              <div className='row'>
+              <div className="row">
                 <br />
               </div>
 
-              <div className='row'>
-                <div className='col s12'>
-                  <div className='file-field input-field'>
+              <div className="row">
+                <div className="col s12">
+                  <div className="file-field input-field">
                     <a
-                      href='#!'
-                      className='waves-effect waves-light btn-small green accent-4'
+                      href="#!"
+                      className="waves-effect waves-light btn-small green accent-4"
                     >
                       <span>Pick Image</span>
-                      <input type='file' onChange={this.handleChange} />
+                      <input type="file" onChange={this.handleChange} />
                     </a>
-                    <div className='file-path-wrapper col s8'>
-                      <input className='file-path validate' type='text' />
+                    <div className="file-path-wrapper col s8">
+                      <input className="file-path validate" type="text" />
                     </div>
                     <a
-                      href='#!'
-                      className='waves-effect waves-light btn-small green accent-4'
+                      href="#!"
+                      className="waves-effect waves-light btn-small green accent-4"
                       onClick={this.handleUpload}
                     >
                       Upload
                     </a>
                   </div>
-                  <img src={this.state.url} alt='' height='300' width='300' />
+                  <img
+                    src={this.state.imageUrl}
+                    alt=""
+                    height="300"
+                    width="300"
+                  />
                 </div>
               </div>
-              <div className='col s12 modal-footer'>
-                <div className='col s3 right modal-footer'>
+              <div className="col s12 modal-footer">
+                <div className="col s3 right modal-footer">
                   <a
-                    href='#!'
+                    href="#!"
                     onClick={this.handleSubmit}
-                    className='modal-close waves-effect blue darken-2 btn'
+                    className="modal-close waves-effect blue darken-2 btn"
                   >
                     Submit
-                    <i className='material-icons right'>send</i>
+                    <i className="material-icons right">send</i>
                   </a>
                 </div>
               </div>
@@ -290,14 +296,22 @@ class AddDriverModal extends Component {
   }
 }
 
-AddDriverModal.propTypes = {};
+AddDriverModal.propTypes = {
+  addDriver: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    drivers: state.firestore.ordered.drivers
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addDriver: (driver) => {
+//       dispatch(addDriver(driver));
+//     }
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDriverModal);
+export default connect(mapStateToProps, { addDriver })(AddDriverModal);

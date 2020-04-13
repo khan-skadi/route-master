@@ -15,28 +15,20 @@ const Logs = (props) => {
   });
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12">
-          <h1 className="center-align">Logs</h1>
-          <ul className="collection with-header">
-            <li className="collection-header center-align">
-              <h4>Active Logs</h4>
-            </li>
-            {logs && logs.length === 0 ? (
-              <Preloader />
-            ) : (
-              logs && logs.map((log) => <LogItem log={log} key={log.date} />)
-            )}
-            <NavLink to="/archived-routes" className="flow-text">
-              <blockquote style={{ color: 'green' }}>
-                Archived Routes
-              </blockquote>
-            </NavLink>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <ul className="collection with-header">
+      <li className="collection-header">
+        <h4 className="center">Active Routes</h4>
+      </li>
+
+      {logs && logs.length === 0 ? (
+        <Preloader />
+      ) : (
+        logs && logs.map((log) => <LogItem log={log} key={log.date} />)
+      )}
+      <NavLink to="/archived-routes" className="flow-text">
+        <blockquote style={{ color: 'green' }}>Archived Routes</blockquote>
+      </NavLink>
+    </ul>
   );
 };
 

@@ -156,84 +156,11 @@
           "driver": "Peter Kartalov",
           "price": "450",
           "date": "2020-03-06T15:47:28.466Z"
-        },
-        {
-          "locationFrom": "Mohenjo-Daro",
-          "locationTo": "Hattusa",
-          "distance": "400",
-          "postedOn": "02.14.2020",
-          "postedBy": "Admin",
-          "attention": true,
-          "progress": false,
-          "driver": "Peter Kartalov",
-          "price": "1200",
-          "date": "2020-03-06T16:21:07.169Z"
-        },
-        {
-          "locationFrom": "Mohenjo-Daro",
-          "locationTo": "Vilnius",
-          "distance": "400",
-          "postedOn": "02.14.2020",
-          "postedBy": "Admin",
-          "attention": true,
-          "progress": false,
-          "driver": "Peter Kartalov",
-          "price": "1200",
-          "date": "2020-03-06T16:23:46.695Z"
-        },
-        {
-          "locationFrom": "Carthage",
-          "locationTo": "Hattusa",
-          "distance": "1400km",
-          "postedOn": "14.02.2020",
-          "postedBy": "Admin",
-          "attention": false,
-          "progress": false,
-          "driver": "Peter Kartalov",
-          "price": "2100",
-          "date": "2020-03-06T16:28:47.973Z"
-        },
-        {
-          "locationFrom": "1",
-          "locationTo": "1",
-          "distance": "1",
-          "postedOn": "1",
-          "postedBy": "1",
-          "attention": false,
-          "progress": false,
-          "driver": "Peter Kartalov",
-          "price": "1",
-          "date": "2020-03-06T16:40:30.108Z"
-        },
-        {
-          "locationFrom": "Hattusa",
-          "locationTo": "Mohenjo-Daro",
-          "distance": "7000",
-          "postedOn": "05.02.2020",
-          "postedBy": "Admin",
-          "attention": false,
-          "progress": false,
-          "driver": "Peter Kartalov",
-          "price": "5000",
-          "date": "2020-03-08T15:37:57.768Z"
-        },
-        {
-          "locationFrom": "Armagh",
-          "locationTo": "Antanananirvo",
-          "distance": "7000",
-          "postedOn": "02.03.2020",
-          "postedBy": "Admin",
-          "attention": false,
-          "progress": true,
-          "driver": "Peter Kartalov",
-          "price": "9000",
-          "date": "2020-04-05T16:41:57.154Z"
         }
       ],
       "incompleteRoutes": [],
       "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2Fskadi-profile.jpg?alt=media&token=fb589ae8-15a8-4cea-b322-9059e45bd7fe",
-      "id": 1,
-      "date": "2020-03-06T15:40:21.938Z"
+      "id": 1
     },
     {
       "url": "https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/images%2FAnetaIlkaceva.jpg?alt=media&token=021cfeb2-493b-4172-acf4-60b47b346f26",
@@ -258,30 +185,6 @@
           "driver": "Aneta Ilkaceva",
           "price": "4200",
           "date": "2020-03-06T15:47:29.784Z"
-        },
-        {
-          "locationFrom": "Antanananirvo",
-          "locationTo": "Armagh",
-          "distance": "600km",
-          "postedOn": "14.02.2020",
-          "postedBy": "Admin",
-          "attention": false,
-          "progress": true,
-          "driver": "Aneta Ilkaceva",
-          "price": "600",
-          "date": "2020-03-06T16:40:32.072Z"
-        },
-        {
-          "locationFrom": "Antanananirvo",
-          "locationTo": "Hattusa",
-          "distance": "1400",
-          "postedOn": "03.05.2020",
-          "postedBy": "Admin",
-          "attention": false,
-          "progress": false,
-          "driver": "Aneta Ilkaceva",
-          "price": "1600",
-          "date": "2020-03-08T15:37:58.477Z"
         }
       ],
       "incompleteRoutes": [],
@@ -331,19 +234,6 @@
       "completedRoutes": [],
       "incompleteRoutes": [],
       "id": 5
-    }
-  ],
-  "routes": [
-    {
-      "id": 25,
-      "locationFrom": "Vienna",
-      "locationTo": "Paris",
-      "distance": "820km",
-      "postedOn": "2020-02-28T15:05:09.336Z",
-      "postedBy": "Drive AG Corp",
-      "attention": false,
-      "progress": false,
-      "date": "2020-02-02T23:12:19.942Z"
     }
   ]
 }

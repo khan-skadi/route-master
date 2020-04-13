@@ -11,7 +11,7 @@ const HomePage = (props) => {
       <div className="row">
         <div className="col s12">
           <a
-            href="#add-log-modal"
+            href="#add-route-modal"
             className="waves-effect waves-light btn modal-trigger blue darken-2"
           >
             <i className="material-icons left">drive_eta</i>Add Route
@@ -24,20 +24,12 @@ const HomePage = (props) => {
           </a>
         </div>
         <div className="col l8 m12 s12">
-          <ul className="collection with-header">
-            <li className="collection-header">
-              <h4 className="center">Active Routes</h4>
-            </li>
-            {/* <Logs log={log} arch={arch} driver={driver} /> */}
-            <Logs />
-          </ul>
+          <Logs />
           <div>
-            {/* <OurStaff driver={driver} /> */}
             <OurStaff />
           </div>
         </div>
         <div className="col s4 hide-on-med-and-down">
-          {/* <AdminPanel driver={driver} log={log} arch={arch} /> */}
           <AdminPanel />
         </div>
       </div>

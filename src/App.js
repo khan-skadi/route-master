@@ -78,7 +78,6 @@
 //         <Route path="/privacy-policy" component={PrivacyPolicy} />
 //         <Route path="/about-us" component={AboutUs} />
 //         <Route path="/contact" component={Contact} />
-//         <Route path="/test" component={TestRoutes} />
 //       </Switch>
 //       <Footer />
 //     </Fragment>
@@ -95,10 +94,11 @@
 // export default connect(mapStateToProps)(App);
 
 import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar.js';
 import HomePage from './components/layout/HomePage.js';
-import Logs from './components/logs/Logs.js';
+import ArchivedRoutes from './components/archived-routes/ArchivedRoutes.js';
 
 import AddBtn from './components/layout/AddBtn.js';
 import AddLogModal from './components/modals/AddLogModal.js';
@@ -117,9 +117,12 @@ const App = () => {
       <AddLogModal />
       <AddDriverModal />
       <Navbar />
+      <AddBtn />
       <div className="content">
-        <Logs />
-        <AddBtn />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/archived-routes" component={ArchivedRoutes} />
+        </Switch>
       </div>
     </>
   );

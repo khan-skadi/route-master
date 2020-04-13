@@ -1,23 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getArchs } from '../../store/actions/archActions';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { getArchs, deleteArch } from '../../store/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import ArchivedItem from './ArchivedItem';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 const ArchivedRoutes = (props) => {
-  const {
-    arch: { archs, loading }
-  } = props;
+  const { archs, getArchs, deleteArch } = props;
 
   useEffect(() => {
-    props.getArchs();
-    // eslint-disable-next-line
-  }, []);
+    getArchs();
+  });
 
-  if (loading || archs === null) {
-    return <Preloader />;
-  }
+  const onDelete = (id) => {
+    deleteArch(id);
+    M.toast({ html: 'Archived route deleted' });
+  };
 
   return (
     <div className="container">
@@ -27,10 +28,16 @@ const ArchivedRoutes = (props) => {
             <li className="collection-header">
               <h4 className="center">Archived Routes</h4>
             </li>
-            {!loading && archs.length === 0 ? (
-              <p className="center">No archives to show...</p>
+            {archs && archs.length === 0 ? (
+              <Fragment>
+                <Preloader />
+                <p className="center">No archives to show...</p>
+              </Fragment>
             ) : (
-              archs.map((arch) => <ArchivedItem arch={arch} key={arch.id} />)
+              archs &&
+              archs.map((arch) => (
+                <ArchivedItem arch={arch} key={arch.id} onDelete={onDelete} />
+              ))
             )}
           </ul>
         </div>
@@ -40,18 +47,30 @@ const ArchivedRoutes = (props) => {
 };
 
 ArchivedRoutes.propTypes = {
-  arch: PropTypes.object.isRequired,
-  getArchs: PropTypes.func.isRequired
+  getArchs: PropTypes.func.isRequired,
+  deleteArch: PropTypes.func.isRequired,
+  archs: PropTypes.array
 };
 
-const mapStateToProps = (state) => ({
-  arch: state.arch
-});
-
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    getArchs: () => dispatch(getArchs(dispatch))
+    archs: state.firestore.ordered.archs
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArchivedRoutes);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getArchs: () => {
+      dispatch(getArchs());
+    },
+    deleteArch: (id) => {
+      dispatch(deleteArch(id));
+    }
+  };
+};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: 'archs' }])
+)(ArchivedRoutes);

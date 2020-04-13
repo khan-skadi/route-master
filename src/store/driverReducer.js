@@ -1,19 +1,19 @@
 const initialState = {
-  logs: [],
+  drivers: [],
   error: null
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case 'ADD_LOG':
+    case 'ADD_DRIVER':
       return {
         ...state,
-        logs: [...state.logs, action.payload]
+        drivers: [...state.drivers, action.payload]
       };
-    case 'GET_LOGS_SUCCESS':
+    case 'GET_DRIVERS_SUCCESS':
       return {
         ...state,
-        logs: action.payload
+        drivers: action.payload
       };
     default:
       return state;

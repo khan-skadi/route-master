@@ -1,19 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import { Link } from 'react-router-dom';
+import Preloader from '../layout/Preloader.js';
 import AdminPanelList from './AdminPanelList';
 
 const AdminPanel = (props) => {
-  const { driver, log, arch } = props;
+  const { drivers, logs } = props;
 
-  const archsPrice =
-    arch.archs && arch.archs.map((arch) => parseInt(arch.price));
-  const logsPrice = log.logs && log.logs.map((log) => parseInt(log.price));
+  // const archsPrice =
+  //   arch.archs && arch.archs.map((arch) => parseInt(arch.price));
+  const logsPrice = logs && logs.map((log) => parseInt(log.price));
 
   const adminReducer = (accumulator, currentValue) =>
     Math.round(accumulator + currentValue);
 
   const currentActiveRoutes = logsPrice && logsPrice.reduce(adminReducer, 0);
-  const finishedRoutesTotal = archsPrice && archsPrice.reduce(adminReducer, 0);
+  // const finishedRoutesTotal = archsPrice && archsPrice.reduce(adminReducer, 0);
 
   return (
     <div className="hide-on-med-and-down">
@@ -46,7 +50,7 @@ const AdminPanel = (props) => {
                 Finished Routes{' '}
                 <i className="material-icons right">assistant</i>
               </span>
-              <p className="flow-text">{finishedRoutesTotal} $</p>
+              {/* <p className="flow-text">{finishedRoutesTotal} $</p> */}
               <p className="grey-text text-lighten-4">
                 Last route ends 05.24.2019
               </p>
@@ -70,8 +74,11 @@ const AdminPanel = (props) => {
                 </h5>
               </span>
 
-              {driver.drivers &&
-                driver.drivers
+              {drivers && drivers.length === 0 ? (
+                <Preloader />
+              ) : (
+                drivers &&
+                drivers
                   .filter((driver) => driver.available === true)
                   .map((driver) => {
                     return (
@@ -81,7 +88,8 @@ const AdminPanel = (props) => {
                         </Link>
                       </div>
                     );
-                  })}
+                  })
+              )}
             </div>
           </div>
         </div>
@@ -90,4 +98,22 @@ const AdminPanel = (props) => {
   );
 };
 
-export default AdminPanel;
+const mapStateToProps = (state) => {
+  return {
+    drivers: state.firestore.ordered.drivers,
+    logs: state.firestore.ordered.logs
+  };
+};
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getDrivers: () => {
+//       dispatch(getDrivers());
+//     }
+//   };
+// };
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: 'drivers' }, { collection: 'logs' }])
+)(AdminPanel);

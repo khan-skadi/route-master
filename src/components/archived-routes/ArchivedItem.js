@@ -1,35 +1,25 @@
-import React from "react";
-import { connect } from "react-redux";
-import { setCurrent } from "../../store/actions/archActions";
-import { deleteArch } from "../../store/actions/archActions";
-import Moment from "react-moment";
-import PropTypes from "prop-types";
-import M from "materialize-css/dist/js/materialize.min.js";
+import React from 'react';
+import Moment from 'react-moment';
 
-const ArchivedItem = ({ arch, setCurrent, deleteArch }) => {
-  const onDelete = () => {
-    deleteArch(arch.id);
-    M.toast({ html: "Archived Route Deleted" });
-  };
-
+const ArchivedItem = ({ arch, onDelete }) => {
   return (
     <div>
       <li className="collection-item">
         <div>
-          <a
-            href="#archived-log-modal"
-            className={`modal-trigger grey-text`}
-            onClick={() => setCurrent(arch)}
-          >
+          <a href="#archived-log-modal" className={`modal-trigger grey-text`}>
             Route: {arch.locationFrom} - {arch.locationTo}
           </a>
           <br />
           <span className="grey-text">
-            <span className="black-text">ID #{arch.id}</span> last updated by{" "}
-            <span className="black-text">{arch.driver}</span> on{" "}
+            <span className="black-text">ID #{arch.id}</span> last updated by{' '}
+            <span className="black-text">{arch.driver}</span> on{' '}
             <Moment format="MMMM Do YYYY, h:mm:ss a">{arch.date}</Moment>
           </span>
-          <a href="#!" onClick={onDelete} className="secondary-content">
+          <a
+            href="#!"
+            onClick={() => onDelete(arch.id)}
+            className="secondary-content"
+          >
             <i className="material-icons grey-text">delete</i>
           </a>
         </div>
@@ -38,10 +28,4 @@ const ArchivedItem = ({ arch, setCurrent, deleteArch }) => {
   );
 };
 
-ArchivedItem.propTypes = {
-  arch: PropTypes.object.isRequired,
-  setCurrent: PropTypes.func.isRequired,
-  deleteArch: PropTypes.func.isRequired
-};
-
-export default connect(null, { setCurrent, deleteArch })(ArchivedItem);
+export default ArchivedItem;
