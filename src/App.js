@@ -94,20 +94,34 @@
 
 // export default connect(mapStateToProps)(App);
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Archives from './Archives.js';
 import CreateArchive from './CreateArchive.js';
 import Logs from './components/logs/Logs.js';
 
+import AddBtn from './components/layout/AddBtn.js';
+import AddLogModal from './components/logs/AddLogModal.js';
+import AddDriverModal from './components/drivers/AddDriverModal.js';
+
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
+
 const App = () => {
+  useEffect(() => {
+    M.AutoInit();
+  });
+
   return (
     <BrowserRouter>
-      <main role="main">
+      <main role='main'>
         <Logs />
         <Archives />
-        <CreateArchive />{' '}
+        <CreateArchive />
+        <AddBtn />
+        <AddLogModal />
+        <AddDriverModal />
       </main>
     </BrowserRouter>
   );

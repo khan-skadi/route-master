@@ -11,6 +11,7 @@ export const addLog = (log) => (
     .add({ ...log })
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id);
+      console.log(docRef);
     })
     .catch((err) => {
       console.error('Error adding document: ', err);
@@ -35,14 +36,18 @@ export const getLogs = () => (
     .collection('logs')
     .get()
     .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        console.log(doc.id, ' => ', doc.data());
-        dispatch({ type: 'GET_LOG_SUCCESS', payload: querySnapshot });
-      });
+      querySnapshot
+        .forEach(function (doc) {
+          console.log(doc.id, ' => ', doc.data());
+          console.log(doc);
+        })
+        .then((log) => {
+          dispatch({ type: 'GET_LOG_SUCCESS', payload: log });
+        });
     })
-    .then(() => {
-      dispatch({ type: 'GET_LOG_SUCCESS' });
-    })
+    // .then(() => {
+    //   dispatch({ type: 'GET_LOG_SUCCESS' });
+    // })
     .catch((err) => {
       console.err('Error getting document: ', err);
     });

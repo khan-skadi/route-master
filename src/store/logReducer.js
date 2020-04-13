@@ -13,7 +13,8 @@ export default function (state = initialState, action) {
       };
     case 'GET_LOG_SUCCESS':
       return {
-        ...state
+        ...state,
+        logs: action.payload
       };
     case 'GET_LOG':
       return {
