@@ -23,7 +23,7 @@ export const addLog = (log) => (
 };
 
 // Get logs
-export const getLogs = (id) => (
+export const getLogs = () => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -37,7 +37,11 @@ export const getLogs = (id) => (
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         console.log(doc.id, ' => ', doc.data());
+        dispatch({ type: 'GET_LOG_SUCCESS', payload: querySnapshot });
       });
+    })
+    .then(() => {
+      dispatch({ type: 'GET_LOG_SUCCESS' });
     })
     .catch((err) => {
       console.err('Error getting document: ', err);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const LogItem = (props) => {
+const LogItem = ({ log }) => {
   const onDelete = () => {
     console.log('pressed delete log');
     M.toast({ html: 'Route Deleted' });
@@ -39,45 +39,48 @@ const LogItem = (props) => {
 
   return (
     <div>
-      <li className="collection-item">
+      <li className='collection-item'>
         <div>
           <a
             className={`modal-trigger ${
-              props.attention
+              log.attention
                 ? 'red-text'
-                : props.progress
+                : log.progress
                 ? 'green-text'
                 : 'blue-text'
             }`}
-            href="#edit-log-modal"
+            href='#edit-log-modal'
           >
-            {props.locationFrom} - {props.locationTo} : {props.price + '$'}
+            {log.locationFrom} - {log.locationTo} : {log.price + '$'}
           </a>
           <br />
-          <span className="grey-text">
-            <span className="black-text">ID #{props.id}</span> last updated by{' '}
-            <span className="black-text">
-              {props.driver ? props.driver : 'Admin'}
+          <span className='grey-text'>
+            <span className='black-text'>ID #{log.id}</span> last updated by{' '}
+            <span className='black-text'>
+              {log.driver ? log.driver : 'Admin'}
             </span>{' '}
-            on <Moment format="MMMM Do YYYY, h:mm:ss a">{props.date}</Moment>
+            on{' '}
+            <Moment format='MMMM Do YYYY, h:mm:ss a'>
+              {log.date.toDate()}
+            </Moment>
           </span>
           <a
-            className="tooltipped secondary-content"
-            data-position="top"
-            data-tooltip="Delete"
-            href="#!"
+            className='tooltipped secondary-content'
+            data-position='top'
+            data-tooltip='Delete'
+            href='#!'
             onClick={onDelete}
           >
-            <i className="material-icons grey-text">delete</i>
+            <i className='material-icons grey-text'>delete</i>
           </a>
           <a
-            className="tooltipped secondary-content"
-            data-position="bottom"
-            data-tooltip="Archive"
-            href="#!"
+            className='tooltipped secondary-content'
+            data-position='bottom'
+            data-tooltip='Archive'
+            href='#!'
             onClick={onArchive}
           >
-            <i className="material-icons grey-text">archive</i>
+            <i className='material-icons grey-text'>archive</i>
           </a>
         </div>
       </li>

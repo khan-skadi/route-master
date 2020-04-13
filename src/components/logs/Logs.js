@@ -7,26 +7,24 @@ import { addLog, getLogs } from '../../store/logActions.js';
 import LogItem from './LogItem';
 import Preloader from '../layout/Preloader';
 
-const Logs = ({ props }) => {
-  const { addLog, getLogs } = props;
+const Logs = (props) => {
+  const { logs, addLog, getLogs } = props;
 
   useEffect(() => {
     getLogs();
   });
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12">
-          {/* {!loading && logs.length === 0 ? (
-        <p className="center">No logs to show...</p>
-      ) : (
-        logs.map((log) => (
-          <LogItem log={log} key={log.id} arch={arch} driver={driver} />
-        ))
-      )} */}
+    <div className='container'>
+      <div className='row'>
+        <div className='col s12'>
+          {logs && logs.length === 0 ? (
+            <Preloader />
+          ) : (
+            logs && logs.map((log) => <LogItem log={log} key={log.date} />)
+          )}
           <h1>Logs</h1>
-          <NavLink to="/archived-routes" className="flow-text">
+          <NavLink to='/archived-routes' className='flow-text'>
             <blockquote style={{ color: 'green' }}>Archived Routes</blockquote>
           </NavLink>
         </div>
