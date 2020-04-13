@@ -1,25 +1,25 @@
-import React, { useRef } from "react";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import { searchLogs } from "../../store/actions/logActions";
-import NavbarSearch from "./NavbarSearch";
-import SignedInLinks from "./SignedInLinks";
-import SignedOutLinks from "./SignedOutLinks";
-import PropTypes from "prop-types";
-import logo from "../../img/Logo.png";
+import React, { useRef } from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { searchLogs } from '../../store/actions/logActions';
+import NavbarSearch from './NavbarSearch';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
+import PropTypes from 'prop-types';
+import logo from '../../assets/img/Logo.png';
 
-export const SearchBar = props => {
-  const { auth, profile, driver, location } = props;
+export const SearchBar = (props) => {
+  const { auth, profile, location } = props;
 
   const links = auth.uid ? (
-    <SignedInLinks profile={profile} driver={driver} />
+    <SignedInLinks profile={profile} />
   ) : (
     <SignedOutLinks />
   );
 
-  const text = useRef("");
+  const text = useRef('');
 
-  const onChange = e => {
+  const onChange = (e) => {
     props.searchLogs(text.current.value);
   };
 
@@ -47,11 +47,10 @@ SearchBar.propTypes = {
   searchLogs: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    profile: state.firebase.profile,
-    driver: state.driver.drivers
+    profile: state.firebase.profile
   };
 };
 

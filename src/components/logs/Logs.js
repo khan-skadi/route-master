@@ -3,24 +3,24 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom';
-import { addLog, getLogs } from '../../store/logActions.js';
+import { getLogs } from '../../store/logActions.js';
 import LogItem from './LogItem';
 import Preloader from '../layout/Preloader';
 
 const Logs = (props) => {
-  const { logs, addLog, getLogs } = props;
+  const { logs, getLogs } = props;
 
   useEffect(() => {
     getLogs();
   });
 
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col s12'>
-          <h1 className='center-align'>Logs</h1>
-          <ul className='collection with-header'>
-            <li className='collection-header center-align'>
+    <div className="container">
+      <div className="row">
+        <div className="col s12">
+          <h1 className="center-align">Logs</h1>
+          <ul className="collection with-header">
+            <li className="collection-header center-align">
               <h4>Active Logs</h4>
             </li>
             {logs && logs.length === 0 ? (
@@ -28,7 +28,7 @@ const Logs = (props) => {
             ) : (
               logs && logs.map((log) => <LogItem log={log} key={log.date} />)
             )}
-            <NavLink to='/archived-routes' className='flow-text'>
+            <NavLink to="/archived-routes" className="flow-text">
               <blockquote style={{ color: 'green' }}>
                 Archived Routes
               </blockquote>
@@ -48,9 +48,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addLog: (log) => {
-      dispatch(addLog(log));
-    },
     getLogs: (id) => {
       dispatch(getLogs(id));
     }

@@ -1,6 +1,6 @@
-import React from "react";
-import OurStaffList from "./OurStaffList";
-import Preloader from "./Preloader";
+import React from 'react';
+import OurStaffList from './OurStaffList';
+import Preloader from '../layout/Preloader';
 
 const OurStaff = ({ driver }) => {
   if (driver.loading || driver.drivers === null) {
@@ -16,7 +16,7 @@ const OurStaff = ({ driver }) => {
               <h4 className="center">Our Staff</h4>
             </li>
             {driver.drivers &&
-              driver.drivers.map(driver => {
+              driver.drivers.map((driver) => {
                 return (
                   <div key={driver.id}>
                     <OurStaffList driver={driver} />

@@ -72,12 +72,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { Provider } from 'react-redux';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
-import firebase from './wFirebase/firebaseConfig.js';
+import { BrowserRouter } from 'react-router-dom';
 import store from './store/store.js';
+import firebase from './wFirebase/firebaseConfig.js';
 
+import Footer from './components/layout/Footer.js';
 import App from './App';
 import './App.css';
 
@@ -94,10 +96,14 @@ const rrfProps = {
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
-    </ReactReduxFirebaseProvider>
-  </Provider>,
+  [
+    <Provider store={store} key="3">
+      <ReactReduxFirebaseProvider {...rrfProps} key="4">
+        <BrowserRouter key="5">
+          <App key="1" />, <Footer key="2" />
+        </BrowserRouter>
+      </ReactReduxFirebaseProvider>
+    </Provider>
+  ],
   document.getElementById('root')
 );

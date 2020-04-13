@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getArchs } from "../../store/actions/archActions";
-import PropTypes from "prop-types";
-import Preloader from "../layout/Preloader";
-import ArchivedItem from "./ArchivedItem";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getArchs } from '../../store/actions/archActions';
+import PropTypes from 'prop-types';
+import Preloader from '../layout/Preloader';
+import ArchivedItem from './ArchivedItem';
 
-const ArchivedRoutes = props => {
+const ArchivedRoutes = (props) => {
   const {
     arch: { archs, loading }
   } = props;
@@ -30,7 +30,7 @@ const ArchivedRoutes = props => {
             {!loading && archs.length === 0 ? (
               <p className="center">No archives to show...</p>
             ) : (
-              archs.map(arch => <ArchivedItem arch={arch} key={arch.id} />)
+              archs.map((arch) => <ArchivedItem arch={arch} key={arch.id} />)
             )}
           </ul>
         </div>
@@ -44,11 +44,11 @@ ArchivedRoutes.propTypes = {
   getArchs: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   arch: state.arch
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getArchs: () => dispatch(getArchs(dispatch))
   };

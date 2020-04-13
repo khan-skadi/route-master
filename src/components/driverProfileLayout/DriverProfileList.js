@@ -1,10 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 // import DriverLogItem from "./DriverLogItem";
-import DriverProfileLogList from "./DriverProfileLogList";
-import DriverNavbar from "./DriverNavbar";
-import { setCurrentDriver } from "../../store/actions/driverActions";
-import PropTypes from "prop-types";
+import DriverProfileTable from './DriverProfileTable';
+import DriverNavbar from './DriverNavbar';
+import { setCurrentDriver } from '../../store/actions/driverActions';
+import PropTypes from 'prop-types';
 
 const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
   // number of Completed Routes
@@ -18,7 +18,7 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
         <div className="row">
           <div
             className="col s4 card-panel grey lighten-3 center"
-            style={{ padding: "0.7em 1em 1em 1em" }}
+            style={{ padding: '0.7em 1em 1em 1em' }}
           >
             <div className="col s12">
               <div className="col s2 push-s10">
@@ -44,7 +44,7 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
 
             <div className="row">
               <div className="col s12">
-                <h5 style={{ fontWeight: "bold" }}>
+                <h5 style={{ fontWeight: 'bold' }}>
                   {driver.firstName} {driver.lastName}
                 </h5>
               </div>
@@ -88,7 +88,7 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
                 <span className="grey-text">HOURLY RATE</span>
                 <br />
                 <span className="flow-text">
-                  <span className="flow-text">{driver.hourlyRate + "$"}</span>
+                  <span className="flow-text">{driver.hourlyRate + '$'}</span>
                 </span>
               </span>
             </div>
@@ -98,7 +98,7 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
                 <br />
                 <span className="flow-text">
                   <span className="flow-text">
-                    {driver.completedRoutes === null ? "-/-" : completedCount}
+                    {driver.completedRoutes === null ? '-/-' : completedCount}
                   </span>
                 </span>
               </span>
@@ -109,12 +109,12 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
           <div className="col s8">
             <ul>
               <li>
-                <h4 className="center" style={{ fontWeight: "bold" }}>
+                <h4 className="center" style={{ fontWeight: 'bold' }}>
                   {driver.firstName}'s Logs
                 </h4>
               </li>
               <div className="col s12">
-                <DriverProfileLogList driver={driver} key={driver.id} />
+                <DriverProfileTable driver={driver} key={driver.id} />
               </div>
               {/* <ul> */}
               {/* {!archItems.length === 0 ? (
@@ -137,9 +137,9 @@ DriverProfileList.propTypes = {
   setCurrentDriver: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentDriver: driver => dispatch(setCurrentDriver(driver))
+    setCurrentDriver: (driver) => dispatch(setCurrentDriver(driver))
   };
 };
 

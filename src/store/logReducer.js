@@ -4,7 +4,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  const { data } = action;
   switch (action.type) {
     case 'ADD_LOG':
       return {
@@ -15,11 +14,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         logs: action.payload
-      };
-    case 'GET_LOG':
-      return {
-        ...state,
-        data
       };
     default:
       return state;

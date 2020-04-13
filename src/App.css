@@ -1,24 +1,50 @@
 @font-face {
-  font-family: "LeelawUI";
-  src: local("LeelawUI"), url(./fonts/LeelawUI.ttf) format("truetype");
+  font-family: 'LeelawUI';
+  src: local('LeelawUI'), url(./assets/fonts/LeelawUI.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "Malgun Gothic";
-  src: local("malgun"), url(./fonts/malgun.ttf) format("truetype");
+  font-family: 'Malgun Gothic';
+  src: local('malgun'), url(./assets/fonts/malgun.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "Little Pat";
-  src: local("LittlePat"), url(./fonts/LittlePat.ttf) format("truetype");
+  font-family: 'Little Pat';
+  src: local('LittlePat'), url(./assets/fonts/LittlePat.ttf) format('truetype');
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+  padding: 10px;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
 .signIn {
   background-image: linear-gradient(
       to bottom,
       rgba(3, 241, 122, 0.5),
       rgba(22, 37, 255, 0.76)
     ),
-    url("./img/truck6.png");
+    url('./assets/img/truck6.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

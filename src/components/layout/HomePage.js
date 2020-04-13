@@ -1,31 +1,13 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getLogs } from "../../store/actions/logActions";
-import { getDrivers } from "../../store/actions/driverActions";
-import { getArchs } from "../../store/actions/archActions";
-import Preloader from "./Preloader";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import AdminPanel from "./AdminPanel";
-import OurStaff from "./OurStaff";
-import Logs from "../logs/Logs";
-import PropTypes from "prop-types";
+import AdminPanel from '../adminPanel/AdminPanel.js';
+import OurStaff from '../ourStaff/OurStaff.js';
+import Logs from '../logs/Logs.js';
 
-const HomePage = props => {
-  const { driver, arch, log } = props;
-
-  useEffect(() => {
-    props.getLogs();
-    props.getDrivers();
-    props.getArchs();
-    // eslint-disable-next-line
-  }, []);
-
-  if (driver.loading || driver.drivers === null) {
-    return <Preloader />;
-  }
-
+const HomePage = (props) => {
   return (
-    <div className="container" style={{ marginTop: "30px" }}>
+    <div className="container" style={{ marginTop: '30px' }}>
       <div className="row">
         <div className="col s12">
           <a
@@ -33,7 +15,7 @@ const HomePage = props => {
             className="waves-effect waves-light btn modal-trigger blue darken-2"
           >
             <i className="material-icons left">drive_eta</i>Add Route
-          </a>{" "}
+          </a>{' '}
           <a
             href="#add-drivers-modal"
             className="waves-effect waves-light btn modal-trigger blue darken-2"
@@ -46,44 +28,21 @@ const HomePage = props => {
             <li className="collection-header">
               <h4 className="center">Active Routes</h4>
             </li>
-            <Logs log={log} arch={arch} driver={driver} />
+            {/* <Logs log={log} arch={arch} driver={driver} /> */}
+            <Logs />
           </ul>
           <div>
-            <OurStaff driver={driver} />
+            {/* <OurStaff driver={driver} /> */}
+            <OurStaff />
           </div>
         </div>
         <div className="col s4 hide-on-med-and-down">
-          <AdminPanel driver={driver} log={log} arch={arch} />
+          {/* <AdminPanel driver={driver} log={log} arch={arch} /> */}
+          <AdminPanel />
         </div>
       </div>
     </div>
   );
 };
 
-HomePage.propTypes = {
-  log: PropTypes.object.isRequired,
-  driver: PropTypes.object.isRequired,
-  arch: PropTypes.object.isRequired,
-  getLogs: PropTypes.func.isRequired,
-  getDrivers: PropTypes.func.isRequired,
-  getArchs: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    log: state.log,
-    driver: state.driver,
-    arch: state.arch
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getLogs: () => dispatch(getLogs(dispatch)),
-    getDrivers: () => dispatch(getDrivers(dispatch)),
-    getArchs: () => dispatch(getArchs(dispatch))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect()(HomePage);

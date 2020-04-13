@@ -1,12 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AdminPanelList from "./AdminPanelList";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import AdminPanelList from './AdminPanelList';
 
-const AdminPanel = props => {
+const AdminPanel = (props) => {
   const { driver, log, arch } = props;
 
-  const archsPrice = arch.archs && arch.archs.map(arch => parseInt(arch.price));
-  const logsPrice = log.logs && log.logs.map(log => parseInt(log.price));
+  const archsPrice =
+    arch.archs && arch.archs.map((arch) => parseInt(arch.price));
+  const logsPrice = log.logs && log.logs.map((log) => parseInt(log.price));
 
   const adminReducer = (accumulator, currentValue) =>
     Math.round(accumulator + currentValue);
@@ -27,9 +28,9 @@ const AdminPanel = props => {
             <div className="card-content white-text">
               <span
                 className="card-title blue-text text-darken-2"
-                style={{ fontWeight: "410" }}
+                style={{ fontWeight: '410' }}
               >
-                Active Routes{" "}
+                Active Routes{' '}
                 <i className="material-icons right">assignment_turned_in</i>
               </span>
               <p className="flow-text">{currentActiveRoutes} $</p>
@@ -40,9 +41,9 @@ const AdminPanel = props => {
             <div className="card-content white-text">
               <span
                 className="card-title blue-text text-darken-2"
-                style={{ fontWeight: "410" }}
+                style={{ fontWeight: '410' }}
               >
-                Finished Routes{" "}
+                Finished Routes{' '}
                 <i className="material-icons right">assistant</i>
               </span>
               <p className="flow-text">{finishedRoutesTotal} $</p>
@@ -59,11 +60,11 @@ const AdminPanel = props => {
               <span>
                 <h5
                   className="blue-text text-darken-2"
-                  style={{ fontWeight: "410" }}
+                  style={{ fontWeight: '410' }}
                 >
-                  Available drivers{" "}
+                  Available drivers{' '}
                   <span className="right">
-                    {" "}
+                    {' '}
                     <i className="material-icons center">assignment_ind</i>
                   </span>
                 </h5>
@@ -71,11 +72,11 @@ const AdminPanel = props => {
 
               {driver.drivers &&
                 driver.drivers
-                  .filter(driver => driver.available === true)
-                  .map(driver => {
+                  .filter((driver) => driver.available === true)
+                  .map((driver) => {
                     return (
                       <div key={driver.id}>
-                        <Link to={"/drivers/" + driver.id} key={driver.id}>
+                        <Link to={'/drivers/' + driver.id} key={driver.id}>
                           <AdminPanelList driver={driver} />
                         </Link>
                       </div>

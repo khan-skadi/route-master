@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./table.css";
+import React, { Component } from 'react';
+import './table.css';
 
-class DriverProfileLogList extends Component {
+class DriverProfileTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,17 +14,17 @@ class DriverProfileLogList extends Component {
       const { locationFrom, locationTo, distance, price, postedOn } = route;
       return (
         <tr className="z-depth-2" key={index}>
-          <td style={{ marginBottom: "20px", padding: "25px" }}>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>
             {locationFrom}
           </td>
-          <td style={{ marginBottom: "20px", padding: "25px" }}>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>
             {locationTo}
           </td>
-          <td style={{ marginBottom: "20px", padding: "25px" }}>{distance}</td>
-          <td style={{ marginBottom: "20px", padding: "25px" }}>{price}</td>
-          <td style={{ marginBottom: "20px", padding: "25px" }}>{postedOn}</td>
-          <td style={{ marginBottom: "20px", padding: "25px" }}>
-            {" "}
+          <td style={{ marginBottom: '20px', padding: '25px' }}>{distance}</td>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>{price}</td>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>{postedOn}</td>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>
+            {' '}
             <a
               href="#!"
               className="btn waves-effect waves-light green accent-4"
@@ -40,12 +40,12 @@ class DriverProfileLogList extends Component {
 
   renderTableHeader() {
     let header = [
-      "Location From",
-      "Location To",
-      "Distance",
-      "Price",
-      "Posted On",
-      "Signed"
+      'Location From',
+      'Location To',
+      'Distance',
+      'Price',
+      'Posted On',
+      'Signed'
     ];
     return header.map((key, index) => {
       return <th key={index}>{key}</th>;
@@ -66,4 +66,4 @@ class DriverProfileLogList extends Component {
   }
 }
 
-export default DriverProfileLogList;
+export default DriverProfileTable;

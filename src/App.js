@@ -95,15 +95,14 @@
 // export default connect(mapStateToProps)(App);
 
 import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
-import Archives from './Archives.js';
-import CreateArchive from './CreateArchive.js';
+import Navbar from './components/layout/Navbar.js';
+import HomePage from './components/layout/HomePage.js';
 import Logs from './components/logs/Logs.js';
 
 import AddBtn from './components/layout/AddBtn.js';
-import AddLogModal from './components/logs/AddLogModal.js';
-import AddDriverModal from './components/drivers/AddDriverModal.js';
+import AddLogModal from './components/modals/AddLogModal.js';
+import AddDriverModal from './components/modals/AddDriverModal.js';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -114,16 +113,15 @@ const App = () => {
   });
 
   return (
-    <BrowserRouter>
-      <main role='main'>
+    <>
+      <AddLogModal />
+      <AddDriverModal />
+      <Navbar />
+      <div className="content">
         <Logs />
-        <Archives />
-        <CreateArchive />
         <AddBtn />
-        <AddLogModal />
-        <AddDriverModal />
-      </main>
-    </BrowserRouter>
+      </div>
+    </>
   );
 };
 

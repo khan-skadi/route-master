@@ -1,16 +1,16 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import logo from "../../img/Logo.png";
-import "../../App.css";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import logo from '../../assets/img/Logo.png';
 
-const Footer = props => {
+const Footer = (props) => {
   const { location } = props;
 
   if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
     return null;
   }
   return (
-    <footer className="page-footer footer green accent-4">
+    <footer className="page-footer green accent-4">
+      <div className="phantom" />
       <div className="container">
         <div className="row">
           <div className="col s12 l4">
@@ -19,7 +19,7 @@ const Footer = props => {
             <a
               href="#!"
               className="brand-logo center"
-              style={{ marginLeft: "30px" }}
+              style={{ marginLeft: '30px' }}
             >
               <img src={logo} alt="logo" width="108" height="auto" />
             </a>
@@ -127,7 +127,7 @@ const Footer = props => {
             <ul>
               <li>
                 <a className="white-text" href="#!">
-                  {" "}
+                  {' '}
                   <h5>Follow us </h5>
                 </a>
               </li>
@@ -159,7 +159,7 @@ const Footer = props => {
                 </a>
               </li>
               <li>
-                {" "}
+                {' '}
                 <a
                   className="waves-effect waves-light btn blue darken-2"
                   href="#!"
@@ -175,7 +175,7 @@ const Footer = props => {
 
       <div className="footer-copyright">
         <div className="container">
-          <span style={{ fontSize: "0.9em" }}>
+          <span style={{ fontSize: '0.9em' }}>
             Khan Skadi © 2019 created by Petar Kartalov
           </span>
         </div>
@@ -185,8 +185,8 @@ const Footer = props => {
 };
 
 const socialStyle = {
-  width: "150px",
-  marginBottom: "4px"
+  width: '150px',
+  marginBottom: '4px'
 };
 
 export default withRouter(Footer);
