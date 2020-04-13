@@ -1,28 +1,26 @@
-import { db } from "../wFirebase/firebaseConfig.js";
-
 export const addArchive = (arch) => ({
-  type: "ADD_ARCH",
-  arch,
+  type: 'ADD_ARCH',
+  arch
 });
 
 export const createArchive = (archive) => {
   return (dispatch, getState, getFirestore) => {
-    const firestore = db;
+    const firestore = getFirestore;
 
     firestore
-      .collection("archs")
+      .collection('archs')
       .add({
         ...archive,
         locationFrom: archive.locationFrom,
         locationTo: archive.locationTo,
         distance: archive.distance,
-        postedBy: archive.postedBy,
+        postedBy: archive.postedBy
       })
       .then(() => {
-        dispatch({ type: "CREATE_ARCHIVE_SUCCESS", payload: archive });
+        dispatch({ type: 'CREATE_ARCHIVE_SUCCESS', payload: archive });
       })
       .catch((err) => {
-        dispatch({ type: "CREATE_ARCHIVE_ERROR" }, err);
+        dispatch({ type: 'CREATE_ARCHIVE_ERROR' }, err);
       });
   };
 };

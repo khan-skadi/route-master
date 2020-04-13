@@ -94,22 +94,22 @@
 
 // export default connect(mapStateToProps)(App);
 
-import React from "react";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import Archives from "./Archives.js";
-import CreateArchive from "./CreateArchive.js";
+import Archives from './Archives.js';
+import CreateArchive from './CreateArchive.js';
+import Logs from './components/logs/Logs.js';
 
 const App = () => {
   return (
-    <div className="container">
-      <div className="col s12">
-        <h1 style={{ textAlign: "center", marginBottom: "40px" }}>
-          Archives TEST
-        </h1>
+    <BrowserRouter>
+      <main role="main">
+        <Logs />
         <Archives />
-        <CreateArchive />
-      </div>
-    </div>
+        <CreateArchive />{' '}
+      </main>
+    </BrowserRouter>
   );
 };
 

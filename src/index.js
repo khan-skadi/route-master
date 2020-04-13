@@ -70,15 +70,28 @@
 //   document.getElementById("root")
 // );
 
-import React from "react";
-import ReactDOM from "react-dom";
-import { ReactReduxFirebaseProvider } from "react-redux-firebase";
-import { Provider } from "react-redux";
-import rrfProps from "./wFirebase/firebaseConfig.js";
-import store from "./store/store.js";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { Provider } from 'react-redux';
+import { createFirestoreInstance } from 'redux-firestore';
+import firebase from './wFirebase/firebaseConfig.js';
+import store from './store/store.js';
 
-import App from "./App";
-import "./App.css";
+import App from './App';
+import './App.css';
+
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true
+};
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance
+};
 
 ReactDOM.render(
   <Provider store={store}>
@@ -86,5 +99,5 @@ ReactDOM.render(
       <App />
     </ReactReduxFirebaseProvider>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
