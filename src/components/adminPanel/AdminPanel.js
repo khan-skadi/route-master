@@ -15,10 +15,10 @@ const AdminPanel = props => {
   const { drivers, logs, archs, getLatestArch } = props;
 
   useEffect(() => {
+    setLatest(getLatestArch());
     //   .then(date => {
     //     setLatest(date[0]);
     //   })
-    setLatest(getLatestArch());
 
     //eslint-disable-next-line
   }, []);
