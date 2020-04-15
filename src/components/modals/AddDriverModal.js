@@ -35,39 +35,39 @@ class AddDriverModal extends Component {
     this.handleUpload = this.handleUpload.bind(this);
   }
 
-  handleLicense = (e) => {
+  handleLicense = e => {
     const license = e.target.value;
     this.setState(() => ({ license }));
   };
-  handleHourlyRate = (e) => {
+  handleHourlyRate = e => {
     const hourlyRate = e.target.value;
     this.setState(() => ({ hourlyRate }));
   };
-  handleBirthYear = (e) => {
+  handleBirthYear = e => {
     const birthYear = e.target.value;
     this.setState(() => ({ birthYear }));
   };
-  handlePhoneNumber = (e) => {
+  handlePhoneNumber = e => {
     const phoneNumber = e.target.value;
     this.setState(() => ({ phoneNumber }));
   };
-  handleEmail = (e) => {
+  handleEmail = e => {
     const email = e.target.value;
     this.setState(() => ({ email }));
   };
-  handleAddress = (e) => {
+  handleAddress = e => {
     const address = e.target.value;
     this.setState(() => ({ address }));
   };
-  handleLastName = (e) => {
+  handleLastName = e => {
     const lastName = e.target.value;
     this.setState(() => ({ lastName }));
   };
-  handleFirstName = (e) => {
+  handleFirstName = e => {
     const firstName = e.target.value;
     this.setState(() => ({ firstName }));
   };
-  handleChange = (e) => {
+  handleChange = e => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({ image }));
@@ -81,14 +81,14 @@ class AddDriverModal extends Component {
       .put(image);
     uploadTask.on(
       'state_changed',
-      (snapshot) => {
+      snapshot => {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         console.log('Upload is ' + progress + '% done');
         this.setState({ progress });
       },
-      (error) => {
+      error => {
         console.log(error);
       },
       () => {
@@ -100,13 +100,13 @@ class AddDriverModal extends Component {
         //   .then((url) => {
         //     this.setState({ imageUrl: url });
         //   });
-        uploadTask.snapshot.ref.getDownloadURL().then((downloadUrl) => {
+        uploadTask.snapshot.ref.getDownloadURL().then(downloadUrl => {
           this.setState({ imageUrl: downloadUrl });
         });
       }
     );
   };
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     if (this.state.firstName === '' || this.state.lastName === '') {
       M.toast({ html: 'Please enter the first and last name' });
@@ -304,7 +304,7 @@ AddDriverModal.propTypes = {
   addDriver: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     drivers: state.firestore.ordered.drivers
   };

@@ -7,7 +7,7 @@ import { setAvailableFalse } from '../../store/driverActions.js';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddLogModal = (props) => {
+const AddLogModal = props => {
   const [locationFrom, setLocationFrom] = useState('');
   const [locationTo, setLocationTo] = useState('');
   const [distance, setDistance] = useState(0);
@@ -39,7 +39,7 @@ const AddLogModal = (props) => {
     // Update driver available status
     const findDriver =
       drivers &&
-      drivers.find((driver) =>
+      drivers.find(driver =>
         newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
           ? driver
           : false
@@ -48,6 +48,7 @@ const AddLogModal = (props) => {
       ...findDriver,
       available: false
     };
+    console.log(updatedDriver.completedRoutes);
     setAvailableFalse(updatedDriver);
 
     M.toast({ html: 'Route added' });
@@ -64,54 +65,54 @@ const AddLogModal = (props) => {
   };
 
   return (
-    <div id='add-route-modal' className='modal' style={modalStyle}>
-      <div className='modal-content'>
-        <div className='row'>
-          <div className='col s12'>
+    <div id="add-route-modal" className="modal" style={modalStyle}>
+      <div className="modal-content">
+        <div className="row">
+          <div className="col s12">
             <h4>Add Route</h4>
             <br />
           </div>
         </div>
 
-        <div className='row'>
-          <div className='input-field col s12'>
-            <i className='material-icons prefix'>keyboard_arrow_left</i>
+        <div className="row">
+          <div className="input-field col s12">
+            <i className="material-icons prefix">keyboard_arrow_left</i>
             <input
-              type='text'
-              name='locationFrom'
+              type="text"
+              name="locationFrom"
               value={locationFrom || ''}
-              onChange={(e) => setLocationFrom(e.target.value)}
+              onChange={e => setLocationFrom(e.target.value)}
             />
-            <label htmlFor='locationFrom' className='active'>
+            <label htmlFor="locationFrom" className="active">
               Location From
             </label>
           </div>
 
-          <div className='input-field col s12'>
-            <i className='material-icons prefix'>keyboard_arrow_right</i>
+          <div className="input-field col s12">
+            <i className="material-icons prefix">keyboard_arrow_right</i>
             <input
-              type='text'
-              name='locationTo'
+              type="text"
+              name="locationTo"
               value={locationTo || ''}
-              onChange={(e) => setLocationTo(e.target.value)}
+              onChange={e => setLocationTo(e.target.value)}
             />
-            <label htmlFor='locationTo' className='active'>
+            <label htmlFor="locationTo" className="active">
               Location To
             </label>
           </div>
 
-          <div className='input-field col s12'>
+          <div className="input-field col s12">
             <select
-              name='driver'
+              name="driver"
               value={driver || ''}
-              className='browser-default'
-              onChange={(e) => setDriver(e.target.value)}
+              className="browser-default"
+              onChange={e => setDriver(e.target.value)}
             >
-              <option value='' disabled>
+              <option value="" disabled>
                 Select Driver
               </option>
               {drivers &&
-                drivers.map((d) => (
+                drivers.map(d => (
                   <option value={`${d.firstName} ${d.lastName}`} key={d.id}>
                     {d.firstName} {d.lastName}
                   </option>
@@ -119,67 +120,67 @@ const AddLogModal = (props) => {
             </select>
           </div>
 
-          <div className='input-field col s12'>
-            <i className='material-icons prefix'>swap_horiz</i>
+          <div className="input-field col s12">
+            <i className="material-icons prefix">swap_horiz</i>
             <input
-              type='text'
-              name='distance'
+              type="text"
+              name="distance"
               value={distance || 0}
-              onChange={(e) => setDistance(e.target.value)}
+              onChange={e => setDistance(e.target.value)}
             />
-            <label htmlFor='distance' className='active'>
+            <label htmlFor="distance" className="active">
               Distance
             </label>
           </div>
 
-          <div className='input-field col s12'>
-            <i className='material-icons prefix'>date_range</i>
+          <div className="input-field col s12">
+            <i className="material-icons prefix">date_range</i>
             <input
-              type='text'
-              name='postedOn'
+              type="text"
+              name="postedOn"
               value={postedOn || ''}
-              onChange={(e) => setPostedOn(e.target.value)}
+              onChange={e => setPostedOn(e.target.value)}
             />
-            <label htmlFor='postedOn' className='active'>
+            <label htmlFor="postedOn" className="active">
               Posted On
             </label>
           </div>
 
-          <div className='input-field col s12'>
-            <i className='material-icons prefix'>account_box</i>
+          <div className="input-field col s12">
+            <i className="material-icons prefix">account_box</i>
             <input
-              type='text'
-              name='postedBy'
+              type="text"
+              name="postedBy"
               value={postedBy || ''}
-              onChange={(e) => setPostedBy(e.target.value)}
+              onChange={e => setPostedBy(e.target.value)}
             />
-            <label htmlFor='postedBy' className='active'>
+            <label htmlFor="postedBy" className="active">
               Posted By
             </label>
           </div>
 
-          <div className='input-field col s12'>
-            <i className='material-icons prefix'>attach_money</i>
+          <div className="input-field col s12">
+            <i className="material-icons prefix">attach_money</i>
             <input
-              type='number'
-              name='price'
+              type="number"
+              name="price"
               value={price || ''}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={e => setPrice(e.target.value)}
             />
-            <label htmlFor='price' className='active'>
+            <label htmlFor="price" className="active">
               Price
             </label>
           </div>
 
-          <div className='input-field col s12'>
+          <div className="input-field col s12">
             <p>
               <label>
                 <input
-                  type='checkbox'
-                  className='filled-in'
+                  type="checkbox"
+                  className="filled-in"
                   checked={attention}
                   value={attention}
-                  onChange={(e) => setAttention(!attention)}
+                  onChange={e => setAttention(!attention)}
                 />
                 <span>Important - Time Sensitive</span>
               </label>
@@ -187,24 +188,24 @@ const AddLogModal = (props) => {
             <p>
               <label>
                 <input
-                  type='checkbox'
-                  className='filled-in'
+                  type="checkbox"
+                  className="filled-in"
                   checked={progress}
                   value={progress}
-                  onChange={(e) => setProgress(!progress)}
+                  onChange={e => setProgress(!progress)}
                 />
                 <span>In Progress</span>
               </label>
             </p>
 
-            <div className='modal-footer'>
+            <div className="modal-footer">
               <a
-                href='#!'
+                href="#!"
                 onClick={onSubmit}
-                className='modal-close waves-effect blue darken-2 btn'
+                className="modal-close waves-effect blue darken-2 btn"
               >
                 Submit
-                <i className='material-icons right'>send</i>
+                <i className="material-icons right">send</i>
               </a>
             </div>
           </div>
@@ -224,19 +225,19 @@ AddLogModal.propTypes = {
   setAvailableFalse: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     logs: state.firestore.ordered.logs,
     drivers: state.firestore.ordered.drivers
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    addLog: (log) => {
+    addLog: log => {
       dispatch(addLog(log));
     },
-    setAvailableFalse: (driver) => {
+    setAvailableFalse: driver => {
       dispatch(setAvailableFalse(driver));
     }
   };

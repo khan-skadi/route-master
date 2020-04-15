@@ -1,3 +1,5 @@
+import firebase from '../wFirebase/firebaseConfig.js';
+
 // Add driver
 export const addDriver = driver => (
   dispatch,
@@ -111,5 +113,29 @@ export const setAvailableFalse = driver => (
     })
     .catch(err => {
       console.error('Failed to change available status ', err);
+    });
+};
+
+// Add completed log
+export const addCompletedRoute = (driver, log) => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const driverRef = driver.firstName.concat(` ${driver.lastName}`);
+
+  firestore
+    .collection('drivers')
+    .doc(driverRef)
+    .update({
+      completedRoutes: firebase.firestore.FieldValue.arrayUnion(log)
+    })
+    .then(docRef => {
+      console.log('Completed route added with ID: ', docRef.id);
+      console.log(docRef);
+    })
+    .catch(err => {
+      console.error('Error adding completedRoute: ', err);
     });
 };

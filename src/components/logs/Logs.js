@@ -4,21 +4,30 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom';
 import { getLogs, deleteLog } from '../../store/logActions.js';
-import { setAvailableTrue } from '../../store/driverActions.js';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import {
+  setAvailableTrue,
+  addCompletedRoute
+} from '../../store/driverActions.js';
+import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
+import M from 'materialize-css/dist/js/materialize.min.js';
 import LogItem from './LogItem';
 
 const Logs = props => {
-  const { drivers, logs, getLogs, deleteLog, setAvailableTrue } = props;
+  const {
+    drivers,
+    logs,
+    getLogs,
+    deleteLog,
+    setAvailableTrue,
+    addCompletedRoute
+  } = props;
 
   useEffect(() => {
     getLogs();
   });
 
   const onDelete = log => {
-    deleteLog(log.id);
-
     const findDriver =
       drivers &&
       drivers.find(driver =>
@@ -28,11 +37,42 @@ const Logs = props => {
       );
     const updatedDriver = {
       ...findDriver,
-      available: true
+      available: true,
+      completedRoutes: [...findDriver.completedRoutes, log]
     };
     setAvailableTrue(updatedDriver);
+    addCompletedRoute(updatedDriver, log);
+    deleteLog(log.id);
 
     M.toast({ html: 'Route Deleted' });
+  };
+
+  const onArchive = arch => {
+    // const newArchive = {
+    //   locationFrom: log.locationFrom,
+    //   locationTo: log.locationTo,
+    //   distance: log.distance,
+    //   postedOn: log.postedOn,
+    //   postedBy: log.postedBy,
+    //   attention: log.attention,
+    //   progress: log.progress,
+    //   driver: log.driver,
+    //   price: log.price,
+    //   date: new Date()
+    // };
+
+    // const updatedDriver = {
+    //   ...currentDriver,
+    //   available: true,
+    //   completedRoutes: [...currentDriver.completedRoutes, newArchive]
+    // };
+
+    // updateDriver(updatedDriver);
+
+    // deleteLog(log.id);
+    console.log('Log archived');
+
+    M.toast({ html: 'Route Archived' });
   };
 
   return (
@@ -49,7 +89,13 @@ const Logs = props => {
       ) : (
         logs &&
         logs.map(log => (
-          <LogItem key={log.date} log={log} onDelete={onDelete} M={M} />
+          <LogItem
+            key={log.date}
+            log={log}
+            onDelete={onDelete}
+            onArchive={onArchive}
+            M={M}
+          />
         ))
       )}
       <NavLink to="/archived-routes" className="flow-text">
@@ -57,6 +103,15 @@ const Logs = props => {
       </NavLink>
     </ul>
   );
+};
+
+Logs.propTypes = {
+  logs: PropTypes.array,
+  drivers: PropTypes.array,
+  getLogs: PropTypes.func.isRequired,
+  deleteLog: PropTypes.func.isRequired,
+  setAvailableTrue: PropTypes.func.isRequired,
+  addCompletedRoute: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -76,6 +131,9 @@ const mapDispatchToProps = dispatch => {
     },
     setAvailableTrue: driver => {
       dispatch(setAvailableTrue(driver));
+    },
+    addCompletedRoute: (driver, log) => {
+      dispatch(addCompletedRoute(driver, log));
     }
   };
 };

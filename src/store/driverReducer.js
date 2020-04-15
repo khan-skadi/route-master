@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
     case 'SET_AVAILABLE_FALSE':
       return {
         ...state,
-        drivers: state.drivers.map((driver) =>
+        drivers: state.drivers.map(driver =>
           `${driver.firstName} ${driver.lastName}` === action.payload
             ? action.payload
             : driver
