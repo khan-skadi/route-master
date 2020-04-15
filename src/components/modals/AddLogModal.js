@@ -6,7 +6,6 @@ import { addLog } from '../../store/logActions.js';
 import { setAvailableFalse } from '../../store/driverActions.js';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
-import DriverSelectOptions from '../drivers/DriverSelectOptions.js';
 
 const AddLogModal = (props) => {
   const [locationFrom, setLocationFrom] = useState('');
@@ -37,6 +36,7 @@ const AddLogModal = (props) => {
     };
     addLog(newRoute);
 
+    // Update driver available status
     const findDriver =
       drivers &&
       drivers.find((driver) =>
@@ -51,18 +51,6 @@ const AddLogModal = (props) => {
     setAvailableFalse(updatedDriver);
 
     M.toast({ html: 'Route added' });
-
-    // Update driver available status
-
-    // const realDriver =
-    //   props.driver.drivers &&
-    //   props.driver.drivers.find((driver) =>
-    //     newRoute.driver === driver.firstName.concat(` ${driver.lastName}`)
-    //       ? driver
-    //       : false
-    //   );
-
-    // props.updateDriver(updatedDriver);
 
     setLocationFrom('');
     setLocationTo('');
@@ -128,9 +116,6 @@ const AddLogModal = (props) => {
                     {d.firstName} {d.lastName}
                   </option>
                 ))}
-              {/* <DriverSelectOptions drivers={drivers} />
-              <option value={driver}>Skadi</option>
-              <option value={driver}>Igor</option> */}
             </select>
           </div>
 

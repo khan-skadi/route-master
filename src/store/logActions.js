@@ -79,3 +79,25 @@ export const getLogs = () => (
       console.err('Error getting document: ', err);
     });
 };
+
+// Delete log
+export const deleteLog = (id) => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+
+  firestore
+    .collection('logs')
+    .doc(id)
+    .delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
+      console.log(`Log document ${id} deleted`);
+    })
+    .catch((err) => {
+      console.error('Failed deleting log document ', err);
+      dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
+    });
+};

@@ -14,10 +14,14 @@ const Logs = (props) => {
     getLogs();
   });
 
+  const onDelete = (id) => {
+    console.log(`Log ${id} deleted`);
+  };
+
   return (
-    <ul className="collection with-header">
-      <li className="collection-header">
-        <h4 className="center">Active Routes</h4>
+    <ul className='collection with-header'>
+      <li className='collection-header'>
+        <h4 className='center'>Active Routes</h4>
       </li>
 
       {logs && logs.length === 0 ? (
@@ -25,7 +29,7 @@ const Logs = (props) => {
       ) : (
         logs && logs.map((log) => <LogItem log={log} key={log.date} />)
       )}
-      <NavLink to="/archived-routes" className="flow-text">
+      <NavLink to='/archived-routes' className='flow-text'>
         <blockquote style={{ color: 'green' }}>Archived Routes</blockquote>
       </NavLink>
     </ul>
