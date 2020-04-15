@@ -97,7 +97,8 @@ export const setAvailableFalse = (driver) => (
   { getFirebase, getFirestore }
 ) => {
   const firestore = getFirestore();
-  const driverRef = firestore.collection('drivers').doc(driver);
+  const driverRefFS = driver.firstName.concat(` ${driver.lastName}`);
+  const driverRef = firestore.collection('drivers').doc(driverRefFS);
 
   driverRef
     .update({
