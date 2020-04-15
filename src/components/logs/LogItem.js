@@ -32,7 +32,10 @@ const LogItem = ({ log, onDelete, onArchive, M }) => {
           data-position="top"
           data-tooltip="Delete"
           href="#!"
-          onClick={() => onDelete(log)}
+          onClick={() => {
+            onDelete(log);
+            M.toast({ html: 'Route deleted' });
+          }}
         >
           <i className="material-icons grey-text">delete</i>
         </a>
@@ -41,7 +44,7 @@ const LogItem = ({ log, onDelete, onArchive, M }) => {
           data-position="bottom"
           data-tooltip="Archive"
           href="#!"
-          onClick={() => onArchive()}
+          onClick={() => onArchive(log)}
         >
           <i className="material-icons grey-text">archive</i>
         </a>

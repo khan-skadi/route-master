@@ -8,6 +8,7 @@ import {
   setAvailableTrue,
   addCompletedRoute
 } from '../../store/driverActions.js';
+import { addArch } from '../../store/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -20,7 +21,8 @@ const Logs = props => {
     getLogs,
     deleteLog,
     setAvailableTrue,
-    addCompletedRoute
+    addCompletedRoute,
+    addArch
   } = props;
 
   useEffect(() => {
@@ -43,34 +45,15 @@ const Logs = props => {
     setAvailableTrue(updatedDriver);
     addCompletedRoute(updatedDriver, log);
     deleteLog(log.id);
-
-    M.toast({ html: 'Route Deleted' });
   };
 
-  const onArchive = arch => {
-    // const newArchive = {
-    //   locationFrom: log.locationFrom,
-    //   locationTo: log.locationTo,
-    //   distance: log.distance,
-    //   postedOn: log.postedOn,
-    //   postedBy: log.postedBy,
-    //   attention: log.attention,
-    //   progress: log.progress,
-    //   driver: log.driver,
-    //   price: log.price,
-    //   date: new Date()
-    // };
-
-    // const updatedDriver = {
-    //   ...currentDriver,
-    //   available: true,
-    //   completedRoutes: [...currentDriver.completedRoutes, newArchive]
-    // };
-
-    // updateDriver(updatedDriver);
-
-    // deleteLog(log.id);
-    console.log('Log archived');
+  const onArchive = log => {
+    const newArchive = {
+      ...log,
+      date: new Date()
+    };
+    addArch(newArchive);
+    onDelete(log);
 
     M.toast({ html: 'Route Archived' });
   };
@@ -111,7 +94,8 @@ Logs.propTypes = {
   getLogs: PropTypes.func.isRequired,
   deleteLog: PropTypes.func.isRequired,
   setAvailableTrue: PropTypes.func.isRequired,
-  addCompletedRoute: PropTypes.func.isRequired
+  addCompletedRoute: PropTypes.func.isRequired,
+  addArch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -134,6 +118,9 @@ const mapDispatchToProps = dispatch => {
     },
     addCompletedRoute: (driver, log) => {
       dispatch(addCompletedRoute(driver, log));
+    },
+    addArch: arch => {
+      dispatch(addArch(arch));
     }
   };
 };

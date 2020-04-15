@@ -131,10 +131,6 @@ export const addCompletedRoute = (driver, log) => (
     .update({
       completedRoutes: firebase.firestore.FieldValue.arrayUnion(log)
     })
-    .then(docRef => {
-      console.log('Completed route added with ID: ', docRef.id);
-      console.log(docRef);
-    })
     .catch(err => {
       console.error('Error adding completedRoute: ', err);
     });
