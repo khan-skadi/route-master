@@ -1,41 +1,18 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getDrivers } from "../../store/actions/driverActions";
-import PropTypes from "prop-types";
+import React from 'react';
+import Preloader from '../layout/Preloader.js';
 
-const DriverSelectOptions = ({ getDrivers, driver: { drivers, loading } }) => {
-  useEffect(() => {
-    getDrivers();
+const DriverSelectOptions = (props) => {
+  const { drivers } = props;
 
-    // eslint-disable-next-line
-  }, []);
-
-  return (
-    !loading &&
-    drivers !== null &&
-    drivers.map(d => (
-      <option key={d.id} value={`${d.firstName} ${d.lastName}`}>
-        {d.firstName} {d.lastName}
+  const renderDrivers =
+    drivers &&
+    drivers.map((d) => (
+      <option value={`${d.firstName} ${d.lastName}`} key={d.id}>
+        {d.fistName} {d.lastName}
       </option>
-    ))
-  );
+    ));
+
+  return { renderDrivers };
 };
 
-DriverSelectOptions.propTypes = {
-  driver: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  driver: state.driver
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getDrivers: () => dispatch(getDrivers(dispatch))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DriverSelectOptions);
+export default DriverSelectOptions;

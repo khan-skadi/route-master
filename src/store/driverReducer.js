@@ -4,6 +4,7 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
+  console.log(state);
   switch (action.type) {
     case 'ADD_DRIVER':
       return {
@@ -14,6 +15,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         drivers: action.payload
+      };
+    case 'SET_AVAILABLE_TRUE':
+    case 'SET_AVAILABLE_FALSE':
+      return {
+        ...state,
+        drivers: state.drivers.map((driver) =>
+          `${driver.firstName} ${driver.lastName}` === action.payload
+            ? action.payload
+            : driver
+        )
       };
     default:
       return state;

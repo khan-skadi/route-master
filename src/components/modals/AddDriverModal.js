@@ -85,20 +85,24 @@ class AddDriverModal extends Component {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
+        console.log('Upload is ' + progress + '% done');
         this.setState({ progress });
       },
       (error) => {
         console.log(error);
       },
       () => {
-        firebase
-          .storage()
-          .ref('images')
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            this.setState({ imageUrl: url });
-          });
+        // firebase
+        //   .storage()
+        //   .ref('images')
+        //   .child(image.name)
+        //   .getDownloadURL()
+        //   .then((url) => {
+        //     this.setState({ imageUrl: url });
+        //   });
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadUrl) => {
+          this.setState({ imageUrl: downloadUrl });
+        });
       }
     );
   };

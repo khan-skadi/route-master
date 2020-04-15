@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const OurStaffList = ({ driver }) => {
-  const truncate = string => {
-    return string.length > 7 ? string.substring(0, 6) + ".." : string;
+  const truncate = (string) => {
+    return string.length > 7 ? string.substring(0, 6) + '..' : string;
   };
-  const truncateSecond = string => {
-    return string.length > 15 ? string.substring(0, 16) + ".." : string;
+  const truncateSecond = (string) => {
+    return string.length > 15 ? string.substring(0, 16) + '..' : string;
   };
 
   return (
@@ -16,13 +16,13 @@ const OurStaffList = ({ driver }) => {
         <div className="col l3 s12 m6">
           <div className="card hoverable large">
             <div className="card-image waves-effect waves-block waves-light">
-              <img src={driver.url} className="activator" alt="" />
+              <img src={driver.imageUrl} className="activator" alt="" />
             </div>
 
             <div className="card-content">
               <span
                 className="card-title activator grey-text text-darken-4"
-                style={{ fontWeight: "376" }}
+                style={{ fontWeight: '376' }}
               >
                 {truncate(driver.firstName)}
                 <i className="material-icons right">more_vert</i>
@@ -30,30 +30,30 @@ const OurStaffList = ({ driver }) => {
 
               <div
                 className="center center-align"
-                style={{ marginTop: "15px" }}
+                style={{ marginTop: '15px' }}
               >
                 <span className="grey-text text-darken-1">Hourly Rate:</span>
                 <br></br>
-                <p>{driver.hourlyRate + "$"}</p>
+                <p>{driver.hourlyRate + '$'}</p>
                 <br></br>
                 <div className="divider"></div>
                 <br></br>
                 <span className="grey-text text-darken-1">Availability:</span>
                 <br></br>
-                <p>{driver.available ? "Available" : "En Route"}</p>
+                <p>{driver.available ? 'Available' : 'En Route'}</p>
               </div>
             </div>
 
             <div className="card-reveal center">
               <span
                 className="card-title grey-text text-darken-4 left-align"
-                style={{ fontSize: "1.4em", fontWeight: "370" }}
+                style={{ fontSize: '1.4em', fontWeight: '370' }}
               >
                 {driver.firstName}
                 <br></br> {driver.lastName}
                 <i
                   className="material-icons right"
-                  style={{ marginTop: "-1em" }}
+                  style={{ marginTop: '-1em' }}
                 >
                   close
                 </i>
@@ -63,12 +63,12 @@ const OurStaffList = ({ driver }) => {
 
               <p
                 className="grey-text text-darken-1"
-                style={{ fontSize: "1.2em" }}
+                style={{ fontSize: '1.2em' }}
               >
                 Availability:
               </p>
-              <p className={driver.available ? "green-text" : "red-text"}>
-                {driver.available ? "Available" : "En Route"}
+              <p className={driver.available ? 'green-text' : 'red-text'}>
+                {driver.available ? 'Available' : 'En Route'}
               </p>
 
               <div className="divider"></div>
@@ -76,7 +76,7 @@ const OurStaffList = ({ driver }) => {
 
               <p
                 className="grey-text text-darken-1"
-                style={{ fontSize: "1.2em" }}
+                style={{ fontSize: '1.2em' }}
               >
                 Email:
               </p>
@@ -86,16 +86,16 @@ const OurStaffList = ({ driver }) => {
                 data-tooltip={driver.email}
                 href={`mailto: ${driver.email}`}
               >
-                {" "}
+                {' '}
                 {truncateSecond(driver.email)}
               </a>
 
-              <div className="divider" style={{ marginTop: "15px" }}></div>
+              <div className="divider" style={{ marginTop: '15px' }}></div>
               <br></br>
 
               <p
                 className="grey-text text-darken-1"
-                style={{ fontSize: "1.2em" }}
+                style={{ fontSize: '1.2em' }}
               >
                 Phone:
               </p>
@@ -112,7 +112,7 @@ const OurStaffList = ({ driver }) => {
             </div>
 
             <div className="card-action">
-              <Link to={"/drivers/" + driver.id}>
+              <Link to={'/drivers/' + driver.id}>
                 <button className="btn btn-primary blue darken-2">
                   Profile
                 </button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const AdminPanelList = ({ driver }) => {
   return (
@@ -8,11 +8,11 @@ const AdminPanelList = ({ driver }) => {
           <div className="row valign-wrapper">
             <div className="col s5">
               <div className="card-image waves-effect waves-block waves-light">
-                <img src={driver.url} alt="" className="responsive-img" />
+                <img src={driver.imageUrl} alt="" className="responsive-img" />
               </div>
             </div>
             <div className="col s8">
-              <span className="flow-text black-text">{driver.firstName}</span>{" "}
+              <span className="flow-text black-text">{driver.firstName}</span>{' '}
               <span className="flow-text black-text">{driver.lastName}</span>
             </div>
           </div>

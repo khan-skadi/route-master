@@ -67,3 +67,47 @@ export const getDrivers = () => (
       console.err('Error getting document: ', err);
     });
 };
+
+// Set available = true
+export const setAvailableTrue = (driver) => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const driverRef = firestore.collection('drivers').doc(driver);
+
+  driverRef
+    .update({
+      available: true
+    })
+    .then(() => {
+      dispatch({ type: 'SET_AVAILABLE_TRUE', payload: driver });
+      console.log('Available status set to True');
+    })
+    .catch((err) => {
+      console.error('Failed to change available status ', err);
+    });
+};
+
+// Set available = false
+export const setAvailableFalse = (driver) => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const driverRef = firestore.collection('drivers').doc(driver);
+
+  driverRef
+    .update({
+      available: false
+    })
+    .then(() => {
+      dispatch({ type: 'SET_AVAILABLE_FALSE', payload: driver });
+      console.log('Available status set to False');
+    })
+    .catch((err) => {
+      console.error('Failed to change available status ', err);
+    });
+};

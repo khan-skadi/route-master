@@ -6,7 +6,6 @@ const initialState = {
 const archReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_ARCH_SUCCESS':
-      console.log('create archive success');
       return {
         ...state,
         archs: [...state.archs, action.payload],

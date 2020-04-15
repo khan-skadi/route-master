@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { addLog } from '../../store/logActions.js';
+import { setAvailableFalse } from '../../store/driverActions.js';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import DriverSelectOptions from '../drivers/DriverSelectOptions.js';
 
 const AddLogModal = (props) => {
   const [locationFrom, setLocationFrom] = useState('');
@@ -17,13 +19,7 @@ const AddLogModal = (props) => {
   const [driver, setDriver] = useState('');
   const [price, setPrice] = useState(0);
 
-  const { addLog } = props;
-
-  // useEffect(() => {
-  //   props.getDrivers();
-
-  //   // eslint-disable-next-line
-  // }, []);
+  const { drivers, addLog, setAvailableFalse } = props;
 
   const onSubmit = () => {
     // Add Route
@@ -40,7 +36,8 @@ const AddLogModal = (props) => {
       date: new Date()
     };
     addLog(newRoute);
-    // props.addLog(newRoute);
+    setAvailableFalse(newRoute.driver);
+
     M.toast({ html: 'Route added' });
 
     // Update driver available status
@@ -115,8 +112,15 @@ const AddLogModal = (props) => {
               <option value="" disabled>
                 Select Driver
               </option>
+              {drivers &&
+                drivers.map((d) => (
+                  <option value={`${d.firstName} ${d.lastName}`} key={d.id}>
+                    {d.firstName} {d.lastName}
+                  </option>
+                ))}
+              {/* <DriverSelectOptions drivers={drivers} />
               <option value={driver}>Skadi</option>
-              <option value={driver}>Igor</option>
+              <option value={driver}>Igor</option> */}
             </select>
           </div>
 
@@ -221,12 +225,14 @@ const modalStyle = {
 };
 
 AddLogModal.propTypes = {
-  addLog: PropTypes.func.isRequired
+  addLog: PropTypes.func.isRequired,
+  setAvailableFalse: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    logs: state.firestore.ordered.logs
+    logs: state.firestore.ordered.logs,
+    drivers: state.firestore.ordered.drivers
   };
 };
 
@@ -234,11 +240,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addLog: (log) => {
       dispatch(addLog(log));
+    },
+    setAvailableFalse: (driver) => {
+      dispatch(setAvailableFalse(driver));
     }
   };
 };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'logs' }])
+  firestoreConnect([{ collection: 'logs' }, { collection: 'drivers' }])
 )(AddLogModal);

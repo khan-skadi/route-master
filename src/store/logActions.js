@@ -79,19 +79,3 @@ export const getLogs = () => (
       console.err('Error getting document: ', err);
     });
 };
-
-// Get log success
-// export const getLogSuccess = (log) => (dispatch) => {
-//   dispatch({
-//     type: 'GET_LOG_SUCCESS',
-//     payload: log
-//   });
-// };
-
-// Get log failure
-// export const getLogFailure = (log) => (dispatch) => {
-//   dispatch({
-//     type: 'GET_LOG_FAIL',
-//     payload: log
-//   });
-// };
