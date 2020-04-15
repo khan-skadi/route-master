@@ -20,7 +20,7 @@ const LogItem = ({ log, onDelete, onArchive, M }) => {
         </a>
         <br />
         <span className="grey-text">
-          <span className="black-text">ID #{log.id}</span> last updated by{' '}
+          Last updated by{' '}
           <span className="black-text">
             {log.driver ? log.driver : 'Admin'}
           </span>{' '}

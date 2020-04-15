@@ -13,7 +13,9 @@ const ArchivedItem = ({ arch, onDelete }) => {
           <span className="grey-text">
             <span className="black-text">ID #{arch.id}</span> last updated by{' '}
             <span className="black-text">{arch.driver}</span> on{' '}
-            <Moment format="MMMM Do YYYY, h:mm:ss a">{arch.date}</Moment>
+            <Moment format="MMMM Do YYYY, h:mm:ss a">
+              {arch.date.toDate()}
+            </Moment>
           </span>
           <a
             href="#!"

@@ -1,5 +1,5 @@
 // Add arch
-export const addArch = (arch) => (
+export const addArch = arch => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -20,7 +20,7 @@ export const addArch = (arch) => (
   firestore
     .doc(`/archs/${newArch.locationFrom} ${newArch.locationTo}`)
     .get()
-    .then((doc) => {
+    .then(doc => {
       if (doc.exists) {
         return console.log('This arch already exists');
       } else {
@@ -36,7 +36,7 @@ export const addArch = (arch) => (
       });
       console.log('arch added to firestore and redux');
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('failed to add arch to firestore ', err);
     });
 };
@@ -60,13 +60,13 @@ export const getArchs = () => (
         dispatch({ type: 'GET_ARCHS_SUCCESS', payload: archs });
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.err('Error getting document: ', err);
     });
 };
 
 // Delete arch
-export const deleteArch = (id) => (
+export const deleteArch = id => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -81,8 +81,35 @@ export const deleteArch = (id) => (
       dispatch({ type: 'DELETE_ARCH_SUCCESS', payload: id });
       console.log(`Archived document ${id} deleted`);
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('Failed deleting archived document ', err);
       dispatch({ type: 'DELETE_ARCH_FAIL', payload: err });
+    });
+};
+
+// Get latest archived route
+export const getLatestArch = () => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+
+  firestore
+    .collection('archs')
+    .orderBy('date', 'desc')
+    .limit(1)
+    .get()
+    .then(querySnapshot => {
+      let date = [];
+      querySnapshot.forEach(doc => {
+        date.push({
+          date: doc.data().date
+        });
+      });
+      return date;
+    })
+    .catch(err => {
+      console.error(err);
     });
 };
