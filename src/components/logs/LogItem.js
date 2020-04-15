@@ -2,14 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import M from 'materialize-css/dist/js/materialize.min.js';
 
-const LogItem = ({ log }) => {
-  const onDelete = () => {
-    console.log('pressed delete log');
-    M.toast({ html: 'Route Deleted' });
-  };
-
+const LogItem = ({ log, onDelete, M }) => {
   const onArchive = () => {
     // const newArchive = {
     //   locationFrom: log.locationFrom,
@@ -66,7 +60,7 @@ const LogItem = ({ log }) => {
           data-position="top"
           data-tooltip="Delete"
           href="#!"
-          onClick={onDelete}
+          onClick={() => onDelete(log)}
         >
           <i className="material-icons grey-text">delete</i>
         </a>

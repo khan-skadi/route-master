@@ -1,5 +1,5 @@
 // Add driver
-export const addDriver = (driver) => (
+export const addDriver = driver => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -23,7 +23,7 @@ export const addDriver = (driver) => (
   firestore
     .doc(`/drivers/${newDriver.firstName} ${newDriver.lastName}`)
     .get()
-    .then((doc) => {
+    .then(doc => {
       if (doc.exists) {
         return console.log('This name already exists');
       } else {
@@ -39,7 +39,7 @@ export const addDriver = (driver) => (
       });
       console.log('driver added to firestore and redux');
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('failed to add driver to firestore ', err);
     });
 };
@@ -63,19 +63,20 @@ export const getDrivers = () => (
         dispatch({ type: 'GET_DRIVERS_SUCCESS', payload: drivers });
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.err('Error getting document: ', err);
     });
 };
 
 // Set available = true
-export const setAvailableTrue = (driver) => (
+export const setAvailableTrue = driver => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
 ) => {
   const firestore = getFirestore();
-  const driverRef = firestore.collection('drivers').doc(driver);
+  const driverRefFS = driver.firstName.concat(` ${driver.lastName}`);
+  const driverRef = firestore.collection('drivers').doc(driverRefFS);
 
   driverRef
     .update({
@@ -85,13 +86,13 @@ export const setAvailableTrue = (driver) => (
       dispatch({ type: 'SET_AVAILABLE_TRUE', payload: driver });
       console.log('Available status set to True');
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('Failed to change available status ', err);
     });
 };
 
 // Set available = false
-export const setAvailableFalse = (driver) => (
+export const setAvailableFalse = driver => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -108,7 +109,7 @@ export const setAvailableFalse = (driver) => (
       dispatch({ type: 'SET_AVAILABLE_FALSE', payload: driver });
       console.log('Available status set to False');
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('Failed to change available status ', err);
     });
 };

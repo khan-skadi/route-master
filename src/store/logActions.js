@@ -1,5 +1,5 @@
 // Add log
-export const addLog = (log) => (
+export const addLog = log => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -20,7 +20,7 @@ export const addLog = (log) => (
   firestore
     .doc(`/logs/${newLog.locationFrom} ${newLog.locationTo}`)
     .get()
-    .then((doc) => {
+    .then(doc => {
       if (doc.exists) {
         return console.log('This log already exists');
       } else {
@@ -36,7 +36,7 @@ export const addLog = (log) => (
       });
       console.log('log added to firestore and redux');
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('failed to add log to firestore ', err);
     });
 
@@ -75,13 +75,13 @@ export const getLogs = () => (
         dispatch({ type: 'GET_LOGS_SUCCESS', payload: logs });
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.err('Error getting document: ', err);
     });
 };
 
 // Delete log
-export const deleteLog = (id) => (
+export const deleteLog = id => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -96,7 +96,7 @@ export const deleteLog = (id) => (
       dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
       console.log(`Log document ${id} deleted`);
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('Failed deleting log document ', err);
       dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
     });
