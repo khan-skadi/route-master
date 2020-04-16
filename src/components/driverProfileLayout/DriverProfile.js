@@ -1,76 +1,63 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getDrivers } from "../../store/actions/driverActions";
-import { getArchs } from "../../store/actions/archActions";
-import { withRouter } from "react-router";
-import DriverProfileList from "./DriverProfileList";
-import Preloader from "../layout/Preloader";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import { getDrivers } from '../../store/actions/driverActions.js';
+import PropTypes from 'prop-types';
+import Preloader from '../layout/Preloader.js';
+import DriverProfileList from './DriverProfileList.js';
 
 const DriverProfile = props => {
-  const { driver, arch, currentId } = props;
+  const { drivers, currentId } = props;
 
   useEffect(() => {
-    props.getDrivers();
-    props.getArchs();
+    getDrivers();
     window.scrollTo(0, 0);
+
     // eslint-disable-next-line
   }, []);
 
-  if (
-    driver.loading ||
-    driver.drivers === null ||
-    arch.archs === null ||
-    arch.loading
-  ) {
+  const driverInfo = drivers && drivers.find(driver => driver.id === currentId);
+
+  if (!drivers) {
     return <Preloader />;
   }
-
-  const driverInfo = driver.drivers.find(
-    item => item.id === parseInt(currentId)
-  );
-
-  const archProps = arch.archs.filter(
-    arch =>
-      arch.driver === driverInfo.firstName.concat(` ${driverInfo.lastName}`)
-  );
-
   return (
     <div className="col s12">
-      {!arch.loading && arch.length === 0 ? (
+      {drivers === null ? (
         <p className="center">Loading...</p>
       ) : (
-        <DriverProfileList
-          driver={driverInfo}
-          arch={arch}
-          archItems={archProps}
-        />
+        <DriverProfileList driver={driverInfo} />
       )}
     </div>
   );
 };
 
 DriverProfile.propTypes = {
-  driver: PropTypes.object.isRequired
+  drivers: PropTypes.array,
+  getDrivers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   let id = ownProps.match.params.driver_id;
   return {
-    driver: state.driver,
-    currentId: id,
-    arch: state.arch
+    drivers: state.firestore.ordered.drivers,
+    currentId: id
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArchs: () => dispatch(getArchs(dispatch)),
-    getDrivers: () => dispatch(getDrivers(dispatch))
+    getDrivers: () => {
+      dispatch(getDrivers());
+    }
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DriverProfile)
+  compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{ collection: 'drivers' }])
+  )(DriverProfile)
 );

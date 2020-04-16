@@ -1,13 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-// import DriverLogItem from "./DriverLogItem";
 import DriverProfileTable from './DriverProfileTable';
 import DriverNavbar from './DriverNavbar';
-import { setCurrentDriver } from '../../store/actions/driverActions';
 import PropTypes from 'prop-types';
 
-const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
-  // number of Completed Routes
+const DriverProfileList = ({ driver }) => {
   let completedCount = driver.completedRoutes.length;
 
   return (
@@ -16,9 +12,15 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
       <div className="container">
         {/* Main left side - INFO */}
         <div className="row">
+          <div className="col s4"></div>
+          <div className="col s8">
+            <h4 className="center" style={{ fontWeight: 'bold' }}>
+              {driver.firstName}'s Logs
+            </h4>
+          </div>
           <div
             className="col s4 card-panel grey lighten-3 center"
-            style={{ padding: '0.7em 1em 1em 1em' }}
+            style={{ padding: '0.7em 1em 1em 1em', marginTop: '15px' }}
           >
             <div className="col s12">
               <div className="col s2 push-s10">
@@ -27,7 +29,6 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
                   className="waves-effect waves-light btn-floating tooltipped grey lighten-1 modal-trigger"
                   data-position="bottom"
                   data-tooltip="Edit Driver"
-                  onClick={() => setCurrentDriver(driver)}
                 >
                   <i className="material-icons">edit</i>
                 </a>
@@ -36,7 +37,7 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
                 <img
                   className="materialboxed responsive-img circle"
                   width="160em"
-                  src={driver.url}
+                  src={driver.imageUrl}
                   alt="profile_picture"
                 />
               </div>
@@ -108,23 +109,9 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
           {/* Main right side - LOGS */}
           <div className="col s8">
             <ul>
-              <li>
-                <h4 className="center" style={{ fontWeight: 'bold' }}>
-                  {driver.firstName}'s Logs
-                </h4>
-              </li>
               <div className="col s12">
                 <DriverProfileTable driver={driver} key={driver.id} />
               </div>
-              {/* <ul> */}
-              {/* {!archItems.length === 0 ? (
-                  <p className="center">No logs to show...</p>
-                ) : (
-                  archItems.map(arch => (
-                    <DriverLogItem arch={arch} key={arch.id} />
-                  ))
-                )} */}
-              {/* </ul> */}
             </ul>
           </div>
         </div>
@@ -134,13 +121,7 @@ const DriverProfileList = ({ driver, setCurrentDriver, archItems }) => {
 };
 
 DriverProfileList.propTypes = {
-  setCurrentDriver: PropTypes.func.isRequired
+  driver: PropTypes.object
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setCurrentDriver: (driver) => dispatch(setCurrentDriver(driver))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(DriverProfileList);
+export default DriverProfileList;

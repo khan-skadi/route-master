@@ -5,7 +5,7 @@ const SearchbarDrivers = ({ driver }) => {
   return (
     <div>
       <li>
-        <Link to={'/drivers/' + driver.id}>
+        <Link to={`/drivers/${driver.id}`}>
           {driver.firstName} {driver.lastName}
         </Link>
       </li>

@@ -48,20 +48,31 @@ class DriverProfileTable extends Component {
       'Signed'
     ];
     return header.map((key, index) => {
-      return <th key={index}>{key}</th>;
+      return (
+        <th
+          style={{
+            backgroundColor: '#eee',
+            borderCollapse: 'collapse',
+            paddingTop: '-15px',
+            borderRadius: '0',
+            zIndex: '1'
+          }}
+          key={index}
+        >
+          {key}
+        </th>
+      );
     });
   }
 
   render() {
     return (
-      <div>
-        <table id="students">
-          <tbody>
-            <tr>{this.renderTableHeader()}</tr>
-            {this.renderTableData()}
-          </tbody>
-        </table>
-      </div>
+      <table id="students">
+        <tbody>
+          <tr>{this.renderTableHeader()}</tr>
+          {this.renderTableData()}
+        </tbody>
+      </table>
     );
   }
 }
