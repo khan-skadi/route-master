@@ -88,28 +88,28 @@ export const deleteArch = id => (
 };
 
 // Get latest archived route
-export const getLatestArch = () => (
-  dispatch,
-  _getState,
-  { getFirebase, getFirestore }
-) => {
-  const firestore = getFirestore();
+// export const getLatestArch = () => (
+//   dispatch,
+//   _getState,
+//   { getFirebase, getFirestore }
+// ) => {
+//   const firestore = getFirestore();
 
-  firestore
-    .collection('archs')
-    .orderBy('date', 'desc')
-    .limit(1)
-    .get()
-    .then(querySnapshot => {
-      let date = [];
-      querySnapshot.forEach(doc => {
-        date.push({
-          date: doc.data().date
-        });
-      });
-      return date;
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
+//   firestore
+//     .collection('archs')
+//     .orderBy('date', 'desc')
+//     .limit(1)
+//     .get()
+//     .then(querySnapshot => {
+//       let date = [];
+//       querySnapshot.forEach(doc => {
+//         date.push({
+//           date: doc.data().date
+//         });
+//       });
+//       return date;
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+// };

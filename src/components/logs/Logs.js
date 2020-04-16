@@ -3,12 +3,12 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom';
-import { getLogs, deleteLog } from '../../store/logActions.js';
+import { getLogs, deleteLog } from '../../store/actions/logActions.js';
 import {
   setAvailableTrue,
   addCompletedRoute
-} from '../../store/driverActions.js';
-import { addArch } from '../../store/archActions.js';
+} from '../../store/actions/driverActions.js';
+import { addArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import M from 'materialize-css/dist/js/materialize.min.js';

@@ -1,122 +1,137 @@
-import {
-  GET_DRIVERS,
-  ADD_DRIVER,
-  DELETE_DRIVER,
-  UPDATE_DRIVER,
-  SET_CURRENT_DRIVER,
-  CLEAR_CURRENT_DRIVER,
-  SET_LOADING,
-  DRIVERS_ERROR
-} from "./types";
+import firebase from '../../wFirebase/firebaseConfig.js';
 
-export const getDrivers = () => async dispatch => {
-  try {
-    setLoading();
+// Add driver
+export const addDriver = driver => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const newDriver = {
+    firstName: driver.firstName,
+    lastName: driver.lastName,
+    email: driver.email,
+    address: driver.address,
+    phoneNumber: driver.phoneNumber,
+    birthYear: driver.birthYear,
+    hourlyRate: driver.hourlyRate,
+    license: driver.license,
+    available: driver.available,
+    completedRoutes: driver.completedRoutes,
+    incompleteRoutes: driver.incompleteRoutes,
+    imageUrl: driver.imageUrl
+  };
 
-    const res = await fetch("/drivers");
-    const data = await res.json();
-
-    dispatch({
-      type: GET_DRIVERS,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: DRIVERS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-export const addDriver = driver => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch("/drivers", {
-      method: "POST",
-      body: JSON.stringify(driver),
-      headers: {
-        "Content-Type": "application/json"
+  firestore
+    .doc(`/drivers/${newDriver.firstName} ${newDriver.lastName}`)
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        return console.log('This name already exists');
+      } else {
+        return firestore
+          .doc(`/drivers/${newDriver.firstName} ${newDriver.lastName}`)
+          .set(newDriver);
       }
+    })
+    .then(() => {
+      dispatch({
+        type: 'ADD_DRIVER',
+        payload: newDriver
+      });
+      console.log('driver added to firestore and redux');
+    })
+    .catch(err => {
+      console.error('failed to add driver to firestore ', err);
     });
-    const data = await res.json();
-
-    dispatch({
-      type: ADD_DRIVER,
-      payload: data
-    });
-    console.log(driver);
-  } catch (err) {
-    console.log("err response", err);
-    dispatch({
-      type: DRIVERS_ERROR,
-      payload: err.response.statusText
-    });
-  }
 };
 
-export const deleteDriver = id => async dispatch => {
-  try {
-    setLoading();
+// Get drivers
+export const getDrivers = () => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
 
-    await fetch(`/drivers/${id}`, {
-      method: "DELETE"
+  firestore
+    .collection('drivers')
+    .get()
+    .then(function (querySnapshot) {
+      let drivers = [];
+      querySnapshot.forEach(function (doc) {
+        // console.log(doc.id, ' => ', doc.data());
+        drivers.push(doc.data());
+        dispatch({ type: 'GET_DRIVERS_SUCCESS', payload: drivers });
+      });
+    })
+    .catch(err => {
+      console.err('Error getting document: ', err);
     });
-
-    dispatch({
-      type: DELETE_DRIVER,
-      payload: id
-    });
-  } catch (err) {
-    console.log("err response", err);
-    dispatch({
-      type: DRIVERS_ERROR,
-      payload: err.response.statusText
-    });
-  }
 };
 
-export const updateDriver = driver => async dispatch => {
-  try {
-    setLoading();
+// Set available = true
+export const setAvailableTrue = driver => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const driverRefFS = driver.firstName.concat(` ${driver.lastName}`);
+  const driverRef = firestore.collection('drivers').doc(driverRefFS);
 
-    const res = await fetch(`/drivers/${driver.id}`, {
-      method: "PUT",
-      body: JSON.stringify(driver),
-      headers: {
-        "Content-Type": "application/json"
-      }
+  driverRef
+    .update({
+      available: true
+    })
+    .then(() => {
+      dispatch({ type: 'SET_AVAILABLE_TRUE', payload: driver });
+      console.log('Available status set to True');
+    })
+    .catch(err => {
+      console.error('Failed to change available status ', err);
     });
-
-    const data = await res.json();
-
-    dispatch({
-      type: UPDATE_DRIVER,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: DRIVERS_ERROR,
-      payload: err.response.statusText
-    });
-  }
 };
 
-export const setCurrentDriver = driver => {
-  return {
-    type: SET_CURRENT_DRIVER,
-    payload: driver
-  };
+// Set available = false
+export const setAvailableFalse = driver => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const driverRefFS = driver.firstName.concat(` ${driver.lastName}`);
+  const driverRef = firestore.collection('drivers').doc(driverRefFS);
+
+  driverRef
+    .update({
+      available: false
+    })
+    .then(() => {
+      dispatch({ type: 'SET_AVAILABLE_FALSE', payload: driver });
+      console.log('Available status set to False');
+    })
+    .catch(err => {
+      console.error('Failed to change available status ', err);
+    });
 };
 
-export const clearCurrentDriver = () => {
-  return {
-    type: CLEAR_CURRENT_DRIVER
-  };
-};
+// Add completed log
+export const addCompletedRoute = (driver, log) => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const driverRef = driver.firstName.concat(` ${driver.lastName}`);
 
-export const setLoading = () => {
-  return {
-    type: SET_LOADING
-  };
+  firestore
+    .collection('drivers')
+    .doc(driverRef)
+    .update({
+      completedRoutes: firebase.firestore.FieldValue.arrayUnion(log)
+    })
+    .catch(err => {
+      console.error('Error adding completedRoute: ', err);
+    });
 };

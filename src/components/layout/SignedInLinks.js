@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { signOut } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
-// import SearchbarDrivers from "../drivers/SearchbarDrivers";
+import { signOut } from '../../store/actions/authActions';
+import M from 'materialize-css/dist/js/materialize.min.js';
+import SearchbarDrivers from '../drivers/SearchbarDrivers.js';
 
-const SignedInLinks = (props) => {
-  // const { driver } = props;
+const SignedInLinks = props => {
+  const { drivers } = props;
+
+  useEffect(() => {
+    const dropdowns = document.querySelectorAll('.dropdown-trigger');
+    for (let i = 0; i < dropdowns.length; i++) {
+      M.Dropdown.init(dropdowns[i]);
+    }
+  }, []);
 
   return (
     <ul className="right">
       <li>
         <a
-          className="btn blue darken-2 dropdown-trigger  hide-on-med-and-down"
+          className="dropdown-trigger btn blue darken-2"
           href="#!"
-          data-target="dropdown2"
+          data-target="driversListNavbar"
         >
           Drivers<i className="material-icons right">arrow_drop_down</i>
         </a>
-        {/* TODO: Driver list */}
-        {/* <ul id="dropdown2" className="dropdown-content">
-          {driver &&
-            driver.map(driver => (
+        <ul id="driversListNavbar" className="dropdown-content">
+          {drivers &&
+            drivers.map(driver => (
               <SearchbarDrivers driver={driver} key={driver.id} />
             ))}
-        </ul> */}
+        </ul>
       </li>
       <li>
         <NavLink to="/archived-routes" activeStyle={backgroundStyle}>
@@ -84,7 +91,7 @@ const iconStyle = {
   marginTop: '8px'
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     signOut: () => dispatch(signOut(dispatch))
   };

@@ -1,7 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import firebase from '../wFirebase/firebaseConfig.js';
-import rootReducer from './rootReducer.js';
+import rootReducer from './reducers/rootReducer.js';
 import thunk from 'redux-thunk';
 
 const initialState = {};

@@ -99,6 +99,8 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar.js';
 import HomePage from './components/layout/HomePage.js';
 import ArchivedRoutes from './components/archived-routes/ArchivedRoutes.js';
+import SignIn from './components/auth/SignIn.js';
+import SignUp from './components/auth/SignUp.js';
 
 import AddBtn from './components/layout/AddBtn.js';
 import AddLogModal from './components/modals/AddLogModal.js';
@@ -110,7 +112,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 const App = () => {
   useEffect(() => {
     M.AutoInit();
-  });
+  }, []);
 
   return (
     <>
@@ -122,6 +124,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/archived-routes" component={ArchivedRoutes} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
         </Switch>
       </div>
     </>

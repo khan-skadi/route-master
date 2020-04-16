@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { getDrivers } from '../../store/driverActions.js';
+import { getDrivers } from '../../store/actions/driverActions.js';
 import OurStaffList from './OurStaffList';
 import Preloader from '../layout/Preloader';
 
-const OurStaff = (props) => {
+const OurStaff = props => {
   const { drivers, getDrivers } = props;
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const OurStaff = (props) => {
             <Preloader />
           ) : (
             drivers &&
-            drivers.map((driver) => (
+            drivers.map(driver => (
               <OurStaffList driver={driver} key={driver.id} />
             ))
           )}
@@ -38,13 +38,13 @@ const OurStaff = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     drivers: state.firestore.ordered.drivers
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getDrivers: () => {
       dispatch(getDrivers());

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addDriver } from '../../store/driverActions.js';
+import { addDriver } from '../../store/actions/driverActions.js';
 import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';

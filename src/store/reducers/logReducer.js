@@ -1,71 +1,27 @@
-import {
-  GET_LOGS,
-  ADD_LOG,
-  DELETE_LOG,
-  UPDATE_LOG,
-  LOGS_ERROR,
-  SET_CURRENT,
-  CLEAR_CURRENT,
-  SET_LOADING,
-  SEARCH_LOGS
-} from "../actions/types";
-
 const initialState = {
-  logs: null,
-  current: null,
-  loading: false,
+  logs: [],
   error: null
 };
 
-export default (state = initialState, action) => {
+export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_LOGS:
+    case 'ADD_LOG':
       return {
         ...state,
-        logs: action.payload,
-        loading: false
+        logs: [...state.logs, action.payload]
       };
-    case ADD_LOG:
-      return {
-        ...state,
-        logs: [...state.logs, action.payload],
-        loading: false
-      };
-    case DELETE_LOG:
-      return {
-        ...state,
-        logs: state.logs.filter(log => log.id !== action.payload),
-        loading: false
-      };
-    case UPDATE_LOG:
-      return {
-        ...state,
-        logs: state.logs.map(log =>
-          log.id === action.payload.id ? action.payload : log
-        )
-      };
-    case SEARCH_LOGS:
+    case 'GET_LOGS_SUCCESS':
       return {
         ...state,
         logs: action.payload
       };
-    case SET_CURRENT:
+    case 'DELETE_LOG_SUCCESS':
       return {
         ...state,
-        current: action.payload
+        logs: state.logs.filter((log) => log.id !== action.payload),
+        error: null
       };
-    case CLEAR_CURRENT:
-      return {
-        ...state,
-        current: null
-      };
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true
-      };
-    case LOGS_ERROR:
-      console.error(action.payload);
+    case 'DELETE_LOG_FAIL':
       return {
         ...state,
         error: action.payload
@@ -73,4 +29,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-};
+}

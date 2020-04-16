@@ -2,20 +2,20 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { getArchs, deleteArch } from '../../store/archActions.js';
+import { getArchs, deleteArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import ArchivedItem from './ArchivedItem';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const ArchivedRoutes = (props) => {
+const ArchivedRoutes = props => {
   const { archs, getArchs, deleteArch } = props;
 
   useEffect(() => {
     getArchs();
   });
 
-  const onDelete = (id) => {
+  const onDelete = id => {
     deleteArch(id);
     M.toast({ html: 'Archived route deleted' });
   };
@@ -35,7 +35,7 @@ const ArchivedRoutes = (props) => {
               </Fragment>
             ) : (
               archs &&
-              archs.map((arch) => (
+              archs.map(arch => (
                 <ArchivedItem arch={arch} key={arch.id} onDelete={onDelete} />
               ))
             )}
@@ -52,19 +52,19 @@ ArchivedRoutes.propTypes = {
   archs: PropTypes.array
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   console.log(state);
   return {
     archs: state.firestore.ordered.archs
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getArchs: () => {
       dispatch(getArchs());
     },
-    deleteArch: (id) => {
+    deleteArch: id => {
       dispatch(deleteArch(id));
     }
   };

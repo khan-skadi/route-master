@@ -1,135 +1,115 @@
-import {
-  SET_LOADING,
-  GET_ARCHS,
-  ADD_ARCH,
-  ARCHS_ERROR,
-  SET_CURRENT,
-  CLEAR_CURRENT,
-  DELETE_ARCH,
-  ADD_ARCH_START,
-  ADD_ARCH_SUCCESS,
-  ADD_ARCH_FAIL
-} from './types';
-
-// Get archived logs from server
-export const getArchs = () => async (dispatch) => {
-  try {
-    setLoading();
-
-    const res = await fetch('/archs');
-    const data = await res.json();
-
-    dispatch({
-      type: GET_ARCHS,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: ARCHS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-// Add archs updated
-export const addArchNew = (arch) => ({
-  type: 'ADD_ARCH',
-  arch
-});
-
-export const startAddArch = (archData = {}) => {
-  return (dispatch) => {
-    // const { title = "", body = "" } = archData;
-    // const arch = { title, body };
-    const {
-      locationFrom = '',
-      locationTo = '',
-      distance = 0,
-      postedOn = '',
-      postedBy = '',
-      attention = false,
-      progress = false,
-      driver = '',
-      price = 0,
-      date = ''
-    } = archData;
-    const arch = {
-      locationFrom,
-      locationTo,
-      distance,
-      postedOn,
-      postedBy,
-      attention,
-      progress,
-      driver,
-      price,
-      date
-    };
+// Add arch
+export const addArch = arch => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const newArch = {
+    locationFrom: arch.locationFrom,
+    locationTo: arch.locationTo,
+    distance: arch.distance,
+    postedOn: arch.postedOn,
+    postedBy: arch.postedBy,
+    attention: arch.attention,
+    progress: arch.progress,
+    driver: arch.driver,
+    price: arch.price,
+    date: arch.date
   };
-};
-
-// Add new archive log to server
-export const addArch = (arch) => async (dispatch) => {
-  try {
-    setLoading();
-
-    const res = await fetch('/archs', {
-      method: 'POST',
-      body: JSON.stringify(arch),
-      headers: {
-        'Content-Type': 'application/json'
+  firestore
+    .doc(`/archs/${newArch.locationFrom} ${newArch.locationTo}`)
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        return console.log('This arch already exists');
+      } else {
+        return firestore
+          .doc(`/archs/${newArch.locationFrom} ${newArch.locationTo}`)
+          .set(newArch);
       }
+    })
+    .then(() => {
+      dispatch({
+        type: 'ADD_ARCH_SUCCESS',
+        payload: newArch
+      });
+      console.log('arch added to firestore and redux');
+    })
+    .catch(err => {
+      console.error('failed to add arch to firestore ', err);
     });
-    const data = await res.json();
-
-    dispatch({
-      type: ADD_ARCH,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: ARCHS_ERROR,
-      payload: err.response.statusText
-    });
-  }
 };
 
-export const deleteArch = (id) => async (dispatch) => {
-  try {
-    setLoading();
+// Get archs
+export const getArchs = () => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
 
-    await fetch(`/archs/${id}`, {
-      method: 'DELETE'
+  firestore
+    .collection('archs')
+    .get()
+    .then(function (querySnapshot) {
+      let archs = [];
+      querySnapshot.forEach(function (doc) {
+        // console.log(doc.id, ' => ', doc.data());
+        archs.push(doc.data());
+        dispatch({ type: 'GET_ARCHS_SUCCESS', payload: archs });
+      });
+    })
+    .catch(err => {
+      console.err('Error getting document: ', err);
     });
+};
 
-    dispatch({
-      type: DELETE_ARCH,
-      payload: id
+// Delete arch
+export const deleteArch = id => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+
+  firestore
+    .collection('archs')
+    .doc(id)
+    .delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_ARCH_SUCCESS', payload: id });
+      console.log(`Archived document ${id} deleted`);
+    })
+    .catch(err => {
+      console.error('Failed deleting archived document ', err);
+      dispatch({ type: 'DELETE_ARCH_FAIL', payload: err });
     });
-  } catch (err) {
-    dispatch({
-      type: ARCHS_ERROR,
-      payload: err.response.data
-    });
-  }
 };
 
-// Set current archive
-export const setCurrent = (arch) => {
-  return {
-    type: SET_CURRENT,
-    payload: arch
-  };
-};
+// Get latest archived route
+// export const getLatestArch = () => (
+//   dispatch,
+//   _getState,
+//   { getFirebase, getFirestore }
+// ) => {
+//   const firestore = getFirestore();
 
-export const clearCurrent = () => {
-  return {
-    type: CLEAR_CURRENT
-  };
-};
-
-export const setLoading = () => {
-  return {
-    type: SET_LOADING
-  };
-};
+//   firestore
+//     .collection('archs')
+//     .orderBy('date', 'desc')
+//     .limit(1)
+//     .get()
+//     .then(querySnapshot => {
+//       let date = [];
+//       querySnapshot.forEach(doc => {
+//         date.push({
+//           date: doc.data().date
+//         });
+//       });
+//       return date;
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+// };

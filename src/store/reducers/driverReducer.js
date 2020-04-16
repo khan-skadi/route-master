@@ -1,70 +1,31 @@
-import {
-  GET_DRIVERS,
-  ADD_DRIVER,
-  UPDATE_DRIVER,
-  DELETE_DRIVER,
-  SET_CURRENT_DRIVER,
-  CLEAR_CURRENT_DRIVER,
-  SET_LOADING,
-  DRIVERS_ERROR
-} from "../actions/types";
-
 const initialState = {
-  drivers: null,
-  loading: false,
+  drivers: [],
   error: null
 };
 
-export default (state = initialState, action) => {
+export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_DRIVERS:
+    case 'ADD_DRIVER':
       return {
         ...state,
-        drivers: action.payload,
-        loading: false
+        drivers: [...state.drivers, action.payload]
       };
-    case ADD_DRIVER:
+    case 'GET_DRIVERS_SUCCESS':
       return {
         ...state,
-        drivers: [...state.drivers, action.payload],
-        loading: false
+        drivers: action.payload
       };
-    case DELETE_DRIVER:
-      return {
-        ...state,
-        drivers: state.drivers.filter(driver => driver.id !== action.payload),
-        loading: false
-      };
-    case UPDATE_DRIVER:
+    case 'SET_AVAILABLE_TRUE':
+    case 'SET_AVAILABLE_FALSE':
       return {
         ...state,
         drivers: state.drivers.map(driver =>
-          driver.id === action.payload.id ? action.payload : driver
+          `${driver.firstName} ${driver.lastName}` === action.payload
+            ? action.payload
+            : driver
         )
-      };
-    case SET_CURRENT_DRIVER:
-      return {
-        ...state,
-        current: action.payload
-      };
-    case CLEAR_CURRENT_DRIVER:
-      return {
-        ...state,
-        current: null
-      };
-    case DRIVERS_ERROR:
-      console.log(action.payload);
-      return {
-        ...state,
-        error: action.payload,
-        loading: false
-      };
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true
       };
     default:
       return state;
   }
-};
+}

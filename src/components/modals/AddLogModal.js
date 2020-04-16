@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { addLog } from '../../store/logActions.js';
-import { setAvailableFalse } from '../../store/driverActions.js';
+import { addLog } from '../../store/actions/logActions.js';
+import { setAvailableFalse } from '../../store/actions/driverActions.js';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
 

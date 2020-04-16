@@ -1,161 +1,103 @@
-import {
-  GET_LOGS,
-  SET_LOADING,
-  LOGS_ERROR,
-  ADD_LOG,
-  DELETE_LOG,
-  UPDATE_LOG,
-  SEARCH_LOGS,
-  SET_CURRENT,
-  CLEAR_CURRENT
-} from "./types";
-
-// Get logs - long version
-// export const getLogs = () => {
-//   return async (dispatch) => {
-//     setLoading();
-
-//     const res = await fetch('/logs');
-//     const data = await res.json();
-
-//     dispatch({
-//       type: GET_LOGS,
-//       payload: data
-//     })
-//   }
-// }
-
-// Get logs from server
-export const getLogs = () => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch("/logs");
-    const data = await res.json();
-
-    dispatch({
-      type: GET_LOGS,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-// Add new log to server
-export const addLog = log => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch("/logs", {
-      method: "POST",
-      body: JSON.stringify(log),
-      headers: {
-        "Content-Type": "application/json"
+// Add log
+export const addLog = log => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const newLog = {
+    locationFrom: log.locationFrom,
+    locationTo: log.locationTo,
+    distance: log.distance,
+    postedOn: log.postedOn,
+    postedBy: log.postedBy,
+    attention: log.attention,
+    progress: log.progress,
+    driver: log.driver,
+    price: log.price,
+    date: log.date
+  };
+  firestore
+    .doc(`/logs/${newLog.locationFrom} ${newLog.locationTo}`)
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        return console.log('This log already exists');
+      } else {
+        return firestore
+          .doc(`/logs/${newLog.locationFrom} ${newLog.locationTo}`)
+          .set(newLog);
       }
+    })
+    .then(() => {
+      dispatch({
+        type: 'ADD_LOG',
+        payload: newLog
+      });
+      console.log('log added to firestore and redux');
+    })
+    .catch(err => {
+      console.error('failed to add log to firestore ', err);
     });
-    const data = await res.json();
 
-    dispatch({
-      type: ADD_LOG,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
-  }
+  // firestore
+  //   .collection('logs')
+  //   .add({ ...log })
+  //   .then((docRef) => {
+  //     console.log('Document written with ID: ', docRef.id);
+  //     console.log(docRef);
+  //     dispatch({
+  //       type: 'ADD_LOG',
+  //       payload: log
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.error('Error adding document: ', err);
+  //   });
 };
 
-// Delete log from server
-export const deleteLog = id => async dispatch => {
-  try {
-    setLoading();
+// Get logs
+export const getLogs = () => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
 
-    await fetch(`/logs/${id}`, {
-      method: "DELETE"
+  firestore
+    .collection('logs')
+    .get()
+    .then(function (querySnapshot) {
+      let logs = [];
+      querySnapshot.forEach(function (doc) {
+        // console.log(doc.id, ' => ', doc.data());
+        logs.push(doc.data());
+        dispatch({ type: 'GET_LOGS_SUCCESS', payload: logs });
+      });
+    })
+    .catch(err => {
+      console.err('Error getting document: ', err);
     });
-
-    dispatch({
-      type: DELETE_LOG,
-      payload: id
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.data
-    });
-  }
 };
 
-// Update log on server
-export const updateLog = log => async dispatch => {
-  try {
-    setLoading();
+// Delete log
+export const deleteLog = id => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
 
-    const res = await fetch(`/logs/${log.id}`, {
-      method: "PUT",
-      body: JSON.stringify(log),
-      headers: {
-        "Content-Type": "application/json"
-      }
+  firestore
+    .collection('logs')
+    .doc(id)
+    .delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
+      console.log(`Log document ${id} deleted`);
+    })
+    .catch(err => {
+      console.error('Failed deleting log document ', err);
+      dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
     });
-
-    const data = await res.json();
-
-    dispatch({
-      type: UPDATE_LOG,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-// Search server logs
-export const searchLogs = text => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch(`/logs?q=${text}`);
-    const data = await res.json();
-
-    dispatch({
-      type: SEARCH_LOGS,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-// Set current log
-export const setCurrent = log => {
-  return {
-    type: SET_CURRENT,
-    payload: log
-  };
-};
-
-export const clearCurrent = () => {
-  return {
-    type: CLEAR_CURRENT
-  };
-};
-
-// Set loading to true
-export const setLoading = () => {
-  return {
-    type: SET_LOADING
-  };
 };

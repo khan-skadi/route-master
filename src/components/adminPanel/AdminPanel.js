@@ -3,22 +3,62 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { getLatestArch } from '../../store/archActions.js';
+import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader.js';
 import Moment from 'react-moment';
 import AdminPanelList from './AdminPanelList';
 
 const AdminPanel = props => {
-  const [latest, setLatest] = useState(null);
+  const [latestArch, setLatestArch] = useState(null);
+  const [latestLog, setLatestLog] = useState(null);
 
-  const { drivers, logs, archs, getLatestArch } = props;
+  const { drivers, logs, archs } = props;
 
   useEffect(() => {
-    setLatest(getLatestArch());
-    //   .then(date => {
-    //     setLatest(date[0]);
-    //   })
+    firebase
+      .firestore()
+      .collection('archs')
+      .orderBy('date', 'desc')
+      .limit(1)
+      .get()
+      .then(querySnapshot => {
+        let date = [];
+        querySnapshot.forEach(doc => {
+          date.push({
+            date: doc.data().date
+          });
+        });
+        return date;
+      })
+      .then(date => {
+        setLatestArch(date[0]);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    firebase
+      .firestore()
+      .collection('logs')
+      .orderBy('date', 'desc')
+      .limit(1)
+      .get()
+      .then(querySnapshot => {
+        let date = [];
+        querySnapshot.forEach(doc => {
+          date.push({
+            date: doc.data().date
+          });
+        });
+        return date;
+      })
+      .then(date => {
+        setLatestLog(date[0]);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
     //eslint-disable-next-line
   }, []);
@@ -32,8 +72,9 @@ const AdminPanel = props => {
   const currentActiveRoutes = logsPrice && logsPrice.reduce(adminReducer, 0);
   const finishedRoutesTotal = archsPrice && archsPrice.reduce(adminReducer, 0);
 
-  // Find when was the last finished route
-  const date = latest && latest.date.toDate();
+  // Find when was the last finished arch and last added route
+  const lastFinishedRoute = latestArch && latestArch.date.toDate();
+  const lastAddedRoute = latestLog && latestLog.date.toDate();
 
   return (
     <div className="hide-on-med-and-down">
@@ -55,11 +96,11 @@ const AdminPanel = props => {
               </span>
               <p className="flow-text">{currentActiveRoutes} $</p>
               <br />
+              <p className="grey-text text-lighten-4">Latest added route:</p>
               <p className="grey-text text-lighten-4">
-                Last route finished on:
-              </p>
-              <p className="grey-text text-lighten-4">
-                <Moment format="MMMM Do YYYY, h:mm:ss a">{date}</Moment>
+                <Moment format="MMMM Do YYYY, h:mm:ss a">
+                  {lastAddedRoute}
+                </Moment>
               </p>
             </div>
             <div
@@ -76,7 +117,12 @@ const AdminPanel = props => {
               <p className="flow-text">{finishedRoutesTotal} $</p>
               <br />
               <p className="grey-text text-lighten-4">
-                Last route ends 05.24.2019
+                Last route finished on:
+              </p>
+              <p className="grey-text text-lighten-4">
+                <Moment format="MMMM Do YYYY, h:mm:ss a">
+                  {lastFinishedRoute}
+                </Moment>
               </p>
             </div>
           </div>
@@ -125,8 +171,7 @@ const AdminPanel = props => {
 AdminPanel.propTypes = {
   drivers: PropTypes.array,
   logs: PropTypes.array,
-  archs: PropTypes.array,
-  getLatestArch: PropTypes.func.isRequired
+  archs: PropTypes.array
 };
 
 const mapStateToProps = state => {
@@ -138,7 +183,7 @@ const mapStateToProps = state => {
 };
 
 export default compose(
-  connect(mapStateToProps, { getLatestArch }),
+  connect(mapStateToProps),
   firestoreConnect([
     { collection: 'drivers' },
     { collection: 'logs' },

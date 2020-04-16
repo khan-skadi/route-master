@@ -1,28 +1,30 @@
+import firebase from '../../wFirebase/firebaseConfig.js';
+
 export const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
+    // const firebase = getFirebase();
 
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
-        dispatch({ type: "LOGIN_SUCCESS" });
+        dispatch({ type: 'LOGIN_SUCCESS' });
       })
       .catch(err => {
-        dispatch({ type: "LOGIN_ERROR", err });
+        dispatch({ type: 'LOGIN_ERROR', err });
       });
   };
 };
 
 export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
+    // const firebase = getFirebase();
 
     firebase
       .auth()
       .signOut()
       .then(() => {
-        dispatch({ type: "SIGNOUT_SUCCESS" });
+        dispatch({ type: 'SIGNOUT_SUCCESS' });
       });
   };
 };
@@ -37,7 +39,7 @@ export const signUp = newUser => {
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then(resp => {
         return firestore
-          .collection("users")
+          .collection('users')
           .doc(resp.user.uid)
           .set({
             firstName: newUser.firstName,
@@ -46,10 +48,10 @@ export const signUp = newUser => {
           });
       })
       .then(() => {
-        dispatch({ type: "SIGNUP_SUCCESS" });
+        dispatch({ type: 'SIGNUP_SUCCESS' });
       })
       .catch(err => {
-        dispatch({ type: "SIGNUP_ERROR", err });
+        dispatch({ type: 'SIGNUP_ERROR', err });
       });
   };
 };
@@ -62,18 +64,15 @@ export const changeImage = currentUser => {
     firebase
       .auth()
       .currentUser.then(res => {
-        return firestore
-          .collection("users")
-          .doc(res.user.id)
-          .update({
-            photoURL: currentUser
-          });
+        return firestore.collection('users').doc(res.user.id).update({
+          photoURL: currentUser
+        });
       })
       .then(() => {
-        dispatch({ type: "IMAGE_CHANGE_SUCCESS" });
+        dispatch({ type: 'IMAGE_CHANGE_SUCCESS' });
       })
       .catch(err => {
-        dispatch({ type: "IMAGE_CHANGE_ERROR" });
+        dispatch({ type: 'IMAGE_CHANGE_ERROR' });
       });
   };
 };

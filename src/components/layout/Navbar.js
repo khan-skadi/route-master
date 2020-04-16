@@ -1,25 +1,27 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { searchLogs } from '../../store/actions/logActions';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { searchLogs } from '../../store/actions/oldLogActions';
 import NavbarSearch from './NavbarSearch';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import PropTypes from 'prop-types';
 import logo from '../../assets/img/Logo.png';
 
-export const SearchBar = (props) => {
-  const { auth, profile, location } = props;
+const Navbar = props => {
+  const { auth, profile, location, drivers } = props;
 
   const links = auth.uid ? (
-    <SignedInLinks profile={profile} />
+    <SignedInLinks profile={profile} drivers={drivers} />
   ) : (
     <SignedOutLinks />
   );
 
   const text = useRef('');
 
-  const onChange = (e) => {
+  const onChange = e => {
     props.searchLogs(text.current.value);
   };
 
@@ -43,15 +45,23 @@ export const SearchBar = (props) => {
   );
 };
 
-SearchBar.propTypes = {
-  searchLogs: PropTypes.func.isRequired
+Navbar.propTypes = {
+  searchLogs: PropTypes.func.isRequired,
+  drivers: PropTypes.array
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
+  console.log(state);
   return {
     auth: state.firebase.auth,
-    profile: state.firebase.profile
+    profile: state.firebase.profile,
+    drivers: state.firestore.ordered.drivers
   };
 };
 
-export default withRouter(connect(mapStateToProps, { searchLogs })(SearchBar));
+export default withRouter(
+  compose(
+    connect(mapStateToProps, { searchLogs }),
+    firestoreConnect([{ collection: 'drivers' }])
+  )(Navbar)
+);
