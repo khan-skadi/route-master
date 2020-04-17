@@ -106,6 +106,7 @@ import ArchivedRoutes from './components/archived-routes/ArchivedRoutes.js';
 import AddBtn from './components/layout/AddBtn.js';
 import AddLogModal from './components/modals/AddLogModal.js';
 import AddDriverModal from './components/modals/AddDriverModal.js';
+import EditDriverProfile from './components/modals/EditDriverProfile.js';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -113,10 +114,11 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 const App = () => {
   useEffect(() => {
     M.AutoInit();
-  }, []);
+  });
 
   return (
     <>
+      <EditDriverProfile />
       <AddLogModal />
       <AddDriverModal />
       <Navbar />

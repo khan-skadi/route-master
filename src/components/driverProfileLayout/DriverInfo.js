@@ -1,20 +1,18 @@
-import React, { useEffect, Fragment } from 'react';
-import M from 'materialize-css/dist/js/materialize';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { setCurrentDriver } from '../../store/actions/driverActions.js';
+import PropTypes from 'prop-types';
 
-const DriverInfo = ({ driver, completedCount }) => {
-  useEffect(() => {
-    var elems = document.querySelectorAll('.materialboxed');
-    M.Materialbox.init(elems);
-  });
-
+const DriverInfo = ({ driver, completedCount, setCurrentDriver }) => {
   return (
     <Fragment>
       <div className="section section-driver_image">
         <a
           href="#edit-driver-profile"
-          className="waves-effect right waves-light btn btn-floating tooltipped grey lighten-1 modal-trigger"
+          className="waves-effect waves-light btn modal-trigger btn-floating tooltipped grey lighten-1"
           data-position="bottom"
           data-tooltip="Edit Driver"
+          onClick={() => setCurrentDriver(driver)}
         >
           <i className="material-icons">edit</i>
         </a>
@@ -70,4 +68,9 @@ const DriverInfo = ({ driver, completedCount }) => {
   );
 };
 
-export default DriverInfo;
+DriverInfo.propTypes = {
+  driver: PropTypes.object.isRequired,
+  setCurrentDriver: PropTypes.func.isRequired
+};
+
+export default connect(null, { setCurrentDriver })(DriverInfo);

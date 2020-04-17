@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { storage } from "../../index";
-import { updateDriver } from "../../store/actions/driverActions";
-import PropTypes from "prop-types";
-import M from "materialize-css/dist/js/materialize.min.js";
+import React, { useState, useEffect } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import {
+  updateDriverProfile,
+  clearCurrentDriver
+} from '../../store/actions/driverActions.js';
+import firebase from '../../wFirebase/firebaseConfig.js';
+import PropTypes from 'prop-types';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
-const EditDriverProfile = ({ current, updateDriver }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [birthYear, setBirthYear] = useState("");
-  const [hourlyRate, setHourlyRate] = useState("");
-  const [license, setLicense] = useState("");
-  const [completedRoutes, setCompletedRoutes] = useState(0);
-  const [incompleteRoutes, setIncompleteRoutes] = useState(0);
-  const [url, setUrl] = useState("");
+const EditDriverProfile = ({
+  current,
+  updateDriverProfile,
+  clearCurrentDriver
+}) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [birthYear, setBirthYear] = useState(0);
+  const [hourlyRate, setHourlyRate] = useState(0);
+  const [license, setLicense] = useState('');
+  const [completedRoutes, setCompletedRoutes] = useState([]);
+  const [incompleteRoutes, setIncompleteRoutes] = useState([]);
+  const [imageUrl, setImageUrl] = useState('');
   const [image, setImage] = useState(null);
   let [progress, setProgress] = useState(null);
 
@@ -32,7 +41,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
       setLicense(current.license);
       setCompletedRoutes(current.completedRoutes);
       setIncompleteRoutes(current.incompleteRoutes);
-      setUrl(current.url);
+      setImageUrl(current.imageUrl);
     }
   }, [current]);
 
@@ -44,9 +53,12 @@ const EditDriverProfile = ({ current, updateDriver }) => {
   };
 
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = firebase
+      .storage()
+      .ref(`images/${image.name}`)
+      .put(image);
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       snapshot => {
         progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -57,12 +69,13 @@ const EditDriverProfile = ({ current, updateDriver }) => {
         console.log(error);
       },
       () => {
-        storage
-          .ref("images")
+        firebase
+          .storage()
+          .ref('images')
           .child(image.name)
           .getDownloadURL()
           .then(url => {
-            setUrl(url);
+            setImageUrl(url);
           });
       }
     );
@@ -80,26 +93,27 @@ const EditDriverProfile = ({ current, updateDriver }) => {
       license,
       completedRoutes,
       incompleteRoutes,
-      url,
+      imageUrl,
       id: current.id,
       date: new Date()
     };
 
-    updateDriver(updatedDriver);
+    updateDriverProfile(updatedDriver);
+    clearCurrentDriver();
 
-    M.toast({ html: "Driver info edited" });
+    M.toast({ html: 'Driver info edited' });
 
-    setFirstName("");
-    setLastName("");
-    setAddress("");
-    setEmail("");
-    setPhoneNumber("");
-    setBirthYear("");
-    setHourlyRate("");
-    setLicense("");
-    setCompletedRoutes(0);
-    setIncompleteRoutes(0);
-    setUrl("");
+    setFirstName('');
+    setLastName('');
+    setAddress('');
+    setEmail('');
+    setPhoneNumber('');
+    setBirthYear(0);
+    setHourlyRate(0);
+    setLicense('');
+    setCompletedRoutes([]);
+    setIncompleteRoutes([]);
+    setImageUrl('');
   };
 
   const completedRoutesNum = Object.keys(completedRoutes).length;
@@ -115,8 +129,8 @@ const EditDriverProfile = ({ current, updateDriver }) => {
           <div className="col s6">
             <div className="section center">
               <img
-                src={url}
-                alt=""
+                src={imageUrl}
+                alt="driver profile"
                 width="200px"
                 className="circle responsive-img"
               />
@@ -129,7 +143,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
               <input
                 type="text"
                 name="firstName"
-                value={firstName || ""}
+                value={firstName || 0}
                 onChange={e => setFirstName(e.target.value)}
               />
               <label htmlFor="firstName" className="active">
@@ -144,7 +158,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
               <input
                 type="text"
                 name="lastName"
-                value={lastName || ""}
+                value={lastName || 0}
                 onChange={e => setLastName(e.target.value)}
               />
               <label htmlFor="lastName" className="active">
@@ -155,11 +169,11 @@ const EditDriverProfile = ({ current, updateDriver }) => {
 
           <div className="col s6">
             <div className="input-field">
-              <i className="material-icons prefix">swap_horiz</i>
+              <i className="material-icons prefix">house</i>
               <input
                 type="text"
                 name="address"
-                value={address || ""}
+                value={address || 0}
                 onChange={e => setAddress(e.target.value)}
               />
               <label htmlFor="address" className="active">
@@ -177,9 +191,6 @@ const EditDriverProfile = ({ current, updateDriver }) => {
                 <span>Change Image</span>
                 <input type="file" onChange={handleChange} />
               </a>
-              {/* <div className="file-path-wrapper col s4">
-                <input className="file-path validate" type="text" />
-              </div> */}
               <a
                 href="#!"
                 className="right waves-effect waves-light btn-small green accent-4"
@@ -192,11 +203,11 @@ const EditDriverProfile = ({ current, updateDriver }) => {
 
           <div className="col s6">
             <div className="input-field">
-              <i className="material-icons prefix">date_range</i>
+              <i className="material-icons prefix">email</i>
               <input
                 type="email"
                 name="email"
-                value={email || ""}
+                value={email || 0}
                 onChange={e => setEmail(e.target.value)}
               />
               <label htmlFor="email" className="active">
@@ -211,7 +222,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
               <input
                 type="text"
                 name="phoneNumber"
-                value={phoneNumber || ""}
+                value={phoneNumber || 0}
                 onChange={e => setPhoneNumber(e.target.value)}
               />
               <label htmlFor="phoneNumber" className="active">
@@ -224,9 +235,9 @@ const EditDriverProfile = ({ current, updateDriver }) => {
             <div className="input-field">
               <i className="material-icons prefix">cake</i>
               <input
-                type="text"
+                type="number"
                 name="birthYear"
-                value={birthYear || ""}
+                value={birthYear || 0}
                 onChange={e => setBirthYear(e.target.value)}
               />
               <label htmlFor="birthYear" className="active">
@@ -241,7 +252,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
               <input
                 type="number"
                 name="hourlyRate"
-                value={hourlyRate || ""}
+                value={hourlyRate || 0}
                 onChange={e => setHourlyRate(e.target.value)}
               />
               <label htmlFor="hourlyRate" className="active">
@@ -256,7 +267,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
               <input
                 type="text"
                 name="license"
-                value={license || ""}
+                value={license || 0}
                 onChange={e => setLicense(e.target.value)}
               />
               <label htmlFor="license" className="active">
@@ -267,11 +278,11 @@ const EditDriverProfile = ({ current, updateDriver }) => {
 
           <div className="col s6">
             <div className="input-field">
-              <i className="material-icons prefix">short_text</i>
+              <i className="material-icons prefix">check</i>
               <input
                 type="text"
                 name="completedRoutes"
-                value={completedRoutesNum || ""}
+                value={completedRoutesNum || 0}
                 readOnly
               />
               <label htmlFor="completedRoutes" className="active">
@@ -282,7 +293,7 @@ const EditDriverProfile = ({ current, updateDriver }) => {
 
           <div className="col s6">
             <div className="input-field">
-              <i className="material-icons prefix">short_text</i>
+              <i className="material-icons prefix">close</i>
               <input
                 type="text"
                 name="incompleteRoutes"
@@ -295,17 +306,15 @@ const EditDriverProfile = ({ current, updateDriver }) => {
             </div>
           </div>
 
-          <div className="col s12">
-            <div className="modal-footer">
-              <a
-                href="#!"
-                onClick={onSubmit}
-                className="modal-close waves-effect blue darken-2 btn"
-              >
-                Submit
-                <i className="material-icons right">send</i>
-              </a>
-            </div>
+          <div className="modal-footer">
+            <a
+              href="#!"
+              onClick={onSubmit}
+              className="modal-close waves-effect blue darken-2 btn"
+            >
+              Submit
+              <i className="material-icons right">send</i>
+            </a>
           </div>
         </div>
         <br></br>
@@ -315,13 +324,13 @@ const EditDriverProfile = ({ current, updateDriver }) => {
 };
 
 const modalStyle = {
-  width: "100%",
-  height: "100%"
+  width: '1000px',
+  minHeight: '82%'
 };
 
 EditDriverProfile.propTypes = {
   current: PropTypes.object,
-  updateDriver: PropTypes.func.isRequired
+  updateDriverProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -330,8 +339,16 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateDriver: driver => dispatch(updateDriver(driver))
+    updateDriverProfile: driver => {
+      dispatch(updateDriverProfile(driver));
+    },
+    clearCurrentDriver: () => {
+      dispatch(clearCurrentDriver());
+    }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditDriverProfile);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: 'drivers' }])
+)(EditDriverProfile);

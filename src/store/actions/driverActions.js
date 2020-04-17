@@ -135,3 +135,40 @@ export const addCompletedRoute = (driver, log) => (
       console.error('Error adding completedRoute: ', err);
     });
 };
+
+// Set current driver
+export const setCurrentDriver = driver => {
+  return {
+    type: 'SET_CURRENT_DRIVER',
+    payload: driver
+  };
+};
+
+// Clear current driver
+export const clearCurrentDriver = () => {
+  return {
+    type: 'CLEAR_CURRENT_DRIVER'
+  };
+};
+
+// Update driver profile info
+export const updateDriverProfile = driver => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+
+  firestore
+    .collection('drivers')
+    .doc(driver.id)
+    .update({
+      ...driver
+    })
+    .then(() => {
+      dispatch({ type: 'UPDATE_DRIVER_PROFILE', payload: driver });
+    })
+    .catch(err => {
+      console.error('Error updating driver profile: ', err);
+    });
+};

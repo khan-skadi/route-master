@@ -1,5 +1,6 @@
 const initialState = {
   drivers: [],
+  current: null,
   error: null
 };
 
@@ -24,6 +25,23 @@ export default function (state = initialState, action) {
             ? action.payload
             : driver
         )
+      };
+    case 'UPDATE_DRIVER_PROFILE':
+      return {
+        ...state,
+        drivers: state.drivers.map(driver =>
+          driver.id === action.payload.id ? action.payload : driver
+        )
+      };
+    case 'SET_CURRENT_DRIVER':
+      return {
+        ...state,
+        current: action.payload
+      };
+    case 'CLEAR_CURRENT_DRIVER':
+      return {
+        ...state,
+        current: null
       };
     default:
       return state;
