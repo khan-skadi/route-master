@@ -39,19 +39,12 @@ class DriverProfileTable extends Component {
   }
 
   renderTableHeader() {
-    let header = [
-      'Location From',
-      'Location To',
-      'Distance',
-      'Price',
-      'Posted On',
-      'Signed'
-    ];
+    let header = ['From', 'To', 'Distance', 'Price', 'Posted On', 'Signed'];
     return header.map((key, index) => {
       return (
         <th
           style={{
-            backgroundColor: '#eee',
+            // backgroundColor: '#eee',
             borderCollapse: 'collapse',
             paddingTop: '-15px',
             borderRadius: '0',

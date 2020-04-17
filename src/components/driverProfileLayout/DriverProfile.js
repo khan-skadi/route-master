@@ -24,13 +24,13 @@ const DriverProfile = props => {
     return <Preloader />;
   }
   return (
-    <div className="col s12">
+    <React.Fragment>
       {drivers === null ? (
         <p className="center">Loading...</p>
       ) : (
         <DriverProfileList driver={driverInfo} />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

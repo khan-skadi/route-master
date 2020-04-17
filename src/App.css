@@ -43,3 +43,24 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+.card-panel .section-driver_image {
+  position: relative;
+}
+
+.card-panel .section-driver_image a {
+  position: absolute;
+  right: 20px;
+}
+
+.card-panel .section-driver_info h4 {
+  margin-top: -10px;
+}
+
+.card-panel .section-driver_info p {
+  line-height: 5px;
+}
+
+.card-panel .section-driver_info .section {
+  padding: 0.3rem 0 !important;
+}
