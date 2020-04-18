@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import Preloader from '../layout/Preloader.js';
 import SearchbarDrivers from '../drivers/SearchbarDrivers.js';
 
 const SignedInLinks = props => {
@@ -42,54 +43,33 @@ const SignedInLinks = props => {
           Log Out
         </a>
       </li>
-      <li>
-        <div>
+      {props.profile.photoURL && props.profile.photoURL === null ? (
+        <Preloader />
+      ) : (
+        <li>
           <a
-            href="/"
+            href="#!"
             data-target="slide-out"
             className="sidenav-trigger show-on-large"
-            style={iconStyle}
           >
-            {props.profile.initials}
+            <img
+              className="circle"
+              src={props.profile.photoURL}
+              width="42"
+              height="42"
+              alt=""
+              style={{
+                verticalAlign: 'middle'
+              }}
+            />
           </a>
-        </div>
-      </li>
+        </li>
+      )}
     </ul>
   );
 };
 
 const backgroundStyle = { backgroundColor: 'rgba(0, 0, 0, 0.1)' };
-
-const iconStyle = {
-  position: 'relative',
-  cursor: 'pointer',
-  display: 'inline-block',
-  overflow: 'hidden',
-  verticalAlign: 'middle',
-  height: '48px',
-  width: '48px',
-  borderRadius: '50%',
-  backgroundColor: '#1976d2',
-  letterSpacing: '0.5px',
-  textAlign: 'center',
-  lineHeight: '48px',
-  fontSize: '14px',
-  padding: '0',
-  zIndex: '1',
-  color: '#fff',
-  textDecoration: 'none',
-  outline: '0',
-  border: 'none',
-  textTransform: 'uppercase',
-  boxShadow:
-    '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)',
-  transition: '.3s ease-out',
-  WebkitTapHighlightColor: 'transparent',
-  fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-  fontWeight: 'normal',
-  marginTop: '8px'
-};
 
 const mapDispatchToProps = dispatch => {
   return {

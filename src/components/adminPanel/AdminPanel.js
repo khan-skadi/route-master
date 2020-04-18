@@ -102,11 +102,7 @@ const AdminPanel = props => {
                   {lastAddedRoute}
                 </Moment>
               </p>
-            </div>
-            <div
-              className="card-content white-text"
-              style={{ marginTop: '-15px' }}
-            >
+              <br />
               <span
                 className="card-title blue-text text-darken-2"
                 style={{ fontWeight: '410' }}
@@ -131,17 +127,12 @@ const AdminPanel = props => {
         <div className="col s12">
           <div className="card blue-grey lighten-3">
             <div className="card-content">
-              <span>
-                <h5
-                  className="blue-text text-darken-2"
-                  style={{ fontWeight: '410' }}
-                >
-                  Available drivers{' '}
-                  <span className="right">
-                    {' '}
-                    <i className="material-icons center">assignment_ind</i>
-                  </span>
-                </h5>
+              <span
+                className="card-title blue-text text-darken-2"
+                style={{ fontWeight: '410' }}
+              >
+                Available Drivers{' '}
+                <i className="material-icons right">assignment_ind</i>
               </span>
 
               {drivers && drivers.length === 0 ? (

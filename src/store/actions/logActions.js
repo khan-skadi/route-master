@@ -1,3 +1,5 @@
+import firebase from '../../wFirebase/firebaseConfig.js';
+
 // Add log
 export const addLog = log => (
   dispatch,
@@ -66,6 +68,7 @@ export const getLogs = () => (
 
   firestore
     .collection('logs')
+    .orderBy('date', 'desc')
     .get()
     .then(function (querySnapshot) {
       let logs = [];

@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import LogItem from './LogItem';
+import firebase from '../../wFirebase/firebaseConfig.js';
 
 const Logs = props => {
   const {
@@ -107,8 +108,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLogs: id => {
-      dispatch(getLogs(id));
+    getLogs: () => {
+      dispatch(getLogs());
     },
     deleteLog: id => {
       dispatch(deleteLog(id));

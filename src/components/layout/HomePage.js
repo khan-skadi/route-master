@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import AdminPanel from '../adminPanel/AdminPanel.js';
 import OurStaff from '../ourStaff/OurStaff.js';
 import Logs from '../logs/Logs.js';
 
-const HomePage = props => {
+const HomePage = () => {
   return (
     <div className="container" style={{ marginTop: '30px' }}>
       <div className="row">
@@ -37,4 +36,4 @@ const HomePage = props => {
   );
 };
 
-export default connect()(HomePage);
+export default HomePage;

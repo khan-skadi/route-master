@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import { storage } from "../../index";
-import background from "../../img/truck6.2.png";
-import { db } from "../../index";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { withFirestore, isLoaded, isEmpty } from "react-redux-firebase";
+import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase';
+import firebase from '../../wFirebase/firebaseConfig.js';
+import background from '../../assets/img/truck6.2.png';
 
-class AddProfileImage extends Component {
+class AddAdminImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "",
-      adminPhotoURL: "",
+      url: '',
+      adminPhotoURL: '',
       currentUser: null,
-      currentImage: ""
+      currentImage: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +20,7 @@ class AddProfileImage extends Component {
   }
 
   componentDidMount = () => {
-    this.props.firestore.get("users");
+    this.props.firestore.get('users');
   };
 
   componentWillReceiveProps = () => {
@@ -37,9 +36,12 @@ class AddProfileImage extends Component {
 
   handleUpload = () => {
     const image = this.state.image;
-    const uploadTask = storage.ref(`profile-images/${image.name}`).put(image);
+    const uploadTask = firebase
+      .storage()
+      .ref(`profile-images/${image.name}`)
+      .put(image);
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       snapshot => {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -50,15 +52,13 @@ class AddProfileImage extends Component {
         console.log(error);
       },
       () => {
-        storage
-          .ref("profile-images")
+        firebase
+          .storage()
+          .ref('profile-images')
           .child(image.name)
           .getDownloadURL()
           .then(url => {
-            this.setState({ url });
-            this.setState({
-              adminPhotoURL: url
-            });
+            this.setState({ url, adminPhotoURL: url });
           });
       }
     );
@@ -66,32 +66,32 @@ class AddProfileImage extends Component {
 
   handleSubmit = () => {
     const user = !isLoaded(this.props.users)
-      ? "Loading"
+      ? 'Loading'
       : isEmpty(this.props.users)
-      ? "User collection is empty"
+      ? 'User collection is empty'
       : this.props.users.filter(
           g => g.firstName === this.props.profile.firstName
         );
 
-    const userRef = db.collection("users").doc(user[0].id);
+    const userRef = firebase.firestore().collection('users').doc(user[0].id);
 
     userRef
       .update({
         photoURL: this.state.adminPhotoURL
       })
       .then(() => {
-        console.log("Document successfully updated !");
+        console.log('Document successfully updated !');
       })
       .catch(error => {
-        console.error("Error updating document ", error);
+        console.error('Error updating document ', error);
       });
   };
 
   render() {
     return (
-      <div id="add-profile-image" className="modal">
+      <div id="add-admin-image" className="modal">
         <div style={backgroundStyle}>
-          <img src={background} alt="" />
+          <img src={background} alt="admin profile background" />
         </div>
         <div className="modal-content">
           <div className="row" style={modalStyle}>
@@ -111,7 +111,7 @@ class AddProfileImage extends Component {
                 className="right circle responsive-img"
                 height="160"
                 width="160"
-                alt=""
+                alt="admin profile previous"
                 style={borderStyle}
               />
             </div>
@@ -162,27 +162,28 @@ class AddProfileImage extends Component {
 }
 
 const modalStyle = {
-  width: "100%",
-  height: "100%"
+  width: '100%',
+  height: '100%'
 };
 
 const backgroundStyle = {
-  overflow: "hidden",
-  position: "absolute",
-  top: "0",
-  bottom: "0",
-  left: "0",
-  right: "0",
-  zIndex: "-1"
+  overflow: 'hidden',
+  position: 'absolute',
+  top: '0',
+  bottom: '0',
+  left: '0',
+  right: '0',
+  zIndex: '-1'
 };
 
 const borderStyle = {
-  border: "1px solid white"
+  border: '1px solid white'
 };
 
 export default compose(
   withFirestore,
   connect(state => ({
-    users: state.firestore.ordered.users
+    users: state.firestore.ordered.users,
+    profile: state.firebase.profile
   }))
-)(AddProfileImage);
+)(AddAdminImage);

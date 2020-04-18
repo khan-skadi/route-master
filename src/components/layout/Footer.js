@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import logo from '../../assets/img/Logo.png';
 
-const Footer = (props) => {
+const Footer = props => {
   const { location } = props;
 
   if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
@@ -134,7 +134,7 @@ const Footer = (props) => {
               <li>
                 <a
                   className="waves-effect waves-light btn blue darken-2"
-                  href="#!"
+                  href="https://www.facebook.com/Kartalov"
                   style={socialStyle}
                 >
                   <i className="fab fa-facebook left"></i>like
@@ -143,7 +143,7 @@ const Footer = (props) => {
               <li>
                 <a
                   className="waves-effect waves-light btn blue darken-2"
-                  href="#!"
+                  href="https://www.instagram.com/khan_skadi/"
                   style={socialStyle}
                 >
                   <i className="fab fa-instagram left"></i>follow
@@ -152,7 +152,7 @@ const Footer = (props) => {
               <li>
                 <a
                   className="waves-effect waves-light btn blue darken-2"
-                  href="#!"
+                  href="https://twitter.com/Khan_Skadi"
                   style={socialStyle}
                 >
                   <i className="fab fa-twitter left"></i>tweet
@@ -162,7 +162,7 @@ const Footer = (props) => {
                 {' '}
                 <a
                   className="waves-effect waves-light btn blue darken-2"
-                  href="#!"
+                  href="https://www.youtube.com/user/ImbaWarlord/featured?view_as=subscriber"
                   style={socialStyle}
                 >
                   <i className="fab fa-youtube left"></i>subscribe
@@ -175,7 +175,7 @@ const Footer = (props) => {
 
       <div className="footer-copyright">
         <div className="container">
-          <span style={{ fontSize: '0.9em' }}>
+          <span style={{ fontSize: '1em' }}>
             Khan Skadi © 2019 created by Petar Kartalov
           </span>
         </div>

@@ -41,14 +41,14 @@
 //     M.AutoInit();
 //   });
 
-//   const PrivateRoute = ({ component: { Component, ...rest } }) => (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         auth.uid ? <HomePage {...props} /> : <Redirect to="/signin" />
-//       }
-//     />
-//   );
+// const PrivateRoute = ({ component: { Component, ...rest } }) => (
+//   <Route
+//     {...rest}
+//     render={(props) =>
+//       auth.uid ? <HomePage {...props} /> : <Redirect to="/signin" />
+//     }
+//   />
+// );
 
 //   return (
 //     <Fragment>
@@ -94,7 +94,8 @@
 // export default connect(mapStateToProps)(App);
 
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import SignIn from './components/auth/SignIn.js';
 import SignUp from './components/auth/SignUp.js';
@@ -102,30 +103,50 @@ import Navbar from './components/layout/Navbar.js';
 import HomePage from './components/layout/HomePage.js';
 import DriverProfile from './components/driverProfileLayout/DriverProfile.js';
 import ArchivedRoutes from './components/archived-routes/ArchivedRoutes.js';
+import Sidenav from './components/layout/Sidenav.js';
+
+import PrivacyPolicy from './components/footerLinks/PrivacyPolicy.js';
+import TermsAndConditions from './components/footerLinks/TermsAndConditions.js';
+import AboutUs from './components/footerLinks/AboutUs.js';
+import Contact from './components/footerLinks/Contact.js';
 
 import AddBtn from './components/layout/AddBtn.js';
 import AddLogModal from './components/modals/AddLogModal.js';
 import AddDriverModal from './components/modals/AddDriverModal.js';
 import EditDriverProfile from './components/modals/EditDriverProfile.js';
+import AddAdminImage from './components/modals/AddAdminImage.js';
+import EditAdminDetails from './components/modals/EditAdminDetails.js';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const App = () => {
+const App = ({ auth }) => {
   useEffect(() => {
     M.AutoInit();
   });
 
+  const PrivateRoute = ({ component: { Component, ...rest } }) => (
+    <Route
+      {...rest}
+      render={props =>
+        auth.uid ? <HomePage {...props} /> : <Redirect to="/signin" />
+      }
+    />
+  );
+
   return (
     <>
+      <AddAdminImage />
+      <EditAdminDetails />
       <EditDriverProfile />
       <AddLogModal />
       <AddDriverModal />
+      <Sidenav />
       <Navbar />
       <AddBtn />
       <div className="content">
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <PrivateRoute exact path="/" component={HomePage} />
           <Route path="/archived-routes" component={ArchivedRoutes} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
@@ -133,10 +154,20 @@ const App = () => {
             path="/drivers/:driver_id"
             render={routeProps => <DriverProfile {...routeProps} />}
           />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-and-conditions" component={TermsAndConditions} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route path="/contact" component={Contact} />
         </Switch>
       </div>
     </>
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(App);

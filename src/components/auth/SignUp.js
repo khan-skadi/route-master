@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { signUp } from "../../store/actions/authActions";
-import "../../App.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { signUp } from '../../store/actions/authActions.js';
 
 class SignUp extends Component {
   state = {
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: ""
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: ''
   };
 
   handleChange = e => {
@@ -40,10 +39,10 @@ class SignUp extends Component {
             <div
               className="z-depth-1 grey lighten-4 row"
               style={{
-                display: "inline-block",
-                padding: "32px 48px 0px 48px",
-                border: "1px solid #EEE",
-                width: "450px"
+                display: 'inline-block',
+                padding: '32px 48px 0px 48px',
+                border: '1px solid #EEE',
+                width: '450px'
               }}
             >
               <form className="col s12" onSubmit={this.handleSubmit}>

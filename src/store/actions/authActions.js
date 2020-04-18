@@ -31,20 +31,23 @@ export const signOut = () => {
 
 export const signUp = newUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase();
-    const firestore = getFirestore();
+    // const firebase = getFirebase();
+    // const firestore = getFirestore();
 
     firebase
       .auth()
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then(resp => {
-        return firestore
+        return firebase
+          .firestore()
           .collection('users')
           .doc(resp.user.uid)
           .set({
             firstName: newUser.firstName,
             lastName: newUser.lastName,
-            initials: newUser.firstName[0] + newUser.lastName[0]
+            initials: newUser.firstName[0] + newUser.lastName[0],
+            photoURL:
+              'https://firebasestorage.googleapis.com/v0/b/truck-dispatcher-6050d.appspot.com/o/profile-images%2Fno-img.png?alt=media&token=1832d449-a479-49ca-b857-1ccd7536d905'
           });
       })
       .then(() => {
@@ -58,15 +61,19 @@ export const signUp = newUser => {
 
 export const changeImage = currentUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase();
-    const firestore = getFirestore();
+    // const firebase = getFirebase();
+    // const firestore = getFirestore();
 
     firebase
       .auth()
       .currentUser.then(res => {
-        return firestore.collection('users').doc(res.user.id).update({
-          photoURL: currentUser
-        });
+        return firebase
+          .firestore()
+          .collection('users')
+          .doc(res.user.id)
+          .update({
+            photoURL: currentUser
+          });
       })
       .then(() => {
         dispatch({ type: 'IMAGE_CHANGE_SUCCESS' });

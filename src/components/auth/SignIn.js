@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { signIn } from "../../store/actions/authActions";
-import "../../App.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { signIn } from '../../store/actions/authActions';
 
 class SignIn extends Component {
   state = {
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   };
 
   handleChange = e => {
@@ -27,31 +26,30 @@ class SignIn extends Component {
     if (auth.uid) return <Redirect to="/" />;
 
     return (
-      <main className="signIn">
+      <div className="section signIn">
         <center>
-          <div className="section"></div>
-
-          <h5 className="yellow-text text-darken-3">
+          <h5
+            className="yellow-text text-darken-3"
+            style={{ marginTop: '10%' }}
+          >
             Please login to your account
           </h5>
-          <div className="section"></div>
 
           <div className="container">
             <div
-              className="z-depth-1 grey lighten-4 row"
+              className="row z-depth-1 grey lighten-4"
               style={{
-                display: "inline-block",
-                padding: "32px 48px 0px 48px",
-                border: "1px solid #EEE"
+                display: 'inline-block',
+                padding: '32px 48px 0px 48px',
+                border: '1px solid #EEE'
               }}
             >
-              <form className="col s12" onSubmit={this.handleSubmit}>
-                <div className="row">
-                  <div className="col s12"></div>
-                </div>
-
-                <div className="row">
-                  <div className="input-field col s12">
+              <div className="col s12">
+                <form
+                  onSubmit={this.handleSubmit}
+                  style={{ paddingBottom: '20px' }}
+                >
+                  <div className="input-field">
                     <input
                       className="validate"
                       type="email"
@@ -61,10 +59,8 @@ class SignIn extends Component {
                     />
                     <label htmlFor="email">Enter your email</label>
                   </div>
-                </div>
 
-                <div className="row">
-                  <div className="input-field col s12">
+                  <div className="input-field">
                     <input
                       className="validate"
                       type="password"
@@ -73,58 +69,42 @@ class SignIn extends Component {
                       onChange={this.handleChange}
                     />
                     <label htmlFor="password">Enter your password</label>
-                  </div>
-                  <label style={{ float: "right" }}>
-                    <a className="pink-text" href="#!">
-                      <b>Forgot Password?</b>
-                    </a>
-                  </label>
-                </div>
 
-                <br />
-                <center>
-                  <div className="row">
-                    <button
-                      type="submit"
-                      name="btn_login"
-                      className="col s12 btn btn-large waves-effect yellow darken-3"
-                    >
-                      Login
-                    </button>
-                    <div className="red-text center">
-                      {authError ? <p>{authError}</p> : null}
+                    <div className="col s12">
+                      <label style={{ float: 'right' }}>
+                        <a className="pink-text" href="#!">
+                          <b>Forgot Password?</b>
+                        </a>
+                      </label>
                     </div>
                   </div>
-                </center>
-              </form>
+
+                  <br />
+
+                  <button
+                    type="submit"
+                    name="btn_login"
+                    className="btn btn-large waves-effect blue darken-3"
+                  >
+                    Login
+                  </button>
+                </form>
+                <div className="red-text center">
+                  {authError ? <p>{authError}</p> : null}
+                </div>
+              </div>
             </div>
           </div>
           <a href="/signup" className="yellow-text text-darken-3">
             Create an account
           </a>
         </center>
-
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-        <div className="section"></div>
-      </main>
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     authError: state.auth.authError,
     auth: state.firebase.auth
