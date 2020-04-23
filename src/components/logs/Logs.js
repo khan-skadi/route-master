@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom';
-import { getLogs, deleteLog } from '../../store/actions/logActions.js';
+import { deleteLog, setCurrentLog } from '../../store/actions/logActions.js';
 import {
   setAvailableTrue,
   addCompletedRoute
@@ -13,22 +13,17 @@ import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import LogItem from './LogItem';
-import firebase from '../../wFirebase/firebaseConfig.js';
 
 const Logs = props => {
   const {
     drivers,
     logs,
-    getLogs,
     deleteLog,
     setAvailableTrue,
     addCompletedRoute,
-    addArch
+    addArch,
+    setCurrentLog
   } = props;
-
-  useEffect(() => {
-    getLogs();
-  });
 
   const onDelete = log => {
     const findDriver =
@@ -46,6 +41,7 @@ const Logs = props => {
     setAvailableTrue(updatedDriver);
     addCompletedRoute(updatedDriver, log);
     deleteLog(log.id);
+    console.log(log);
   };
 
   const onArchive = log => {
@@ -64,7 +60,6 @@ const Logs = props => {
       <li className="collection-header">
         <h4 className="center">Active Routes</h4>
       </li>
-
       {logs && logs.length === 0 ? (
         <Fragment>
           <Preloader />
@@ -74,10 +69,11 @@ const Logs = props => {
         logs &&
         logs.map(log => (
           <LogItem
-            key={log.date}
+            key={log.id}
             log={log}
             onDelete={onDelete}
             onArchive={onArchive}
+            setCurrentLog={setCurrentLog}
             M={M}
           />
         ))
@@ -92,7 +88,6 @@ const Logs = props => {
 Logs.propTypes = {
   logs: PropTypes.array,
   drivers: PropTypes.array,
-  getLogs: PropTypes.func.isRequired,
   deleteLog: PropTypes.func.isRequired,
   setAvailableTrue: PropTypes.func.isRequired,
   addCompletedRoute: PropTypes.func.isRequired,
@@ -108,9 +103,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLogs: () => {
-      dispatch(getLogs());
-    },
     deleteLog: id => {
       dispatch(deleteLog(id));
     },
@@ -122,11 +114,16 @@ const mapDispatchToProps = dispatch => {
     },
     addArch: arch => {
       dispatch(addArch(arch));
+    },
+    setCurrentLog: log => {
+      dispatch(setCurrentLog(log));
     }
   };
 };
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'logs' }, { collection: 'drivers' }])
+  firestoreConnect([
+    { collection: 'logs', limit: 10, orderBy: ['date', 'desc'] }
+  ]),
+  connect(mapStateToProps, mapDispatchToProps)
 )(Logs);

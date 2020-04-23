@@ -87,6 +87,21 @@ export const deleteArch = id => (
     });
 };
 
+// Set current arch
+export const setCurrentArch = arch => {
+  return {
+    type: 'SET_CURRENT_ARCH',
+    payload: arch
+  };
+};
+
+// Clear current arch
+export const clearCurrentArch = () => {
+  return {
+    type: 'CLEAR_CURRENT_ARCH'
+  };
+};
+
 // Get latest archived route
 // export const getLatestArch = () => (
 //   dispatch,

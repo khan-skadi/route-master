@@ -1,18 +1,21 @@
 // View Archived item
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import DriverSelectOptions from "../drivers/DriverSelectOptions";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { clearCurrentArch } from '../../store/actions/archActions';
+import PropTypes from 'prop-types';
 
-const ArchivedItemModal = ({ current }) => {
-  const [locationFrom, setLocationFrom] = useState("");
-  const [locationTo, setLocationTo] = useState("");
-  const [distance, setDistance] = useState("");
-  const [postedOn, setPostedOn] = useState("");
-  const [postedBy, setPostedBy] = useState("");
+import DriverSelectOptions from '../drivers/DriverSelectOptions';
+
+const ArchivedItemModal = ({ current, drivers, clearCurrentArch }) => {
+  const [locationFrom, setLocationFrom] = useState('');
+  const [locationTo, setLocationTo] = useState('');
+  const [distance, setDistance] = useState(0);
+  const [postedOn, setPostedOn] = useState('');
+  const [postedBy, setPostedBy] = useState('');
   const [attention, setAttention] = useState(false);
   const [progress, setProgress] = useState(false);
-  const [driver, setDriver] = useState("");
+  const [driver, setDriver] = useState('');
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -27,25 +30,21 @@ const ArchivedItemModal = ({ current }) => {
       setPostedBy(current.postedBy);
       setPrice(current.price);
     }
-  }, [current]);
+
+    return () => clearCurrentArch();
+  }, [current, clearCurrentArch]);
 
   return (
     <div id="archived-log-modal" className="modal" style={modalStyle}>
       <div className="modal-content">
         <h4>View Archived Route</h4>
 
-        {/* <div className="row">
-          <div className="input-field">
-            <input type="text" name="message" value={message || ""} readOnly />
-          </div>
-        </div> */}
-
         <div className="row">
           <div className="input-field">
             <input
               type="text"
               name="locationFrom"
-              value={locationFrom || ""}
+              value={locationFrom || 0}
               readOnly
             />
             <label htmlFor="locationFrom" className="active">
@@ -59,7 +58,7 @@ const ArchivedItemModal = ({ current }) => {
             <input
               type="text"
               name="locationTo"
-              value={locationTo || ""}
+              value={locationTo || 0}
               readOnly
             />
             <label htmlFor="locationTo" className="active">
@@ -72,16 +71,22 @@ const ArchivedItemModal = ({ current }) => {
           <div className="input-field">
             <select
               name="driver"
-              value={driver || ""}
+              value={driver || 0}
               className="browser-default"
               readOnly
             >
               <option value="" disabled>
-                Select Driver
+                {driver}
               </option>
-
-              <DriverSelectOptions />
+              {!isLoaded(drivers)
+                ? 'Loading'
+                : isEmpty(drivers)
+                ? 'No available archives'
+                : drivers.map(driver => (
+                    <DriverSelectOptions key={driver.id} driver={driver} />
+                  ))}
             </select>
+
             <label htmlFor="driver" className="active">
               Driver
             </label>
@@ -90,12 +95,7 @@ const ArchivedItemModal = ({ current }) => {
 
         <div className="row">
           <div className="input-field">
-            <input
-              type="text"
-              name="distance"
-              value={distance || ""}
-              readOnly
-            />
+            <input type="text" name="distance" value={distance || 0} readOnly />
             <label htmlFor="distance" className="active">
               Distance
             </label>
@@ -104,12 +104,7 @@ const ArchivedItemModal = ({ current }) => {
 
         <div className="row">
           <div className="input-field">
-            <input
-              type="text"
-              name="postedOn"
-              value={postedOn || ""}
-              readOnly
-            />
+            <input type="text" name="postedOn" value={postedOn || 0} readOnly />
             <label htmlFor="postedOn" className="active">
               Posted On
             </label>
@@ -118,12 +113,7 @@ const ArchivedItemModal = ({ current }) => {
 
         <div className="row">
           <div className="input-field">
-            <input
-              type="text"
-              name="postedBy"
-              value={postedBy || ""}
-              readOnly
-            />
+            <input type="text" name="postedBy" value={postedBy || 0} readOnly />
             <label htmlFor="postedBy" className="active">
               Posted By
             </label>
@@ -133,9 +123,9 @@ const ArchivedItemModal = ({ current }) => {
         <div className="row">
           <div className="input-field">
             <input type="number" name="price" value={price || 0} readOnly />
-              <label htmlFor="price" className="active">
-                Price
-              </label>
+            <label htmlFor="price" className="active">
+              Price
+            </label>
           </div>
         </div>
 
@@ -179,18 +169,23 @@ const ArchivedItemModal = ({ current }) => {
 };
 
 const modalStyle = {
-  width: "75%",
-  height: "75%"
+  width: '75%',
+  height: '75%'
 };
 
 ArchivedItemModal.propTypes = {
-  current: PropTypes.object
+  current: PropTypes.object,
+  drivers: PropTypes.array,
+  clearCurrentArch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
   return {
-    current: state.arch.current
+    current: state.arch.current,
+    drivers: state.firestore.ordered.drivers
   };
 };
 
-export default connect(mapStateToProps)(ArchivedItemModal);
+export default connect(mapStateToProps, { clearCurrentArch })(
+  ArchivedItemModal
+);

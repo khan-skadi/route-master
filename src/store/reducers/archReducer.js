@@ -1,5 +1,6 @@
 const initialState = {
   archs: [],
+  current: null,
   error: null
 };
 
@@ -20,13 +21,23 @@ const archReducer = (state = initialState, action) => {
     case 'DELETE_ARCH_SUCCESS':
       return {
         ...state,
-        archs: state.archs.filter((arch) => arch.id !== action.payload),
+        archs: state.archs.filter(arch => arch.id !== action.payload),
         error: null
       };
     case 'DELETE_ARCH_FAIL':
       return {
         ...state,
         error: action.payload
+      };
+    case 'SET_CURRENT_ARCH':
+      return {
+        ...state,
+        current: action.payload
+      };
+    case 'CLEAR_CURRENT_ARCH':
+      return {
+        ...state,
+        current: null
       };
     default:
       return state;

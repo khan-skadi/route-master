@@ -94,8 +94,7 @@ const EditDriverProfile = ({
       completedRoutes,
       incompleteRoutes,
       imageUrl,
-      id: current.id,
-      date: new Date()
+      id: current.id
     };
 
     updateDriverProfile(updatedDriver);

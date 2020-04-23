@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 
-const LogItem = ({ log, onDelete, onArchive, M }) => {
+const LogItem = ({ log, onDelete, onArchive, M, setCurrentLog }) => {
   return (
     <div>
       <li className="collection-item">
@@ -15,6 +15,7 @@ const LogItem = ({ log, onDelete, onArchive, M }) => {
               : 'blue-text'
           }`}
           href="#edit-log-modal"
+          onClick={() => setCurrentLog(log)}
         >
           {log.locationFrom} - {log.locationTo} : {log.price + '$'}
         </a>
@@ -24,7 +25,6 @@ const LogItem = ({ log, onDelete, onArchive, M }) => {
           <span className="black-text">
             {log.driver ? log.driver : 'Admin'}
           </span>{' '}
-          on{' '}
           <Moment format="MMMM Do YYYY, h:mm:ss a">{log.date.toDate()}</Moment>
         </span>
         <a
@@ -56,7 +56,8 @@ const LogItem = ({ log, onDelete, onArchive, M }) => {
 LogItem.propTypes = {
   log: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onArchive: PropTypes.func.isRequired
+  onArchive: PropTypes.func.isRequired,
+  setCurrentLog: PropTypes.func.isRequired
 };
 
 export default LogItem;

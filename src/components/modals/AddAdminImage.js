@@ -23,7 +23,7 @@ class AddAdminImage extends Component {
     this.props.firestore.get('users');
   };
 
-  componentWillReceiveProps = () => {
+  UNSAFE_componentWillReceiveProps = () => {
     this.setState({ currentImage: this.props.profile.photoURL });
   };
 

@@ -1,15 +1,10 @@
-// this the firebase functions setup code
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 let Promise = require('promise');
-// const cors = require('cors')({ origin: true });
-// const auth = require('basic-auth');
-// const request = require('request');
 const algoliasearch = require('algoliasearch');
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 
-// listen for creating a piece of logs in Firestore
 exports.addEquipmentToAlgolia = functions.firestore
   .document('logs/{document}')
   .onCreate(event => {

@@ -175,9 +175,5 @@ const mapStateToProps = state => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'drivers' },
-    { collection: 'logs' },
-    { collection: 'archs' }
-  ])
+  firestoreConnect([{ collection: 'drivers' }, { collection: 'archs' }])
 )(AdminPanel);

@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { updateLog } from "../../store/actions/logActions";
-import DriverSelectOptions from "../drivers/DriverSelectOptions";
-import PropTypes from "prop-types";
-import M from "materialize-css/dist/js/materialize.min.js";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { updateLog, clearCurrentLog } from '../../store/actions/logActions.js';
+import DriverSelectOptions from '../drivers/DriverSelectOptions';
+import PropTypes from 'prop-types';
+import M from 'materialize-css/dist/js/materialize';
 
-const EditLogModal = ({ current, updateLog }) => {
-  const [locationFrom, setLocationFrom] = useState("");
-  const [locationTo, setLocationTo] = useState("");
-  const [distance, setDistance] = useState("");
-  const [postedOn, setPostedOn] = useState("");
-  const [postedBy, setPostedBy] = useState("");
+const EditLogModal = ({ current, updateLog, clearCurrentLog, drivers }) => {
+  const [locationFrom, setLocationFrom] = useState('');
+  const [locationTo, setLocationTo] = useState('');
+  const [distance, setDistance] = useState(0);
+  const [postedOn, setPostedOn] = useState('');
+  const [postedBy, setPostedBy] = useState('');
   const [attention, setAttention] = useState(false);
   const [progress, setProgress] = useState(false);
-  const [driver, setDriver] = useState("");
+  const [driver, setDriver] = useState('');
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -46,17 +47,18 @@ const EditLogModal = ({ current, updateLog }) => {
     };
 
     updateLog(updatedLog);
+    clearCurrentLog();
 
-    M.toast({ html: "Route edited" });
+    M.toast({ html: 'Route edited' });
 
-    setLocationFrom("");
-    setLocationTo("");
-    setDistance("");
-    setPostedOn("");
-    setPostedBy("");
+    setLocationFrom('');
+    setLocationTo('');
+    setDistance(0);
+    setPostedOn('');
+    setPostedBy('');
     setAttention(false);
     setProgress(false);
-    setDriver("");
+    setDriver('');
     setPrice(0);
   };
 
@@ -71,7 +73,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="text"
               name="locationFrom"
-              value={locationFrom || ""}
+              value={locationFrom || 0}
               onChange={e => setLocationFrom(e.target.value)}
             />
             <label htmlFor="locationFrom" className="active">
@@ -86,7 +88,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="text"
               name="locationTo"
-              value={locationTo || ""}
+              value={locationTo || 0}
               onChange={e => setLocationTo(e.target.value)}
             />
             <label htmlFor="locationTo" className="active">
@@ -106,7 +108,13 @@ const EditLogModal = ({ current, updateLog }) => {
               <option value="" disabled>
                 Driver
               </option>
-              <DriverSelectOptions />
+              {!isLoaded(drivers)
+                ? 'Loading'
+                : isEmpty(drivers)
+                ? 'No available drivers'
+                : drivers.map(driver => (
+                    <DriverSelectOptions driver={driver} key={driver.id} />
+                  ))}
             </select>
           </div>
         </div>
@@ -117,7 +125,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="text"
               name="distance"
-              value={distance || ""}
+              value={distance || 0}
               onChange={e => setDistance(e.target.value)}
             />
             <label htmlFor="distance" className="active">
@@ -132,7 +140,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="text"
               name="postedOn"
-              value={postedOn || ""}
+              value={postedOn || 0}
               onChange={e => setPostedOn(e.target.value)}
             />
             <label htmlFor="postedOn" className="active">
@@ -147,7 +155,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="text"
               name="postedBy"
-              value={postedBy || ""}
+              value={postedBy || 0}
               onChange={e => setPostedBy(e.target.value)}
             />
             <label htmlFor="postedBy" className="active">
@@ -162,7 +170,7 @@ const EditLogModal = ({ current, updateLog }) => {
             <input
               type="number"
               name="price"
-              value={price || ""}
+              value={price || 0}
               onChange={e => setPrice(e.target.value)}
             />
             <label htmlFor="price" className="active">
@@ -180,7 +188,7 @@ const EditLogModal = ({ current, updateLog }) => {
                   className="filled-in"
                   checked={attention}
                   value={attention}
-                  onChange={e => setAttention(!attention)}
+                  onChange={() => setAttention(!attention)}
                 />
                 <span>Important - Time Sensitive</span>
               </label>
@@ -192,7 +200,7 @@ const EditLogModal = ({ current, updateLog }) => {
                   className="filled-in"
                   checked={progress}
                   value={progress}
-                  onChange={e => setProgress(!progress)}
+                  onChange={() => setProgress(!progress)}
                 />
                 <span>In Progress</span>
               </label>
@@ -215,24 +223,27 @@ const EditLogModal = ({ current, updateLog }) => {
 };
 
 const modalStyle = {
-  width: "75%",
-  height: "75%"
+  width: '75%',
+  height: '75%'
 };
 
 EditLogModal.propTypes = {
   current: PropTypes.object,
-  updateLog: PropTypes.func.isRequired
+  drivers: PropTypes.array,
+  updateLog: PropTypes.func.isRequired,
+  clearCurrentLog: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  current: state.log.current
+  current: state.log.current,
+  drivers: state.firestore.ordered.drivers
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateLog: log => dispatch(updateLog(log))
+    updateLog: log => dispatch(updateLog(log)),
+    clearCurrentLog: () => dispatch(clearCurrentLog())
   };
 };
 
-// export default connect(mapStateToProps, { updateLog })(EditLogModal);
 export default connect(mapStateToProps, mapDispatchToProps)(EditLogModal);

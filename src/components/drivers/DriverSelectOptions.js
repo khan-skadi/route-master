@@ -1,18 +1,13 @@
 import React from 'react';
-import Preloader from '../layout/Preloader.js';
 
-const DriverSelectOptions = (props) => {
-  const { drivers } = props;
+const DriverSelectOptions = props => {
+  const { driver } = props;
 
-  const renderDrivers =
-    drivers &&
-    drivers.map((d) => (
-      <option value={`${d.firstName} ${d.lastName}`} key={d.id}>
-        {d.fistName} {d.lastName}
-      </option>
-    ));
-
-  return { renderDrivers };
+  return (
+    <option value={`${driver.firstName} ${driver.lastName}`} key={driver.id}>
+      {driver.fistName} {driver.lastName}
+    </option>
+  );
 };
 
 export default DriverSelectOptions;

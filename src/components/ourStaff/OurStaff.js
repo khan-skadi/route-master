@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { getDrivers } from '../../store/actions/driverActions.js';
 import OurStaffList from './OurStaffList';
 import Preloader from '../layout/Preloader';
 
 const OurStaff = props => {
-  const { drivers, getDrivers } = props;
-
-  useEffect(() => {
-    getDrivers();
-  });
-
-  // if (driver.loading || driver.drivers === null) {
-  //   return <Preloader />;
-  // }
+  const { drivers } = props;
 
   return (
     <div className="row">
@@ -44,15 +35,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getDrivers: () => {
-      dispatch(getDrivers());
-    }
-  };
-};
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps),
   firestoreConnect([{ collection: 'drivers' }])
 )(OurStaff);

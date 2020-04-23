@@ -1,19 +1,15 @@
-import React, { Fragment, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { Fragment } from 'react';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { getArchs, deleteArch } from '../../store/actions/archActions.js';
+import { setCurrentArch, deleteArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import ArchivedItem from './ArchivedItem';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const ArchivedRoutes = props => {
-  const { archs, getArchs, deleteArch } = props;
-
-  useEffect(() => {
-    getArchs();
-  });
+  const { archs, deleteArch, setCurrentArch } = props;
 
   const onDelete = id => {
     deleteArch(id);
@@ -21,7 +17,7 @@ const ArchivedRoutes = props => {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ marginTop: '30px' }}>
       <div className="row">
         <div className="col s12">
           <ul className="collection with-header">
@@ -36,7 +32,12 @@ const ArchivedRoutes = props => {
             ) : (
               archs &&
               archs.map(arch => (
-                <ArchivedItem arch={arch} key={arch.id} onDelete={onDelete} />
+                <ArchivedItem
+                  key={arch.id}
+                  arch={arch}
+                  setCurrentArch={setCurrentArch}
+                  onDelete={onDelete}
+                />
               ))
             )}
           </ul>
@@ -47,26 +48,23 @@ const ArchivedRoutes = props => {
 };
 
 ArchivedRoutes.propTypes = {
-  getArchs: PropTypes.func.isRequired,
   deleteArch: PropTypes.func.isRequired,
   archs: PropTypes.array
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
+    current: state.arch.current,
     archs: state.firestore.ordered.archs
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArchs: () => {
-      dispatch(getArchs());
-    },
     deleteArch: id => {
       dispatch(deleteArch(id));
-    }
+    },
+    setCurrentArch: arch => dispatch(setCurrentArch(arch))
   };
 };
 

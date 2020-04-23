@@ -32,8 +32,6 @@
 // import M from "materialize-css/dist/js/materialize.min.js";
 // import "./App.css";
 
-// import TestRoutes from "./components/TestRoutes.js";
-
 // const App = (props) => {
 //   const { auth, profile } = props;
 
@@ -116,6 +114,8 @@ import AddDriverModal from './components/modals/AddDriverModal.js';
 import EditDriverProfile from './components/modals/EditDriverProfile.js';
 import AddAdminImage from './components/modals/AddAdminImage.js';
 import EditAdminDetails from './components/modals/EditAdminDetails.js';
+import EditLogModal from './components/modals/EditLogModal.js';
+import ArchivedItemModal from './components/modals/ArchivedItemModal.js';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -136,15 +136,17 @@ const App = ({ auth }) => {
 
   return (
     <>
-      <AddAdminImage />
-      <EditAdminDetails />
-      <EditDriverProfile />
-      <AddLogModal />
-      <AddDriverModal />
-      <Sidenav />
-      <Navbar />
-      <AddBtn />
       <div className="content">
+        <AddAdminImage />
+        <EditAdminDetails />
+        <EditLogModal />
+        <ArchivedItemModal />
+        <EditDriverProfile />
+        <AddDriverModal />
+        <Sidenav />
+        <Navbar />
+        <AddBtn />
+        <AddLogModal />
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
           <Route path="/archived-routes" component={ArchivedRoutes} />
