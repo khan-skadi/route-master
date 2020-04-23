@@ -82,6 +82,8 @@ body {
   position: absolute;
   bottom: 60px;
   justify-content: space-around;
+  background-color: rgb(210, 218, 218);
+  padding: 5px 0;
 }
 
 .bottom:hover {

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
 import adminBackground from '../../assets/img/truck7.png';
+import { truncate } from '../../util/helper';
 
 const Sidenav = props => {
   const [firstName, setFirstName] = useState('');
@@ -132,7 +131,8 @@ const Sidenav = props => {
                           }`}
                           href="#edit-log-modal"
                         >
-                          {log.id}{' '}
+                          {truncate(log.locationFrom, 6)} -{' '}
+                          {truncate(log.locationTo, 6)}{' '}
                           <span
                             className="blue-text text-darken-3"
                             style={{ float: 'right' }}
@@ -167,7 +167,7 @@ const Sidenav = props => {
                             href={`/drivers/${driver.id}`}
                             className="blue-text text-darken-3"
                           >
-                            {driver.id}
+                            {truncate(driver.id, 16)}
                           </a>
                         </li>
                       ))}
@@ -192,7 +192,4 @@ const mapStateToProps = state => ({
   drivers: state.firestore.ordered.drivers
 });
 
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: 'logs' }, { collection: 'drivers' }])
-)(Sidenav);
+export default connect(mapStateToProps)(Sidenav);

@@ -10,7 +10,7 @@ const AdminPanelList = ({ driver }) => {
               src={driver.imageUrl}
               alt="driver profile admin panel"
               className="responsive-img"
-              style={{ boxShadow: '10px 10px 5px grey' }}
+              style={{ boxShadow: '10px 10px 5px grey', minWidth: '80px' }}
             />
           </div>
         </div>

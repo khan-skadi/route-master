@@ -1,15 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { truncate } from '../../util/helper';
 import PropTypes from 'prop-types';
 
 const OurStaffList = ({ driver }) => {
-  const truncate = (string) => {
-    return string.length > 7 ? string.substring(0, 6) + '..' : string;
-  };
-  const truncateSecond = (string) => {
-    return string.length > 15 ? string.substring(0, 16) + '..' : string;
-  };
-
   return (
     <ul className="list-inline">
       <li>
@@ -24,7 +18,7 @@ const OurStaffList = ({ driver }) => {
                 className="card-title activator grey-text text-darken-4"
                 style={{ fontWeight: '376' }}
               >
-                {truncate(driver.firstName)}
+                {truncate(driver.firstName, 7)}
                 <i className="material-icons right">more_vert</i>
               </span>
 
@@ -87,7 +81,7 @@ const OurStaffList = ({ driver }) => {
                 href={`mailto: ${driver.email}`}
               >
                 {' '}
-                {truncateSecond(driver.email)}
+                {truncate(driver.email, 13)}
               </a>
 
               <div className="divider" style={{ marginTop: '15px' }}></div>
