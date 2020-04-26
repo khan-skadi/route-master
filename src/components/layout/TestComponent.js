@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
-  Hits,
+  // Hits,
   SearchBox,
+  connectHits,
   Pagination,
   Highlight,
   ClearRefinements,
@@ -17,18 +18,56 @@ const searchClient = algoliasearch(
   'c85e3316e75c5aaecf474076b02144cb'
 );
 
+const Hits = connectHits(({ hits }) => (
+  <ul className="collection">
+    {hits.map(hit => (
+      <div key={hit.objectID}>
+        <li className="collection-item">
+          <a className="modal-trigger green-text" href="#!">
+            <Highlight attribute="locationFrom" hit={hit} /> -{' '}
+            <Highlight attribute="locationTo" hit={hit} /> :{' '}
+            <Highlight attribute="price" hit={hit} /> {+'$'}
+          </a>
+          <br />
+          <span className="grey-text">
+            Last updated by{' '}
+            <span className="black-text">
+              <Highlight attribute="driver" hit={hit} />
+            </span>{' '}
+            <Highlight attribute="date" hit={hit} />
+          </span>
+          <a
+            className="tooltipped secondary-content"
+            data-position="top"
+            data-tooltip="Delete"
+            href="#!"
+          >
+            <i className="material-icons grey-text">delete</i>
+          </a>
+          <a
+            className="tooltipped secondary-content"
+            data-position="bottom"
+            data-tooltip="Archive"
+            href="#!"
+          >
+            <i className="material-icons grey-text">archive</i>
+          </a>
+        </li>
+      </div>
+    ))}
+  </ul>
+));
+
 class TestComponent extends Component {
   render() {
     return (
       <div className="ais-InstantSearch">
-        <h1>Partner Network Search</h1>
+        <h1>Search Logs</h1>
         <InstantSearch indexName="logs" searchClient={searchClient}>
           <div className="left-panel">
             <ClearRefinements />
-            <h2>Industry</h2>
             <RefinementList attribute="locationFrom" />
             <Configure hitsPerPage={8} />
-            <h2>AI AREA</h2>
             <RefinementList attribute="locationTo" />
             <Configure hitsPerPage={8} />
           </div>
@@ -38,7 +77,8 @@ class TestComponent extends Component {
                 placeholder: 'Search Active Routes..'
               }}
             />
-            <Hits hitComponent={Hit} />
+            <Hits />
+            {/* <Hits hitComponent={Hit} /> */}
             <Pagination />
           </div>
         </InstantSearch>

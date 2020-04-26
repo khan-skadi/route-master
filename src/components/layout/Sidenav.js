@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import adminBackground from '../../assets/img/truck7.png';
 import { truncate } from '../../util/helper';
+import adminBackground from '../../assets/img/truck7.png';
 
 const Sidenav = props => {
   const [firstName, setFirstName] = useState('');

@@ -1,7 +1,7 @@
 import firebase from '../../wFirebase/firebaseConfig.js';
 import algoliasearch from 'algoliasearch';
 
-const PROJECT_ID = 'truck-dispatcher-6050d'; // Firebase project ID
+// const PROJECT_ID = 'truck-dispatcher-6050d'; // Firebase project ID
 const ALGOLIA_APP_ID = 'R5EXCHKAF7'; // Algolia app ID
 const ALGOLIA_SEARCH_KEY = 'c85e3316e75c5aaecf474076b02144cb'; // Search key for unauth users
 

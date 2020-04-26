@@ -34,7 +34,7 @@ const Logs = props => {
       await getLogsForDashboard();
     }
     next();
-  }, []);
+  }, [getLogsForDashboard]);
 
   const onDelete = log => {
     const findDriver =
@@ -71,7 +71,7 @@ const Logs = props => {
       <li className="collection-header">
         <h4 className="center">Active Routes</h4>
       </li>
-      {logs && logs.length === 0 ? (
+      {!loading && logs && logs.length === 0 ? ( // add async loading and render if true
         <Fragment>
           <Preloader />
           <p className="flow-text center-align">No logs available..</p>
@@ -133,10 +133,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// export default compose(
-//   firestoreConnect([{ collection: 'logs' }]),
-//   connect(mapStateToProps, mapDispatchToProps)
-// )(Logs);
 export default connect(
   mapStateToProps,
   mapDispatchToProps

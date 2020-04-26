@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 
 const LogItem = ({ log, onDelete, onArchive, M, setCurrentLog }) => {
   return (
-    <div id="ss">
+    <div>
       <li className="collection-item">
         <a
           className={`modal-trigger ${
