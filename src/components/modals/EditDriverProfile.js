@@ -8,7 +8,7 @@ import {
 } from '../../store/actions/driverActions.js';
 import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import M from 'materialize-css/dist/js/materialize';
 
 const EditDriverProfile = ({
   current,

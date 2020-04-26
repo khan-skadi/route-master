@@ -5,7 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { addLog } from '../../store/actions/logActions.js';
 import { setAvailableFalse } from '../../store/actions/driverActions.js';
 import PropTypes from 'prop-types';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import M from 'materialize-css/dist/js/materialize';
 
 const AddLogModal = props => {
   const [locationFrom, setLocationFrom] = useState('');
@@ -48,7 +48,6 @@ const AddLogModal = props => {
       ...findDriver,
       available: false
     };
-    console.log(updatedDriver.completedRoutes);
     setAvailableFalse(updatedDriver);
 
     M.toast({ html: 'Route added' });

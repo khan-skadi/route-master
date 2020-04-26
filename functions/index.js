@@ -1,111 +1,42 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-let Promise = require('promise');
-const algoliasearch = require('algoliasearch');
-admin.initializeApp(functions.config().firebase);
-const db = admin.firestore();
+// const functions = require('firebase-functions');
+// const admin = require('firebase-admin');
+// admin.initializeApp();
+// admin.initializeApp(functions.config().firebase);
+// const ALGOLIA_APP_ID = 'R5EXCHKAF7';
+// const ALGOLIA_ADMIN_KEY = 'e6688af097905829836f7018e8bea251';
+// const ALGOLIA_INDEX_NAME_LOGS = 'logs';
+// const ALGOLIA_INDEX_NAME_USER_PROFILE = 'UserProfile';
 
-exports.addEquipmentToAlgolia = functions.firestore
-  .document('logs/{document}')
-  .onCreate(event => {
-    const data = {
-      objectID: event.params.document,
-      locationFrom: event.data.data().locationFrom,
-      locationTo: event.data.data().locationTo,
-      distance: event.data.data().distance,
-      driver: event.data.data().driver,
-      price: event.data.data().price,
-      postedBy: event.data.data().postedBy,
-      postedOn: event.data.data().postedOn
-    };
-    return addToAlgolia(data, 'logs')
-      .then(res => console.log('SUCCESS ALGOLIA logs ADD', res))
-      .catch(err => console.log('ERROR ALGOLIA logs ADD', err));
+// Authenticate to Algolia Database.
+// const algoliasearch = require('algoliasearch');
+// const client = algoliasearch(
+//   functions.config().algolia.app_id,
+//   functions.config().algolia.api_key
+// );
+
+const functions = require('firebase-functions');
+const algoliasearch = require('algoliasearch');
+const ALGOLIA_ID = functions.config().algolia.app_id;
+const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key;
+const ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key;
+const ALGOLIA_INDEX_NAME = 'logs';
+const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
+
+exports.onNoteCreated = functions.firestore
+  .document('logs/{logId}')
+  .onCreate((snap, context) => {
+    // Get the log document
+    const log = snap.data();
+
+    // Add an 'objectID' field which Algolia requires
+    log.objectID = context.params.logId;
+
+    // Write to the algolia index
+    const index = client.initIndex(ALGOLIA_INDEX_NAME);
+    return index.saveObject(log);
   });
-// listen for editing a piece of logs in Firestore
-exports.editEquipmentToAlgolia = functions.firestore
-  .document('logs/{document}')
-  .onUpdate(event => {
-    console.log('edit event', event.data.data());
-    const data = {
-      objectID: event.params.document,
-      locationFrom: event.data.data().locationFrom,
-      locationTo: event.data.data().locationTo,
-      distance: event.data.data().distance,
-      driver: event.data.data().driver,
-      price: event.data.data().price,
-      postedBy: event.data.data().postedBy,
-      postedOn: event.data.data().postedOn
-    };
-    console.log('DATA in is', data);
-    return editToAlgolia(data, 'logs')
-      .then(res => console.log('SUCCESS ALGOLIA logs EDIT', res))
-      .catch(err => console.log('ERROR ALGOLIA logs EDIT', err));
-  });
-// listen for a delete of a piece of logs in Firestore
-exports.removeEquipmentFromAlgolia = functions.firestore
-  .document('logs/{document}')
-  .onDelete(event => {
-    const objectID = event.params.document;
-    return removeFromAlgolia(objectID, 'logs')
-      .then(res => console.log('SUCCESS ALGOLIA logs ADD', res))
-      .catch(err => console.log('ERROR ALGOLIA logs ADD', err));
-  });
-// helper functions for create, edit and delete in Firestore to replicate this in Algolia
-const addToAlgolia = (object, indexName) => {
-  console.log('GETS IN addToAlgolia');
-  console.log('object', object);
-  console.log('indexName', indexName);
-  const ALGOLIA_ID = functions.config().algolia.app_id;
-  const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key;
-  const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
-  const index = client.initIndex(indexName);
-  return new Promise((resolve, reject) => {
-    index
-      .addObject(object)
-      .then(res => {
-        console.log('res GOOD', res);
-        resolve(res);
-      })
-      .catch(err => {
-        console.log('err BAD', err);
-        reject(err);
-      });
-  });
-};
-const editToAlgolia = (object, indexName) => {
-  const ALGOLIA_ID = functions.config().algolia.app_id;
-  const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key;
-  const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
-  const index = client.initIndex(indexName);
-  return new Promise((resolve, reject) => {
-    index
-      .saveObject(object)
-      .then(res => {
-        console.log('res GOOD', res);
-        resolve(res);
-      })
-      .catch(err => {
-        console.log('err BAD', err);
-        reject(err);
-      });
-  });
-};
-const removeFromAlgolia = (objectID, indexName) => {
-  const ALGOLIA_ID = functions.config().algolia.app_id;
-  const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key;
-  const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
-  const index = client.initIndex(indexName);
-  return new Promise((resolve, reject) => {
-    index
-      .deleteObject(objectID)
-      .then(res => {
-        console.log('res GOOD', res);
-        resolve(res);
-      })
-      .catch(err => {
-        console.log('err BAD', err);
-        reject(err);
-      });
-  });
-};
+// [END update_index_function]
+
+// [START get_firebase_user]
+const admin = require('firebase-admin');
+admin.initializeApp();

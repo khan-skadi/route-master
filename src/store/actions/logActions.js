@@ -1,4 +1,9 @@
-// import firebase from '../../wFirebase/firebaseConfig.js';
+import firebase from '../../wFirebase/firebaseConfig.js';
+import algoliasearch from 'algoliasearch';
+
+const PROJECT_ID = 'truck-dispatcher-6050d'; // Firebase project ID
+const ALGOLIA_APP_ID = 'R5EXCHKAF7'; // Algolia app ID
+const ALGOLIA_SEARCH_KEY = 'c85e3316e75c5aaecf474076b02144cb'; // Search key for unauth users
 
 // Add log
 export const addLog = log => (
@@ -19,45 +24,13 @@ export const addLog = log => (
     price: log.price,
     date: log.date
   };
-  firestore
-    .collection('logs')
-    .add({ ...log })
-    // .doc(`/logs/${newLog.locationFrom} ${newLog.locationTo}`)
-    // .get()
-    // .then(doc => {
-    //   if (doc.exists) {
-    //     return console.log('This log already exists');
-    //   } else {
-    //     return firestore
-    //       .doc(`/logs/${newLog.locationFrom} ${newLog.locationTo}`)
-    //       .set(newLog);
-    //   }
-    // })
-    .then(() => {
-      dispatch({
-        type: 'ADD_LOG',
-        payload: newLog
-      });
-      console.log('log added to firestore and redux');
-    })
-    .catch(err => {
-      console.error('failed to add log to firestore ', err);
-    });
+  try {
+    let createdLog = firestore.collection('logs').add(newLog);
 
-  // firestore
-  //   .collection('logs')
-  //   .add({ ...log })
-  //   .then((docRef) => {
-  //     console.log('Document written with ID: ', docRef.id);
-  //     console.log(docRef);
-  //     dispatch({
-  //       type: 'ADD_LOG',
-  //       payload: log
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.error('Error adding document: ', err);
-  //   });
+    return createdLog;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // Get logs
@@ -111,30 +84,22 @@ export const updateLog = log => (
 };
 
 // Search logs
-export const searchLogs = text => (
-  dispatch,
-  _getState,
-  { getFirebase, getFirestore }
-) => {
-  const firestore = getFirestore();
+export const searchLogs = query => dispatch => {
+  const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
+  const index = client.initIndex('logs');
 
-  firestore
-    .collection('logs')
-    // .where('id', '==', text)
-    .orderBy('price')
-    .get()
-    .then(data => {
-      data.docs.forEach(doc => {
-        console.log(doc);
-      });
-      // dispatch({
-      //   type: 'SEARCH_LOGS',
-      //   payload: doc
-      // });
+  let arr = [];
+
+  return index
+    .search({
+      query
+    })
+    .then(res => {
+      console.log(res);
+
+      arr.push(res.hits);
+      dispatch({ type: 'SEARCH_LOGS', payload: arr });
     });
-  // .catch(err => {
-  //   console.error('Something went wrong: ', err);
-  // });
 };
 
 // Delete log
@@ -144,24 +109,6 @@ export const deleteLog = id => (
   { getFirebase, getFirestore }
 ) => {
   const firestore = getFirestore();
-  // const document = firestore.doc(`/logs/${id.locationFrom} ${id.locationTo}`);
-
-  // document
-  //   .get()
-  //   .then(doc => {
-  //     if (!doc.exists) {
-  //       return 'Log not found';
-  //     }
-  //     return document.delete();
-  //   })
-  //   .then(() => {
-  //     dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
-  //     console.log(`Log document ${id} deleted`);
-  //   })
-  //   .catch(err => {
-  //     console.error('Failed deleting log document ', err);
-  //     dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
-  //   });
 
   firestore
     .collection('logs')
@@ -190,4 +137,28 @@ export const clearCurrentLog = () => {
   return {
     type: 'CLEAR_CURRENT_LOG'
   };
+};
+
+export const getLogsForDashboard = lastLog => async (dispatch, getState) => {
+  let today = new Date();
+  const firestore = firebase.firestore();
+  const eventsRef = firestore.collection('logs');
+  try {
+    let querySnap = await eventsRef
+      .where('date', '<=', today)
+      .orderBy('date')
+      .get();
+
+    let logs = [];
+
+    for (let i = 0; i < querySnap.docs.length; i++) {
+      let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
+      logs.push(evt);
+    }
+    dispatch({ type: 'FETCH_LOGS', payload: logs });
+
+    return querySnap;
+  } catch (error) {
+    console.log(error);
+  }
 };

@@ -1,15 +1,17 @@
-import React from "react";
+import React from 'react';
 
 const NavbarSearch = props => {
+  const { text, onChange } = props;
+
   return (
     <div className="input-field">
       <input
         id="search"
         type="search"
         placeholder="Search Active Routes.."
-        ref={props.text}
-        onChange={props.onChange}
-        style={{ width: "20em" }}
+        ref={text}
+        onChange={onChange}
+        style={{ width: '20em' }}
       />
       <label className="label-icon" htmlFor="search">
         <i className="material-icons">search</i>

@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react';
-import { compose } from 'redux';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom';
-import { deleteLog, setCurrentLog } from '../../store/actions/logActions.js';
+import {
+  deleteLog,
+  setCurrentLog,
+  getLogsForDashboard
+} from '../../store/actions/logActions.js';
 import {
   setAvailableTrue,
   addCompletedRoute
@@ -11,7 +14,7 @@ import {
 import { addArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import M from 'materialize-css/dist/js/materialize';
 import LogItem from './LogItem';
 
 const Logs = props => {
@@ -22,8 +25,16 @@ const Logs = props => {
     setAvailableTrue,
     addCompletedRoute,
     addArch,
-    setCurrentLog
+    setCurrentLog,
+    getLogsForDashboard
   } = props;
+
+  useEffect(() => {
+    async function next() {
+      await getLogsForDashboard();
+    }
+    next();
+  }, []);
 
   const onDelete = log => {
     const findDriver =
@@ -96,7 +107,7 @@ Logs.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    logs: state.firestore.ordered.logs,
+    logs: state.log.logs,
     drivers: state.firestore.ordered.drivers
   };
 };
@@ -117,13 +128,16 @@ const mapDispatchToProps = dispatch => {
     },
     setCurrentLog: log => {
       dispatch(setCurrentLog(log));
-    }
+    },
+    getLogsForDashboard: () => dispatch(getLogsForDashboard())
   };
 };
 
-export default compose(
-  firestoreConnect([
-    { collection: 'logs', limit: 10, orderBy: ['date', 'desc'] }
-  ]),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Logs);
+// export default compose(
+//   firestoreConnect([{ collection: 'logs' }]),
+//   connect(mapStateToProps, mapDispatchToProps)
+// )(Logs);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(firestoreConnect([{ collection: 'logs' }])(Logs));

@@ -162,7 +162,7 @@ const Sidenav = props => {
                         driver.available === true ? driver : false
                       )
                       .map(driver => (
-                        <li key={driver.id}>
+                        <li key={driver.license}>
                           <a
                             href={`/drivers/${driver.id}`}
                             className="blue-text text-darken-3"

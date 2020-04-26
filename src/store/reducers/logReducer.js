@@ -6,6 +6,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case 'FETCH_LOGS':
+      return {
+        ...state,
+        logs: action.payload
+      };
     case 'ADD_LOG':
       return {
         ...state,
