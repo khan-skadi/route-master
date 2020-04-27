@@ -1,3 +1,5 @@
+import { toastr } from 'react-redux-toastr';
+
 // Add arch
 export const addArch = arch => (
   dispatch,
@@ -35,6 +37,7 @@ export const addArch = arch => (
         payload: newArch
       });
       console.log('arch added to firestore and redux');
+      toastr.success('Success!', 'Route archived!');
     })
     .catch(err => {
       console.error('failed to add arch to firestore ', err);
@@ -101,30 +104,3 @@ export const clearCurrentArch = () => {
     type: 'CLEAR_CURRENT_ARCH'
   };
 };
-
-// Get latest archived route
-// export const getLatestArch = () => (
-//   dispatch,
-//   _getState,
-//   { getFirebase, getFirestore }
-// ) => {
-//   const firestore = getFirestore();
-
-//   firestore
-//     .collection('archs')
-//     .orderBy('date', 'desc')
-//     .limit(1)
-//     .get()
-//     .then(querySnapshot => {
-//       let date = [];
-//       querySnapshot.forEach(doc => {
-//         date.push({
-//           date: doc.data().date
-//         });
-//       });
-//       return date;
-//     })
-//     .catch(err => {
-//       console.error(err);
-//     });
-// };

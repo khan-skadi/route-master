@@ -14,7 +14,7 @@ import {
 import { addArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
-import M from 'materialize-css/dist/js/materialize';
+
 import LogItem from './LogItem';
 
 const Logs = props => {
@@ -57,7 +57,6 @@ const Logs = props => {
     setAvailableTrue(updatedDriver);
     addCompletedRoute(updatedDriver, log);
     deleteLog(log.id);
-    console.log(log);
   };
 
   const onArchive = log => {
@@ -67,8 +66,6 @@ const Logs = props => {
     };
     addArch(newArchive);
     onDelete(log);
-
-    M.toast({ html: 'Route Archived' });
   };
 
   return (
@@ -90,7 +87,6 @@ const Logs = props => {
             onDelete={onDelete}
             onArchive={onArchive}
             setCurrentLog={setCurrentLog}
-            M={M}
           />
         ))
       )}
@@ -118,32 +114,16 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     deleteLog: id => {
-//       dispatch(deleteLog(id));
-//     },
-//     setAvailableTrue: driver => {
-//       dispatch(setAvailableTrue(driver));
-//     },
-//     addCompletedRoute: (driver, log) => {
-//       dispatch(addCompletedRoute(driver, log));
-//     },
-//     addArch: arch => {
-//       dispatch(addArch(arch));
-//     },
-//     setCurrentLog: log => {
-//       dispatch(setCurrentLog(log));
-//     },
-//     getLogsForDashboard: () => dispatch(getLogsForDashboard())
-//   };
-// };
-
-export default connect(mapStateToProps, {
+const actions = {
   deleteLog,
   setAvailableTrue,
   addCompletedRoute,
   addArch,
   setCurrentLog,
   getLogsForDashboard
-})(firestoreConnect([{ collection: 'logs' }])(Logs));
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(firestoreConnect([{ collection: 'logs' }])(Logs));

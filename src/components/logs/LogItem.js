@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import M from 'materialize-css/dist/js/materialize';
 
-const LogItem = ({ log, onDelete, onArchive, M, setCurrentLog }) => {
+const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
   return (
     <div>
       <li className="collection-item">
