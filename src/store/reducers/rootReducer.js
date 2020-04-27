@@ -5,6 +5,8 @@ import archReducer from './archReducer.js';
 import logReducer from './logReducer.js';
 import driverReducer from './driverReducer.js';
 import authReducer from './authReducer.js';
+import asyncReducer from './asyncReducer.js';
+import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
   arch: archReducer,
   log: logReducer,
   driver: driverReducer,
-  auth: authReducer
+  auth: authReducer,
+  async: asyncReducer,
+  toastr: toastrReducer
 });
 
 export default rootReducer;

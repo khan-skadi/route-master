@@ -26,6 +26,7 @@ const Logs = props => {
     addCompletedRoute,
     addArch,
     setCurrentLog,
+    loading,
     getLogsForDashboard
   } = props;
 
@@ -34,7 +35,11 @@ const Logs = props => {
       await getLogsForDashboard();
     }
     next();
-  }, [getLogsForDashboard]);
+
+    if (loading) {
+      next();
+    }
+  }, [loading, getLogsForDashboard]);
 
   const onDelete = log => {
     const findDriver =
@@ -71,7 +76,7 @@ const Logs = props => {
       <li className="collection-header">
         <h4 className="center">Active Routes</h4>
       </li>
-      {!loading && logs && logs.length === 0 ? ( // add async loading and render if true
+      {!loading && logs && logs.length === 0 ? (
         <Fragment>
           <Preloader />
           <p className="flow-text center-align">No logs available..</p>
@@ -108,32 +113,37 @@ Logs.propTypes = {
 const mapStateToProps = state => {
   return {
     logs: state.log.logs,
+    loading: state.async.loading,
     drivers: state.firestore.ordered.drivers
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteLog: id => {
-      dispatch(deleteLog(id));
-    },
-    setAvailableTrue: driver => {
-      dispatch(setAvailableTrue(driver));
-    },
-    addCompletedRoute: (driver, log) => {
-      dispatch(addCompletedRoute(driver, log));
-    },
-    addArch: arch => {
-      dispatch(addArch(arch));
-    },
-    setCurrentLog: log => {
-      dispatch(setCurrentLog(log));
-    },
-    getLogsForDashboard: () => dispatch(getLogsForDashboard())
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     deleteLog: id => {
+//       dispatch(deleteLog(id));
+//     },
+//     setAvailableTrue: driver => {
+//       dispatch(setAvailableTrue(driver));
+//     },
+//     addCompletedRoute: (driver, log) => {
+//       dispatch(addCompletedRoute(driver, log));
+//     },
+//     addArch: arch => {
+//       dispatch(addArch(arch));
+//     },
+//     setCurrentLog: log => {
+//       dispatch(setCurrentLog(log));
+//     },
+//     getLogsForDashboard: () => dispatch(getLogsForDashboard())
+//   };
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(firestoreConnect([{ collection: 'logs' }])(Logs));
+export default connect(mapStateToProps, {
+  deleteLog,
+  setAvailableTrue,
+  addCompletedRoute,
+  addArch,
+  setCurrentLog,
+  getLogsForDashboard
+})(firestoreConnect([{ collection: 'logs' }])(Logs));

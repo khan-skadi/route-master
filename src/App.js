@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReduxToastr from 'react-redux-toastr';
 
 import SignIn from './components/auth/SignIn.js';
 import SignUp from './components/auth/SignUp.js';
@@ -25,6 +26,7 @@ import EditAdminDetails from './components/modals/EditAdminDetails.js';
 import EditLogModal from './components/modals/EditLogModal.js';
 import ArchivedItemModal from './components/modals/ArchivedItemModal.js';
 
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import * as M from 'materialize-css/dist/js/materialize';
 
@@ -54,6 +56,16 @@ const App = ({ auth }) => {
         <AddDriverModal />
         <Sidenav />
         <Navbar />
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="bottom-left"
+          getState={state => state.toastr}
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          closeOnToastrClick
+        />
         <AddBtn />
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />

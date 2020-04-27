@@ -1,5 +1,6 @@
 import firebase from '../../wFirebase/firebaseConfig.js';
 import algoliasearch from 'algoliasearch';
+import { toastr } from 'react-redux-toastr';
 
 // const PROJECT_ID = 'truck-dispatcher-6050d'; // Firebase project ID
 const ALGOLIA_APP_ID = 'R5EXCHKAF7'; // Algolia app ID
@@ -25,40 +26,18 @@ export const addLog = log => (
     date: log.date
   };
   try {
+    dispatch({ type: 'ASYNC_ACTION_START' });
     let createdLog = firestore.collection('logs').add(newLog);
 
+    toastr.success('Success!', 'Your log is published.');
+    dispatch({ type: 'ASYNC_ACTION_FINISH' });
+    dispatch({ type: 'SET_LOADING_LOGS' });
     return createdLog;
   } catch (error) {
     console.log(error);
+    toastr.success('Oops!', 'Something went wrong.');
+    dispatch({ type: 'ASYNC_ACTION_ERROR' });
   }
-};
-
-// Get logs
-export const getLogs = () => (
-  dispatch,
-  _getState,
-  { getFirebase, getFirestore }
-) => {
-  const firestore = getFirestore();
-
-  firestore
-    .collection('logs')
-    .orderBy('price', 'desc')
-    .get()
-    .then(function (querySnapshot) {
-      let logs = [];
-      querySnapshot.forEach(function (doc) {
-        // console.log(doc.id, ' => ', doc.data());
-        logs.push(doc.data());
-      });
-      return logs;
-    })
-    .then(logs => {
-      dispatch({ type: 'GET_LOGS_SUCCESS', payload: logs });
-    })
-    .catch(err => {
-      console.err('Error getting document: ', err);
-    });
 };
 
 // Update log
@@ -140,25 +119,27 @@ export const clearCurrentLog = () => {
 };
 
 export const getLogsForDashboard = lastLog => async (dispatch, getState) => {
-  let today = new Date();
+  let today = new Date(Date.now());
   const firestore = firebase.firestore();
   const eventsRef = firestore.collection('logs');
   try {
+    // dispatch({ type: 'ASYNC_ACTION_START' });
     let querySnap = await eventsRef
       .where('date', '<=', today)
-      .orderBy('date')
+      .orderBy('date', 'desc')
       .get();
 
     let logs = [];
 
     for (let i = 0; i < querySnap.docs.length; i++) {
-      let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
-      logs.push(evt);
+      let lg = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
+      logs.push(lg);
     }
     dispatch({ type: 'FETCH_LOGS', payload: logs });
-
+    // dispatch({ type: 'ASYNC_ACTION_FINISH' });
     return querySnap;
   } catch (error) {
     console.log(error);
+    dispatch({ type: 'ASYNC_ACTION_ERROR' });
   }
 };
