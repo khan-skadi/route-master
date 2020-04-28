@@ -10,7 +10,6 @@ import HomePage from './components/layout/HomePage.js';
 import DriverProfile from './components/driverProfileLayout/DriverProfile.js';
 import ArchivedRoutes from './components/archived-routes/ArchivedRoutes.js';
 import Sidenav from './components/layout/Sidenav.js';
-import TestComponent from './components/layout/TestComponent.js';
 
 import PrivacyPolicy from './components/footerLinks/PrivacyPolicy.js';
 import TermsAndConditions from './components/footerLinks/TermsAndConditions.js';
@@ -45,45 +44,42 @@ const App = ({ auth }) => {
   );
 
   return (
-    <>
-      <div className="content">
-        <AddLogModal />
-        <AddAdminImage />
-        <EditAdminDetails />
-        <EditLogModal />
-        <ArchivedItemModal />
-        <EditDriverProfile />
-        <AddDriverModal />
-        <Sidenav />
-        <Navbar />
-        <ReduxToastr
-          timeOut={4000}
-          newestOnTop={false}
-          preventDuplicates
-          position="bottom-left"
-          getState={state => state.toastr}
-          transitionIn="fadeIn"
-          transitionOut="fadeOut"
-          closeOnToastrClick
+    <div className="content">
+      <AddLogModal />
+      <AddAdminImage />
+      <EditAdminDetails />
+      <EditLogModal />
+      <ArchivedItemModal />
+      <EditDriverProfile />
+      <AddDriverModal />
+      <Sidenav />
+      <Navbar />
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        position="bottom-left"
+        getState={state => state.toastr}
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        closeOnToastrClick
+      />
+      <AddBtn />
+      <Switch>
+        <PrivateRoute exact path="/" component={HomePage} />
+        <Route path="/archived-routes" component={ArchivedRoutes} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route
+          path="/drivers/:driver_id"
+          render={routeProps => <DriverProfile {...routeProps} />}
         />
-        <AddBtn />
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          <Route path="/archived-routes" component={ArchivedRoutes} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
-          <Route
-            path="/drivers/:driver_id"
-            render={routeProps => <DriverProfile {...routeProps} />}
-          />
-          <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/terms-and-conditions" component={TermsAndConditions} />
-          <Route path="/about-us" component={AboutUs} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/test" component={TestComponent} />
-        </Switch>
-      </div>
-    </>
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/terms-and-conditions" component={TermsAndConditions} />
+        <Route path="/about-us" component={AboutUs} />
+        <Route path="/contact" component={Contact} />
+      </Switch>
+    </div>
   );
 };
 

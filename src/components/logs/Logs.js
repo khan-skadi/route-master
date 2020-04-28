@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { NavLink } from 'react-router-dom';
 import {
   deleteLog,
   setCurrentLog,
@@ -14,7 +14,6 @@ import {
 import { addArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
-
 import LogItem from './LogItem';
 
 const Logs = props => {

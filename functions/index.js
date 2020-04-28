@@ -1,19 +1,3 @@
-// const functions = require('firebase-functions');
-// const admin = require('firebase-admin');
-// admin.initializeApp();
-// admin.initializeApp(functions.config().firebase);
-// const ALGOLIA_APP_ID = 'R5EXCHKAF7';
-// const ALGOLIA_ADMIN_KEY = 'e6688af097905829836f7018e8bea251';
-// const ALGOLIA_INDEX_NAME_LOGS = 'logs';
-// const ALGOLIA_INDEX_NAME_USER_PROFILE = 'UserProfile';
-
-// Authenticate to Algolia Database.
-// const algoliasearch = require('algoliasearch');
-// const client = algoliasearch(
-//   functions.config().algolia.app_id,
-//   functions.config().algolia.api_key
-// );
-
 const functions = require('firebase-functions');
 const algoliasearch = require('algoliasearch');
 const ALGOLIA_ID = functions.config().algolia.app_id;

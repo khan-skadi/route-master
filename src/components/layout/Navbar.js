@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import logo from '../../assets/img/Logo.png';
 
-import NavbarSearch from './NavbarSearch';
+// import NavbarSearch from './NavbarSearch';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
@@ -21,12 +21,12 @@ const Navbar = props => {
     <SignedOutLinks />
   );
 
-  const text = useRef('');
+  // const text = useRef('');
 
-  const onChange = e => {
-    e.preventDefault();
-    props.searchLogs(text.current.value);
-  };
+  // const onChange = e => {
+  //   e.preventDefault();
+  //   props.searchLogs(text.current.value);
+  // };
 
   if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
     return null;
@@ -35,10 +35,6 @@ const Navbar = props => {
   return (
     <nav className="green accent-4">
       <div className="nav-wrapper">
-        <form className="left hide-on-med-and-down">
-          <NavbarSearch onChange={onChange} text={text} />
-        </form>
-
         <Link to="/" className="brand-logo center">
           <img src={logo} alt="logo" width="108" height="auto" />
         </Link>
