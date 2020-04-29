@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authActions';
 import M from 'materialize-css/dist/js/materialize';
+
 import Preloader from '../layout/Preloader.js';
-import SearchbarDrivers from '../drivers/SearchbarDrivers.js';
+import SearchbarDriversList from '../drivers/SearchbarDriversList';
 
 const SignedInLinks = props => {
   const { drivers } = props;
@@ -17,55 +18,58 @@ const SignedInLinks = props => {
   }, []);
 
   return (
-    <ul className="right">
-      <li>
-        <a
-          className="dropdown-trigger btn blue darken-2"
-          href="#!"
-          data-target="driversListNavbar"
-        >
-          Drivers<i className="material-icons right">arrow_drop_down</i>
-        </a>
-        <ul id="driversListNavbar" className="dropdown-content">
-          {drivers &&
-            drivers.map(driver => (
-              <SearchbarDrivers driver={driver} key={driver.id} />
-            ))}
-        </ul>
-      </li>
-      <li>
-        <NavLink to="/archived-routes" activeStyle={backgroundStyle}>
-          Archived Routes
-        </NavLink>
-      </li>
-      <li>
-        <a href="/" onClick={props.signOut}>
-          Log Out
-        </a>
-      </li>
-      {props.profile.photoURL && props.profile.photoURL === null ? (
-        <Preloader />
-      ) : (
+    <Fragment>
+      <SearchbarDriversList drivers={drivers} />
+      <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li>
-          <a
-            href="#!"
-            data-target="slide-out"
-            className="sidenav-trigger show-on-large"
+          <NavLink exact to="/" activeStyle={backgroundStyle}>
+            Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/archived-routes" activeStyle={backgroundStyle}>
+            Archived Routes
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/drivers"
+            className="dropdown-trigger"
+            data-target="driversListNavbar"
+            activeStyle={backgroundStyle}
           >
-            <img
-              className="circle"
-              src={props.profile.photoURL}
-              width="42"
-              height="42"
-              alt=""
-              style={{
-                verticalAlign: 'middle'
-              }}
-            />
+            Drivers<i className="material-icons right">arrow_drop_down</i>
+          </NavLink>
+        </li>
+        <li>
+          <a href="/" onClick={props.signOut}>
+            Log Out
           </a>
         </li>
-      )}
-    </ul>
+        {props.profile.photoURL && props.profile.photoURL === null ? (
+          <Preloader />
+        ) : (
+          <li>
+            <a
+              href="#!"
+              data-target="slide-out"
+              className="sidenav-trigger show-on-large"
+            >
+              <img
+                className="circle"
+                src={props.profile.photoURL}
+                width="42"
+                height="42"
+                alt=""
+                style={{
+                  verticalAlign: 'middle'
+                }}
+              />
+            </a>
+          </li>
+        )}
+      </ul>
+    </Fragment>
   );
 };
 

@@ -128,7 +128,7 @@ const Footer = props => {
               <li>
                 <a className="white-text" href="#!">
                   {' '}
-                  <h5>Follow us </h5>
+                  <h5>Follow</h5>
                 </a>
               </li>
               <li>

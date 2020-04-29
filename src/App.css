@@ -1,21 +1,10 @@
-@font-face {
-  font-family: 'LeelawUI';
-  src: local('LeelawUI'), url(./assets/fonts/LeelawUI.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'Malgun Gothic';
-  src: local('malgun'), url(./assets/fonts/malgun.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'Little Pat';
-  src: local('LittlePat'), url(./assets/fonts/LittlePat.ttf) format('truetype');
-}
-
 html,
 body {
   height: 100%;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Lato', sans-serif;
+  /* font-family: 'Noto Sans JP', sans-serif; */
+  /* font-family: 'Manrope', sans-serif; */
 }
 
 #root {
@@ -44,6 +33,10 @@ body {
   background-size: cover;
   width: 100%;
   height: 102.4%;
+}
+
+.section-home_page {
+  margin-top: 30px;
 }
 
 .card-panel .section-driver_image {

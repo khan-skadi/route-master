@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 
 import logo from '../../assets/img/Logo.png';
 
-// import NavbarSearch from './NavbarSearch';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
@@ -21,13 +20,6 @@ const Navbar = props => {
     <SignedOutLinks />
   );
 
-  // const text = useRef('');
-
-  // const onChange = e => {
-  //   e.preventDefault();
-  //   props.searchLogs(text.current.value);
-  // };
-
   if (location.pathname.match(/signin/) || location.pathname.match(/signup/)) {
     return null;
   }
@@ -35,7 +27,7 @@ const Navbar = props => {
   return (
     <nav className="green accent-4">
       <div className="nav-wrapper">
-        <Link to="/" className="brand-logo center">
+        <Link to="/" className="brand-logo">
           <img src={logo} alt="logo" width="108" height="auto" />
         </Link>
         {links}

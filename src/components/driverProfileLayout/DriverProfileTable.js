@@ -27,7 +27,7 @@ class DriverProfileTable extends Component {
             {' '}
             <a
               href="#!"
-              className="btn waves-effect waves-light green accent-4"
+              className="btn disabled waves-effect waves-light green accent-4"
             >
               Finished
               <i className="material-icons right">assignment_turned_in</i>

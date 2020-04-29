@@ -95,11 +95,12 @@ export const deleteLog = id => (
     .delete()
     .then(() => {
       dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
-      console.log(`Log document ${id} deleted`);
+      toastr.success('Success!', 'Route deleted.');
     })
     .catch(err => {
       console.error('Failed deleting log document ', err);
       dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
+      toastr.error('Oops!', 'Something went wrong.');
     });
 };
 

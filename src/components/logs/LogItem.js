@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import M from 'materialize-css/dist/js/materialize';
 
 const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
   return (
@@ -22,10 +21,11 @@ const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
         </a>
         <br />
         <span className="grey-text">
-          Last updated by{' '}
+          Route assigned to{' '}
           <span className="black-text">
             {log.driver ? log.driver : 'Admin'}
           </span>{' '}
+          in{' '}
           <Moment format="MMMM Do YYYY, h:mm:ss a">{log.date.toDate()}</Moment>
         </span>
         <a
@@ -33,10 +33,7 @@ const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
           data-position="top"
           data-tooltip="Delete"
           href="#!"
-          onClick={() => {
-            onDelete(log);
-            M.toast({ html: 'Route deleted' });
-          }}
+          onClick={() => onDelete(log)}
         >
           <i className="material-icons grey-text">delete</i>
         </a>
