@@ -122,7 +122,7 @@ const EditDriverProfile = ({
     <div id="edit-driver-profile" className="modal" style={modalStyle}>
       <div className="modal-content">
         <div className="row">
-          <h4 className="center">Edit Driver</h4>
+          <h4 className="center">Edit Driver Profile</h4>
           <br />
 
           <div className="col s6">

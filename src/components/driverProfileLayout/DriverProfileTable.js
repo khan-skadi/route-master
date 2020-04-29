@@ -20,12 +20,19 @@ class DriverProfileTable extends Component {
           <td style={{ marginBottom: '20px', padding: '25px' }}>
             {locationTo}
           </td>
-          <td style={{ marginBottom: '20px', padding: '25px' }}>{distance}</td>
-          <td style={{ marginBottom: '20px', padding: '25px' }}>{price}</td>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>
+            {distance}
+            {' km'}
+          </td>
+          <td style={{ marginBottom: '20px', padding: '25px' }}>
+            {price}
+            {' $'}
+          </td>
           <td style={{ marginBottom: '20px', padding: '25px' }}>{postedOn}</td>
           <td style={{ marginBottom: '20px', padding: '25px' }}>
             {' '}
             <a
+              style={{ float: 'right' }}
               href="#!"
               className="btn disabled waves-effect waves-light green accent-4"
             >
@@ -44,7 +51,6 @@ class DriverProfileTable extends Component {
       return (
         <th
           style={{
-            // backgroundColor: '#eee',
             borderCollapse: 'collapse',
             paddingTop: '-15px',
             borderRadius: '0',

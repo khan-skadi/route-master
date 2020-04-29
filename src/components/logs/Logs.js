@@ -91,7 +91,9 @@ const Logs = props => {
         ))
       )}
       <NavLink to="/archived-routes" className="flow-text">
-        <blockquote style={{ color: 'green' }}>Archived Routes</blockquote>
+        <blockquote style={{ color: '#00c853', borderLeftColor: '#1976d2' }}>
+          Archived Routes
+        </blockquote>
       </NavLink>
     </ul>
   );

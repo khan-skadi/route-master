@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 const DriverNavbar = ({ driver }) => {
   return (
-    <nav className="green accent-4" style={{ marginBottom: "30px" }}>
+    <nav className="blue darken-2" style={{ marginBottom: '10px' }}>
       <div className="nav-wrapper">
         <div className="col s12">
-          <div className="col s6 left" style={{ marginLeft: "10px" }}>
+          <div className="col s6 left" style={{ marginLeft: '10px' }}>
             <a href="#!" className="breadcrumb">
-              Driver{" "}
+              Driver{' '}
             </a>
             <a href="#!" className="breadcrumb">
               {driver.firstName} {driver.lastName}
@@ -15,21 +15,21 @@ const DriverNavbar = ({ driver }) => {
           </div>
           <div
             className="col s6 right valign-wrapper"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: '10px' }}
           >
             <a href="#!" className="breadcrumb">
-              Status{" "}
+              Status{' '}
             </a>
             <a href="#!" className="breadcrumb">
-              {" "}
+              {' '}
             </a>
             <a
               href="#!"
               className={`waves-effect waves-light btn ${
-                driver.available ? "green accent-4" : "red accent-4"
+                driver.available ? 'green accent-4' : 'red accent-4'
               }`}
             >
-              {driver.available ? "Available" : "En Route"}
+              {driver.available ? 'Available' : 'En Route'}
             </a>
           </div>
         </div>

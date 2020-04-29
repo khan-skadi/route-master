@@ -1,17 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setCurrentDriver } from '../../store/actions/driverActions.js';
 import PropTypes from 'prop-types';
+import M from 'materialize-css/dist/js/materialize';
 
 const DriverInfo = ({ driver, completedCount, setCurrentDriver }) => {
+  useEffect(() => {
+    const tooltips = document.querySelectorAll('.tooltipped');
+    for (let i = 0; i < tooltips.length; i++) {
+      M.Tooltip.init(tooltips[i]);
+    }
+  });
+
   return (
     <Fragment>
       <div className="section section-driver_image">
         <a
           href="#edit-driver-profile"
-          className="waves-effect waves-light btn modal-trigger btn-floating tooltipped grey lighten-1"
-          data-position="bottom"
-          data-tooltip="Edit Driver"
+          className="btn tooltipped waves-effect waves-light modal-trigger btn-floating grey lighten-1"
+          data-position="top"
+          data-tooltip="Edit Driver Profile"
           onClick={() => setCurrentDriver(driver)}
         >
           <i className="material-icons">edit</i>

@@ -134,7 +134,7 @@ const AdminPanel = props => {
                 Available Drivers{' '}
                 <i className="material-icons right">assignment_ind</i>
               </span>
-
+              <br />
               {drivers && drivers.length === 0 ? (
                 <Preloader />
               ) : (
