@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import logo from '../../assets/img/Logo.png';
+import logo from '../../assets/RouteMasterLogo.png';
 
 const Footer = props => {
   const { location } = props;
@@ -14,29 +14,50 @@ const Footer = props => {
       <div className="container">
         <div className="row">
           <div className="col s12 l4">
-            <h5 className="white-text">Swift Dispatching</h5>
             <br />
-            <a
-              href="#!"
-              className="brand-logo center"
-              style={{ marginLeft: '30px' }}
-            >
-              <img src={logo} alt="logo" width="108" height="auto" />
+            <a href="#!" className="brand-logo center">
+              <img src={logo} alt="logo" />
             </a>
-            <p style={{ fontSize: '1.1em' }}>
-              We bring you the best trucking solutions
-            </p>
-            <span className="center valign-wrapper">
-              <i className="tiny material-icons">send</i>
-              &nbsp;&nbsp;451 Wall Street, UK, London
+            <br />
+            <br />
+            <br />
+            <br />
+            <span
+              className="center valign-wrapper"
+              style={{ marginBottom: '10px' }}
+            >
+              <i
+                className="fas fa-home black-text"
+                style={{ fontSize: '20px' }}
+              ></i>
+              &nbsp;&nbsp;600-648 Embarcadero Rd. <br /> Palo Alto, CA 94301,
+              USA
             </span>
-            <span className="center valign-wrapper">
-              <i className="tiny material-icons">phone_android</i>
-              &nbsp;&nbsp;Phone: (064) 979-6482
+            <span
+              className="center valign-wrapper"
+              style={{ marginBottom: '10px' }}
+            >
+              <i
+                className="fas fa-phone black-text"
+                style={{ fontSize: '20px' }}
+              ></i>
+              &nbsp;&nbsp;
+              <a href="tel:+389-072544622" className="white-text">
+                Phone: (+389) 072/544-622
+              </a>
             </span>
-            <span className="center valign-wrapper">
-              <i className="tiny material-icons">mail_outline</i>
-              &nbsp;&nbsp;Fax: (099) 997-4753
+            <span
+              className="center valign-wrapper"
+              style={{ marginBottom: '10px' }}
+            >
+              <i
+                className="fas fa-envelope-open black-text"
+                style={{ fontSize: '20px' }}
+              ></i>
+              &nbsp;&nbsp;
+              <a href="mailto:routemasterinfo@gmail.com" className="white-text">
+                Email: routemasterinfo@gmail.com
+              </a>
             </span>
           </div>
           <div className="col s12 l2">
@@ -118,11 +139,6 @@ const Footer = props => {
                   Terms & Conditions
                 </Link>
               </li>
-              <li>
-                <a className="white-text" href="#!">
-                  Our Sitemap
-                </a>
-              </li>
             </ul>
           </div>
           <div className="col s12 l4">
@@ -178,7 +194,7 @@ const Footer = props => {
       <div className="footer-copyright">
         <div className="container">
           <span className="white-text" style={{ fontSize: '1em' }}>
-            Swift Dispatching © 2019 designed and coded by{' '}
+            Route Master © 2019 designed and coded by{' '}
             <a href="https://www.facebook.com/Kartalov" className="white-text">
               Petar Kartalov
             </a>

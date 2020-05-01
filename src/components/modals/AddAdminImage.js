@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase';
 import firebase from '../../wFirebase/firebaseConfig.js';
-import background from '../../assets/img/truck6.2.png';
+import background from '../../assets/img/truck6.3.png';
 
 class AddAdminImage extends Component {
   constructor(props) {
@@ -90,10 +90,18 @@ class AddAdminImage extends Component {
   render() {
     return (
       <div id="add-admin-image" className="modal">
-        <div style={backgroundStyle}>
-          <img src={background} alt="admin profile background" />
-        </div>
-        <div className="modal-content">
+        <div
+          className="modal-content"
+          style={{
+            backgroundImage: `url(${background})`,
+            zIndex: 1,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            marginBottom: '-20px',
+            overflow: 'hidden'
+          }}
+        >
           <div className="row" style={modalStyle}>
             <div className="col s6">
               <img
@@ -126,7 +134,7 @@ class AddAdminImage extends Component {
                   <span>Pick Image</span>
                   <input type="file" onChange={this.handleChange} />
                 </a>
-                <div className="file-path-wrapper col s8 center">
+                <div className="file-path-wrapper col s9 center">
                   <input
                     className="file-path validate white-text"
                     type="text"
@@ -142,18 +150,18 @@ class AddAdminImage extends Component {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="row">
-          <div className="col s12">
-            <a
-              href="#!"
-              onClick={this.handleSubmit}
-              className="right modal-close waves-effect blue darken-2 btn"
-            >
-              Submit
-              <i className="material-icons right">send</i>
-            </a>
+          <div className="row">
+            <div className="col s12">
+              <a
+                href="#!"
+                onClick={this.handleSubmit}
+                className="right modal-close waves-effect blue darken-2 btn"
+              >
+                Submit
+                <i className="material-icons right">send</i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -164,16 +172,6 @@ class AddAdminImage extends Component {
 const modalStyle = {
   width: '100%',
   height: '100%'
-};
-
-const backgroundStyle = {
-  overflow: 'hidden',
-  position: 'absolute',
-  top: '0',
-  bottom: '0',
-  left: '0',
-  right: '0',
-  zIndex: '-1'
 };
 
 const borderStyle = {

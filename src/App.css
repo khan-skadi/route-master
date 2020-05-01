@@ -21,6 +21,15 @@ body {
   flex-shrink: 0;
 }
 
+.nav-wrapper ul li a {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.nav-wrapper #driversListNavbar li a {
+  color: #00c853;
+}
+
 .map {
   position: relative;
   width: 100%;
@@ -73,6 +82,11 @@ body {
 .wrapper {
   position: relative;
   height: 100vh;
+}
+
+#edit-admin-details {
+  /* width: 400px !important; */
+  max-width: 800px !important;
 }
 
 .bottom {

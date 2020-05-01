@@ -47,6 +47,7 @@ const EditAdminDetails = ({ firestore, profile, users }) => {
         <div className="col s6">
           <h4>Edit Admin Profile</h4>
         </div>
+        <br />
         <div className="input-field">
           <input
             id="adminFirstName"

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from 'react';
 
 const TermsAndConditions = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   return (
     <div className="container">
       <h2 className="center">Terms and Conditions</h2>
@@ -48,7 +52,7 @@ const TermsAndConditions = () => {
             <strong>Terms and Conditions</strong> (also referred as "Terms")
             mean these Terms and Conditions that form the entire agreement
             between You and the Company regarding the use of the Service. This
-            Terms and Conditions agreement as been created with the help of{" "}
+            Terms and Conditions agreement as been created with the help of{' '}
             <a href="https://www.termsfeed.com/terms-conditions-generator/">
               Terms and Conditions Generator
             </a>
@@ -63,7 +67,7 @@ const TermsAndConditions = () => {
           <li>
             <strong>Website</strong> refers to Truck Dispatcher, accessible from
             https://www.truckdispatcher.com
-          </li>{" "}
+          </li>{' '}
           <li>
             <strong>You</strong> means the individual accessing or using the
             Service, or the company, or other legal entity on behalf of which
@@ -287,7 +291,7 @@ const TermsAndConditions = () => {
 };
 
 const style = {
-  fontSize: "1em"
+  fontSize: '1em'
 };
 
 export default TermsAndConditions;

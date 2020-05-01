@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { searchLogs } from '../../store/actions/logActions.js';
 import PropTypes from 'prop-types';
 
-import logo from '../../assets/img/Logo.png';
+import logo from '../../assets/RouteMasterLogo.png';
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
@@ -28,7 +28,11 @@ const Navbar = props => {
     <nav className="green accent-4">
       <div className="nav-wrapper">
         <Link to="/" className="brand-logo">
-          <img src={logo} alt="logo" width="108" height="auto" />
+          <img
+            src={logo}
+            alt="logo"
+            style={{ marginTop: '10px', marginLeft: '10px' }}
+          />
         </Link>
         {links}
       </div>

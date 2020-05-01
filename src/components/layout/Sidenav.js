@@ -41,7 +41,7 @@ const Sidenav = props => {
   ]);
 
   return (
-    <div className="wrappe">
+    <div className="wrap">
       <ul id="slide-out" className="sidenav">
         <li>
           <div className="user-view">
@@ -66,7 +66,7 @@ const Sidenav = props => {
         </li>
         <li
           className="sidenav-text header center blue lighten-4"
-          style={{ marginTop: '-10px' }}
+          style={{ marginTop: '-10px', fontSize: '1.1rem', fontWeight: '500' }}
         >
           Admin Sidebar
         </li>
@@ -84,7 +84,10 @@ const Sidenav = props => {
 
         <div className="divider"></div>
 
-        <li className="sidenav-text header center blue lighten-4">
+        <li
+          className="sidenav-text header center blue lighten-4"
+          style={{ fontSize: '1.1rem', fontWeight: '500' }}
+        >
           Admin Information
         </li>
         <li className="sidenav-text">
@@ -107,7 +110,10 @@ const Sidenav = props => {
 
         <div className="divider"></div>
 
-        <li className="sidenav-text header center blue lighten-4">
+        <li
+          className="sidenav-text header center blue lighten-4"
+          style={{ fontSize: '1.1rem', fontWeight: '500' }}
+        >
           Admin Shortlist
         </li>
         <li className="no-padding">
