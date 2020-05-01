@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import OurStaffList from './OurStaffList';
+
 import Preloader from '../layout/Preloader';
+import OurStaffList from './OurStaffList';
 
 const OurStaff = props => {
   const { drivers } = props;
@@ -29,11 +30,9 @@ const OurStaff = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    drivers: state.firestore.ordered.drivers
-  };
-};
+const mapStateToProps = state => ({
+  drivers: state.firestore.ordered.drivers
+});
 
 export default compose(
   connect(mapStateToProps),

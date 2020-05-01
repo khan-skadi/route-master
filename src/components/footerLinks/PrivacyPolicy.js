@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const PrivacyPolicy = () => {
   return (
     <div className="container">
-      <h2 className="center">PRIVACY POLICY</h2>
+      <h2 className="center">Privacy Policy</h2>
       <div style={style}>
         <p>Effective date: 2021-03-04</p>
         <p>
@@ -13,12 +13,12 @@ const PrivacyPolicy = () => {
           Welcome to <b> Truck Dispatcher</b>.
         </p>
         <p>
-          <b>Truck Dispatcher</b> (“us”, “we”, or “our”) operates{" "}
-          <b>https://truckdispatcher.com</b> (hereinafter referred to as{" "}
+          <b>Truck Dispatcher</b> (“us”, “we”, or “our”) operates{' '}
+          <b>https://truckdispatcher.com</b> (hereinafter referred to as{' '}
           <b>“Service”</b>).
         </p>
         <p>
-          Our Privacy Policy governs your visit to{" "}
+          Our Privacy Policy governs your visit to{' '}
           <b>https://truckdispatcher.com</b>, and explains how we collect,
           safeguard and disclose information that results from your use of our
           Service.
@@ -68,7 +68,7 @@ const PrivacyPolicy = () => {
           legal person who processes the data on behalf of the Data Controller.
           We may use the services of various Service Providers in order to
           process your data more effectively.
-        </p>{" "}
+        </p>{' '}
         <p>
           <b>DATA SUBJECT</b> is any living individual who is the subject of
           Personal Data.
@@ -360,17 +360,17 @@ const PrivacyPolicy = () => {
           privacy policies or practices of any third party sites or services.
         </p>
         <p>
-          For example, the outlined Privacy Policy has been created using{" "}
+          For example, the outlined Privacy Policy has been created using{' '}
           <a href="https://policymaker.io/">PolicyMaker.io</a>, a free web
-          application for generating high-quality legal documents. PolicyMaker’s{" "}
+          application for generating high-quality legal documents. PolicyMaker’s{' '}
           <a href="https://policymaker.io/privacy-policy/">
             online privacy policy generator is an easy-to-use free tool for
             creating an excellent privacy policy template
-          </a>{" "}
+          </a>{' '}
           for a website, blog, online store or app.
         </p>
         <p>
-          15.{" "}
+          15.{' '}
           <b>
             <b>Children’s Privacy</b>
           </b>
@@ -416,7 +416,7 @@ const PrivacyPolicy = () => {
 };
 
 const style = {
-  fontSize: "1em"
+  fontSize: '1em'
 };
 
 export default PrivacyPolicy;

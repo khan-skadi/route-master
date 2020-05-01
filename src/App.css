@@ -21,6 +21,12 @@ body {
   flex-shrink: 0;
 }
 
+.map {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
 .signIn {
   background-image: linear-gradient(
       to bottom,

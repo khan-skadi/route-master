@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { truncate } from '../../util/helper';
+import { truncate } from '../../util/helper.js';
 import PropTypes from 'prop-types';
 
 const OurStaffList = ({ driver }) => {
@@ -32,9 +32,11 @@ const OurStaffList = ({ driver }) => {
                 <br></br>
                 <div className="divider"></div>
                 <br></br>
-                <span className="grey-text text-darken-1">Availability:</span>
+                <span className="grey-text text-darken-1">Status:</span>
                 <br></br>
-                <p>{driver.available ? 'Available' : 'En Route'}</p>
+                <p className={driver.available ? 'green-text' : 'red-text'}>
+                  {driver.available ? 'Available' : 'En Route'}
+                </p>
               </div>
             </div>
 
@@ -59,11 +61,9 @@ const OurStaffList = ({ driver }) => {
                 className="grey-text text-darken-1"
                 style={{ fontSize: '1.2em' }}
               >
-                Availability:
+                License Plate:
               </p>
-              <p className={driver.available ? 'green-text' : 'red-text'}>
-                {driver.available ? 'Available' : 'En Route'}
-              </p>
+              <p>{driver.license}</p>
 
               <div className="divider"></div>
               <br></br>

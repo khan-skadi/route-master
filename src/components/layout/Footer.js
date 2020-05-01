@@ -14,7 +14,7 @@ const Footer = props => {
       <div className="container">
         <div className="row">
           <div className="col s12 l4">
-            <h5 className="white-text">Truck Dispatcher</h5>
+            <h5 className="white-text">Swift Dispatching</h5>
             <br />
             <a
               href="#!"
@@ -23,18 +23,20 @@ const Footer = props => {
             >
               <img src={logo} alt="logo" width="108" height="auto" />
             </a>
-            <p>We bring you the best trucking solutions !&#174;</p>
+            <p style={{ fontSize: '1.1em' }}>
+              We bring you the best trucking solutions
+            </p>
             <span className="center valign-wrapper">
               <i className="tiny material-icons">send</i>
               &nbsp;&nbsp;451 Wall Street, UK, London
             </span>
             <span className="center valign-wrapper">
               <i className="tiny material-icons">phone_android</i>
-              &nbsp;&nbsp;Phone: (064) 332-1233
+              &nbsp;&nbsp;Phone: (064) 979-6482
             </span>
             <span className="center valign-wrapper">
               <i className="tiny material-icons">mail_outline</i>
-              &nbsp;&nbsp;Fax: (099) 453-1357
+              &nbsp;&nbsp;Fax: (099) 997-4753
             </span>
           </div>
           <div className="col s12 l2">
@@ -175,8 +177,11 @@ const Footer = props => {
 
       <div className="footer-copyright">
         <div className="container">
-          <span style={{ fontSize: '1em' }}>
-            Khan Skadi © 2019 created by Petar Kartalov
+          <span className="white-text" style={{ fontSize: '1em' }}>
+            Swift Dispatching © 2019 designed and coded by{' '}
+            <a href="https://www.facebook.com/Kartalov" className="white-text">
+              Petar Kartalov
+            </a>
           </span>
         </div>
       </div>
