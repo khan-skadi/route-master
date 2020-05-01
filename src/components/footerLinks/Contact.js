@@ -52,5 +52,5 @@ const mapStyle = {
 };
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAfL_7q_SUd4OImEC_UjMIgWBF4ut2fnxo'
+  apiKey: process.env.REACT_APP_GOOGLE_MAP
 })(Contact);

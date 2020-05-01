@@ -5,7 +5,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 
 const fbConfig = {
-  apiKey: 'AIzaSyA4y8VjlODcq48s79crUx1eypGJ0o0L7pI',
+  apiKey: process.env.REACT_APP_FIREBASE_API,
   authDomain: 'truck-dispatcher-6050d.firebaseapp.com',
   databaseURL: 'https://truck-dispatcher-6050d.firebaseio.com',
   projectId: 'truck-dispatcher-6050d',
