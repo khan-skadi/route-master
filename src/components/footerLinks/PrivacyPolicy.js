@@ -14,18 +14,18 @@ const PrivacyPolicy = () => {
           1. <b>Introduction</b>
         </p>
         <p>
-          Welcome to <b> Truck Dispatcher</b>.
+          Welcome to <b> Route Master</b>.
         </p>
         <p>
-          <b>Truck Dispatcher</b> (“us”, “we”, or “our”) operates{' '}
-          <b>https://truckdispatcher.com</b> (hereinafter referred to as{' '}
-          <b>“Service”</b>).
+          <b>Route Master</b> (“us”, “we”, or “our”) operates{' '}
+          <b>https://truck-dispatcher-6050d.firebaseapp.com</b> (hereinafter
+          referred to as <b>“Service”</b>).
         </p>
         <p>
           Our Privacy Policy governs your visit to{' '}
-          <b>https://truckdispatcher.com</b>, and explains how we collect,
-          safeguard and disclose information that results from your use of our
-          Service.
+          <b>https://truck-dispatcher-6050d.firebaseapp.com</b>, and explains
+          how we collect, safeguard and disclose information that results from
+          your use of our Service.
         </p>
         <p>
           We use your data to provide and improve Service. By using Service, you
@@ -43,8 +43,9 @@ const PrivacyPolicy = () => {
           2. <b>Definitions</b>
         </p>
         <p>
-          <b>SERVICE</b> means the https://truckdispatcher.com website operated
-          by Truck Dispatcher.
+          <b>SERVICE</b> means the
+          https://truck-dispatcher-6050d.firebaseapp.com website operated by
+          Route Master.
         </p>
         <p>
           <b>PERSONAL DATA</b> means data about a living individual who can be
@@ -187,7 +188,7 @@ const PrivacyPolicy = () => {
         <p>
           5. <b>Use of Data</b>
         </p>
-        <p>Truck Dispatcher uses the collected data for various purposes:</p>
+        <p>Route Master uses the collected data for various purposes:</p>
         <p>0.1. to provide and maintain our Service;</p>
         <p>0.2. to notify you about changes to our Service;</p>
         <p>
@@ -260,12 +261,11 @@ const PrivacyPolicy = () => {
           such information represents your agreement to that transfer.
         </p>
         <p>
-          Truck Dispatcher will take all the steps reasonably necessary to
-          ensure that your data is treated securely and in accordance with this
-          Privacy Policy and no transfer of your Personal Data will take place
-          to an organisation or a country unless there are adequate controls in
-          place including the security of your data and other personal
-          information.
+          Route Master will take all the steps reasonably necessary to ensure
+          that your data is treated securely and in accordance with this Privacy
+          Policy and no transfer of your Personal Data will take place to an
+          organisation or a country unless there are adequate controls in place
+          including the security of your data and other personal information.
         </p>
         <p>
           8. <b>Disclosure of Data</b>
@@ -412,7 +412,10 @@ const PrivacyPolicy = () => {
         </p>
         <p>
           If you have any questions about this Privacy Policy, please contact us
-          by email: <b>bvs.skadi@gmail.com</b>.
+          by email:{' '}
+          <a href="mailto:kartalov.pt@gmail.com" style={{ color: '#A49E9E' }}>
+            kartalov.pt@gmail.com
+          </a>
         </p>
       </div>
     </div>

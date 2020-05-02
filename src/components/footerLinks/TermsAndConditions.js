@@ -40,7 +40,7 @@ const TermsAndConditions = () => {
           </li>
           <li>
             <strong>Company</strong> (referred to as either "the Company", "We",
-            "Us" or "Our" in this Agreement) refers to Truck Dispatcher.
+            "Us" or "Our" in this Agreement) refers to Route Master.
           </li>
           <li>
             <strong>Country</strong> refers to: Macedonia
@@ -49,24 +49,14 @@ const TermsAndConditions = () => {
             <strong>Service</strong> refers to the Website.
           </li>
           <li>
-            <strong>Terms and Conditions</strong> (also referred as "Terms")
-            mean these Terms and Conditions that form the entire agreement
-            between You and the Company regarding the use of the Service. This
-            Terms and Conditions agreement as been created with the help of{' '}
-            <a href="https://www.termsfeed.com/terms-conditions-generator/">
-              Terms and Conditions Generator
-            </a>
-            .
-          </li>
-          <li>
             <strong>Third-party Social Media Service</strong> means any services
             or content (including data, information, products or services)
             provided by a third-party that may be displayed, included or made
             available by the Service.
           </li>
           <li>
-            <strong>Website</strong> refers to Truck Dispatcher, accessible from
-            https://www.truckdispatcher.com
+            <strong>Website</strong> refers to Route Master, accessible from
+            https://truck-dispatcher-6050d.firebaseapp.com/
           </li>{' '}
           <li>
             <strong>You</strong> means the individual accessing or using the
@@ -283,7 +273,12 @@ const TermsAndConditions = () => {
         </p>
 
         <ul>
-          <li>By email: bvs.skadi@gmail.com</li>
+          <li>
+            By email:{' '}
+            <a href="mailto:kartalov.pt@gmail.com" style={{ color: '#A49E9E' }}>
+              kartalov.pt@gmail.com
+            </a>
+          </li>
         </ul>
       </div>
     </div>

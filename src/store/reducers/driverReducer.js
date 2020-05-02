@@ -33,6 +33,17 @@ export default function (state = initialState, action) {
           driver.id === action.payload.id ? action.payload : driver
         )
       };
+    case 'DELETE_DRIVER_SUCCESS':
+      return {
+        ...state,
+        drivers: state.drivers.filter(driver => driver.id !== action.payload),
+        error: null
+      };
+    case 'DELETE_DRIVER_FAIL':
+      return {
+        ...state,
+        error: action.payload
+      };
     case 'SET_CURRENT_DRIVER':
       return {
         ...state,

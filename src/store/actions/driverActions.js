@@ -1,4 +1,5 @@
 import firebase from '../../wFirebase/firebaseConfig.js';
+import { toastr } from 'react-redux-toastr';
 
 // Add driver
 export const addDriver = driver => (
@@ -39,9 +40,10 @@ export const addDriver = driver => (
         type: 'ADD_DRIVER',
         payload: newDriver
       });
-      console.log('driver added to firestore and redux');
+      toastr.success('Success!', 'Driver added successfully!');
     })
     .catch(err => {
+      toastr.error('Oops!', 'Something went wrong.');
       console.error('failed to add driver to firestore ', err);
     });
 };
@@ -60,7 +62,6 @@ export const getDrivers = () => (
     .then(function (querySnapshot) {
       let drivers = [];
       querySnapshot.forEach(function (doc) {
-        // console.log(doc.id, ' => ', doc.data());
         drivers.push(doc.data());
         dispatch({ type: 'GET_DRIVERS_SUCCESS', payload: drivers });
       });
@@ -85,8 +86,8 @@ export const setAvailableTrue = driver => (
       available: true
     })
     .then(() => {
+      toastr.info(`${driverRefFS} is now available`);
       dispatch({ type: 'SET_AVAILABLE_TRUE', payload: driver });
-      console.log('Available status set to True');
     })
     .catch(err => {
       console.error('Failed to change available status ', err);
@@ -108,8 +109,8 @@ export const setAvailableFalse = driver => (
       available: false
     })
     .then(() => {
+      toastr.info(`${driverRefFS} is now En Route`);
       dispatch({ type: 'SET_AVAILABLE_FALSE', payload: driver });
-      console.log('Available status set to False');
     })
     .catch(err => {
       console.error('Failed to change available status ', err);
@@ -166,9 +167,37 @@ export const updateDriverProfile = driver => (
       ...driver
     })
     .then(() => {
+      toastr.success('Success!', 'Driver profile updated.');
       dispatch({ type: 'UPDATE_DRIVER_PROFILE', payload: driver });
     })
     .catch(err => {
+      toastr.error('Oops', 'Something went wrong.');
       console.error('Error updating driver profile: ', err);
+    });
+};
+
+// Delete driver
+export const deleteDriver = driver => (
+  dispatch,
+  _getState,
+  { getFirebase, getFirestore }
+) => {
+  const firestore = getFirestore();
+  const id = driver.firstName + ' ' + driver.lastName;
+
+  firestore
+    .collection('drivers')
+    .doc(id)
+    .delete()
+    .then(() => {
+      dispatch({ type: 'ASYNC_ACTION_START' });
+      toastr.success('Success!', 'Driver deleted!');
+      dispatch({ type: 'DELETE_DRIVER_SUCCESS', payload: driver.id });
+      dispatch({ type: 'ASYNC_ACTION_FINISH' });
+    })
+    .catch(err => {
+      toastr.error('Oops!', 'Something went wrong.');
+      console.error('Failed deleting driver.', err);
+      dispatch({ type: 'DELETE_DRIVER_FAIL', payload: err });
     });
 };

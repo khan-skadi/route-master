@@ -1,13 +1,13 @@
 import firebase from '../../wFirebase/firebaseConfig.js';
+import { toastr } from 'react-redux-toastr';
 
 export const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
-    // const firebase = getFirebase();
-
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
+        toastr.success('Welcome!', 'Signed in successfully!');
         dispatch({ type: 'LOGIN_SUCCESS' });
       })
       .catch(err => {
@@ -18,12 +18,11 @@ export const signIn = credentials => {
 
 export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
-    // const firebase = getFirebase();
-
     firebase
       .auth()
       .signOut()
       .then(() => {
+        toastr.success('See you soon!', 'Signed out successfully!');
         dispatch({ type: 'SIGNOUT_SUCCESS' });
       });
   };
@@ -31,9 +30,6 @@ export const signOut = () => {
 
 export const signUp = newUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // const firebase = getFirebase();
-    // const firestore = getFirestore();
-
     firebase
       .auth()
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
@@ -51,6 +47,7 @@ export const signUp = newUser => {
           });
       })
       .then(() => {
+        toastr.success('Welcome!', 'Signed up successfully!');
         dispatch({ type: 'SIGNUP_SUCCESS' });
       })
       .catch(err => {
@@ -61,9 +58,6 @@ export const signUp = newUser => {
 
 export const changeImage = currentUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // const firebase = getFirebase();
-    // const firestore = getFirestore();
-
     firebase
       .auth()
       .currentUser.then(res => {
@@ -76,9 +70,11 @@ export const changeImage = currentUser => {
           });
       })
       .then(() => {
+        toastr.success('Success!', 'Image changed successfully!');
         dispatch({ type: 'IMAGE_CHANGE_SUCCESS' });
       })
       .catch(err => {
+        toastr.error('Oops!', 'Something went wrong.');
         dispatch({ type: 'IMAGE_CHANGE_ERROR' });
       });
   };

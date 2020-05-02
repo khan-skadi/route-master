@@ -2,9 +2,8 @@ import firebase from '../../wFirebase/firebaseConfig.js';
 import algoliasearch from 'algoliasearch';
 import { toastr } from 'react-redux-toastr';
 
-// const PROJECT_ID = 'truck-dispatcher-6050d'; // Firebase project ID
-const ALGOLIA_APP_ID = 'R5EXCHKAF7'; // Algolia app ID
-const ALGOLIA_SEARCH_KEY = 'c85e3316e75c5aaecf474076b02144cb'; // Search key for unauth users
+const ALGOLIA_APP_ID = process.env.REACT_APP_ALGOLIA_APP_ID; // Algolia app ID
+const ALGOLIA_SEARCH_KEY = process.env.REACT_APP_ALGOLIA_SEARCH_KEY; // Search key for unauth users
 
 // Add log
 export const addLog = log => (
@@ -29,13 +28,13 @@ export const addLog = log => (
     dispatch({ type: 'ASYNC_ACTION_START' });
     let createdLog = firestore.collection('logs').add(newLog);
 
-    toastr.success('Success!', 'Your log is published.');
+    toastr.success('Success!', 'Route created successfully!');
     dispatch({ type: 'ASYNC_ACTION_FINISH' });
     dispatch({ type: 'SET_LOADING_LOGS' });
     return createdLog;
   } catch (error) {
-    console.log(error);
-    toastr.success('Oops!', 'Something went wrong.');
+    toastr.error('Oops!', 'Something went wrong.');
+    console.error(error);
     dispatch({ type: 'ASYNC_ACTION_ERROR' });
   }
 };
@@ -55,9 +54,11 @@ export const updateLog = log => (
       ...log
     })
     .then(() => {
+      toastr.success('Success!', 'Route updated successfully!');
       dispatch({ type: 'UPDATE_LOG_SUCCESS', payload: log });
     })
     .catch(err => {
+      toastr.error('Oops!', 'Something went wrong.');
       console.error('Error updating Log: ', err);
     });
 };
@@ -94,13 +95,13 @@ export const deleteLog = id => (
     .doc(id)
     .delete()
     .then(() => {
+      toastr.success('Success!', 'Route deleted successfully!');
       dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
-      toastr.success('Success!', 'Route deleted.');
     })
     .catch(err => {
+      toastr.error('Oops!', 'Something went wrong.');
       console.error('Failed deleting log document ', err);
       dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
-      toastr.error('Oops!', 'Something went wrong.');
     });
 };
 
@@ -124,7 +125,6 @@ export const getLogsForDashboard = lastLog => async (dispatch, getState) => {
   const firestore = firebase.firestore();
   const eventsRef = firestore.collection('logs');
   try {
-    // dispatch({ type: 'ASYNC_ACTION_START' });
     let querySnap = await eventsRef
       .where('date', '<=', today)
       .orderBy('date', 'desc')
@@ -137,10 +137,9 @@ export const getLogsForDashboard = lastLog => async (dispatch, getState) => {
       logs.push(lg);
     }
     dispatch({ type: 'FETCH_LOGS', payload: logs });
-    // dispatch({ type: 'ASYNC_ACTION_FINISH' });
     return querySnap;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     dispatch({ type: 'ASYNC_ACTION_ERROR' });
   }
 };

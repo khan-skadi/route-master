@@ -3,7 +3,6 @@ import { withRouter } from 'react-router';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import { getDrivers } from '../../store/actions/driverActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader.js';
 import DriverProfileList from './DriverProfileList.js';
@@ -12,7 +11,6 @@ const DriverProfile = props => {
   const { drivers, currentId } = props;
 
   useEffect(() => {
-    getDrivers();
     window.scrollTo(0, 0);
 
     // eslint-disable-next-line
@@ -35,8 +33,7 @@ const DriverProfile = props => {
 };
 
 DriverProfile.propTypes = {
-  drivers: PropTypes.array,
-  getDrivers: PropTypes.func.isRequired
+  drivers: PropTypes.array
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -47,17 +44,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getDrivers: () => {
-      dispatch(getDrivers());
-    }
-  };
-};
-
 export default withRouter(
   compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps),
     firestoreConnect([{ collection: 'drivers' }])
   )(DriverProfile)
 );

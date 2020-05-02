@@ -36,7 +36,6 @@ export const addArch = arch => (
         type: 'ADD_ARCH_SUCCESS',
         payload: newArch
       });
-      console.log('arch added to firestore and redux');
       toastr.success('Success!', 'Route archived!');
     })
     .catch(err => {
@@ -58,7 +57,6 @@ export const getArchs = () => (
     .then(function (querySnapshot) {
       let archs = [];
       querySnapshot.forEach(function (doc) {
-        // console.log(doc.id, ' => ', doc.data());
         archs.push(doc.data());
         dispatch({ type: 'GET_ARCHS_SUCCESS', payload: archs });
       });
@@ -81,10 +79,11 @@ export const deleteArch = id => (
     .doc(id)
     .delete()
     .then(() => {
+      toastr.success('Success!', 'Route deleted!');
       dispatch({ type: 'DELETE_ARCH_SUCCESS', payload: id });
-      console.log(`Archived document ${id} deleted`);
     })
     .catch(err => {
+      toastr.error('Oops!', 'Something went wrong.');
       console.error('Failed deleting archived document ', err);
       dispatch({ type: 'DELETE_ARCH_FAIL', payload: err });
     });

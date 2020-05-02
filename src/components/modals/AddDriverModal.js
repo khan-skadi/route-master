@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addDriver } from '../../store/actions/driverActions.js';
+import { toastr } from 'react-redux-toastr';
 import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
-import M from 'materialize-css/dist/js/materialize';
 
 class AddDriverModal extends Component {
   constructor(props) {
@@ -92,30 +92,19 @@ class AddDriverModal extends Component {
         console.log(error);
       },
       () => {
-        // firebase
-        //   .storage()
-        //   .ref('images')
-        //   .child(image.name)
-        //   .getDownloadURL()
-        //   .then((url) => {
-        //     this.setState({ imageUrl: url });
-        //   });
         uploadTask.snapshot.ref.getDownloadURL().then(downloadUrl => {
           this.setState({ imageUrl: downloadUrl });
         });
       }
     );
   };
+
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.firstName === '' || this.state.lastName === '') {
-      M.toast({ html: 'Please enter the first and last name' });
+      toastr.warning('Warning!', 'Please enter a first and last name!');
     } else {
       this.props.addDriver(this.state);
-      console.log('Driver added');
-      M.toast({
-        html: `${this.state.firstName} ${this.state.lastName} was added as a driver`
-      });
     }
 
     this.setState({
@@ -309,13 +298,5 @@ const mapStateToProps = state => {
     drivers: state.firestore.ordered.drivers
   };
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addDriver: (driver) => {
-//       dispatch(addDriver(driver));
-//     }
-//   };
-// };
 
 export default connect(mapStateToProps, { addDriver })(AddDriverModal);

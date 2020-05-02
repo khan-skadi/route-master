@@ -20,8 +20,8 @@ import algoliasearch from 'algoliasearch/lite';
 import Hit from './Hit.js';
 
 const searchClient = algoliasearch(
-  'R5EXCHKAF7',
-  'c85e3316e75c5aaecf474076b02144cb'
+  process.env.REACT_APP_ALGOLIA_APP_ID,
+  process.env.REACT_APP_ALGOLIA_SEARCH_KEY
 );
 
 const SearchLogs = () => {

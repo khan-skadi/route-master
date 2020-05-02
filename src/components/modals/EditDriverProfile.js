@@ -4,17 +4,14 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import {
   updateDriverProfile,
-  clearCurrentDriver
+  clearCurrentDriver,
+  deleteDriver
 } from '../../store/actions/driverActions.js';
+import { withRouter } from 'react-router-dom';
 import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
-import M from 'materialize-css/dist/js/materialize';
 
-const EditDriverProfile = ({
-  current,
-  updateDriverProfile,
-  clearCurrentDriver
-}) => {
+const EditDriverProfile = props => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [address, setAddress] = useState('');
@@ -28,6 +25,14 @@ const EditDriverProfile = ({
   const [imageUrl, setImageUrl] = useState('');
   const [image, setImage] = useState(null);
   let [progress, setProgress] = useState(null);
+
+  const {
+    current,
+    updateDriverProfile,
+    clearCurrentDriver,
+    deleteDriver,
+    history
+  } = props;
 
   useEffect(() => {
     if (current) {
@@ -66,7 +71,7 @@ const EditDriverProfile = ({
         setProgress(progress);
       },
       error => {
-        console.log(error);
+        console.error(error);
       },
       () => {
         firebase
@@ -100,8 +105,6 @@ const EditDriverProfile = ({
     updateDriverProfile(updatedDriver);
     clearCurrentDriver();
 
-    M.toast({ html: 'Driver info edited' });
-
     setFirstName('');
     setLastName('');
     setAddress('');
@@ -113,6 +116,11 @@ const EditDriverProfile = ({
     setCompletedRoutes([]);
     setIncompleteRoutes([]);
     setImageUrl('');
+  };
+
+  const onDelete = current => {
+    deleteDriver(current);
+    history.push('/');
   };
 
   const completedRoutesNum = Object.keys(completedRoutes).length;
@@ -308,6 +316,14 @@ const EditDriverProfile = ({
           <div className="modal-footer">
             <a
               href="#!"
+              onClick={() => onDelete(current)}
+              className="modal-close waves-effect red accent-4 btn left"
+            >
+              Remove driver
+              <i className="material-icons right">close</i>
+            </a>
+            <a
+              href="#!"
               onClick={onSubmit}
               className="modal-close waves-effect blue darken-2 btn"
             >
@@ -316,7 +332,6 @@ const EditDriverProfile = ({
             </a>
           </div>
         </div>
-        <br></br>
       </div>
     </div>
   );
@@ -324,7 +339,7 @@ const EditDriverProfile = ({
 
 const modalStyle = {
   width: '1000px',
-  minHeight: '82%'
+  minHeight: '83%'
 };
 
 EditDriverProfile.propTypes = {
@@ -343,6 +358,9 @@ const mapDispatchToProps = dispatch => {
     },
     clearCurrentDriver: () => {
       dispatch(clearCurrentDriver());
+    },
+    deleteDriver: id => {
+      dispatch(deleteDriver(id));
     }
   };
 };
@@ -350,4 +368,4 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([{ collection: 'drivers' }])
-)(EditDriverProfile);
+)(withRouter(EditDriverProfile));

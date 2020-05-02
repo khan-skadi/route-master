@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase';
+import { toastr } from 'react-redux-toastr';
 import firebase from '../../wFirebase/firebaseConfig.js';
 
 const EditAdminDetails = ({ firestore, profile, users }) => {
@@ -34,9 +35,10 @@ const EditAdminDetails = ({ firestore, profile, users }) => {
         initials: adminFirstName[0] + adminLastName[0]
       })
       .then(() => {
-        console.log('Document successfully updated !');
+        toastr.success('Success!', 'Admin updated successfully!');
       })
       .catch(error => {
+        toastr.success('Oops!', 'Something went wrong.');
         console.error('Error updating document ', error);
       });
   };

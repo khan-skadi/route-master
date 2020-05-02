@@ -26,10 +26,7 @@ const Footer = props => {
               className="center valign-wrapper"
               style={{ marginBottom: '10px' }}
             >
-              <i
-                className="fas fa-home black-text"
-                style={{ fontSize: '20px' }}
-              ></i>
+              <i className="fas fa-home" style={{ fontSize: '18px' }}></i>
               &nbsp;&nbsp;600-648 Embarcadero Rd. <br /> Palo Alto, CA 94301,
               USA
             </span>
@@ -37,10 +34,7 @@ const Footer = props => {
               className="center valign-wrapper"
               style={{ marginBottom: '10px' }}
             >
-              <i
-                className="fas fa-phone black-text"
-                style={{ fontSize: '20px' }}
-              ></i>
+              <i className="fas fa-phone" style={{ fontSize: '18px' }}></i>
               &nbsp;&nbsp;
               <a href="tel:+389-072544622" className="white-text">
                 Phone: (+389) 072/544-622
@@ -51,8 +45,8 @@ const Footer = props => {
               style={{ marginBottom: '10px' }}
             >
               <i
-                className="fas fa-envelope-open black-text"
-                style={{ fontSize: '20px' }}
+                className="fas fa-envelope-open"
+                style={{ fontSize: '18px' }}
               ></i>
               &nbsp;&nbsp;
               <a href="mailto:routemasterinfo@gmail.com" className="white-text">

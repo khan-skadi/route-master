@@ -6,14 +6,12 @@ import { setCurrentArch, deleteArch } from '../../store/actions/archActions.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader';
 import ArchivedItem from './ArchivedItem';
-import M from 'materialize-css/dist/js/materialize';
 
 const ArchivedRoutes = props => {
   const { archs, deleteArch, setCurrentArch } = props;
 
   const onDelete = id => {
     deleteArch(id);
-    M.toast({ html: 'Archived route deleted' });
   };
 
   return (

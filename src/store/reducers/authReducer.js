@@ -4,44 +4,37 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case "LOGIN_ERROR":
-      console.log("login error");
+    case 'LOGIN_ERROR':
       return {
         ...state,
-        authError: "Login failed"
+        authError: 'Login failed'
       };
-    case "LOGIN_SUCCESS":
-      console.log("login success");
+    case 'LOGIN_SUCCESS':
       return {
         ...state,
         authError: null
       };
-    case "SIGNOUT_SUCCESS":
-      console.log("signout success");
+    case 'SIGNOUT_SUCCESS':
       return state;
-    case "SIGNUP_SUCCESS":
-      console.log("signup success");
+    case 'SIGNUP_SUCCESS':
       return {
         ...state,
         authError: null
       };
-    case "SIGNUP_ERROR":
-      console.log("signup error");
+    case 'SIGNUP_ERROR':
       return {
         ...state,
         authError: action.err.message
       };
-    case "CHANGE_IMAGE_SUCCESS":
-      console.log("change image success");
+    case 'CHANGE_IMAGE_SUCCESS':
       return {
         ...state,
         authError: null
       };
-    case "CHANGE_IMAGE_ERROR":
-      console.log("change image error");
+    case 'CHANGE_IMAGE_ERROR':
       return {
         ...state,
-        authError: "change image failed"
+        authError: 'change image failed'
       };
     default:
       return state;

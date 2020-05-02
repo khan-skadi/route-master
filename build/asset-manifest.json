@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/khan-skadi/truck-dispatcher/static/css/main.4a102349.chunk.css",
-    "main.js": "/khan-skadi/truck-dispatcher/static/js/main.1c697cfd.chunk.js",
-    "main.js.map": "/khan-skadi/truck-dispatcher/static/js/main.1c697cfd.chunk.js.map",
-    "runtime-main.js": "/khan-skadi/truck-dispatcher/static/js/runtime-main.009a7092.js",
-    "runtime-main.js.map": "/khan-skadi/truck-dispatcher/static/js/runtime-main.009a7092.js.map",
-    "static/css/2.7476b5cb.chunk.css": "/khan-skadi/truck-dispatcher/static/css/2.7476b5cb.chunk.css",
-    "static/js/2.40181fd8.chunk.js": "/khan-skadi/truck-dispatcher/static/js/2.40181fd8.chunk.js",
-    "static/js/2.40181fd8.chunk.js.map": "/khan-skadi/truck-dispatcher/static/js/2.40181fd8.chunk.js.map",
-    "index.html": "/khan-skadi/truck-dispatcher/index.html",
-    "precache-manifest.d5c0cdf5b1c2e1635813de29a2785e7b.js": "/khan-skadi/truck-dispatcher/precache-manifest.d5c0cdf5b1c2e1635813de29a2785e7b.js",
-    "service-worker.js": "/khan-skadi/truck-dispatcher/service-worker.js",
-    "static/css/2.7476b5cb.chunk.css.map": "/khan-skadi/truck-dispatcher/static/css/2.7476b5cb.chunk.css.map",
-    "static/css/main.4a102349.chunk.css.map": "/khan-skadi/truck-dispatcher/static/css/main.4a102349.chunk.css.map",
-    "static/js/2.40181fd8.chunk.js.LICENSE": "/khan-skadi/truck-dispatcher/static/js/2.40181fd8.chunk.js.LICENSE",
-    "static/media/RouteMasterLogo.png": "/khan-skadi/truck-dispatcher/static/media/RouteMasterLogo.3b1b8278.png",
-    "static/media/truck6.3.png": "/khan-skadi/truck-dispatcher/static/media/truck6.3.d0c1a88a.png",
-    "static/media/App.css": "/khan-skadi/truck-dispatcher/static/media/truck6.af22e879.png",
-    "static/media/truck7.png": "/khan-skadi/truck-dispatcher/static/media/truck7.e95f6915.png"
+    "main.css": "/static/css/main.eb38e9e2.chunk.css",
+    "main.js": "/static/js/main.ccd0c9ad.chunk.js",
+    "main.js.map": "/static/js/main.ccd0c9ad.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e09937ac.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e09937ac.js.map",
+    "static/css/2.7476b5cb.chunk.css": "/static/css/2.7476b5cb.chunk.css",
+    "static/js/2.78b10298.chunk.js": "/static/js/2.78b10298.chunk.js",
+    "static/js/2.78b10298.chunk.js.map": "/static/js/2.78b10298.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b6110749a2fdd6618554228c262b69f3.js": "/precache-manifest.b6110749a2fdd6618554228c262b69f3.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.7476b5cb.chunk.css.map": "/static/css/2.7476b5cb.chunk.css.map",
+    "static/css/main.eb38e9e2.chunk.css.map": "/static/css/main.eb38e9e2.chunk.css.map",
+    "static/js/2.78b10298.chunk.js.LICENSE": "/static/js/2.78b10298.chunk.js.LICENSE",
+    "static/media/RouteMasterLogo.png": "/static/media/RouteMasterLogo.3b1b8278.png",
+    "static/media/truck6.3.png": "/static/media/truck6.3.d0c1a88a.png",
+    "static/media/App.css": "/static/media/truck6.af22e879.png",
+    "static/media/truck7.png": "/static/media/truck7.e95f6915.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.009a7092.js",
+    "static/js/runtime-main.e09937ac.js",
     "static/css/2.7476b5cb.chunk.css",
-    "static/js/2.40181fd8.chunk.js",
-    "static/css/main.4a102349.chunk.css",
-    "static/js/main.1c697cfd.chunk.js"
+    "static/js/2.78b10298.chunk.js",
+    "static/css/main.eb38e9e2.chunk.css",
+    "static/js/main.ccd0c9ad.chunk.js"
   ]
 }

@@ -4,7 +4,6 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { updateLog, clearCurrentLog } from '../../store/actions/logActions.js';
 import DriverSelectOptions from '../drivers/DriverSelectOptions';
 import PropTypes from 'prop-types';
-import M from 'materialize-css/dist/js/materialize';
 
 const EditLogModal = ({ current, updateLog, clearCurrentLog, drivers }) => {
   const [locationFrom, setLocationFrom] = useState('');
@@ -48,8 +47,6 @@ const EditLogModal = ({ current, updateLog, clearCurrentLog, drivers }) => {
 
     updateLog(updatedLog);
     clearCurrentLog();
-
-    M.toast({ html: 'Route edited' });
 
     setLocationFrom('');
     setLocationTo('');

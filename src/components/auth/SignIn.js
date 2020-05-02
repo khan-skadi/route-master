@@ -23,8 +23,8 @@ class SignIn extends Component {
   render() {
     // Route Guard
     const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to="/" />;
 
+    if (auth.uid) return <Redirect to="/" />;
     return (
       <div className="section signIn">
         <center>
