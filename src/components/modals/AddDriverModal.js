@@ -85,7 +85,6 @@ class AddDriverModal extends Component {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        console.log('Upload is ' + progress + '% done');
         this.setState({ progress });
       },
       error => {
@@ -261,12 +260,14 @@ class AddDriverModal extends Component {
                       Upload
                     </a>
                   </div>
-                  <img
-                    src={this.state.imageUrl}
-                    alt=""
-                    height="300"
-                    width="300"
-                  />
+                  <div className="center">
+                    <img
+                      src={this.state.imageUrl}
+                      alt=""
+                      height="300"
+                      width="300"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="col s12 modal-footer">
