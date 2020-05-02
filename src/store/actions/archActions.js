@@ -36,9 +36,9 @@ export const addArch = arch => (
         type: 'ADD_ARCH_SUCCESS',
         payload: newArch
       });
-      toastr.success('Success!', 'Route archived!');
     })
     .catch(err => {
+      toastr.error('Oops!', 'Something went wrong.');
       console.error('failed to add arch to firestore ', err);
     });
 };

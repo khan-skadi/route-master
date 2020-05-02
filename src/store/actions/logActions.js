@@ -95,7 +95,6 @@ export const deleteLog = id => (
     .doc(id)
     .delete()
     .then(() => {
-      toastr.success('Success!', 'Route deleted successfully!');
       dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
     })
     .catch(err => {

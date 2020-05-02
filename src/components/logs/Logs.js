@@ -54,6 +54,7 @@ const Logs = props => {
       available: true,
       completedRoutes: [...findDriver.completedRoutes, log]
     };
+
     setAvailableTrue(updatedDriver);
     addCompletedRoute(updatedDriver, log);
     deleteLog(log.id);

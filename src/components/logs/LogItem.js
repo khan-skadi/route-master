@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import M from 'materialize-css/dist/js/materialize';
+import { toastr } from 'react-redux-toastr';
 
 const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
   useEffect(() => {
@@ -43,7 +44,10 @@ const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
           data-position="top"
           data-tooltip="Delete Log"
           href="#!"
-          onClick={() => onDelete(log)}
+          onClick={() => {
+            onDelete(log);
+            toastr.success('Success!', 'Route deleted successfully!');
+          }}
         >
           <i className="material-icons grey-text">delete</i>
         </a>
@@ -52,7 +56,10 @@ const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
           data-position="bottom"
           data-tooltip="Archive Log"
           href="#!"
-          onClick={() => onArchive(log)}
+          onClick={() => {
+            onArchive(log);
+            toastr.success('Success!', 'Route archived successfully!');
+          }}
         >
           <i className="material-icons grey-text">archive</i>
         </a>
