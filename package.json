@@ -14,7 +14,6 @@
     "google-maps-react": "^2.0.6",
     "instantsearch.js": "^4.4.0",
     "materialize-css": "^1.0.0",
-    "materialize-social": "^1.0.3",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
@@ -37,8 +36,6 @@
   "homepage": "https://truck-dispatcher-6050d.firebaseapp.com/",
   "scripts": {
     "start": "react-scripts start",
-    "json-server": "json-server --watch db.json --port 3002",
-    "dev": "concurrently \"npm start\" \"npm run json-server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
