@@ -1,5 +1,13 @@
-Route Master Web App created by Petar Kartalov.
+# Route Master Web App
 
-### `npm start`
+```
+FERN Stack
+```
 
-### https://truck-dispatcher-6050d.firebaseapp.com
+## App Link
+
+`https://truck-dispatcher-6050d.firebaseapp.com`
+
+## Available Scripts
+
+`npm start`
