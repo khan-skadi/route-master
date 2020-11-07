@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import M from 'materialize-css/dist/js/materialize';
+import * as M from 'materialize-css/dist/js/materialize';
 import { toastr } from 'react-redux-toastr';
+import { formatTimestamp } from '../../util/formatTimestamp';
 
 const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
   useEffect(() => {
-    const tooltips = document.querySelectorAll('.tooltipped');
-    for (let i = 0; i < tooltips.length; i++) {
-      M.Tooltip.init(tooltips[i]);
+    function initTooltips() {
+      const tooltips = document.querySelectorAll('.tooltipped');
+      for (let i = 0; i < tooltips.length; i++) {
+        M.Tooltip.init(tooltips[i]);
+      }
     }
-  });
+    initTooltips();
+  }, []);
 
   return (
     <div>
@@ -37,7 +41,10 @@ const LogItem = ({ log, onDelete, onArchive, setCurrentLog }) => {
             {log.driver ? log.driver : 'Admin'}
           </span>{' '}
           in{' '}
-          <Moment format="MMMM Do YYYY, h:mm:ss a">{log.date.toDate()}</Moment>
+          <Moment
+            date={formatTimestamp(log.date)}
+            format="MMMM Do YYYY, h:mm:ss a"
+          />
         </span>
         <a
           className="tooltipped secondary-content"

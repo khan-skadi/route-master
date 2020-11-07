@@ -32,12 +32,12 @@ import * as M from 'materialize-css/dist/js/materialize';
 const App = ({ auth }) => {
   useEffect(() => {
     M.AutoInit();
-  });
+  }, []);
 
   const PrivateRoute = ({ component: { Component, ...rest } }) => (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         auth.uid ? <HomePage {...props} /> : <Redirect to="/signin" />
       }
     />
@@ -59,7 +59,7 @@ const App = ({ auth }) => {
         newestOnTop={false}
         preventDuplicates
         position="bottom-left"
-        getState={state => state.toastr}
+        getState={(state) => state.toastr}
         transitionIn="fadeIn"
         transitionOut="fadeOut"
         closeOnToastrClick
@@ -72,7 +72,7 @@ const App = ({ auth }) => {
         <Route path="/signup" component={SignUp} />
         <Route
           path="/drivers/:driver_id"
-          render={routeProps => <DriverProfile {...routeProps} />}
+          render={(routeProps) => <DriverProfile {...routeProps} />}
         />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-and-conditions" component={TermsAndConditions} />
@@ -83,7 +83,7 @@ const App = ({ auth }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth
   };

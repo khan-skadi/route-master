@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import { formatTimestamp } from '../../util/formatTimestamp';
 import firebase from '../../wFirebase/firebaseConfig.js';
 import PropTypes from 'prop-types';
 import Preloader from '../layout/Preloader.js';
 import Moment from 'react-moment';
 import AdminPanelList from './AdminPanelList';
 
-const AdminPanel = props => {
+const AdminPanel = (props) => {
   const [latestArch, setLatestArch] = useState(null);
   const [latestLog, setLatestLog] = useState(null);
 
@@ -22,19 +23,19 @@ const AdminPanel = props => {
       .orderBy('date', 'desc')
       .limit(1)
       .get()
-      .then(querySnapshot => {
+      .then((querySnapshot) => {
         let date = [];
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach((doc) => {
           date.push({
             date: doc.data().date
           });
         });
         return date;
       })
-      .then(date => {
+      .then((date) => {
         setLatestArch(date[0]);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
 
@@ -44,19 +45,19 @@ const AdminPanel = props => {
       .orderBy('date', 'desc')
       .limit(1)
       .get()
-      .then(querySnapshot => {
+      .then((querySnapshot) => {
         let date = [];
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach((doc) => {
           date.push({
             date: doc.data().date
           });
         });
         return date;
       })
-      .then(date => {
+      .then((date) => {
         setLatestLog(date[0]);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
 
@@ -64,8 +65,8 @@ const AdminPanel = props => {
   }, []);
 
   // Calculate Active and Finished Routes price
-  const archsPrice = archs && archs.map(arch => parseInt(arch.price));
-  const logsPrice = logs && logs.map(log => parseInt(log.price));
+  const archsPrice = archs && archs.map((arch) => parseInt(arch.price));
+  const logsPrice = logs && logs.map((log) => parseInt(log.price));
   const adminReducer = (accumulator, currentValue) =>
     Math.round(accumulator + currentValue);
 
@@ -73,8 +74,8 @@ const AdminPanel = props => {
   const finishedRoutesTotal = archsPrice && archsPrice.reduce(adminReducer, 0);
 
   // Find when was the last finished arch and last added route
-  const lastFinishedRoute = latestArch && latestArch.date.toDate();
-  const lastAddedRoute = latestLog && latestLog.date.toDate();
+  const lastFinishedRoute = latestArch && formatTimestamp(latestArch.date);
+  const lastAddedRoute = latestLog && formatTimestamp(latestLog.date);
 
   return (
     <div className="hide-on-med-and-down">
@@ -140,8 +141,8 @@ const AdminPanel = props => {
               ) : (
                 drivers &&
                 drivers
-                  .filter(driver => driver.available === true)
-                  .map(driver => {
+                  .filter((driver) => driver.available === true)
+                  .map((driver) => {
                     return (
                       <div key={driver.id}>
                         <Link to={'/drivers/' + driver.id} key={driver.id}>
@@ -165,7 +166,7 @@ AdminPanel.propTypes = {
   archs: PropTypes.array
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     drivers: state.firestore.ordered.drivers,
     logs: state.firestore.ordered.logs,
