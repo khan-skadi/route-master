@@ -40,7 +40,6 @@ const Navbar = (props) => {
 };
 
 Navbar.propTypes = {
-  searchLogs: PropTypes.func.isRequired,
   drivers: PropTypes.array
 };
 
