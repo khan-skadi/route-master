@@ -24,7 +24,7 @@ const OurStaffList = ({ driver }) => {
 
               <div
                 className="center center-align"
-                style={{ marginTop: '15px' }}
+                // style={{ marginTop: '15px' }}
               >
                 <span className="grey-text text-darken-1">Hourly Rate:</span>
                 <br></br>
