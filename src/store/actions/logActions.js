@@ -1,12 +1,8 @@
 import firebase from '../../wFirebase/firebaseConfig.js';
-import algoliasearch from 'algoliasearch';
 import { toastr } from 'react-redux-toastr';
 
-const ALGOLIA_APP_ID = process.env.REACT_APP_ALGOLIA_APP_ID; // Algolia app ID
-const ALGOLIA_SEARCH_KEY = process.env.REACT_APP_ALGOLIA_SEARCH_KEY; // Search key for unauth users
-
 // Add log
-export const addLog = log => (
+export const addLog = (log) => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -40,7 +36,7 @@ export const addLog = log => (
 };
 
 // Update log
-export const updateLog = log => (
+export const updateLog = (log) => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -57,33 +53,14 @@ export const updateLog = log => (
       toastr.success('Success!', 'Route updated successfully!');
       dispatch({ type: 'UPDATE_LOG_SUCCESS', payload: log });
     })
-    .catch(err => {
+    .catch((err) => {
       toastr.error('Oops!', 'Something went wrong.');
       console.error('Error updating Log: ', err);
     });
 };
 
-// Search logs
-export const searchLogs = query => dispatch => {
-  const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
-  const index = client.initIndex('logs');
-
-  let arr = [];
-
-  return index
-    .search({
-      query
-    })
-    .then(res => {
-      console.log(res);
-
-      arr.push(res.hits);
-      dispatch({ type: 'SEARCH_LOGS', payload: arr });
-    });
-};
-
 // Delete log
-export const deleteLog = id => (
+export const deleteLog = (id) => (
   dispatch,
   _getState,
   { getFirebase, getFirestore }
@@ -97,7 +74,7 @@ export const deleteLog = id => (
     .then(() => {
       dispatch({ type: 'DELETE_LOG_SUCCESS', payload: id });
     })
-    .catch(err => {
+    .catch((err) => {
       toastr.error('Oops!', 'Something went wrong.');
       console.error('Failed deleting log document ', err);
       dispatch({ type: 'DELETE_LOG_FAIL', payload: err });
@@ -105,7 +82,7 @@ export const deleteLog = id => (
 };
 
 // Set current log
-export const setCurrentLog = log => {
+export const setCurrentLog = (log) => {
   return {
     type: 'SET_CURRENT_LOG',
     payload: log
@@ -119,7 +96,7 @@ export const clearCurrentLog = () => {
   };
 };
 
-export const getLogsForDashboard = lastLog => async (dispatch, getState) => {
+export const getLogsForDashboard = (lastLog) => async (dispatch, getState) => {
   let today = new Date(Date.now());
   const firestore = firebase.firestore();
   const eventsRef = firestore.collection('logs');

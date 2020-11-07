@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { searchLogs } from '../../store/actions/logActions.js';
 import PropTypes from 'prop-types';
 
 import logo from '../../assets/RouteMasterLogo.png';
@@ -11,7 +10,7 @@ import logo from '../../assets/RouteMasterLogo.png';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
-const Navbar = props => {
+const Navbar = (props) => {
   const { auth, profile, location, drivers } = props;
 
   const links = auth.uid ? (
@@ -45,7 +44,7 @@ Navbar.propTypes = {
   drivers: PropTypes.array
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile,
@@ -55,7 +54,7 @@ const mapStateToProps = state => {
 
 export default withRouter(
   compose(
-    connect(mapStateToProps, { searchLogs }),
+    connect(mapStateToProps),
     firestoreConnect([{ collection: 'drivers' }])
   )(Navbar)
 );
