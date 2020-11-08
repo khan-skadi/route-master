@@ -1,29 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.eb38e9e2.chunk.css",
-    "main.js": "/static/js/main.e61b307d.chunk.js",
-    "main.js.map": "/static/js/main.e61b307d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e09937ac.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e09937ac.js.map",
-    "static/css/2.7476b5cb.chunk.css": "/static/css/2.7476b5cb.chunk.css",
-    "static/js/2.85a0d267.chunk.js": "/static/js/2.85a0d267.chunk.js",
-    "static/js/2.85a0d267.chunk.js.map": "/static/js/2.85a0d267.chunk.js.map",
+    "main.css": "/static/css/main.b616e6ac.chunk.css",
+    "main.js": "/static/js/main.c6280c09.chunk.js",
+    "main.js.map": "/static/js/main.c6280c09.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.be6b6e8a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.be6b6e8a.js.map",
+    "static/css/2.9abb40f7.chunk.css": "/static/css/2.9abb40f7.chunk.css",
+    "static/js/2.9691f7a4.chunk.js": "/static/js/2.9691f7a4.chunk.js",
+    "static/js/2.9691f7a4.chunk.js.map": "/static/js/2.9691f7a4.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.4ced27b1a08579dcb786ad437b239852.js": "/precache-manifest.4ced27b1a08579dcb786ad437b239852.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.7476b5cb.chunk.css.map": "/static/css/2.7476b5cb.chunk.css.map",
-    "static/css/main.eb38e9e2.chunk.css.map": "/static/css/main.eb38e9e2.chunk.css.map",
-    "static/js/2.85a0d267.chunk.js.LICENSE": "/static/js/2.85a0d267.chunk.js.LICENSE",
-    "static/media/RouteMasterLogo.png": "/static/media/RouteMasterLogo.3b1b8278.png",
-    "static/media/truck6.3.png": "/static/media/truck6.3.d0c1a88a.png",
-    "static/media/App.css": "/static/media/truck6.af22e879.png",
-    "static/media/truck7.png": "/static/media/truck7.e95f6915.png"
+    "static/css/2.9abb40f7.chunk.css.map": "/static/css/2.9abb40f7.chunk.css.map",
+    "static/css/main.b616e6ac.chunk.css.map": "/static/css/main.b616e6ac.chunk.css.map",
+    "static/js/2.9691f7a4.chunk.js.LICENSE.txt": "/static/js/2.9691f7a4.chunk.js.LICENSE.txt",
+    "static/media/RouteMasterLogo.5f93ac30.png": "/static/media/RouteMasterLogo.5f93ac30.png",
+    "static/media/truck6.3.1fe24ac1.png": "/static/media/truck6.3.1fe24ac1.png",
+    "static/media/App.css": "/static/media/truck6.3c4d68bc.png",
+    "static/media/truck7.8cd954f9.png": "/static/media/truck7.8cd954f9.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e09937ac.js",
-    "static/css/2.7476b5cb.chunk.css",
-    "static/js/2.85a0d267.chunk.js",
-    "static/css/main.eb38e9e2.chunk.css",
-    "static/js/main.e61b307d.chunk.js"
+    "static/js/runtime-main.be6b6e8a.js",
+    "static/css/2.9abb40f7.chunk.css",
+    "static/js/2.9691f7a4.chunk.js",
+    "static/css/main.b616e6ac.chunk.css",
+    "static/js/main.c6280c09.chunk.js"
   ]
 }
