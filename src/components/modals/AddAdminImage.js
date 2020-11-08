@@ -27,7 +27,7 @@ class AddAdminImage extends Component {
     this.setState({ currentImage: this.props.profile.photoURL });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({ image }));
@@ -42,13 +42,13 @@ class AddAdminImage extends Component {
       .put(image);
     uploadTask.on(
       'state_changed',
-      snapshot => {
+      (snapshot) => {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         this.setState({ progress });
       },
-      error => {
+      (error) => {
         console.log(error);
       },
       () => {
@@ -57,7 +57,7 @@ class AddAdminImage extends Component {
           .ref('profile-images')
           .child(image.name)
           .getDownloadURL()
-          .then(url => {
+          .then((url) => {
             this.setState({ url, adminPhotoURL: url });
           });
       }
@@ -70,7 +70,7 @@ class AddAdminImage extends Component {
       : isEmpty(this.props.users)
       ? 'User collection is empty'
       : this.props.users.filter(
-          g => g.firstName === this.props.profile.firstName
+          (g) => g.firstName === this.props.profile.firstName
         );
 
     const userRef = firebase.firestore().collection('users').doc(user[0].id);
@@ -82,7 +82,7 @@ class AddAdminImage extends Component {
       .then(() => {
         console.log('Document successfully updated !');
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error updating document ', error);
       });
   };
@@ -106,7 +106,7 @@ class AddAdminImage extends Component {
             <div className="col s6">
               <img
                 src={this.state.adminPhotoURL}
-                className="circle responsive-img"
+                className="responsive-img"
                 height="160"
                 width="160"
                 alt=""
@@ -180,7 +180,7 @@ const borderStyle = {
 
 export default compose(
   withFirestore,
-  connect(state => ({
+  connect((state) => ({
     users: state.firestore.ordered.users,
     profile: state.firebase.profile
   }))
