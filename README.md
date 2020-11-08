@@ -1,7 +1,7 @@
-# Route Master Web App
+# Route Master
 
 ```
-FERN Stack
+FERN Stack Application
 ```
 
 ## App Link

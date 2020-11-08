@@ -45,7 +45,7 @@
     ]
   },
   "devDependencies": {},
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "Route Master web application. Dispatching routes for truck companies",
   "main": "index.js",
   "repository": {
     "type": "git",
