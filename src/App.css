@@ -100,10 +100,10 @@ body {
 }
 
 .bottom {
-  position: sticky;
+  position: fixed;
   display: flex;
   justify-content: space-between;
-  bottom: 0;
+  width: 100%;
   background-color: rgb(210, 218, 218);
   padding: 15px 10px;
   cursor: default;
