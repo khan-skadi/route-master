@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { truncate } from '../../util/helper';
 import adminBackground from '../../assets/img/truck7.png';
 
-const Sidenav = props => {
+const Sidenav = (props) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [image, setImage] = useState('');
@@ -125,7 +125,7 @@ const Sidenav = props => {
               <div className="collapsible-body">
                 <ul>
                   {logs &&
-                    logs.map(log => (
+                    logs.map((log) => (
                       <li key={log.id}>
                         <a
                           className={`modal-trigger ${
@@ -164,10 +164,10 @@ const Sidenav = props => {
                 <ul>
                   {drivers &&
                     drivers
-                      .filter(driver =>
+                      .filter((driver) =>
                         driver.available === true ? driver : false
                       )
-                      .map(driver => (
+                      .map((driver) => (
                         <li key={driver.license}>
                           <a
                             href={`/drivers/${driver.id}`}
@@ -191,7 +191,7 @@ const Sidenav = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: state.firebase.profile,
   auth: state.firebase.auth,
   logs: state.firestore.ordered.logs,
