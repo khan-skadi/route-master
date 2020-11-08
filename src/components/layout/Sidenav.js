@@ -66,7 +66,11 @@ const Sidenav = (props) => {
         </li>
         <li
           className="sidenav-text header center blue lighten-4"
-          style={{ marginTop: '-10px', fontSize: '1.1rem', fontWeight: '500' }}
+          style={{
+            marginTop: '-10px',
+            fontSize: '1.1rem',
+            fontWeight: '500'
+          }}
         >
           Admin Sidebar
         </li>
@@ -182,10 +186,10 @@ const Sidenav = (props) => {
             </li>
           </ul>
         </li>
-        <li className="bottom">
-          <span className="sidenav-text">{`${new Date().toLocaleDateString()}`}</span>{' '}
-          <span className="sidenav-text">{time}</span>
-        </li>
+        <div className="bottom">
+          <span>{`${new Date().toLocaleDateString()}`}</span>{' '}
+          <span>{time}</span>
+        </div>
       </ul>
     </div>
   );
